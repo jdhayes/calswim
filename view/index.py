@@ -33,7 +33,7 @@ def application(environ, start_response):
         """
             Return AJAX call results for Google Map Pins
         """        
-        CalSwimView.content = GetMapLocs(CalSwimView.search)
+        CalSwimView.content = GetMapLocs()
     else:        
         CalSwimView.set_content('index')
         #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}
