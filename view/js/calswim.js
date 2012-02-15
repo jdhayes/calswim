@@ -1,5 +1,6 @@
 // CalSWIM main Javascript file
-$(document).ready(function() {
+$(document).ready(function() {	
+	
 	$('#map_canvas').gmap().bind('init', function() { 	
 		$.getJSON( '?get_map_locs=a', function(data) { 
 			$.each( data.markers, function(i, marker) {
@@ -12,12 +13,12 @@ $(document).ready(function() {
 			});
 		});
 	});
-});
-
-$('search_button').click(function() {
-	$('#map_canvas').gmap('search', { 'address': $("search").val() }, function(results, status) {
-	    if ( status === 'OK' ) {
-	                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-	        }
+	
+	$('#search_button').click(function() {		
+		$('#map_canvas').gmap('search', { 'address': $("#search").val() }, function(results, status) {
+		    if ( status === 'OK' ) {
+		                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+		        }
+		});
 	});
 });
