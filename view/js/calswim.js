@@ -24,7 +24,7 @@ function find_closest_marker( lat, lng, markers ) {
     alert(markers[closest].title);
 }
 	
-$(document).ready(function() {	
+$(document).ready(function() {
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
 		$.getJSON( '?get_map_locs=a', function(data) { 
@@ -42,11 +42,12 @@ $(document).ready(function() {
 	$('#search_button').click(function() {
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode( {'address': $('#search').val() }, function(results, status) { if (status == google.maps.GeocoderStatus.OK) {
-			var lat = results[0].geometry.location.lat();
-			var lng = results[0].geometry.location.lng();
-			var markers = $('#map_canvas').gmap('get', 'markers');
-			find_closest_marker( lat, lng, markers );
-			$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-		}				              	
+				var lat = results[0].geometry.location.lat();
+				var lng = results[0].geometry.location.lng();
+				var markers = $('#map_canvas').gmap('get', 'markers');
+				find_closest_marker( lat, lng, markers );
+				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+			}			              	
+		});
 	});
 });
