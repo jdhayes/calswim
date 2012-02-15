@@ -43,4 +43,14 @@ def GetMapLocs():
 #    data = list(data)
 #    data.sort()
 #    return json.dumps(data)
-    return """{"markers":[ { "latitude":57.7973333, "longitude":12.0502107, "title":"Angered", "content":"Representing :)" }, { "latitude":57.6969943, "longitude":11.9865, "title":"Gothenburg", "content":"Swedens second largest city" } ]}"""
+    return """
+        {"markers":[ 
+            { "latitude":57.7973333, "longitude":12.0502107, "title":"Angered", "content":"Representing :)" },
+            { "latitude":57.6969943, "longitude":11.9865, "title":"Gothenburg", "content":"Swedens second largest city" },
+            
+            { "latitude":33.901303, "longitude":-117.520888, "title":"Rock Vista Park", "content":"2401 Moonridge Cir"},
+            { "latitude":33.90141, "longitude":-117.531102, "title":"Parkview Park", "content":"1995 Las Colinas Cir"},
+                        
+            { "latitude":33.64568, "longitude":-117.842533, "title":"Aldrich Park", "content":"University of California, Irvine, CA 92879"},
+            { "latitude":33.644371, "longitude":-117.841861, "title":"Information Computer Science Building", "content":"University of California, Irvine, CA 92879"}            
+        ]}"""
