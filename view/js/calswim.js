@@ -3,9 +3,14 @@
 // Calculate nearest markers
 function rad(x) {return x*Math.PI/180;}
 function find_closest_marker( lat, lng, markers ) {
+	for (var i in markers) {
+  	  var marker = markers[i];
+  	  alert(marker)
+	}
+	
     var R = 6371;
     var distances = [];
-    var closest = -1;
+    var closest = -1;    
     for( i=0; i<markers.length; i++ ) {
         var mlat = markers[i].position.lat();
         var mlng = markers[i].position.lng();
