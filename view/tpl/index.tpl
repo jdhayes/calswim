@@ -14,7 +14,7 @@
         <div id="map_canvas"></div>
     </div>
     
-    <div id="search_canvas">        
+    <div id="search_canvas" class="dark rounded">        
         <input id="search"/>
         <button id="search_button">Search</button>
     </div>
