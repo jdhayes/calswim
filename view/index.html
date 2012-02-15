@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head>      
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />    
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDYIRhex5ycocL6uuYWa5ZVf1yxwV-4eDk&sensor=false"></script>
-    <script type="text/javascript">
-      function initialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-      }
-    </script>
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.ui.map.full.js"></script>
+    <script type="text/javascript" src="js/calswim.js"></script>
   </head>
   <body onload="initialize()">
     <div id="map_canvas" style="width:100%; height:100%"></div>
