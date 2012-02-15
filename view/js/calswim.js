@@ -4,9 +4,9 @@
 function rad(x) {return x*Math.PI/180;}
 function find_closest_marker( lat, lng, markers ) {
 	var marker = markers[1];
-	for (var i in marker) {
-  	  var mark_att = marker[i];
-  	  alert(mark_att)
+	var mark_att = marker[1];
+	for (var key in marker) {
+		  alert(key);
 	}
 	
     var R = 6371;
