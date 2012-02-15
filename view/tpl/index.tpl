@@ -7,7 +7,11 @@
     <script type="text/javascript" src="js/jquery/jquery.ui.map.full.min.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
   </head>
-  <body>
+  <body>    
+    <div id="search_canvas">
+        <input id="search"/>
+        <button id="search_button">Search</button>
+    </div>
     <div id="map_canvas"></div>
   </body>
 </html>

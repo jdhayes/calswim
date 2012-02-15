@@ -4,4 +4,5 @@
 
 html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
-#map_canvas { height: 100% }    
+#map_canvas { height: 100% }
+#search_canvas { position: absolute; z-index: 9999; top:0px; width: 200px; height: 100px;}

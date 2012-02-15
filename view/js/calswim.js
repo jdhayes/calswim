@@ -13,3 +13,11 @@ $(document).ready(function() {
 		});
 	});
 });
+
+$('search_button').click(function() {
+	$('#map_canvas').gmap('search', { 'address': $("search").val() }, function(results, status) {
+	    if ( status === 'OK' ) {
+	                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+	        }
+	});
+});
