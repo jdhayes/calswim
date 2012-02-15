@@ -8,10 +8,17 @@
     <script type="text/javascript" src="js/calswim.js"></script>
   </head>
   <body>    
-    <div id="search_canvas">
+    <div id="header" class="dark"><h1>Welcome to CalSWIM!</h1></div>    
+    
+    <div id="map_canvas_wrapper" class="dark rounded">
+        <div id="map_canvas"></div>
+    </div>
+    
+    <div id="search_canvas">        
         <input id="search"/>
         <button id="search_button">Search</button>
     </div>
-    <div id="map_canvas"></div>
+    
+    <div id="footer" class="dark">CalSWIM &copy; ICS @ UCI</div>
   </body>
 </html>
