@@ -16,8 +16,7 @@
     
     <div id="search_canvas" class="dark rounded">        
         <label>Address</label>
-        <input id="search"/>
-        <button id="search_button">Search</button>
+        <input id="search"/>        
         
         <label>Search Radius (Miles)</label>
         <select id="radius">
@@ -26,7 +25,9 @@
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
-        </select>        
+        </select>
+        
+        <button id="search_button">Search</button>
     </div>
     
     <div id="footer" class="dark">CalSWIM &copy; ICS @ UCI</div>
