@@ -28,15 +28,15 @@ def GetMapLocs():
     # execute SQL query using execute() method.
     cursor.execute(select_query)        
     # Fetch a single row using fetchone() method.
-    data = set()
+    markers = []
     while(1):
         row=cursor.fetchone()
         if row == None:
             break                
-        data.add( {"title":row[0]+", "+row[1], "content":row[0]+", "+row[1], "latitude":str(row[2]), "longitude":str(row[3])} )                
+        markers.append( {"title":row[0]+", "+row[1], "content":row[0]+", "+row[1], "latitude":str(row[2]), "longitude":str(row[3])} )                
         
     # disconnect from server
     db.close()
 
     # Return search values as json
-    return json.dumps(data)
+    return json.dumps({"markers": markers})
