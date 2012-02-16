@@ -15,6 +15,7 @@
     </div>
     
     <div id="search_canvas" class="dark rounded">        
+        <label>Search Radius (Miles)</label>
         <select id="radius">
             <option value="5">5</option>
             <option value="10">10</option>
