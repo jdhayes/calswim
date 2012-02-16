@@ -1,7 +1,7 @@
 // CalSWIM main Javascript file
 
 $(document).ready(function() {
-	function get_map_locs(lat=0, lng=0, radius=0){
+	function get_map_locs(lat, lng, radius){
 		$('#map_canvas').gmap('clear', 'markers');
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng, function(data) { 
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	}
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
-		get_map_locs();
+		get_map_locs(0,0,0);
 	});
 	
 	$('#search_button').click(function() {
