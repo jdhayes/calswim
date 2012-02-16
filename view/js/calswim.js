@@ -26,7 +26,7 @@ $(document).ready(function() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();						
-				get_map_locs(lat, lng, 5000);
+				get_map_locs(lat, lng, $("#radius").val() );
 				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
 			}
 		});
