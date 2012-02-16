@@ -32,7 +32,7 @@ def GetMapLocs():
     while(1):
         row=cursor.fetchone()
         if row == None:
-            break                
+            break
         markers.append( {"title":row[0]+", "+row[1], "content":row[0]+", "+row[1], "latitude":str(row[2]), "longitude":str(row[3])} )                
         
     # disconnect from server
