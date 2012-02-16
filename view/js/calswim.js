@@ -4,7 +4,7 @@ $(document).ready(function() {
 	function get_map_locs(lat, lng, radius){
 		$('#map_canvas').gmap('clear', 'markers');
 		
-		$.getJSON( '?get_map_locs='+lat+","+lng, function(data) { 
+		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
 			$.each( data.markers, function(i, marker) {										
 				$('#map_canvas').gmap('addMarker', { 
 					'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
