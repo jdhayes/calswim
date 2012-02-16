@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
 			$.each( data.markers, function(i, marker) {										
 				$('#map_canvas').gmap('addMarker', { 
-					'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
+					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
 				}).click(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
@@ -28,7 +28,10 @@ $(document).ready(function() {
 				var lng = results[0].geometry.location.lng();						
 				get_map_locs(lat, lng, $("#radius").val() );
 				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-			}
+				$('#map_canvas').gmap('refresh');
+			}else {
+		    	alert("Geocode was not successful for the following reason: " + status);
+		    }
 		});
 	});
 });
