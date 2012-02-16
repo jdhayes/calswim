@@ -1,8 +1,10 @@
 // CalSWIM main Javascript file
 
-$(document).ready(function() {	
-	$('#map_canvas').gmap().bind('init', function() { 	
-		$.getJSON( '?get_map_locs=a', function(data) { 
+$(document).ready(function() {
+	function get_map_locs(lat=0, lng=0, radius=0){
+		$('#map_canvas').gmap('clear', 'markers');
+		
+		$.getJSON( '?get_map_locs='+lat+","+lng, function(data) { 
 			$.each( data.markers, function(i, marker) {										
 				$('#map_canvas').gmap('addMarker', { 
 					'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
@@ -12,6 +14,10 @@ $(document).ready(function() {
 				});
 			});
 		});
+	}
+	
+	$('#map_canvas').gmap().bind('init', function() { 	
+		get_map_locs();
 	});
 	
 	$('#search_button').click(function() {
@@ -19,11 +25,10 @@ $(document).ready(function() {
 		geocoder.geocode( {'address': $('#search').val() }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var lat = results[0].geometry.location.lat();
-				var lng = results[0].geometry.location.lng();
-				var markers = $('#map_canvas').gmap('get', 'markers');
-				find_closest_marker( lat, lng, markers );
+				var lng = results[0].geometry.location.lng();						
+				get_map_locs(lat, lng, 5000);
 				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-			}			              	
+			}
 		});
 	});
 });

@@ -6,12 +6,13 @@ import urllib;
 import MySQLdb;
 import json
 
-def GetMapLocs():
+def GetMapLocs(CalSwimView):
     """
         This is a simple script to query the database.
         We need this so that ajax can pull data
     """    
-    select_query="SELECT City,State,Latitude,Longitude FROM calswim__cities"      
+    #select_query="SELECT City,State,Latitude,Longitude FROM calswim__cities"   
+    select_query = "SELECT City,State,Latitude,Longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( Latitude ) ) ) ) AS distance FROM calswim__cities HAVING distance < "+ CalSwimView.radius
 
     # Connect to an existing database
     connParams = {}

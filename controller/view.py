@@ -18,5 +18,6 @@ class WebView:
         FILE = open(self.TPL_DIR + template + '.tpl')
         self.content = FILE.read()
     
-    def set_search(self, search):        
-        self.search = search
+    def set_search(self, latlng, radius):        
+        self.lat, self.lng = latlng.split(",")
+        self.radius = radius;

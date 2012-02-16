@@ -19,10 +19,8 @@ def application(environ, start_response):
     # Retrieve GET variables and store them as a dictionary
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
-    # Initialize web class    
-    CalSwimView = WebView(os.path.dirname(__file__))
-    # Set name for search node
-    CalSwimView.set_search(form.getvalue('search'))
+    # Initialize web class
+    CalSwimView = WebView(os.path.dirname(__file__))        
     
     """
         ================================================
@@ -32,8 +30,9 @@ def application(environ, start_response):
     if 'get_map_locs' in form:
         """
             Return AJAX call results for Google Map Pins
-        """        
-        CalSwimView.content = GetMapLocs()
+        """
+        CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'))
+        CalSwimView.content = GetMapLocs(CalSwimView)
     else:        
         CalSwimView.set_content('index')
         #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}
