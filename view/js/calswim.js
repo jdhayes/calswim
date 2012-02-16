@@ -3,6 +3,7 @@
 $(document).ready(function() {
 	function get_map_locs(lat, lng, radius){
 		$('#map_canvas').gmap('clear', 'markers');
+		$('#map_canvas').gmap('set', 'bounds', null);
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
 			$.each( data.markers, function(i, marker) {										
@@ -27,8 +28,7 @@ $(document).ready(function() {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();						
 				get_map_locs(lat, lng, $("#radius").val() );
-				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-				$('#map_canvas').gmap('refresh');
+				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);				
 			}else {
 		    	alert("Geocode was not successful for the following reason: " + status);
 		    }
