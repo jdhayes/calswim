@@ -10,7 +10,7 @@ $(document).ready(function() {
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
 				}).click(function() {					
-					$('#map_canvas').gmap('openInfoWindow', { 'content': "THIS IS SOME CONTETNT" });
+					$('#map_canvas').gmap('openInfoWindow', { 'content': "THIS IS SOME CONTETNT" }, this);
 				});
 			});
 		});
