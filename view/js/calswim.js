@@ -8,18 +8,18 @@ $(document).ready(function() {
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
 			$.each( data.markers, function(i, marker) {											
 				$('#map_canvas').gmap({ 'center': new google.maps.LatLng(marker.latitude,marker.longitude), 'callback': function() {
-			        $('#map_canvas').gmap('addMarker', { 'bounds':true, 'position': new google.maps.LatLng(marker.latitude,marker.longitude), 'animation': google.maps.Animation.DROP }, function(map, marker){
-			                $('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
-			                        $(marker).click(function() {
-			                                iw.open(map, marker);
-			                                map.panTo(marker.getPosition());
-			                        });                                                                                                                                                                                                                               
-			                });
-			            });
-				    })};
-				});
+					$('#map_canvas').gmap('addMarker', { 'bounds':true, 'position': new google.maps.LatLng(marker.latitude,marker.longitude), 'animation': google.maps.Animation.DROP }, function(map, marker){
+		                $('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
+		                        $(marker).click(function() {
+		                                iw.open(map, marker);
+		                                map.panTo(marker.getPosition());
+		                        });
+		                });
+					});
+				}});
 			});
-		}	
+	    });
+			               
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
 		get_map_locs(0,0,0);
