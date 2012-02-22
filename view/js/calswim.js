@@ -6,7 +6,8 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('set', 'bounds', null);
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
-			$.each( data.markers, function(i, marker) {										
+			$.each( data.markers, function(i, marker) {
+				alert(marker.content);
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
