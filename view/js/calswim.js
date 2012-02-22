@@ -6,9 +6,9 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('set', 'bounds', null);
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
-			$.each( data.markers, function(i, marker) {
-				alert(new google.maps.LatLng(marker.latitude,marker.longitude));
+			$.each( data.markers, function(i, marker) {				
 				$('#map_canvas').gmap({ 'center': new google.maps.LatLng(marker.latitude,marker.longitude), 'callback': function() {
+					alert("testing");
 					$('#map_canvas').gmap('addMarker', { 'bounds':true, 'position': new google.maps.LatLng(marker.latitude,marker.longitude), 'animation': google.maps.Animation.DROP }, function(map, marker){
 		                $('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
 		                        $(marker).click(function() {
