@@ -15,11 +15,11 @@ $(document).ready(function() {
 			                                map.panTo(marker.getPosition());
 			                        });                                                                                                                                                                                                                               
 			                });
-			        });
+			            });
+				    });
 				});
 			});
-		});
-	}
+		}	
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
 		get_map_locs(0,0,0);
