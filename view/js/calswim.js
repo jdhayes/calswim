@@ -10,18 +10,18 @@ $(document).ready(function() {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true,
-					'animation': google.maps.Animation.DROP,
-					function(map, marker){							
-						$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
-							$(marker).click(function() {
-								iw.open(map, marker);
-								map.panTo(marker.getPosition());
-							});
+					'animation': google.maps.Animation.DROP
+				},
+				function(map, marker){							
+					$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
+						$(marker).click(function() {
+							iw.open(map, marker);
+							map.panTo(marker.getPosition());
 						});
-					}
+					});
 				});
 			});
-		});
+		});		
 	}
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
