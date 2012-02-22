@@ -9,9 +9,8 @@ $(document).ready(function() {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
-				}).click(function() {
-					alert("testing");
-					$('#map_canvas').gmap('openInfoWindow', { 'content': "THIS IS SOME CONTETNT" }, this);
+				}).click(function() {					
+					$('#map_canvas').gmap('openInfoWindow', { 'content': "THIS IS SOME CONTETNT" }, marker);
 				});
 			});
 		});
