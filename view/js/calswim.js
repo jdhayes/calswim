@@ -3,21 +3,14 @@
 $(document).ready(function() {
 	function get_map_locs(lat, lng, radius){
 		$('#map_canvas').gmap('clear', 'markers');
-		$('#map_canvas').gmap('set', 'bounds', null);
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
 			$.each( data.markers, function(i, marker) {										
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
-				});
-								
-				$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
-					$(marker).click(function() {
-						iw.open(map, marker);
-//						var map = $('#map_canvas').gmap('getMap');
-//						map.panTo(marker.getPosition());
-					});
+				}).click(function() {
+					$('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
 				});
 			});
 		});
@@ -34,7 +27,8 @@ $(document).ready(function() {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();						
 				get_map_locs(lat, lng, $("#radius").val() );
-				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);				
+				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+				$('#map_canvas').gmap('refresh');
 			}else {
 		    	alert("Geocode was not successful for the following reason: " + status);
 		    }
