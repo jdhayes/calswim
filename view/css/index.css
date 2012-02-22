@@ -21,6 +21,9 @@ h1{
 .rounded {
     border-radius: 8px 8px 8px 8px;
 }
+.marker_content{
+	color: #ABABAB;
+}
 
 /* IDs */
 #header {  
