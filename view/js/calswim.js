@@ -9,14 +9,16 @@ $(document).ready(function() {
 			$.each( data.markers, function(i, marker) {										
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
-					'bounds': true 
-				});
-								
-				$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
-					$(marker).click(function() {
-						iw.open(map, marker);
-						map.panTo(marker.getPosition());
-					});
+					'bounds': true,
+					'animation': google.maps.Animation.DROP,
+					function(map, marker){							
+						$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
+							$(marker).click(function() {
+								iw.open(map, marker);
+								map.panTo(marker.getPosition());
+							});
+						});
+					}
 				});
 			});
 		});
