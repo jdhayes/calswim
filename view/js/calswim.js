@@ -6,19 +6,14 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('set', 'bounds', null);
 		
 		$.getJSON( '?get_map_locs='+lat+","+lng+"&radius="+radius, function(data) { 
-			$.each( data.markers, function(i, marker) {										
-				$('#map_canvas').gmap('addMarker', { 
-					'position': marker.latitude+","+marker.longitude, 
-					'bounds': true,
-					'animation': google.maps.Animation.DROP
-				},
-				function(map, marker){							
-					$('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': marker.content }, function(iw) {
-						$(marker).click(function() {
-							iw.open(map, marker);
-							map.panTo(marker.getPosition());
-						});
-					});
+			$.each( data.markers, function(i, marker) {								
+				$('#map_canvas').gmap('addMarker', { 'bounds':true, 'position': new google.maps.LatLng(marker.latitude,marker.longitude), 'animation': google.maps.Animation.DROP }, function(map, marker){
+			        $('#map_canvas').gmap('addInfoWindow', { 'position':marker.getPosition(), 'content': 'TEXT_AND_HTML_IN_INFOWINDOW' }, function(iw) {
+			                $(marker).click(function() {
+			                        iw.open(map, marker);
+			                        map.panTo(marker.getPosition());
+			                });                                                                                                                                                                                                                               
+			        });
 				});
 			});
 		});		
