@@ -33,7 +33,7 @@ def GetMapLocs(CalSwimView):
         row=cursor.fetchone()
         if row == None:
             break
-        markers.append( {"content":row[0]+"<br />"+row[1], "latitude":str(row[2]), "longitude":str(row[3])} )                
+        markers.append( {"content":row[0]+"<br /><a target='_blank' href='"+row[1]+"'>Source</a>", "latitude":str(row[2]), "longitude":str(row[3])} )                
         
     # disconnect from server
     db.close()
