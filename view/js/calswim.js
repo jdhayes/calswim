@@ -17,7 +17,9 @@ $(document).ready(function() {
 	}
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
-		get_map_locs(0,0,0);
+		geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
+			$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+		});
 	});
 	
 	$('#search_button').click(function() {
