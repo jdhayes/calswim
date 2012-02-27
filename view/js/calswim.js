@@ -15,6 +15,7 @@ $(document).ready(function() {
 			});
 		});
 	}
+	var geocoder = new google.maps.Geocoder();
 	
 	$('#map_canvas').gmap().bind('init', function() { 	
 		geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
@@ -22,8 +23,7 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('#search_button').click(function() {
-		var geocoder = new google.maps.Geocoder();
+	$('#search_button').click(function() {		
 		geocoder.geocode( {'address': $('#search').val() }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var lat = results[0].geometry.location.lat();
