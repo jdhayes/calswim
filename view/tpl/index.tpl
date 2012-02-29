@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.ui.map.full.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
+    <script type="text/javascript" src="js/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
@@ -71,13 +72,17 @@
             <div id="table_canvas"></div>
         </div>
         
-        <div id="search_canvas" class="rounded ui-layout-north">        
+        <div id="search_canvas" class="rounded ui-layout-north">
+            <h2>Search</h2>      
             <label>Address</label>
-            <input id="search"/>
+            <input id="address"/>
             <button id="search_button">Search</button>    
         </div>
         
         <div class="rounded ui-layout-west">
+            <h2>Filters</h2>
+            <label>Keywords</label>
+            <textarea id="keywords" style="width: 100%"></textarea>
             <label>Search Radius (Miles)</label>
             <select id="radius">
                 <option value="5">5</option>

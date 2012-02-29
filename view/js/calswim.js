@@ -28,6 +28,8 @@ $(document).ready(function() {
 		//,south__togglerContent_open:   toggleButtons
 	});	
 	$('#content').layout({ applyDefaultStyles: true });
+	$("#address").Watermark("Everywhere");
+	$("#keywords").Watermark("Everything");
 	
 	/* ********************* */
 	/* Initialize Google Map */
@@ -55,7 +57,7 @@ $(document).ready(function() {
 	});
 	
 	$('#search_button').click(function() {		
-		geocoder.geocode( {'address': $('#search').val() }, function(results, status) {
+		geocoder.geocode( {'address': $('#address').val() }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();						
