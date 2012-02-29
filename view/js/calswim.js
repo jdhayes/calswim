@@ -11,7 +11,7 @@ $(document).ready(function() {
         north__size:             125,                       	
         north__maxSize:			200        
 	});
-	$('content').layout({ applyDefaultStyles: true });
+	$('#content').layout({ applyDefaultStyles: true });
 	
 	/* ********************* */
 	/* Initialize Google Map */
