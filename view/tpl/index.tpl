@@ -14,24 +14,10 @@
         google.setOnLoadCallback(initialize);
         
         function initialize() {
-            // The URL here is the URL of the spreadsheet.
-            // This is where the data is.
-            var query = new google.visualization.Query(
-                'https://spreadsheets.google.com/pub?key=AIzaSyDYIRhex5ycocL6uuYWa5ZVf1yxwV-4eDk');
-            query.send(draw);
+           drawTable();
           }
 
-          function draw(response) {
-            if (response.isError()) {
-              alert('Error in query');
-            }
-
-            var ticketsData = response.getDataTable();
-            var chart = new google.visualization.ColumnChart(
-                document.getElementById('chart_div'));
-            chart.draw(ticketsData, {'isStacked': true, 'legend': 'bottom',
-                'vAxis': {'title': 'Number of tickets'}});
-
+          function drawTable(response) {
             var geoData = new google.visualization.DataTable();
             geoData.addColumn('string', 'City');
             geoData.addColumn('string', 'Name');
