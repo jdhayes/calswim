@@ -8,7 +8,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.ui.map.full.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
-    <script type="text/javascript" src="js/jquery.watermark.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
