@@ -11,7 +11,7 @@
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        google.setOnLoadCallback(initialize_table);
+        google.setOnLoadCallback(initialize);
         
         function initialize() {
             // The URL here is the URL of the spreadsheet.
