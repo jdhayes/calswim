@@ -19,19 +19,19 @@
 
           function drawTable(response) {
             var geoData = new google.visualization.DataTable();
-            geoData.addColumn('string', 'City');
-            geoData.addColumn('string', 'Name');
-            geoData.addColumn('boolean', 'Food');
+            geoData.addColumn('string', 'Source');
+            geoData.addColumn('string', 'Description');
+            geoData.addColumn('string', 'URL');
             geoData.addRows(3);
-            geoData.setCell(0, 0, 'London');
-            geoData.setCell(1, 0, 'Paris');
-            geoData.setCell(2, 0, 'Moscow');
-            geoData.setCell(0, 1, 'Cinematics London');
-            geoData.setCell(1, 1, 'Cinematics Paris');
-            geoData.setCell(2, 1, 'Cinematics Moscow');
-            geoData.setCell(0, 2, true);
-            geoData.setCell(1, 2, true);
-            geoData.setCell(2, 2, false);
+            geoData.setCell(0, 0, 'Southern California Transect, Desert');
+            geoData.setCell(1, 0, 'Southern California Transect, Pinyon/Juniper');
+            geoData.setCell(2, 0, 'Southern California Transect, Desert Chaparral');
+            geoData.setCell(0, 1, 'Data collected from desert region.');
+            geoData.setCell(1, 1, 'Data collected from .Pinyon/Juniper region.');
+            geoData.setCell(2, 1, 'Data collected from desert Chaparral region.');
+            geoData.setCell(0, 2, "http:\/\/www.ess.uci.edu\/~california\/");
+            geoData.setCell(1, 2, "http:\/\/www.ess.uci.edu\/~california\/");
+            geoData.setCell(2, 2, "http:\/\/www.ess.uci.edu\/~california\/");
 
             var geoView = new google.visualization.DataView(geoData);
             geoView.setColumns([0, 1]);
