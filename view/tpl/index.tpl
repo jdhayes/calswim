@@ -17,13 +17,13 @@
             <div id="map_canvas"></div>
         </div>
         
-        <div id="search_canvas" class="dark rounded ui-layout-north">        
+        <div id="search_canvas" class="rounded ui-layout-north">        
             <label>Address</label>
             <input id="search"/>
             <button id="search_button">Search</button>    
         </div>
         
-        <div class="ui-layout-west">
+        <div class="rounded ui-layout-west">
             <label>Search Radius (Miles)</label>
             <select id="radius">
                 <option value="5">5</option>

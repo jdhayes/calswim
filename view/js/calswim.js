@@ -4,15 +4,29 @@ $(document).ready(function() {
 	/* ***************** */
 	/* Initialize Layout */
 	/* ***************** */
+	
+	/* Custom Toggle buttons */
+	/*
+        toggleButtons = '<div class="btnToggler"></div>' + '<div class="btnReset"></div>' + '<div class="btnExpand"></div>'
+	*/
+	
 	$('body').layout({ 
-		center__paneSelector:   "#content", 
-	    north__paneSelector:    "#header",
-	    south__paneSelector:    "#footer",	    
-        north__size:             50,                       	
-        north__maxSize:		     50,
-        south__size:             25,                       	
-        south__maxSize:			 25
-	});
+		 center__paneSelector:   "#content" 
+	    ,north__paneSelector:    "#header"
+	    ,north__closable:        false
+	    ,north__resizeable:      false
+        ,north__size:            50                     	
+        ,north__maxSize:		 50
+        ,south__paneSelector:    "#footer"
+        ,south__closable:        false
+	    ,south__resizeable:      false
+        ,south__size:            25                       	
+        ,south__maxSize:         25
+        //,south__togglerLength_closed: 105
+		//,south__togglerLength_open:   105
+        //,south__togglerContent_closed: toggleButtons
+		//,south__togglerContent_open:   toggleButtons
+	});	
 	$('#content').layout({ applyDefaultStyles: true });
 	
 	/* ********************* */
