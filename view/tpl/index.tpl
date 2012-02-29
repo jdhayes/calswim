@@ -66,7 +66,7 @@
     <div id="header" class="dark"><h1>Welcome to CalSWIM!</h1></div>    
     
     <div id="content">
-        <div id="map_canvas_wrapper" class="dark rounded ui-layout-center">
+        <div id="map_canvas_wrapper" class="rounded ui-layout-center">
             <div id="map_canvas"></div>
             <div id="table_canvas"></div>
         </div>
