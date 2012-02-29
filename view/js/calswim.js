@@ -1,6 +1,18 @@
 // CalSWIM main Javascript file
 
 $(document).ready(function() {
+	/* ***************** */
+	/* Initialize Layout */
+	/* ***************** */ 
+	$('body').layout({ applyDefaultStyles: true });
+
+	// layout utilities
+	myLayout.addPinBtn("#myPinButton", "west");
+	myLayout.allowOverflow("north");
+	
+	/* ********************* */
+	/* Initialize Google Map */
+	/* ********************* */
 	function get_map_locs(lat, lng, radius){
 		$('#map_canvas').gmap('clear', 'markers');
 		
