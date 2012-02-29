@@ -3,12 +3,15 @@
 $(document).ready(function() {
 	/* ***************** */
 	/* Initialize Layout */
-	/* ***************** */ 
-	$('body').layout({ applyDefaultStyles: true });
-
-	// layout utilities
-	myLayout.addPinBtn("#myPinButton", "west");
-	myLayout.allowOverflow("north");
+	/* ***************** */
+	$('body').layout({ 
+		center__paneSelector:   "#content", 
+	    north__paneSelector:    "#header",
+	    east__paneSelector:     ".outer-east", 
+        north__size:             125,                       	
+        north__maxSize:			200        
+	});
+	$('content').layout({ applyDefaultStyles: true });
 	
 	/* ********************* */
 	/* Initialize Google Map */

@@ -12,27 +12,29 @@
   <body>    
     <div id="header" class="dark"><h1>Welcome to CalSWIM!</h1></div>    
     
-    <div id="map_canvas_wrapper" class="dark rounded ui-layout-center">
-        <div id="map_canvas"></div>
+    <div id="content">
+        <div id="map_canvas_wrapper" class="dark rounded ui-layout-center">
+            <div id="map_canvas"></div>
+        </div>
+        
+        <div id="search_canvas" class="dark rounded ui-layout-north">        
+            <label>Address</label>
+            <input id="search"/>
+            <button id="search_button">Search</button>    
+        </div>
+        
+        <div class="ui-layout-west">
+            <label>Search Radius (Miles)</label>
+            <select id="radius">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>               
+        </div>
     </div>
     
-    <div id="search_canvas" class="dark rounded ui-layout-north">        
-        <label>Address</label>
-        <input id="search"/>
-        <button id="search_button">Search</button>    
-    </div>
-    
-    <div class="ui-layout-west">
-        <label>Search Radius (Miles)</label>
-        <select id="radius">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>               
-    </div>
-    
-    <div id="footer" class="dark ui-layout-south">CalSWIM &copy; ICS @ UCI</div>
+    <div id="footer" class="dark">CalSWIM &copy; ICS @ UCI</div>
   </body>
 </html>
