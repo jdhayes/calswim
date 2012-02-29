@@ -7,9 +7,11 @@ $(document).ready(function() {
 	$('body').layout({ 
 		center__paneSelector:   "#content", 
 	    north__paneSelector:    "#header",
-	    east__paneSelector:     ".outer-east", 
-        north__size:             125,                       	
-        north__maxSize:			200        
+	    south__paneSelector:    "#footer",	    
+        north__size:             50,                       	
+        north__maxSize:		     50,
+        south__size:             25,                       	
+        south__maxSize:			 25
 	});
 	$('#content').layout({ applyDefaultStyles: true });
 	
