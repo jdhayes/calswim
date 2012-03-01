@@ -20,7 +20,7 @@ def application(environ, start_response):
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
     # Initialize web class
-    CalSwimView = WebView(os.path.dirname(__file__))        
+    CalSwimView = WebView(os.path.dirname(__file__), environ['wsgi.errors'])        
     
     """
         ================================================

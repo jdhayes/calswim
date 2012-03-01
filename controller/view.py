@@ -7,7 +7,7 @@ class WebView:
     """
         Simple web view class that should generate all dynamically viewed content
     """
-    def __init__(self, base_dir):        
+    def __init__(self, base_dir, errors):        
         self.base_dir = base_dir
       
         # Define TPL path and set inital web CONTENT
@@ -15,7 +15,7 @@ class WebView:
         self.year = date.today().year
         
         # Initialize error var
-        self.errors = environ['wsgi.errors']       
+        self.errors = errors
     
     def set_content(self, template):
         FILE = open(self.TPL_DIR + template + '.tpl')
