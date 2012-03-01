@@ -44,7 +44,10 @@ $(document).ready(function() {
 		var first_latlng;
 		
 		// Get results
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {								
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
+			// Return first latlng so that the map will have somewhere to focus
+			first_latlng = new google.maps.LatLng(data.markers[0].latitude,data.markers[0].longitude);
+			
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
@@ -53,10 +56,7 @@ $(document).ready(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
 				});						
 			});
-		});
-		
-		// Return first latlng so that the map will have somewhere to focus
-		var first_latlng = new google.maps.LatLng(data.markers[0].latitude,data.markers[0].longitude);
+		});			
 		return first_latlng;
 	}
 	var geocoder = new google.maps.Geocoder();
