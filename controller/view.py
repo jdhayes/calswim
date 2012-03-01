@@ -12,7 +12,10 @@ class WebView:
       
         # Define TPL path and set inital web CONTENT
         self.TPL_DIR = base_dir + '/tpl/'                
-        self.year = date.today().year        
+        self.year = date.today().year
+        
+        # Initialize error var
+        self.errors = environ['wsgi.errors']       
     
     def set_content(self, template):
         FILE = open(self.TPL_DIR + template + '.tpl')
