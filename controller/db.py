@@ -15,13 +15,13 @@ def GetMapLocs(CalSwimView):
     keyword_query = "+"+ "* +".join(CalSwimView.keywords) +"*"
     #select_query = "SELECT description,urllink,latitude,longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( latitude ) ) ) ) AS distance FROM coordinate HAVING distance < "+ CalSwimView.radius
     select_query = """
-                      SELECT description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance \
-                      FROM coordinate \
-                      WHERE \
-                      MATCH (description) \
-                      AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE) \
-                      HAVING distance < %(Radius)s \
-                    """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lat, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}
+                      SELECT description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
+                      FROM coordinate
+                      WHERE
+                      MATCH (description)
+                      AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
+                      HAVING distance < %(Radius)s
+                    """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}
     exit(select_query)
 
     # Connect to an existing database
