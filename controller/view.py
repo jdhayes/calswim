@@ -26,6 +26,9 @@ class WebView:
         self.radius = radius;
         
         # Parse out non alpha numeric characters
-        pattern = re.compile('[\W_]+')
-        self.keywords = pattern.sub(' ', keywords).split()    
+        if keywords == "Everywhere":
+            self.keywords = []
+        else:
+            pattern = re.compile('[\W_]+')
+            self.keywords = pattern.sub(' ', keywords).split()    
         
