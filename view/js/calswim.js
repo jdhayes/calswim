@@ -34,7 +34,7 @@ $(document).ready(function() {
 	/* ********************* */
 	/* Initialize Google Map */
 	/* ********************* */
-	function get_map_locs(lat, lng, radius){
+	function get_map_locs(lat, lng, radius, keywords){
 		$('#map_canvas').gmap('clear', 'markers');
 		
 		$.getJSON("?get_map_locs="+lat+","+lng +"&radius="+radius +"&keywords="+keywords, function(data) { 
