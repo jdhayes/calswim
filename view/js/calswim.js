@@ -34,10 +34,15 @@ $(document).ready(function() {
 	/* ********************* */
 	/* Initialize Google Map */
 	/* ********************* */
-	function get_map_locs(lat, lng, radius, keywords){
+	function get_map_locs(latlng, radius, keywords){
+		// Clear previously set markers
 		$('#map_canvas').gmap('clear', 'markers');
 		
-		$.getJSON("?get_map_locs="+lat+","+lng +"&radius="+radius +"&keywords="+keywords, function(data) { 
+		// Init AJAX JSON data 
+		var data;
+		
+		// Get results
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) { 
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
@@ -47,6 +52,9 @@ $(document).ready(function() {
 				});
 			});
 		});
+		
+		// Return first latlng so that the map will have somewhere to focus
+		return data.markers[0].latitude+","+data.markers[0].longitude;
 	}
 	var geocoder = new google.maps.Geocoder();
 	
@@ -56,17 +64,25 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('#search_button').click(function() {		
-		geocoder.geocode( {'address': $('#address').val() }, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				var lat = results[0].geometry.location.lat();
-				var lng = results[0].geometry.location.lng();						
-				get_map_locs(lat, lng, $("#radius").val(), $("#keywords").val());
-				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-				$('#map_canvas').gmap('refresh');
-			}else {
-		    	alert("Geocode was not successful for the following reason: " + status);
-		    }
-		});
+	$('#search_button').click(function() {
+		var latlng;
+		if ( $('#address').val()=="Everywhere" ){
+			latlng = get_map_locs("Everywhere", 0, $("#keywords").val());			
+	    }
+		else{
+		    geocoder.geocode( {'address': $('#address').val() }, function(results, status) {
+		    	if (status == google.maps.GeocoderStatus.OK) {
+					var lat = results[0].geometry.location.lat();
+					var lng = results[0].geometry.location.lng();						
+					get_map_locs(lat+","+lng, $("#radius").val(), $("#keywords").val());					
+				}else {
+			    	alert("Geocode was not successful for the following reason: " + status);
+			    }
+		    	latlng = results[0].geometry.location
+		    });
+		}
+		// Center map on resuts
+		$('#map_canvas').gmap('get', 'map').panTo(latlng);
+		$('#map_canvas').gmap('refresh');
 	});
 });
