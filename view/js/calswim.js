@@ -44,11 +44,7 @@ $(document).ready(function() {
 		var first_latlng;
 		
 		// Get results
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
-			
-			// Return first latlng so that the map will have somewhere to focus
-			first_latlng = data.markers[0].latitude+","+data.markers[0].longitude;
-			
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {								
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
@@ -57,8 +53,10 @@ $(document).ready(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
 				});						
 			});
-		});		
-		var first_latlng = new google.maps.LatLng(first_latlng);
+		});
+		
+		// Return first latlng so that the map will have somewhere to focus
+		var first_latlng = new google.maps.LatLng(data.markers[0].latitude,data.markers[0].longitude);
 		return first_latlng;
 	}
 	var geocoder = new google.maps.Geocoder();
@@ -82,12 +80,13 @@ $(document).ready(function() {
 					get_map_locs(lat+","+lng, $("#radius").val(), $("#keywords").val());					
 				}else {
 			    	alert("Geocode was not successful for the following reason: " + status);
-			    }
-		    	latlng = results[0].geometry.location
+			    }		    	
+				// Center map on resuts
+				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
 		    });
 		}
-		// Center map on resuts
-		$('#map_canvas').gmap('get', 'map').panTo(latlng);
-		//$('#map_canvas').gmap('refresh');
+		
+		// Refresh map, and resize
+		$('#map_canvas').gmap('refresh');
 	});
 });
