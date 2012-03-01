@@ -24,9 +24,13 @@ class WebView:
     def set_search(self, latlng, radius, keywords):        
         """
             Assign params to class instance
-        """        
-        self.lat, self.lng = latlng.split(",")
-        self.radius = radius;
+        """
+        if latlng == "Everywhere":
+            self.lat = None
+            self.lng = None
+        else:
+            self.lat, self.lng = latlng.split(",")
+            self.radius = radius;
         
         # Parse out non alpha numeric characters
         if keywords == "Everything":
