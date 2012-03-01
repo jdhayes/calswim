@@ -30,8 +30,11 @@ def GetMapLocs(CalSwimView):
                           """)
     # Search query has at least 1 keyword
     if len(CalSwimView.keywords) > 0:
-        keyword_query = "+"+ "* +".join(CalSwimView.keywords) +"*"
-        #select_query = "SELECT description,urllink,latitude,longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( latitude ) ) ) ) AS distance FROM coordinate HAVING distance < "+ CalSwimView.radius
+        # Just a few MySQL notes:
+        #    Default MySQL operation executes an "OR" search among terms
+        #    To make sure all terms are in a given result, "AND" search among terms, then just add prefix "+" before each term
+        #    To exclude results with a given term, just add prefix "-" before the term
+        keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
         query_build.insert(1,"""                          
                                  WHERE
                                  MATCH (description)
