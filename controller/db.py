@@ -18,7 +18,7 @@ def GetMapLocs(CalSwimView):
                     FROM coordinate \
                     WHERE \
                     MATCH (description) \
-                    AGAINST ('%(KeywordQuery)' IN BOOLEAN MODE) \
+                    AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE) \
                     HAVING distance < %(Radius)s \
                     " % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lat, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}
 
