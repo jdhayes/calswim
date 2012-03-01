@@ -36,26 +36,28 @@ $(document).ready(function() {
 	/* ********************* */
 	function get_map_locs(latlng, radius, keywords){
 		// Clear previously set markers
-		$('#map_canvas').gmap('clear', 'markers');
+		$('#map_canvas').gmap('clear', 'markers');		
 		
-		// Init AJAX JSON data 
-		var json_data;
+		// Init json data
+		var first_latlng;
 		
 		// Get results
 		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
-			json_data = data;
+			
+			// Return first latlng so that the map will have somewhere to focus
+			first_latlng = data.markers[0].latitude+","+data.markers[0].longitude;
+			
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
 				}).click(function() {					
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
-				});
+				});						
 			});
 		});
 		
-		// Return first latlng so that the map will have somewhere to focus
-		return json_data.markers[0].latitude+","+json_data.markers[0].longitude;
+		return first_latlng;
 	}
 	var geocoder = new google.maps.Geocoder();
 	
