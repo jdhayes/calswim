@@ -87,7 +87,7 @@ $(document).ready(function() {
 		    });
 		}
 		// Center map on resuts
-		$('#map_canvas').gmap('get', 'map').panTo(latlng);
-		$('#map_canvas').gmap('refresh');
+		//$('#map_canvas').gmap('get', 'map').panTo(latlng);
+		//$('#map_canvas').gmap('refresh');
 	});
 });
