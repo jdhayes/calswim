@@ -21,8 +21,7 @@ def GetMapLocs(CalSwimView):
                       MATCH (description)
                       AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                       HAVING distance < %(Radius)s
-                    """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}
-    exit(select_query)
+                    """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}    
 
     # Connect to an existing database
     connParams = {}
