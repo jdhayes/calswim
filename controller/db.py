@@ -4,14 +4,24 @@
 import cgi;
 import urllib;
 import MySQLdb;
-import json
+import json;
+import re, string;
 
 def GetMapLocs(CalSwimView):
     """
         This is a simple script to query the database.
         We need this so that ajax can pull data
-    """    
-    select_query = "SELECT description,urllink,latitude,longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( latitude ) ) ) ) AS distance FROM coordinate HAVING distance < "+ CalSwimView.radius
+    """
+    keyword_query = "+"+ CalSwimView.keywords.join("* +") +"*"
+    #select_query = "SELECT description,urllink,latitude,longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( latitude ) ) ) ) AS distance FROM coordinate HAVING distance < "+ CalSwimView.radius
+    select_query = """
+                   SELECT description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
+                   FROM coordinate
+                   WHERE
+                   MATCH (description)
+                   AGAINST ('%(KeywordQuery)' IN BOOLEAN MODE)
+                   HAVING distance < "+ %(Radius)s
+                   """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lat, "KeywordQuery":keyword_query, "Radius":CalSwimView.radius}
 
     # Connect to an existing database
     connParams = {}

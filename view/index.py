@@ -31,7 +31,7 @@ def application(environ, start_response):
         """
             Return AJAX call results for Google Map Pins
         """
-        CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'))
+        CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
         CalSwimView.content = GetMapLocs(CalSwimView)
     else:        
         CalSwimView.set_content('index')

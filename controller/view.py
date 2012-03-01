@@ -1,7 +1,7 @@
 import os;
-import MySQLdb;
 from datetime import date;
 import urllib;
+import re, string;
 
 class WebView:
     """
@@ -18,6 +18,14 @@ class WebView:
         FILE = open(self.TPL_DIR + template + '.tpl')
         self.content = FILE.read()
     
-    def set_search(self, latlng, radius):        
+    def set_search(self, latlng, radius, keywords):        
+        """
+            Assign params to class instance
+        """        
         self.lat, self.lng = latlng.split(",")
         self.radius = radius;
+        
+        # Parse out non alpha numeric characters
+        pattern = re.compile('[\W_]+')
+        self.keywords = pattern.sub(' ', keywords).split()    
+        
