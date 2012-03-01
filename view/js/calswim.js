@@ -55,8 +55,8 @@ $(document).ready(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
 				});						
 			});
-		});
-		
+		});		
+		var first_latlng = new google.maps.LatLng(first_latlng);
 		return first_latlng;
 	}
 	var geocoder = new google.maps.Geocoder();
