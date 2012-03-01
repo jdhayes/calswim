@@ -37,7 +37,7 @@ def GetMapLocs(CalSwimView):
                                  MATCH (description)
                                  AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                               """ % {"KeywordQuery":keyword_query})
-        select_query = "\n".join(query_build)    
+    select_query = "\n".join(query_build)    
     print >> CalSwimView.errors, select_query
 
     # Connect to an existing database
