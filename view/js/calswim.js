@@ -39,10 +39,11 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('clear', 'markers');
 		
 		// Init AJAX JSON data 
-		var data;
+		var json_data;
 		
 		// Get results
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) { 
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
+			json_data = data;
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
@@ -54,7 +55,7 @@ $(document).ready(function() {
 		});
 		
 		// Return first latlng so that the map will have somewhere to focus
-		return data.markers[0].latitude+","+data.markers[0].longitude;
+		return json_data.markers[0].latitude+","+json_data.markers[0].longitude;
 	}
 	var geocoder = new google.maps.Geocoder();
 	
