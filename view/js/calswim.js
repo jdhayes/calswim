@@ -36,7 +36,9 @@ $(document).ready(function() {
 	/* ********************* */
 	function get_map_locs(latlng, radius, keywords){
 		// Clear previously set markers
-		$('#map_canvas').gmap('clear', 'markers');		
+		$('#map_canvas').gmap('clear', 'overlays');
+		$('#map_canvas').gmap('clear', 'markers');
+		$('#map_canvas').gmap('clear', 'services');
 		
 		// Init json data
 		var first_latlng;
@@ -87,6 +89,5 @@ $(document).ready(function() {
 		// Center map on resuts
 		$('#map_canvas').gmap('get', 'map').panTo(latlng);
 		$('#map_canvas').gmap('refresh');
-		$('#map_canvas').gmap('resize');
 	});
 });
