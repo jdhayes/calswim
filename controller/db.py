@@ -5,14 +5,14 @@ import cgi;
 import urllib;
 import MySQLdb;
 import json;
-import re, string;
+import string;
 
 def GetMapLocs(CalSwimView):
     """
         This is a simple script to query the database.
         We need this so that ajax can pull data
     """
-    keyword_query = "+"+ CalSwimView.keywords.join("* +") +"*"
+    keyword_query = "+"+ "* +".join(CalSwimView.keywords) +"*"
     #select_query = "SELECT description,urllink,latitude,longitude, ( 3959 * acos( cos( radians("+ CalSwimView.lat +") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians("+ CalSwimView.lng +") ) + sin( radians("+ CalSwimView.lat +") ) * sin( radians( latitude ) ) ) ) AS distance FROM coordinate HAVING distance < "+ CalSwimView.radius
     select_query = """
                    SELECT description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
