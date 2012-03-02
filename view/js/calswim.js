@@ -7,27 +7,26 @@ function drawTable(json_table_data) {
 	
 	var table = new google.visualization.Table(document.getElementById('table_canvas'));
 	table.draw(geoData, {showRowNumber: false});
+		
+    var map = new google.visualization.Map(document.getElementById('map_canvas'));
+    map.draw(geoView, {showTip: true});
+
+    // Set a 'select' event listener for the table.
+    // When the table is selected,
+    // we set the selection on the map.
+    google.visualization.events.addListener(table, 'select',
+        function() {
+          map.setSelection(table.getSelection());
+        });
+
+    // Set a 'select' event listener for the map.
+    // When the map is selected,
+    // we set the selection on the table.
+    google.visualization.events.addListener(map, 'select',
+        function() {
+          table.setSelection(map.getSelection());
+    });
 	
-	/*
-	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-	    map.draw(geoView, {showTip: true});
-	
-	    // Set a 'select' event listener for the table.
-	    // When the table is selected,
-	    // we set the selection on the map.
-	    google.visualization.events.addListener(table, 'select',
-	        function() {
-	          map.setSelection(table.getSelection());
-	        });
-	
-	    // Set a 'select' event listener for the map.
-	    // When the map is selected,
-	    // we set the selection on the table.
-	    google.visualization.events.addListener(map, 'select',
-	        function() {
-	          table.setSelection(map.getSelection());
-	    });
-	*/
 	return geoView;
 }
 
@@ -69,19 +68,8 @@ function initialize() {
 		$('#map_canvas').gmap('clear', 'markers');
 		$('#map_canvas').gmap('clear', 'services');
 		
-		// Get json results from DB
-		var json_data;	
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
-			json_data = data;
-			$.each( json_data.locs, function(i, marker) {
-				$('#map_canvas').gmap('addMarker', { 
-					'position': marker.latitude+","+marker.longitude, 
-					'bounds': true 
-				}).click(function() {					
-					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
-				});						
-			});
-					
+		// Get json results from DB		
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {								
 			var geoView = drawTable(json_data.table_data);			
 			
 			// Return first latlng so that the map will have somewhere to focus
