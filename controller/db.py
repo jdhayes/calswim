@@ -70,7 +70,7 @@ def GetMapLocs(CalSwimView):
     db.close()
 
     # Return search values as json    
-    cols = [{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
+    cols = [{"id":'latlng', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
     table_data["cols"] = cols
     table_data["rows"] = rows
     # Assign table data to json table data container
