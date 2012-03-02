@@ -60,6 +60,7 @@ def GetMapLocs(CalSwimView):
     # Fetch a single row using fetchone() method.
     rows = []
     locs = []
+    table_data = []
     while(1):
         row=cursor.fetchone()
         if row == None:
