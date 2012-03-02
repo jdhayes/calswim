@@ -41,11 +41,12 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('clear', 'services');
 		
 		// Init json json data
-		var json_data;		
+		var json_data;	
 		
 		// Get results
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {						
-			$.each( data.markers, function(i, marker) {
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
+			json_data = data;
+			$.each( json_data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
 					'bounds': true 
