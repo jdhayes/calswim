@@ -58,15 +58,19 @@ def GetMapLocs(CalSwimView):
     # execute SQL query using execute() method.
     cursor.execute(select_query)        
     # Fetch a single row using fetchone() method.
-    markers = []
+    rows = []
+    locs = []
     while(1):
         row=cursor.fetchone()
         if row == None:
             break
-        markers.append( {"content":row[0]+"<br /><a target='_blank' href='"+row[1]+"'>Source</a>", "latitude":str(row[2]), "longitude":str(row[3])} )                
+        rows.append( {c:[{v:row[0]}, {v:"<a target='_blank' href='"+row[1]+"'>Source</a>"}]} )
+        locs.append( {"latitude":str(row[2]), "longitude":str(row[3])} )          
         
     # disconnect from server
     db.close()
 
-    # Return search values as json
-    return json.dumps({"markers": markers})
+    # Return search values as json    
+    cols = [{id:'source', label:'Source', type:'string'}, {id:'description', label:'Description', type:'string'}, {id:'url', label:'URL', type:'string'}]    
+    table_data = {"cols":cols, "rows":rows}
+    return json.dumps({"table_data":table_data, "locs":locs})
