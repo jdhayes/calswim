@@ -18,14 +18,14 @@ def GetMapLocs(CalSwimView):
     if (CalSwimView.lat and CalSwimView.lng):
         # Search query has a specified location
         query_build.append("""
-                               SELECT description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
+                               SELECT source_name,description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
                                FROM coordinate
                             """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng})
         query_build.append("HAVING distance < %(Radius)s" % {"Radius":CalSwimView.radius})
     else:
         # Search query does not have a specidied location
         query_build.append("""
-                             SELECT description,urllink,latitude,longitude
+                             SELECT source_name,description,urllink,latitude,longitude
                              FROM coordinate
                           """)
     # Search query has at least 1 keyword
@@ -66,8 +66,8 @@ def GetMapLocs(CalSwimView):
         row=cursor.fetchone()
         if row == None:
             break
-        rows.append( {"c":[{"v":row[0]}, {"v":row[1]}]} )
-        locs.append( {"latitude":str(row[2]), "longitude":str(row[3])} )          
+        rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[3]}]} )
+        locs.append( {"latitude":str(row[4]), "longitude":str(row[5])} )          
         
     # disconnect from server
     db.close()
