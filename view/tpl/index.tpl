@@ -12,55 +12,7 @@
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        google.setOnLoadCallback(initialize);
-        
-        function initialize() {
-           drawTable();
-          }
-
-          function drawTable(response) {
-            var geoData = new google.visualization.DataTable();
-            geoData.addColumn('string', 'Source');
-            geoData.addColumn('string', 'Description');
-            geoData.addColumn('string', 'URL');
-            geoData.addRows(3);
-            geoData.setCell(0, 0, 'Southern California Transect, Desert');
-            geoData.setCell(1, 0, 'Southern California Transect, Pinyon/Juniper');
-            geoData.setCell(2, 0, 'Southern California Transect, Desert Chaparral');
-            geoData.setCell(0, 1, 'Data collected from desert region.');
-            geoData.setCell(1, 1, 'Data collected from .Pinyon/Juniper region.');
-            geoData.setCell(2, 1, 'Data collected from desert Chaparral region.');
-            geoData.setCell(0, 2, "http:\/\/www.ess.uci.edu\/~california\/");
-            geoData.setCell(1, 2, "http:\/\/www.ess.uci.edu\/~california\/");
-            geoData.setCell(2, 2, "http:\/\/www.ess.uci.edu\/~california\/");
-
-            var geoView = new google.visualization.DataView(geoData);
-            geoView.setColumns([0, 1]);
-
-            var table = new google.visualization.Table(document.getElementById('table_canvas'));
-            table.draw(geoData, {showRowNumber: false});
-
-            /*
-                var map = new google.visualization.Map(document.getElementById('map_canvas'));
-                map.draw(geoView, {showTip: true});
-    
-                // Set a 'select' event listener for the table.
-                // When the table is selected,
-                // we set the selection on the map.
-                google.visualization.events.addListener(table, 'select',
-                    function() {
-                      map.setSelection(table.getSelection());
-                    });
-    
-                // Set a 'select' event listener for the map.
-                // When the map is selected,
-                // we set the selection on the table.
-                google.visualization.events.addListener(map, 'select',
-                    function() {
-                      table.setSelection(map.getSelection());
-                });
-            */
-          }
+        google.setOnLoadCallback(initialize);               
     </script>
   </head>
   <body>    
