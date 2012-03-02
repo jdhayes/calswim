@@ -40,14 +40,11 @@ $(document).ready(function() {
 		$('#map_canvas').gmap('clear', 'markers');
 		$('#map_canvas').gmap('clear', 'services');
 		
-		// Init json data
-		var first_latlng;
+		// Init json json data
+		var json_data;		
 		
 		// Get results
-		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(data) {
-			// Return first latlng so that the map will have somewhere to focus
-			first_latlng = new google.maps.LatLng(data.markers[0].latitude,data.markers[0].longitude);
-			
+		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {						
 			$.each( data.markers, function(i, marker) {
 				$('#map_canvas').gmap('addMarker', { 
 					'position': marker.latitude+","+marker.longitude, 
@@ -56,7 +53,10 @@ $(document).ready(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
 				});						
 			});
-		});			
+		});
+		
+		// Return first latlng so that the map will have somewhere to focus
+		first_latlng = new google.maps.LatLng(json_data.markers[0].latitude, json_data.markers[0].longitude);
 		return first_latlng;
 	}
 	var geocoder = new google.maps.Geocoder();
