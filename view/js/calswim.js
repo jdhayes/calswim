@@ -54,11 +54,11 @@ $(document).ready(function() {
 					$('#map_canvas').gmap('openInfoWindow', { 'content': "<span class='marker_content'>"+marker.content+"</span>" }, this);
 				});						
 			});
-		});
-		
-		// Return first latlng so that the map will have somewhere to focus
-		first_latlng = new google.maps.LatLng(json_data.markers[0].latitude, json_data.markers[0].longitude);
-		return first_latlng;
+			
+			// Return first latlng so that the map will have somewhere to focus
+			first_latlng = new google.maps.LatLng(json_data.markers[0].latitude, json_data.markers[0].longitude);
+			return first_latlng;
+		});			
 	}
 	var geocoder = new google.maps.Geocoder();
 	
