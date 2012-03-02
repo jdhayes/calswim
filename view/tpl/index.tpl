@@ -33,8 +33,7 @@
         
         <div class="rounded ui-layout-west">
             <h2>Filters</h2>
-            <label>Keywords</label>
-            <textarea id="keywords" style="width: 100%"></textarea>
+            
             <label>Search Radius (Miles)</label>
             <select id="radius">
                 <option value="5">5</option>
@@ -42,7 +41,10 @@
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
-            </select>               
+            </select>
+            
+            <label>Keywords</label>
+            <textarea id="keywords" style="width: 100%"></textarea>               
         </div>
     </div>
     
