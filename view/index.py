@@ -33,6 +33,8 @@ def application(environ, start_response):
         """
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
         CalSwimView.content = GetMapLocs(CalSwimView)
+    elif 'upload' in form:
+        CalSwimView.set_content('upload')
     else:        
         CalSwimView.set_content('index')
         #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}
