@@ -101,6 +101,7 @@ function initialize() {
 	    }		
 		// Get coordinates for address and do DB search
 		else{
+			var geocoder = new google.maps.Geocoder();
 		    geocoder.geocode( {'address': $('#address').val() }, function(results, status) {
 		    	if (status == google.maps.GeocoderStatus.OK) {
 					var lat = results[0].geometry.location.lat();
