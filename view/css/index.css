@@ -48,6 +48,8 @@ h1{
     width: 100%;
     height: 30%;
     margin: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 #search_canvas {	
 	clear:both;	
