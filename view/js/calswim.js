@@ -14,6 +14,7 @@ function initTableMap(json_table_data) {
 	    var geoData = new google.visualization.DataTable(json_table_data);    
 		
 		var geoView = new google.visualization.DataView(geoData);	
+		geoView.setColumns([1, 2]);
 		
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
 		table.draw(geoData, {showRowNumber: false});
