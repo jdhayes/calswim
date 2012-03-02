@@ -66,8 +66,8 @@ def GetMapLocs(CalSwimView):
         row=cursor.fetchone()
         if row == None:
             break
-        rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[3]}]} )
-        locs.append( {"latitude":str(row[4]), "longitude":str(row[5])} )          
+        rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
+        locs.append( {"latitude":str(row[3]), "longitude":str(row[4])} )          
         
     # disconnect from server
     db.close()
