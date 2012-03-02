@@ -13,14 +13,16 @@ function initTableMap(json_table_data) {
 	else{
 	    var geoData = new google.visualization.DataTable(json_table_data);    
 		
-		var geoView = new google.visualization.DataView(geoData);	
-		geoView.setColumns([1, 2]);
+		var tableGeoView = new google.visualization.DataView(geoData);	
+		tableGeoView.setColumns([1,2,3]);
+		var mapGeoView = new google.visualization.DataView(geoData);	
+		mapGeoView.setColumns([0,2]);
 		
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
-		table.draw(geoData, {showRowNumber: false});
+		table.draw(tableGeoView, {showRowNumber: false});
 			
 	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-	    map.draw(geoView, {showTip: true});
+	    map.draw(mapGeoView, {showTip: true});
 	
 	    // Set a 'select' event listener for the table.
 	    // When the table is selected,
@@ -37,8 +39,6 @@ function initTableMap(json_table_data) {
 	        function() {
 	          table.setSelection(map.getSelection());
 	    });
-		
-		return geoView;
 	}
 }
 
@@ -82,12 +82,11 @@ function initialize() {
 		
 		// Get json results from DB		
 		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {								
-			var geoView = initTableMap(json_data.table_data);			
-			
-			// Return first latlng so that the map will have somewhere to focus
-			first_latlng = new google.maps.LatLng(json_data.locs[0].latitude, json_data.locs[0].longitude);
-			return first_latlng;
-		});			
+			initTableMap(json_data.table_data);			
+		});
+		
+		// Refresh map, and resize
+		$('#map_canvas').gmap('refresh');
 	}	
 	
 	// Init Google Data Table
@@ -98,7 +97,7 @@ function initialize() {
 		var latlng;
 		// Do DB search with no coordinates
 		if ( $('#address').val()=="Everywhere" ){
-			latlng = get_map_locs("Everywhere", 0, $("#keywords").val());			
+			get_map_locs("Everywhere", 0, $("#keywords").val());	
 	    }		
 		// Get coordinates for address and do DB search
 		else{
@@ -113,9 +112,6 @@ function initialize() {
 				// Center map on resuts
 				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
 		    });
-		}
-		
-		// Refresh map, and resize
-		$('#map_canvas').gmap('refresh');
+		}		
 	});
 }

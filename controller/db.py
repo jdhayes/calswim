@@ -58,16 +58,13 @@ def GetMapLocs(CalSwimView):
     # execute SQL query using execute() method.
     cursor.execute(select_query)        
     # Fetch a single row using fetchone() method.
-    rows = []
-    locs = []
-    table_data = {}
-    json_data = {}
+    rows = []    
+    table_data = {}    
     while(1):
         row=cursor.fetchone()
         if row == None:
             break
-        rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
-        locs.append( {"latitude":str(row[3]), "longitude":str(row[4])} )          
+        rows.append( {"c":[{"v":str(row[3])+","+str(row[4])}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )          
         
     # disconnect from server
     db.close()
@@ -76,6 +73,7 @@ def GetMapLocs(CalSwimView):
     cols = [{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
     table_data["cols"] = cols
     table_data["rows"] = rows
+    # Assign table data to json table data container
+    json_data = {}
     json_data["table_data"] = table_data
-    json_data["locs"] = locs
     return json.dumps(json_data)
