@@ -1,33 +1,44 @@
 // CalSWIM main Javascript file
 
-function drawTable(json_table_data) {
-    var geoData = new google.visualization.DataTable(json_table_data);    
-	
-	var geoView = new google.visualization.DataView(geoData);	
-	
-	var table = new google.visualization.Table(document.getElementById('table_canvas'));
-	table.draw(geoData, {showRowNumber: false});
+function initTableMap(json_table_data) {
+	if (json_table_data == null){
+		// Init Google Map
+		var geocoder = new google.maps.Geocoder();
+		$('#map_canvas').gmap().bind('init', function() { 	
+			geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
+				$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+			});
+		});
+	}
+	else{
+	    var geoData = new google.visualization.DataTable(json_table_data);    
 		
-    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-    map.draw(geoView, {showTip: true});
-
-    // Set a 'select' event listener for the table.
-    // When the table is selected,
-    // we set the selection on the map.
-    google.visualization.events.addListener(table, 'select',
-        function() {
-          map.setSelection(table.getSelection());
-        });
-
-    // Set a 'select' event listener for the map.
-    // When the map is selected,
-    // we set the selection on the table.
-    google.visualization.events.addListener(map, 'select',
-        function() {
-          table.setSelection(map.getSelection());
-    });
+		var geoView = new google.visualization.DataView(geoData);	
+		
+		var table = new google.visualization.Table(document.getElementById('table_canvas'));
+		table.draw(geoData, {showRowNumber: false});
+			
+	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
+	    map.draw(geoView, {showTip: true});
 	
-	return geoView;
+	    // Set a 'select' event listener for the table.
+	    // When the table is selected,
+	    // we set the selection on the map.
+	    google.visualization.events.addListener(table, 'select',
+	        function() {
+	          map.setSelection(table.getSelection());
+	        });
+	
+	    // Set a 'select' event listener for the map.
+	    // When the map is selected,
+	    // we set the selection on the table.
+	    google.visualization.events.addListener(map, 'select',
+	        function() {
+	          table.setSelection(map.getSelection());
+	    });
+		
+		return geoView;
+	}
 }
 
 function initialize() {    
@@ -70,24 +81,16 @@ function initialize() {
 		
 		// Get json results from DB		
 		$.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {								
-			var geoView = drawTable(json_data.table_data);			
+			var geoView = initTableMap(json_data.table_data);			
 			
 			// Return first latlng so that the map will have somewhere to focus
 			first_latlng = new google.maps.LatLng(json_data.locs[0].latitude, json_data.locs[0].longitude);
 			return first_latlng;
 		});			
-	}
-	
-	// Init Google Map
-	var geocoder = new google.maps.Geocoder();
-	$('#map_canvas').gmap().bind('init', function() { 	
-		geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
-			$('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-		});
-	});
+	}	
 	
 	// Init Google Data Table
-	drawTable();
+	initTableMap(null);
 	
 	// Set click even on search button
 	$('#search_button').click(function() {
