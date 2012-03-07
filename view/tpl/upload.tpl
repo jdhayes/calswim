@@ -19,26 +19,50 @@
     </head>
     <body>
         <form>
-        <label>Source</label>
-        <input id="lat" name="lat" />
-        
-        <label>Contact</label>
-        <input id="lat" name="lat" />
-        
-        <label>Latitude</label>
-        <input id="lat" name="lat" />
-        
-        <label>Longitude</label>
-        <input id="lng" name="lng" />
-        
-        <label>Description</label>
-        <textarea></textarea>
-        
-        <label>Keywords</label>
-        <textarea></textarea>
-        
-        <label>Other Additional Information (optional)</label>
-        <textarea></textarea>
+            <h2>Source Information</h2>         
+            <div>     
+                <label>Organization/Person responsible</label>
+                <input id="label" name="label" />
+            </div>
+            <div>
+                <label>Source URL</label>
+                <input id="source" name="source" />
+            </div>
+            
+            <h2>Meta Data</h2>
+            <div>
+                <label>Label</label>
+                <input id="label" name="label" />
+            </div>            
+            <div>
+                <label>Description</label>
+                <textarea></textarea>
+            </div>
+            <div>
+                <label>Keywords</label>
+                <textarea></textarea>
+            </div>
+            
+            <h2>Location</h2>
+            <div>                
+                <label>Latitude</label>
+                <input id="lat" name="lat" />
+            
+                <label>Longitude</label>
+                <input id="lng" name="lng" />
+                
+                OR
+                <label>Shape file</label>
+                <input type="file" id="shp_file" name="shp_file" />
+            </div>
+            
+            <h2>Other</h2>
+            <div>
+                <label>Additional Information (optional)</label>
+                <textarea></textarea>
+            </div>
+            
+            <button type="submit" id="Submit" name="Submit">Submit</button>
         </form>
     </body>
 </html>
