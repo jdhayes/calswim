@@ -21,6 +21,20 @@
             #form_wrapper{
                 margin: auto;
                 width: 950px;
+                padding: 15px;
+                border-radius: 8px 8px 8px 8px;
+            }
+            label.error { 
+                float: none;
+                color: red;
+                padding-left: .5em;
+                vertical-align: top;
+            }   
+            input.submit{
+                float: right;
+            }
+            .indent{
+                margin-left: 25px;
             }
         </style>
     </head>
@@ -30,45 +44,52 @@
                 <fieldset>
                     <legend>Please fill out and submit the following form to registar your data location[s]</legend>               
                     <h2>Source Information</h2>
-                    <div>     
-                        <label>Organization/Person responsible</label>
-                        <input id="label" name="label" class="required" />
-                    </div>
-                    <div>
-                        <label>Source URL</label>
-                        <input id="source" name="source" class="required" />
+                    <div class="indent">
+                        <div>     
+                            <label>Organization/Person responsible</label>
+                            <input id="label" name="label" class="required" />
+                        </div>
+                        <div>
+                            <label>Source URL</label>
+                            <input id="source" name="source" class="required" />
+                        </div>
                     </div>
                     
                     <h2>Meta Data</h2>
-                    <div>
-                        <label>Label</label>
-                        <input id="label" name="label" class="required" />
-                    </div>            
-                    <div>
-                        <label>Description</label>
-                        <textarea class="required"></textarea>
-                    </div>
-                    <div>
-                        <label>Keywords</label>
-                        <textarea class="required"></textarea>
+                    <div class="indent">
+                        <div>
+                            <label>Label</label>
+                            <input id="label" name="label" class="required" />
+                        </div>            
+                        <div>
+                            <label>Description</label>
+                            <textarea class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Keywords</label>
+                            <textarea class="required"></textarea>
+                        </div>
                     </div>
                     
                     <h2>Location</h2>
-                    <div>                
-                        <label>Latitude</label>
-                        <input id="lat" name="lat" />
-                    
-                        <label>Longitude</label>
-                        <input id="lng" name="lng" />
+                    <div class="indent">
+                        <div>                
+                            <label>Latitude</label>
+                            <input id="lat" name="lat" />
                         
-                        OR
-                        <label>Shape file</label>
-                        <input type="file" id="shp_file" name="shp_file" />
+                            <label>Longitude</label>
+                            <input id="lng" name="lng" />
+                        </div>
+                        <h3>OR</h3>
+                        <div>
+                            <label>Shape file</label>
+                            <input type="file" id="shp_file" name="shp_file" />
+                        </div>
                     </div>
                     
                     <h2>Other</h2>
-                    <div>
-                        <label>Additional Information (optional)</label>
+                    <div class="indent">
+                        <label>Additional Information (optional)</label><br />
                         <textarea></textarea>
                     </div>
                     
