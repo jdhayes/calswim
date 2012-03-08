@@ -60,11 +60,11 @@
                         </div>            
                         <div>
                             <label>Description</label>
-                            <textarea class="required" class="required"></textarea>
+                            <textarea id="desc" name="desc" class="required"></textarea>
                         </div>
                         <div>
                             <label>Keywords</label>
-                            <textarea class="required" class="required"></textarea>
+                            <textarea id="keywords" name="keywords" class="required"></textarea>
                         </div>
                     </div>
                     
