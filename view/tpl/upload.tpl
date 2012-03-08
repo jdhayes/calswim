@@ -57,11 +57,11 @@
                     <div class="indent">
                         <div>     
                             <label>Organization/Person responsible</label>
-                            <input id="label" name="label" class="required" />
+                            <input id="owner" name="owner" class="required" />
                         </div>
                         <div>
                             <label>Source URL</label>
-                            <input id="source" name="source" class="required" />
+                            <input id="source" name="source" class="required url" />
                         </div>
                     </div>
                     
@@ -85,10 +85,10 @@
                     <div id="location" class="indent">
                         <div>                
                             <label>Latitude</label>
-                            <input id="lat" name="lat" />
-                        
+                            <input id="lat" name="lat" class="number" />
+                            <br />
                             <label>Longitude</label>
-                            <input id="lng" name="lng" />
+                            <input id="lng" name="lng" class="number" />
                         </div>
                         <h3>OR</h3>
                         <div>
