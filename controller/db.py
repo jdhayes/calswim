@@ -14,7 +14,7 @@ import json;
 import string;
 
 class WebDB:
-    def __init__():
+    def __init__(self):
         # Connect to an existing database
         connParams = {}
         connParams["UID"] = "calswim"
