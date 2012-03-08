@@ -68,10 +68,11 @@ function initialize() {
 		//,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
 		//,south__togglerContent_open:   toggleButtons
-	});	
+	});
 	$('#content').layout({ applyDefaultStyles: true });
 	$("#address").Watermark("Everywhere");
 	$("#keywords").Watermark("Everything");
+	$(".button").button();
 	
 	// Method access database and pulls records according to search parameters
 	function get_map_locs(latlng, radius, keywords){

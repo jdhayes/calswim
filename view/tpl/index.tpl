@@ -16,7 +16,10 @@
     </script>
   </head>
   <body>    
-    <div id="header" class="dark"><h1>Welcome to CalSWIM!</h1></div>    
+    <div id="header" class="dark">
+        <h1>Welcome to CalSWIM!</h1>
+        <span id="upload" class="button">Upload</span>
+    </div>    
     
     <div id="content">
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
@@ -28,7 +31,7 @@
             <h2>Search</h2>      
             <label>Address</label>
             <input id="address"/>
-            <button id="search_button">Search</button>    
+            <span id="search_button" class="button">Search</span>    
         </div>
         
         <div class="rounded ui-layout-west">
