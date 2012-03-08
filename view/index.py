@@ -7,7 +7,7 @@ import os;
 import cgi;
 import urllib;
 from view import WebView;
-from db import GetMapLocs;
+from db import WebDB;
 
 def application(environ, start_response):
     """
@@ -19,8 +19,9 @@ def application(environ, start_response):
     # Retrieve GET variables and store them as a dictionary
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
-    # Initialize web class
+    # Initialize web classes
     CalSwimView = WebView(os.path.dirname(__file__), environ['wsgi.errors'])        
+    CalSwimDB = WebDB();
     
     """
         ================================================
@@ -32,9 +33,15 @@ def application(environ, start_response):
             Return AJAX call results for Google Map Pins
         """
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
-        CalSwimView.content = GetMapLocs(CalSwimView)
+        CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)
     elif 'upload' in form:
-        CalSwimView.set_content('upload')
+        upload = form.getvalue('upload')
+        if upload == "form": 
+            CalSwimView.set_content('upload')
+        elif upload == "upload":
+            CalSwimDB.import_data(form)
+            CalSwimView.set_content('upload')
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : CalSwimDB.success}
     else:        
         CalSwimView.set_content('index')
         #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}
