@@ -2,6 +2,7 @@
 <html>
     <head>      
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/humanity/jquery-ui-1.8.18.custom.css" />
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDYIRhex5ycocL6uuYWa5ZVf1yxwV-4eDk&sensor=false"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -17,7 +18,7 @@
         <style>
             #form_wrapper{
                 margin: auto;
-                width: 950px;
+                width: 400px;
                 padding: 15px;
                 border-radius: 8px 8px 8px 8px;
             }
@@ -32,6 +33,13 @@
             }
             .indent{
                 margin-left: 25px;
+            }
+            legend{
+                font-size: 12pt;
+            }
+            input, textarea{
+                width: 100%;
+                clear: both;
             }
         </style>
     </head>
@@ -90,7 +98,7 @@
                         <textarea></textarea>
                     </div>
                     
-                    <input class="submit" type="submit" value="Submit"/>
+                    <span class="submit">Submit</span>
                 </fieldset>
             </form>
         </div>

@@ -25,4 +25,7 @@ google.setOnLoadCallback(function(){
         	}
         }
     });
+    
+    // Init form button
+    $(".submit").button();
 });
