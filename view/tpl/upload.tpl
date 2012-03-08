@@ -16,17 +16,19 @@
             google.setOnLoadCallback(function(){                
                 $("#upload_form").validate({
                     submitHandler: function(form) {
-                    	if ( $('#lat').val() and $('#lng').val() ){
+                    	// Assess which values were entered
+                    	if ( $('#lat').val() && $('#lng').val() ){
                             var latlng = true;
                     	}
                     	if ( $('#shp_file').val() ){
                     		var shpFile = true;
                     	}
                     	
-                    	if (latlng and shpFile){
+                    	// Append error message according to values entered
+                    	if (latlng && shpFile){
                     		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
                     	}
-                    	else if (!latlng and !shpFile){
+                    	else if (!latlng && !shpFile){
                     		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
                     	}
                     	else{
