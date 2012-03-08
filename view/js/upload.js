@@ -9,7 +9,7 @@ google.setOnLoadCallback(function(){
     	        required: true,
     	        accept: "shp|txt"
     	    }
-    	}
+    	},
         submitHandler: function(form) {
         	// Assess which values were entered
         	if ( $('#lat').val() && $('#lng').val() ){
