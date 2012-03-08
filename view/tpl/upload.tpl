@@ -19,26 +19,31 @@
             #form_wrapper{
                 margin: auto;
                 width: 400px;
-                padding: 15px;
+                padding: 15px;                
+            }
+            fieldset{
                 border-radius: 8px 8px 8px 8px;
             }
             label.error { 
                 float: none;
                 color: red;
+                clear: both;
                 padding-left: .5em;
                 vertical-align: top;
-            }   
+            }
             input.submit{
                 float: right;
+                margin-top: 15px;
             }
             .indent{
-                margin-left: 25px;
+                margin: auto;
+                width: 350px;
             }
             legend{
                 font-size: 12pt;
             }
-            input, textarea{
-                width: 100%;
+            input.required, textarea{
+                width: 350px;
                 clear: both;
             }
         </style>
@@ -98,7 +103,7 @@
                         <textarea></textarea>
                     </div>
                     
-                    <span class="submit">Submit</span>
+                    <input type="submit" name="submit" value="submit" class="submit" />
                 </fieldset>
             </form>
         </div>
