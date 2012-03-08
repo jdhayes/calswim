@@ -102,7 +102,7 @@
                     <h2>Other</h2>
                     <div class="indent">
                         <label>Additional Information (optional)</label><br />
-                        <textarea></textarea>
+                        <textarea id="other" name="other"></textarea>
                     </div>
                                         
                     <input type="submit" name="submit" value="submit" class="submit" />
