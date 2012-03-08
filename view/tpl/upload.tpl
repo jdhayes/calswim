@@ -51,7 +51,7 @@
     </head>
     <body>
         <div id="form_wrapper">
-            <form id="upload_form" method="post" action="">
+            <form id="upload_form" method="post" action="/?upload=upload">
                 <fieldset>
                     <legend>Please fill out and submit the following form to registar your data location[s]</legend>               
                     <h2>Source Information</h2>
@@ -74,7 +74,7 @@
                         </div>            
                         <div>
                             <label>Description</label>
-                            <textarea id="desc" name="desc" class="required"></textarea>
+                            <textarea id="description" name="description" class="required"></textarea>
                         </div>
                         <div>
                             <label>Keywords</label>
@@ -103,7 +103,7 @@
                         <label>Additional Information (optional)</label><br />
                         <textarea></textarea>
                     </div>
-                    
+                                        
                     <input type="submit" name="submit" value="submit" class="submit" />
                 </fieldset>
             </form>
