@@ -12,31 +12,7 @@
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script type="text/javascript" src="js/upload.js"></script>
         <script type="text/javascript">
-            google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-            google.setOnLoadCallback(function(){                
-                $("#upload_form").validate({
-                    submitHandler: function(form) {
-                    	// Assess which values were entered
-                    	if ( $('#lat').val() && $('#lng').val() ){
-                            var latlng = true;
-                    	}
-                    	if ( $('#shp_file').val() ){
-                    		var shpFile = true;
-                    	}
-                    	
-                    	// Append error message according to values entered
-                    	if (latlng && shpFile){
-                    		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
-                    	}
-                    	else if (!latlng && !shpFile){
-                    		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
-                    	}
-                    	else{
-                    	    form.submit();
-                    	}
-                    }
-                });
-            });
+            google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});           
         </script>
         <style>
             #form_wrapper{
