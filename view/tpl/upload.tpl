@@ -53,7 +53,8 @@
         <div id="form_wrapper">
             <form id="upload_form" method="post" action="/?upload=upload">
                 <fieldset>
-                    <legend>Please fill out and submit the following form to registar your data location[s]</legend>               
+                    <legend>Please fill out and submit the following form to register your data location[s]</legend>               
+                    <span>%(uploadResult)s</span>
                     <h2>Source Information</h2>
                     <div class="indent">
                         <div>     
