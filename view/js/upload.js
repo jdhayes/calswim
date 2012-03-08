@@ -5,7 +5,7 @@
 google.setOnLoadCallback(function(){                
     $("#upload_form").validate({
     	rules: {
-    	    field: {
+    		shp_file: {
     	        required: true,
     	        accept: "shp|txt"
     	    }

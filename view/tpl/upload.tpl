@@ -92,7 +92,7 @@
                         </div>
                         <h3>OR</h3>
                         <div>
-                            <label>Shape file</label>
+                            <label for="shp_file">Shape file</label>
                             <input type="file" id="shp_file" name="shp_file" />
                         </div>
                     </div>
