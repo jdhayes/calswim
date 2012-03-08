@@ -38,14 +38,14 @@ class WebDB:
             
             # Gather submitted for values
             values = []
-            #values.push( form.getvalue('contact') )
-            #values.push( form.getvalue('email') )
-            values.push( form.getvalue('source') )
-            values.push( form.getvalue('label') )
-            values.push( form.getvalue('description') )
-            #values.push( form.getvalue('keyword') )
-            #values.push( form.getvalue('shp_file') )
-            values.push( form.getvalue('other') )
+            #values.append( form.getvalue('contact') )
+            #values.append( form.getvalue('email') )
+            values.append( form.getvalue('source') )
+            values.append( form.getvalue('label') )
+            values.append( form.getvalue('description') )
+            #values.append( form.getvalue('keyword') )
+            #values.append( form.getvalue('shp_file') )
+            values.append( form.getvalue('other') )
             values = "'"+ "','".join(values)  +"',"+ form.getvalue('lat') +","+ form.getvalue('lng')
             
             # Build query
