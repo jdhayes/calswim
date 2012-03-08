@@ -13,8 +13,27 @@
         <script type="text/javascript" src="js/upload.js"></script>
         <script type="text/javascript">
             google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-            google.setOnLoadCallback(function(){            	
-                $("#upload_form").validate();         	  
+            google.setOnLoadCallback(function(){                
+                $("#upload_form").validate({
+                    submitHandler: function(form) {
+                    	if ( $('#lat').val() and $('#lng').val() ){
+                            var latlng = true;
+                    	}
+                    	if ( $('#shp_file').val() ){
+                    		var shpFile = true;
+                    	}
+                    	
+                    	if (latlng and shpFile){
+                    		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
+                    	}
+                    	else if (!latlng and !shpFile){
+                    		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
+                    	}
+                    	else{
+                    	    form.submit();
+                    	}
+                    }
+                });
             });
         </script>
         <style>
@@ -59,20 +78,20 @@
                     <div class="indent">
                         <div>
                             <label>Label</label>
-                            <input id="label" name="label" class="required" />
+                            <textarea id="label" name="label" class="required"></textarea>
                         </div>            
                         <div>
                             <label>Description</label>
-                            <textarea class="required"></textarea>
+                            <textarea class="required" class="required"></textarea>
                         </div>
                         <div>
                             <label>Keywords</label>
-                            <textarea class="required"></textarea>
+                            <textarea class="required" class="required"></textarea>
                         </div>
                     </div>
                     
                     <h2>Location</h2>
-                    <div class="indent">
+                    <div id="location" class="indent">
                         <div>                
                             <label>Latitude</label>
                             <input id="lat" name="lat" />
