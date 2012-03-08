@@ -22,7 +22,7 @@ function initTableMap(json_table_data) {
 		table.draw(tableGeoView, {showRowNumber: false});
 			
 	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-	    map.draw(mapGeoView, {showTip: true});
+	    map.draw(mapGeoView, {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP});
 	
 	    // Set a 'select' event listener for the table.
 	    // When the table is selected,
