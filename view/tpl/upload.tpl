@@ -27,6 +27,7 @@
             label.error { 
                 float: none;
                 color: red;
+                display: block;
                 clear: both;
                 padding-left: .5em;
                 vertical-align: top;
