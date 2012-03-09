@@ -25,7 +25,7 @@
   <body>
     <div id="header" class="dark">
         <h1>Welcome to CalSWIM!</h1>
-        <button id="upload" class="button">Upload</button>
+        <a id="upload" class="button" href="#form_wrapper">Upload</a>
     </div>    
     
     <div id="content">

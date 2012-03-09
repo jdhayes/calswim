@@ -65,12 +65,12 @@ h1{
 /* Upload Form CSS */
 #form_hidden_wrapper{
 	display: none;
+	overflow: auto;
 }
 #form_wrapper{
 	margin: auto;	
 	padding: 15px;
-	overflow-y: scroll;
-	overflow-x: hidden;                
+	overflow: auto;                
 }
 fieldset{
     border-radius: 8px 8px 8px 8px;
@@ -89,12 +89,10 @@ label.error {
 }
 .indent{
     margin: auto;
-    width: 350px;
 }
 legend{
     font-size: 12pt;
 }
 input.required, textarea{
-    width: 350px;
     clear: both;
 }

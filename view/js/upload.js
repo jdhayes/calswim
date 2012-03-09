@@ -33,9 +33,7 @@ google.setOnLoadCallback(function(){
     });
     
     /* Add a click handler to the mymotifs */
-	$("#upload").click(function(event) {		
-		$.colorbox({width:"400px", inline:true, href:"#form_wrapper"});		
-	});
+	$("#upload").colorbox({inline:true, width:"50%"});
     
     // Init form button
     $(".submit").button();
