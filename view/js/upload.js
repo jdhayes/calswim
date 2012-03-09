@@ -33,8 +33,7 @@ google.setOnLoadCallback(function(){
     });
     
     /* Add a click handler to the mymotifs */
-	$("#upload").colorbox({inline:true,maxHeight:"90%"});
-	$("#upload").colorbox.resize();
+	$("#upload").colorbox({inline:true,maxHeight:"100%"});	
     
     // Init form button
     $(".submit").button();
