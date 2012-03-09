@@ -59,7 +59,7 @@
                     <div class="indent">
                         <div>     
                             <label>Organization/Person responsible</label>
-                            <input id="owner" name="owner" class="required" />
+                            <input id="contact" name="contact" class="required" />
                         </div>
                         <div>
                             <label>Source URL</label>
