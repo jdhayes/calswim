@@ -38,11 +38,11 @@ class WebDB:
         
         # Gather submitted for values
         values = []
-        values.append( form.getvalue('contact') )            
+        values.append( form.getvalue('contact') )
         values.append( form.getvalue('source') )
         values.append( form.getvalue('label') )
         values.append( form.getvalue('description') )
-        values.append( form.getvalue('keyword') )            
+        values.append( form.getvalue('keyword') )
         values.append( form.getvalue('other') )
         
         # Build MySQL Geometry syntax            
