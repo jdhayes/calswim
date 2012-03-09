@@ -26,7 +26,9 @@ class WebDB:
         # Open database connection
         db = MySQLdb.connect(connParams["HOST"],connParams["UID"],connParams["PWD"],connParams["DSN"],connParams["PORT"])        
         # prepare a cursor object using cursor() method
-        self.cursor = db.cursor()                
+        self.cursor = db.cursor()  
+        # Set return message to blank
+        self.return_message = ""    
         
     def import_data(self, form):
         """
@@ -68,10 +70,10 @@ class WebDB:
             self.cursor.execute(insert_query)
             
             # Return JavaScript boolean to view 
-            self.success = 'true';
+            self.return_message = 'Data import successful';
         except:
             e = sys.exc_info()[1]
-            self.success = e;
+            self.return_message = e;
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')

@@ -27,14 +27,17 @@ google.setOnLoadCallback(function(){
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
         	else{
-        	    form.submit();
+        		/* Send upload form data via AJAX */	
+        		$.post("", $("#upload_form").serialize(), function(data) {
+        	        alert(data);
+        		});
         	}
         }
     });
     
     /* Add a click handler to the mymotifs */
-	$("#upload").colorbox({inline:true,maxHeight:"100%"});	
-    
+	$("#upload").colorbox({inline:true,maxHeight:"100%"});   
+	
     // Init form button
     $(".submit").button();
 });

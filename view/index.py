@@ -35,9 +35,11 @@ def application(environ, start_response):
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
         CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)    
     elif 'submit' in form:
+        """
+            Handle AJAX call for data import into DB
+        """
         CalSwimDB.import_data(form)
-        CalSwimView.set_content('upload')
-        CalSwimView.content = CalSwimView.content % {'uploadResult' : CalSwimDB.success}
+        CalSwimView.content = CalSwimDB.return_message
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
