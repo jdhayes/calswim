@@ -79,7 +79,7 @@
                         </div>
                         <div>
                             <label>Keywords</label>
-                            <textarea id="keywords" name="keywords" class="required"></textarea>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
                         </div>
                     </div>
                     

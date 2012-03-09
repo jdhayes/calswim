@@ -45,7 +45,7 @@ class WebDB:
             values.append( form.getvalue('keyword') )            
             values.append( form.getvalue('other') )
             
-            # Build MySQL Geometry syntax
+            # Build MySQL Geometry syntax            
             shp_file = values.append( form.getvalue('shp_file') )
             lat = values.append( form.getvalue('lat') )
             lng = values.append( form.getvalue('lng') )
@@ -54,7 +54,7 @@ class WebDB:
                 shp_file_contents = open(shp_file,'rb').read()                
                 # Set POLYGON GEOMETRY from shp file
                 #location = set_poly_geo(shp_file_contents)
-                location = "GeomFromText('POLYGON(0.0 0.0, 1.0 1.0, 2.0 2.0, 3.0 3.0)')"
+                location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
             elif lat and lng:
                 # Set MySQL NULL value for shp contents
                 shp_file_contents = "NULL"
@@ -71,7 +71,7 @@ class WebDB:
             self.success = 'true';
         except:
             e = sys.exc_info()[1]
-            self.success = str(e)+"ERROR:: "+insert_query;
+            self.success = e;
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')
