@@ -68,6 +68,7 @@ class WebDB:
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":values}
             self.cursor.execute(insert_query)
+            self.cursor.close()
             
             # Return JavaScript boolean to view 
             self.return_message = 'Data import successful'+" "+insert_query;
