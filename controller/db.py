@@ -46,7 +46,7 @@ class WebDB:
         values.append( form.getvalue('other') )
         
         # Build MySQL Geometry syntax            
-        shp_file = values.append( form.getvalue('shp_file') )
+        shp_file = form.getvalue('shp_file')
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')
         if shp_file:
