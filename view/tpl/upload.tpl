@@ -51,7 +51,7 @@
     </head>
     <body>
         <div id="form_wrapper">
-            <form id="upload_form" method="get" action="/?upload=upload">
+            <form id="upload_form" method="post" action="">
                 <fieldset>
                     <legend>Please fill out and submit the following form to register your data location[s]</legend>               
                     <span>%(uploadResult)s</span>
