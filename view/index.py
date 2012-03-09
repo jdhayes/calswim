@@ -38,6 +38,7 @@ def application(environ, start_response):
         upload = form.getvalue('upload')
         if upload == "form": 
             CalSwimView.set_content('upload')
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
         elif upload == "upload":
             CalSwimDB.import_data(form)
             CalSwimView.set_content('upload')

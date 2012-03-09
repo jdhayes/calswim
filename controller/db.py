@@ -33,23 +33,37 @@ class WebDB:
             Simple function to inhale form data and insert it into the Database
         """
         try:
-            #columns = "contact, source, label, description, keyword, shp_file, other, latitude, longitude"
-            columns = " urllink, source_name, description, site_name, latitude, longitude"
+            # Set insert order
+            columns = "contact, source, label, description, keyword, other, location, shp_file"            
             
             # Gather submitted for values
             values = []
-            #values.append( form.getvalue('contact') )
-            #values.append( form.getvalue('email') )
+            values.append( form.getvalue('contact') )            
             values.append( form.getvalue('source') )
             values.append( form.getvalue('label') )
             values.append( form.getvalue('description') )
-            #values.append( form.getvalue('keyword') )
-            #values.append( form.getvalue('shp_file') )
+            values.append( form.getvalue('keyword') )            
             values.append( form.getvalue('other') )
-            values = "'"+ "','".join(values)  +"',"+ form.getvalue('lat') +","+ form.getvalue('lng')
             
-            # Build query
-            insert_query = "INSERT INTO calswim.coordinate (%(columns)s) VALUES(%(values)s);"
+            # Build MySQL Geometry syntax
+            shp_file = values.append( form.getvalue('shp_file') )
+            lat = values.append( form.getvalue('lat') )
+            lng = values.append( form.getvalue('lng') )
+            if shp_file:
+                # Get shp file contents to be stored as a blob
+                shp_file_contents = open(shp_file,'rb').read()                
+                # Set POLYGON GEOMETRY from shp file
+                #location = set_poly_geo(shp_file_contents)
+                location = "GeomFromText('POLYGON(0.0 0.0, 1.0 1.0, 2.0 2.0, 3.0 3.0)')"
+            elif lat and lng:
+                # Set MySQL NULL value for shp contents
+                shp_file_contents = "NULL"
+                # Set POINT GEOMETRY from latitude and longitude
+                location = "GeomFromText('POINT("+lat+","+lng+")')"
+                                    
+            # Build MySQL insert query
+            values = "'"+ "','".join(values)  +"',"+ location +","+ shp_file_contents
+            insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":values}
             self.cursor.execute(insert_query)
             
@@ -126,7 +140,7 @@ class WebDB:
         # disconnect from server
         db.close()
     
-        # Return search values as json    
+        # Return search values as json
         cols = [{"id":'latlng', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
         table_data["cols"] = cols
         table_data["rows"] = rows
