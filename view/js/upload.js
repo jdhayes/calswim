@@ -29,14 +29,18 @@ google.setOnLoadCallback(function(){
         	else{
         		/* Send upload form data via AJAX */	
         		$.post("", $("#upload_form").serialize(), function(data) {
-        	        alert(data);
-        		});
+        			// Close colorbox after form submission
+            		$("#upload").colorbox.close();
+            		
+            		// Alert 
+            		$(data).dialog({ autoOpen: false })
+        		});        		        	
         	}
         }
     });
     
     /* Add a click handler to the mymotifs */
-	$("#upload").colorbox({inline:true,maxHeight:"100%"});   
+	$("#upload").colorbox({inline:true,maxHeight:"100%"});
 	
     // Init form button
     $(".submit").button();
