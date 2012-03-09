@@ -34,15 +34,13 @@ def application(environ, start_response):
         """
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
         CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)
-    elif 'upload' in form:
-        upload = form.getvalue('upload')
-        if upload == "form": 
-            CalSwimView.set_content('upload')
-            CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
-        elif upload == "upload":
-            CalSwimDB.import_data(form)
-            CalSwimView.set_content('upload')
-            CalSwimView.content = CalSwimView.content % {'uploadResult' : CalSwimDB.success}
+    elif 'upload' in form:            
+        CalSwimView.set_content('upload')
+        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
+    elif 'submit' in form:
+        CalSwimDB.import_data(form)
+        CalSwimView.set_content('upload')
+        CalSwimView.content = CalSwimView.content % {'uploadResult' : CalSwimDB.success}
     else:        
         CalSwimView.set_content('index')
         #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}

@@ -65,10 +65,10 @@ class WebDB:
         values = "'"+ "','".join(values)  +"',"+ location +","+ shp_file_contents
         insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
         insert_query = insert_query % {"columns":columns, "values":values}
-        self.cursor.execute(insert_query)
+#        self.cursor.execute(insert_query)
         
         # Return JavaScript boolean to view 
-        self.success = 'true';
+        self.success = insert_query;
 #        except:
 #            e = sys.exc_info()[1]
 #            self.success = e;
