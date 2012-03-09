@@ -44,7 +44,8 @@ def application(environ, start_response):
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
-    # Close DB connections
+    # Commit queries and close DB connections
+    CalSwimDB.db.commit()
     CalSwimDB.cursor.close()
     
     # Define headers and return content

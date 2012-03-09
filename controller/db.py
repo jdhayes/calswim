@@ -24,9 +24,9 @@ class WebDB:
         connParams["DSN"] = "calswim"        
     
         # Open database connection
-        db = MySQLdb.connect(connParams["HOST"],connParams["UID"],connParams["PWD"],connParams["DSN"],connParams["PORT"])        
+        self.db = MySQLdb.connect(connParams["HOST"],connParams["UID"],connParams["PWD"],connParams["DSN"],connParams["PORT"])        
         # prepare a cursor object using cursor() method
-        self.cursor = db.cursor()  
+        self.cursor = self.db.cursor()  
         # Set return message to blank
         self.return_message = ""    
         
@@ -67,7 +67,7 @@ class WebDB:
         values = "'"+ "','".join(values)  +"',"+ location +","+ shp_file_contents
         insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
         insert_query = insert_query % {"columns":columns, "values":values}
-        self.cursor.execute(insert_query)            
+        self.cursor.execute(insert_query)
         
         # Return JavaScript boolean to view 
         self.return_message = 'Data import successful'+" "+insert_query;
@@ -137,10 +137,7 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break
-            rows.append( {"c":[{"v":str(row[3])+","+str(row[4])}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )          
-            
-        # disconnect from server
-        db.close()
+            rows.append( {"c":[{"v":str(row[3])+","+str(row[4])}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
     
         # Return search values as json
         cols = [{"id":'latlng', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
