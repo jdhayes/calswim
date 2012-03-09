@@ -33,7 +33,7 @@ google.setOnLoadCallback(function(){
     });
     
     /* Add a click handler to the mymotifs */
-	$("#upload").colorbox({inline:true, width:"400px",  width:"500px"});
+	$("#upload").colorbox({inline:true});
     
     // Init form button
     $(".submit").button();

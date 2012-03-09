@@ -69,10 +69,10 @@ h1{
 #form_wrapper{
 	margin: auto;	
 	padding: 15px;
-	overflow: auto;                
-}
-fieldset{
-    border-radius: 8px 8px 8px 8px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 500px;
+	width: 400px;                
 }
 label.error { 
     float: none;
