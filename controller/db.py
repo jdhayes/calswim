@@ -70,7 +70,7 @@ class WebDB:
             self.cursor.execute(insert_query)
             
             # Return JavaScript boolean to view 
-            self.return_message = 'Data import successful';
+            self.return_message = 'Data import successful'+" "+insert_query;
         except:
             e = sys.exc_info()[1]
             self.return_message = e;
