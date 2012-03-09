@@ -60,62 +60,60 @@
     
     <div id="form_hidden_wrapper">
         <div id="form_wrapper">
-            <form id="upload_form" method="post" action="">
-                <fieldset>
-                    <legend>Please fill out and submit the following form to register your data location[s]</legend>               
-                    <span>%(uploadResult)s</span>
-                    <h2>Source Information</h2>
-                    <div class="indent">
-                        <div>     
-                            <label>Organization/Person responsible</label>
-                            <input id="contact" name="contact" class="required" />
-                        </div>
-                        <div>
-                            <label>Source URL</label>
-                            <input id="source" name="source" class="required url" />
-                        </div>
+            <form id="upload_form" method="post" action="">                
+                <h3>Please fill out and submit the following form to register your data location[s]</h3>               
+                <span>%(uploadResult)s</span>
+                <h2>Source Information</h2>
+                <div class="indent">
+                    <div>     
+                        <label>Organization/Person responsible</label>
+                        <input id="contact" name="contact" class="required" />
                     </div>
-                    
-                    <h2>Meta Data</h2>
-                    <div class="indent">
-                        <div>
-                            <label>Label</label>
-                            <textarea id="label" name="label" class="required"></textarea>
-                        </div>            
-                        <div>
-                            <label>Description</label>
-                            <textarea id="description" name="description" class="required"></textarea>
-                        </div>
-                        <div>
-                            <label>Keywords</label>
-                            <textarea id="keyword" name="keyword" class="required"></textarea>
-                        </div>
+                    <div>
+                        <label>Source URL</label>
+                        <input id="source" name="source" class="required url" />
                     </div>
-                    
-                    <h2>Location</h2>
-                    <div id="location" class="indent">
-                        <div>                
-                            <label>Latitude</label>
-                            <input id="lat" name="lat" class="number" />
-                            <br />
-                            <label>Longitude</label>
-                            <input id="lng" name="lng" class="number" />
-                        </div>
-                        <h3>OR</h3>
-                        <div>
-                            <label for="shp_file">Shape file</label>
-                            <input type="file" id="shp_file" name="shp_file" />
-                        </div>
+                </div>
+                
+                <h2>Meta Data</h2>
+                <div class="indent">
+                    <div>
+                        <label>Label</label>
+                        <textarea id="label" name="label" class="required"></textarea>
+                    </div>            
+                    <div>
+                        <label>Description</label>
+                        <textarea id="description" name="description" class="required"></textarea>
                     </div>
-                    
-                    <h2>Other</h2>
-                    <div class="indent">
-                        <label>Additional Information (optional)</label><br />
-                        <textarea id="other" name="other"></textarea>
+                    <div>
+                        <label>Keywords</label>
+                        <textarea id="keyword" name="keyword" class="required"></textarea>
                     </div>
-                                        
-                    <input id="submit" name="submit" type="submit" value="submit" class="button" />
-                </fieldset>
+                </div>
+                
+                <h2>Location</h2>
+                <div id="location" class="indent">
+                    <div>                
+                        <label>Latitude</label>
+                        <input id="lat" name="lat" class="number" />
+                        <br />
+                        <label>Longitude</label>
+                        <input id="lng" name="lng" class="number" />
+                    </div>
+                    <h3>OR</h3>
+                    <div>
+                        <label for="shp_file">Shape file</label>
+                        <input type="file" id="shp_file" name="shp_file" />
+                    </div>
+                </div>
+                
+                <h2>Other</h2>
+                <div class="indent">
+                    <label>Additional Information (optional)</label><br />
+                    <textarea id="other" name="other"></textarea>
+                </div>
+                                    
+                <input id="submit" name="submit" type="submit" value="submit" class="button" />                
             </form>
         </div>
     </div>

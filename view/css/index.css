@@ -67,9 +67,10 @@ h1{
 	display: none;
 }
 #form_wrapper{
-	margin: auto;
-	width: 400px;
-	padding: 15px;                
+	margin: auto;	
+	padding: 15px;
+	overflow-y: scroll;
+	overflow-x: hidden;                
 }
 fieldset{
     border-radius: 8px 8px 8px 8px;

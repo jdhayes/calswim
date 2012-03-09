@@ -33,17 +33,14 @@ def application(environ, start_response):
             Return AJAX call results for Google Map Pins
         """
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
-        CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)
-    elif 'upload' in form:            
-        CalSwimView.set_content('upload')
-        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
+        CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)    
     elif 'submit' in form:
         CalSwimDB.import_data(form)
         CalSwimView.set_content('upload')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : CalSwimDB.success}
     else:        
         CalSwimView.set_content('index')
-        #CalSwimView.content = CalSwimView.content % {'results' : '','search' : ''}
+        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
