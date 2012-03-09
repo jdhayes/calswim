@@ -71,7 +71,7 @@ class WebDB:
             self.success = 'true';
         except:
             e = sys.exc_info()[1]
-            self.success = e;
+            self.success = str(e)+"ERROR:: "+insert_query;
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')
