@@ -44,6 +44,9 @@ def application(environ, start_response):
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
+    # Close DB connections
+    CalSwimDB.cursor.close()
+    
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
