@@ -54,7 +54,7 @@
             </select>
             <br />
             <label>Keywords</label>
-            <textarea id="keywords" style="width: 100%"></textarea>               
+            <textarea id="keywords"></textarea>               
         </div>
     </div>
     
