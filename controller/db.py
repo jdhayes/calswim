@@ -32,46 +32,46 @@ class WebDB:
         """
             Simple function to inhale form data and insert it into the Database
         """
-#        try:
-        # Set insert order
-        columns = "contact, source, label, description, keyword, other, location, shp_file"            
-        
-        # Gather submitted for values
-        values = []
-        values.append( form.getvalue('contact') )
-        values.append( form.getvalue('source') )
-        values.append( form.getvalue('label') )
-        values.append( form.getvalue('description') )
-        values.append( form.getvalue('keyword') )
-        values.append( form.getvalue('other') )
-        
-        # Build MySQL Geometry syntax            
-        shp_file = form.getvalue('shp_file')
-        lat = form.getvalue('lat')
-        lng = form.getvalue('lng')
-        if shp_file:
-            # Get shp file contents to be stored as a blob
-            shp_file_contents = open(shp_file,'rb').read()                
-            # Set POLYGON GEOMETRY from shp file
-            #location = set_poly_geo(shp_file_contents)
-            location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
-        elif lat and lng:
-            # Set MySQL NULL value for shp contents
-            shp_file_contents = "NULL"
-            # Set POINT GEOMETRY from latitude and longitude
-            location = "GeomFromText('POINT("+lat+","+lng+")')"
-                                
-        # Build MySQL insert query
-        values = "'"+ "','".join(values)  +"',"+ location +","+ shp_file_contents
-        insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
-        insert_query = insert_query % {"columns":columns, "values":values}
-#        self.cursor.execute(insert_query)
-        
-        # Return JavaScript boolean to view 
-        self.success = insert_query;
-#        except:
-#            e = sys.exc_info()[1]
-#            self.success = e;
+        try:
+            # Set insert order
+            columns = "contact, source, label, description, keyword, other, location, shp_file"            
+            
+            # Gather submitted for values
+            values = []
+            values.append( form.getvalue('contact') )
+            values.append( form.getvalue('source') )
+            values.append( form.getvalue('label') )
+            values.append( form.getvalue('description') )
+            values.append( form.getvalue('keyword') )
+            values.append( form.getvalue('other') )
+            
+            # Build MySQL Geometry syntax            
+            shp_file = form.getvalue('shp_file')
+            lat = form.getvalue('lat')
+            lng = form.getvalue('lng')
+            if shp_file:
+                # Get shp file contents to be stored as a blob
+                shp_file_contents = open(shp_file,'rb').read()                
+                # Set POLYGON GEOMETRY from shp file
+                #location = set_poly_geo(shp_file_contents)
+                location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
+            elif lat and lng:
+                # Set MySQL NULL value for shp contents
+                shp_file_contents = "NULL"
+                # Set POINT GEOMETRY from latitude and longitude
+                location = "GeomFromText('POINT("+lat+" "+lng+")')"
+                                    
+            # Build MySQL insert query
+            values = "'"+ "','".join(values)  +"',"+ location +","+ shp_file_contents
+            insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
+            insert_query = insert_query % {"columns":columns, "values":values}
+            self.cursor.execute(insert_query)
+            
+            # Return JavaScript boolean to view 
+            self.success = 'true';
+        except:
+            e = sys.exc_info()[1]
+            self.success = e;
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')
