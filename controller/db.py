@@ -47,8 +47,8 @@ class WebDB:
         
         # Build MySQL Geometry syntax            
         shp_file = values.append( form.getvalue('shp_file') )
-        lat = values.append( form.getvalue('lat') )
-        lng = values.append( form.getvalue('lng') )
+        lat = form.getvalue('lat')
+        lng = form.getvalue('lng')
         if shp_file:
             # Get shp file contents to be stored as a blob
             shp_file_contents = open(shp_file,'rb').read()                
