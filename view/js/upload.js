@@ -33,6 +33,7 @@ google.setOnLoadCallback(function(){
             		$("#upload").colorbox.close();
             		
             		// DB response
+            		alert(data);
             		$("#upload_message").html(data);
             		$("#upload_message").dialog({ autoOpen: false })
         		});        		        	
