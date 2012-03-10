@@ -39,9 +39,6 @@ h1{
 #upload {
 	float: right;
 }
-#upload_message_wrapper{
-    display: none;
-}
 #uppload_message{	
 }
 #map_canvas_wrapper {

@@ -34,12 +34,15 @@ google.setOnLoadCallback(function(){
             		
             		// DB response
             		alert(data);
-            		$("#upload_message").html(data);
-            		$("#upload_message").dialog({ autoOpen: false })
+            		$("#upload_message").html("<p>"+data+"</p>");
+            		$("#upload_message").dialog('open')
         		});        		        	
         	}
         }
     });
+    
+    /* Init message div */
+    $("#upload_message").dialog();
     
     /* Add a click handler to the mymotifs */
 	$("#upload").colorbox({inline:true,maxHeight:"100%"});
