@@ -41,7 +41,7 @@ google.setOnLoadCallback(function(){
     });
     
     /* Init message div */
-    $("#upload_message").dialog();
+    $("#upload_message").dialog({ autoOpen: false });
     
     /* Add a click handler to the mymotifs */
 	$("#upload").colorbox({inline:true,maxHeight:"100%"});
