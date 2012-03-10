@@ -60,9 +60,9 @@
     
     <div id="form_hidden_wrapper">
         <div id="form_wrapper">
-            <form id="upload_form" method="post" action="">                
-                <h3>Please fill out and submit the following form to register your data location[s]</h3>               
-                <span>%(uploadResult)s</span>
+            <form id="upload_form" method="post" action="">              
+                <div id="uppload_message_wrapper"><p id="upload_message"></p></div>
+                <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>
                 <div class="indent">
                     <div>     
