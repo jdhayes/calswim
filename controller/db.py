@@ -11,7 +11,8 @@ import cgi;
 import urllib;
 import MySQLdb;
 import json;
-import string;
+import re, string;
+pattern = re.compile('[\W_]+')
 
 class WebDB:
     def __init__(self):
@@ -43,8 +44,8 @@ class WebDB:
             values.append( form.getvalue('contact') )
             values.append( form.getvalue('source') )
             values.append( form.getvalue('label') )
-            values.append( form.getvalue('description') )
-            values.append( form.getvalue('keyword') )
+            values.append( form.getvalue('description') )            
+            values.append( pattern.sub(' ', form.getvalue('keyword')).split() )
             values.append( form.getvalue('other') )
             
             # Build MySQL Geometry syntax            

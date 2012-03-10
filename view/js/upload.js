@@ -32,8 +32,7 @@ google.setOnLoadCallback(function(){
         			// Close colorbox after form submission
             		$("#upload").colorbox.close();
             		
-            		// DB response
-            		alert(data);
+            		// DB response            		
             		$("#upload_message").html("<p>"+data+"</p>");
             		$("#upload_message").dialog('open')
         		});        		        	

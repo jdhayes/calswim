@@ -39,7 +39,8 @@ h1{
 #upload {
 	float: right;
 }
-#uppload_message{	
+#uppload_message{
+	display: none;
 }
 #map_canvas_wrapper {
 	margin-top: 65px;	
