@@ -45,7 +45,7 @@ class WebDB:
             values.append( form.getvalue('source') )
             values.append( form.getvalue('label') )
             values.append( form.getvalue('description') )            
-            values.append( pattern.sub(' ', form.getvalue('keyword')).split() )
+            values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
             values.append( form.getvalue('other') )
             
             # Build MySQL Geometry syntax            
