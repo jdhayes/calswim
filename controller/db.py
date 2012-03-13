@@ -134,7 +134,7 @@ class WebDB:
             keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
             query_build.insert(1,"""                          
                                      WHERE
-                                     MATCH (description)
+                                     MATCH (contact,label,description,keyword,other)
                                      AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                   """ % {"KeywordQuery":keyword_query})
         select_query = "\n".join(query_build)    
