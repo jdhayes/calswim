@@ -103,16 +103,27 @@ class WebDB:
         
         if (CalSwimView.lat and CalSwimView.lng):
             # Search query has a specified location
+            query_build.append("SET @center = GeomFromText('POINT(%(Latitude)s %(Longitude)s)');" % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng})
+            query_build.append("SET @radius = %(Radius)s;" % {"Radius":CalSwimView.radius})
+            query_build.append("""            
+                                  SET @bbox = CONCAT('POLYGON((',
+                                  X(@center) - @radius, ' ', Y(@center) - @radius, ',',
+                                  X(@center) + @radius, ' ', Y(@center) - @radius, ',',
+                                  X(@center) + @radius, ' ', Y(@center) + @radius, ',',
+                                  X(@center) - @radius, ' ', Y(@center) + @radius, ',',
+                                  X(@center) - @radius, ' ', Y(@center) - @radius, '))'
+                                  );
+                               """)
             query_build.append("""
-                                   SELECT source_name,description,urllink,latitude,longitude,( 3959 * acos( cos( radians(%(Latitude)s) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(%(Longitude)s) ) + sin( radians(%(Latitude)s) ) * sin( radians( latitude ) ) ) ) AS distance
-                                   FROM coordinate
-                                """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng})
-            query_build.append("HAVING distance < %(Radius)s" % {"Radius":CalSwimView.radius})
+                                  SELECT contact, description, source, AsText(location)
+                                  FROM GeoData
+                                  WHERE Intersects( location, GeomFromText(@bbox) ); 
+                               """)
         else:
-            # Search query does not have a specidied location
+            # Search query does not have a specified location
             query_build.append("""
-                                 SELECT source_name,description,urllink,latitude,longitude
-                                 FROM coordinate
+                                 SELECT contact, description, source, AsText(location)
+                                 FROM GeoData
                               """)
         # Search query has at least 1 keyword
         if len(CalSwimView.keywords) > 0:
@@ -138,7 +149,7 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break
-            rows.append( {"c":[{"v":str(row[3])+","+str(row[4])}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
+            rows.append( {"c":[{"v":str(row[3])}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
     
         # Return search values as json
         cols = [{"id":'latlng', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
