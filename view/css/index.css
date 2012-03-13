@@ -95,7 +95,7 @@ label.error {
 legend{
     font-size: 12pt;
 }
-input.required, textarea{
+input.required, textarea.upload{
     width: 350px;
     clear: both;
 }

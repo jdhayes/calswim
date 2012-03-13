@@ -79,15 +79,15 @@
                 <div class="indent">
                     <div>
                         <label>Label</label>
-                        <textarea id="label" name="label" class="required"></textarea>
+                        <textarea id="label" name="label" class="required upload"></textarea>
                     </div>            
                     <div>
                         <label>Description</label>
-                        <textarea id="description" name="description" class="required"></textarea>
+                        <textarea id="description" name="description" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Keywords</label>
-                        <textarea id="keyword" name="keyword" class="required"></textarea>
+                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
                     </div>
                 </div>
                 
@@ -110,7 +110,7 @@
                 <h2>Other</h2>
                 <div class="indent">
                     <label>Additional Information (optional)</label><br />
-                    <textarea id="other" name="other"></textarea>
+                    <textarea id="other" name="other" class="upload"></textarea>
                 </div>
                                     
                 <input id="submit" name="submit" type="submit" value="submit" class="button" />                
