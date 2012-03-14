@@ -70,11 +70,17 @@ class WebDB:
             insert_query = insert_query % {"columns":columns, "values":values}
             self.cursor.execute(insert_query)
             
+            # Commit queries
+            self.db.commit()
+            
             # Return JavaScript boolean to view 
             self.return_message = 'Data import successful';
         except:
             e = sys.exc_info()[1]
             self.return_message = e;
+            
+        # Close DB connections        
+        self.cursor.close()
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')
@@ -137,11 +143,13 @@ class WebDB:
                                      MATCH (contact,label,description,keyword,other)
                                      AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                   """ % {"KeywordQuery":keyword_query})
-        select_query = "\n".join(query_build)    
+        select_query = "\n".join(query_build)
         print >> CalSwimView.errors, select_query
         
         # execute SQL query using execute() method.
-        self.cursor.execute(select_query)        
+        self.cursor.execute(select_query)
+        # Commit queries
+        self.db.commit()
         # Fetch a single row using fetchone() method.
         rows = []    
         table_data = {}    
@@ -159,6 +167,11 @@ class WebDB:
         # Assign table data to json table data container
         json_data = {}
         json_data["table_data"] = table_data
+        
+        # Close DB connections        
+        self.cursor.close()
+        
+        # Return results
         return json.dumps(json_data)
 
 if __name__ == "__main__":
