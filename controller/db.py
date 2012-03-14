@@ -147,8 +147,9 @@ class WebDB:
         print >> CalSwimView.errors, select_query
         
         # execute SQL query using execute() method.
-        self.cursor.execute(select_query)
-
+        self.cursor.executemany(select_query)
+        # Commit queries
+        self.db.commit()
         # Fetch a single row using fetchone() method.
         rows = []    
         table_data = {}    
