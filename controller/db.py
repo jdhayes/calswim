@@ -124,7 +124,7 @@ class WebDB:
                                     )
                                   )
                                   
-                                  AND SQRT(POW( ABS( X(location) - %(Latitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < @radius;                                  
+                                  AND SQRT(POW( ABS( X(location) - %(Latitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < %(Radius)s;                                  
                                """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius})
         else:
             # Search query does not have a specified location
