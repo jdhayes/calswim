@@ -133,7 +133,7 @@ class WebDB:
                 #    To make sure all terms are in a given result, "AND" search among terms, then just add prefix "+" before each term
                 #    To exclude results with a given term, just add prefix "-" before the term
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
-                query_build.insert(1,"""                          
+                query_build.append("""                          
                                          AND
                                          MATCH (contact,label,description,keyword,other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
@@ -151,7 +151,7 @@ class WebDB:
                 #    To make sure all terms are in a given result, "AND" search among terms, then just add prefix "+" before each term
                 #    To exclude results with a given term, just add prefix "-" before the term
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
-                query_build.insert(1,"""                          
+                query_build.append("""                          
                                          WHERE
                                          MATCH (contact,label,description,keyword,other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
