@@ -31,7 +31,7 @@ class WebView:
         else:
             self.lat, self.lng = latlng.split(",")
             # Convert radius miles into latitude degrees
-            self.radius = radius / 69.047;
+            self.radius = str(float(radius) / 69.047);
         
         # Parse out non alpha numeric characters
         if keywords == "Everything":
