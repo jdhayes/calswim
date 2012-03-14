@@ -44,7 +44,7 @@ class WebDB:
             values.append( form.getvalue('contact') )
             values.append( form.getvalue('source') )
             values.append( form.getvalue('label') )
-            values.append( form.getvalue('description') )            
+            values.append( form.getvalue('description') )
             values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
             values.append( form.getvalue('other') )
             
@@ -124,7 +124,7 @@ class WebDB:
                                     )
                                   )
                                   
-                                  AND SQRT(POW( ABS( X(location) - %(Latitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < %(Radius)s;                                  
+                                  AND SQRT(POW( ABS( X(location) - %(Latitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < %(Radius)s                                
                                """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius})
             # Search query has at least 1 keyword
             if len(CalSwimView.keywords) > 0:
