@@ -148,8 +148,7 @@ class WebDB:
         
         # execute SQL query using execute() method.
         self.cursor.execute(select_query)
-        # Commit queries
-        self.db.commit()
+
         # Fetch a single row using fetchone() method.
         rows = []    
         table_data = {}    
