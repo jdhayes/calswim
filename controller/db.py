@@ -125,7 +125,7 @@ class WebDB:
                                   )
                                   
                                   AND SQRT(POW( ABS( X(location) - %(Longitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < @radius;                                  
-                               """) % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius}
+                               """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius})
         else:
             # Search query does not have a specified location
             query_build.append("""
