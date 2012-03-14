@@ -109,22 +109,23 @@ class WebDB:
         
         if (CalSwimView.lat and CalSwimView.lng):
             # Search query has a specified location
-            query_build.append("SET @center = GeomFromText('POINT(%(Latitude)s %(Longitude)s)');" % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng})
-            query_build.append("SET @radius = %(Radius)s;" % {"Radius":CalSwimView.radius})
-            query_build.append("""            
-                                  SET @bbox = CONCAT('POLYGON((',
-                                  X(@center) - @radius, ' ', Y(@center) - @radius, ',',
-                                  X(@center) + @radius, ' ', Y(@center) - @radius, ',',
-                                  X(@center) + @radius, ' ', Y(@center) + @radius, ',',
-                                  X(@center) - @radius, ' ', Y(@center) + @radius, ',',
-                                  X(@center) - @radius, ' ', Y(@center) - @radius, '))'
-                                  );
-                               """)
             query_build.append("""
                                   SELECT contact, description, source, AsText(location)
                                   FROM GeoData
-                                  WHERE Intersects( location, GeomFromText(@bbox) ); 
-                               """)
+                                  WHERE Intersects( location, GeomFromText(
+                                
+                                      CONCAT('POLYGON((',
+                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s - %(Radius)s, ',',
+                                        %(Latitude)s + %(Radius)s, ' ', %(Longitude)s - %(Radius)s, ',',
+                                        %(Latitude)s + %(Radius)s, ' ', %(Longitude)s + %(Radius)s, ',',
+                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s + %(Radius)s, ',',
+                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s - %(Radius)s, '))'
+                                      )
+                                    )
+                                  )
+                                  
+                                  AND SQRT(POW( ABS( X(location) - %(Longitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < @radius;                                  
+                               """) % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius}
         else:
             # Search query does not have a specified location
             query_build.append("""
@@ -147,7 +148,7 @@ class WebDB:
         print >> CalSwimView.errors, select_query
         
         # execute SQL query using execute() method.
-        self.cursor.executemany(select_query)
+        self.cursor.execute(select_query)
         # Commit queries
         self.db.commit()
         # Fetch a single row using fetchone() method.
