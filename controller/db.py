@@ -54,7 +54,7 @@ class WebDB:
             lng = form.getvalue('lng')
             if shp_file:
                 # Get shp file contents to be stored as a blob
-                shp_file_contents = open(shp_file,'rb').read()                
+                #shp_file_contents = open(shp_file,'rb').read()                
                 # Set POLYGON GEOMETRY from shp file
                 #location = set_poly_geo(shp_file_contents)
                 location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
