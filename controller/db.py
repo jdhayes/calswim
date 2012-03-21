@@ -52,6 +52,7 @@ class WebDB:
         shp_file = form.getvalue('shp_file')
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')
+        print >> CalSwimView.errors, "ShapeFile: "+shp_file
         if shp_file:
             # Get shp file contents to be stored as a blob
             #shp_file_contents = open(shp_file,'rb').read()
