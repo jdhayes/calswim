@@ -10,7 +10,6 @@ from view import WebView;
 from db import WebDB;
 
 def application(environ, start_response):
-    print >> CalSwimView.errors, "Application Start"
     
     """
         ==========================================================        
@@ -23,6 +22,7 @@ def application(environ, start_response):
        
     # Initialize web classes
     CalSwimView = WebView(os.path.dirname(__file__), environ['wsgi.errors'])        
+    print >> CalSwimView.errors, "Application Start"
     CalSwimDB = WebDB();
     
     """
