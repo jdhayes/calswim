@@ -15,7 +15,7 @@ import re, string;
 pattern = re.compile('[\W_]+')
 
 class WebDB:
-    def __init__(self):
+    def __init__(self, errors):
         # Connect to an existing database
         connParams = {}
         connParams["UID"] = "calswim"
@@ -29,7 +29,9 @@ class WebDB:
         # prepare a cursor object using cursor() method
         self.cursor = self.db.cursor()  
         # Set return message to blank
-        self.return_message = ""    
+        self.return_message = ""
+        # Initialize error var
+        self.errors = errors  
         
     def import_data(self, form):
         """
@@ -52,7 +54,7 @@ class WebDB:
         shp_file = form.getvalue('shp_file')
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')
-        print >> CalSwimView.errors, "ShapeFile: "+shp_file
+        print >> self.errors, "ShapeFile: "+shp_file
         if shp_file:
             # Get shp file contents to be stored as a blob
             #shp_file_contents = open(shp_file,'rb').read()
