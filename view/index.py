@@ -38,7 +38,9 @@ def application(environ, start_response):
         """
             Handle AJAX call for data import into DB
         """
+        print >> CalSwimView.errors, "Before Import"
         CalSwimDB.import_data(form)
+        print >> CalSwimView.errors, "After Import"
         CalSwimView.content = CalSwimDB.return_message
     else:        
         CalSwimView.set_content('index')

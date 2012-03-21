@@ -64,7 +64,7 @@ class WebDB:
                 shp_file_contents = "NULL"
                 # Set POINT GEOMETRY from latitude and longitude
                 location = "GeomFromText('POINT("+lat+" "+lng+")')"
-                                    
+                             
             # Build MySQL insert query
             values = "'"+ "','".join(values)  +"',"+ location +",'"+ shp_file_contents +"'"
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
