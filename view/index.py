@@ -10,6 +10,8 @@ from view import WebView;
 from db import WebDB;
 
 def application(environ, start_response):
+    print >> CalSwimView.errors, "Application Start"
+    
     """
         ==========================================================        
         * Logic for determining web view content is located here *
