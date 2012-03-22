@@ -20,9 +20,10 @@ function initTableMap(json_table_data) {
 		
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
 		table.draw(tableGeoView, {showRowNumber: false});
-			
-	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-	    //map.draw(mapGeoView, {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP});
+		
+		mapOptions = {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP};
+	    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+	    //map.draw(mapGeoView);
 		
 		/////////////// Code snipet ////////////////
 		var myCoordinates = [
