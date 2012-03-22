@@ -179,11 +179,11 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break
-            latlng = str(row[3]).replace('POINT(','').replace(')','').replace(' ',',')
-            rows.append( {"c":[{"v":latlng}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
+            coordinates = str(row[3]).replace('POINT(','').replace('POLYGON((','').replace(')','')
+            rows.append( {"c":[{"v":coordinates}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
     
         # Return search values as json
-        cols = [{"id":'latlng', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
+        cols = [{"id":'coordinates', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
         table_data["cols"] = cols
         table_data["rows"] = rows
         # Assign table data to json table data container

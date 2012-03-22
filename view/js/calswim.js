@@ -17,13 +17,31 @@ function initTableMap(json_table_data) {
 		tableGeoView.setColumns([1,2,3]);
 		var mapGeoView = new google.visualization.DataView(geoData);	
 		mapGeoView.setColumns([0,2]);
+		var myCoordinates = [
+		                     
+		/////////////// Code snipet ////////////////
+		new google.maps.LatLng(33.695191,-117.818645),
+		new google.maps.LatLng(33.752300,-117.730754),
+		new google.maps.LatLng(33.688335,-117.708781)
+		];
+		var polyOptions = {
+		path: myCoordinates,
+		strokeColor: "#FF0000",
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: "#0000FF",
+		fillOpacity: 0.6
+		}
+		var it = new google.maps.Polygon(polyOptions);
+		it.setMap(map);
+		/////////////// Code snipet ////////////////
 		
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
 		table.draw(tableGeoView, {showRowNumber: false});
 			
 	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
-	    map.draw(mapGeoView, {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP});
-	
+	    map.draw(mapGeoView, {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP});	    	
+	    
 	    // Set a 'select' event listener for the table.
 	    // When the table is selected,
 	    // we set the selection on the map.
