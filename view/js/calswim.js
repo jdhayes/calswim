@@ -21,7 +21,8 @@ function initTableMap(json_table_data) {
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
 		table.draw(tableGeoView, {showRowNumber: false});
 			
-	    var map = new google.visualization.Map(document.getElementById('map_canvas'));	    
+	    var map = new google.visualization.Map(document.getElementById('map_canvas'));
+	    //map.draw(mapGeoView, {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
 		/////////////// Code snipet ////////////////
 		var myCoordinates = [
@@ -41,8 +42,6 @@ function initTableMap(json_table_data) {
 		it.setMap(map);
 		/////////////// Code snipet ////////////////					   
 	    
-		map.draw();
-		
 	    // Set a 'select' event listener for the table.
 	    // When the table is selected,
 	    // we set the selection on the map.
