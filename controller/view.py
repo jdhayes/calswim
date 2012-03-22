@@ -29,9 +29,12 @@ class WebView:
             self.lat = None
             self.lng = None
         else:
+            # Assign and convert lat lng to decimal
             self.lat, self.lng = latlng.split(",")
+            self.lat = float(self.lat)
+            self.lng = float(self.lng)
             # Convert radius miles into latitude degrees
-            self.radius = str(float(radius) / 69.047);
+            self.radius = float(radius) / 69.047;
         
         # Parse out non alpha numeric characters
         if keywords == "Everything":
