@@ -56,22 +56,26 @@ class WebDB:
         lng = form.getvalue('lng')
         print >> self.errors, "ShapeFile: "+shp_file
         if shp_file:
+            print >> self.errors, "INNNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSIIIIIIIIIIIIDE"
             # Get shp file contents to be stored as a blob
             #shp_file_contents = open(shp_file,'rb').read()
             shp_file_contents = "Test content"        
             # Set POLYGON GEOMETRY from shp file
-            #location = set_poly_geo(shp_file_contents)
+            #location = set_poly_geo(shp_file_contents)            
             location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
             # Set POINT GEOMETRY from latitude and longitude
             location = "GeomFromText('POINT("+lat+" "+lng+")')"
-                         
+        
+        print >> self.errors, "LOCATION::: "+location
+        
         # Build MySQL insert query
         values = "'"+ "','".join(values)  +"',"+ location +",'"+ shp_file_contents +"'"
         insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
         insert_query = insert_query % {"columns":columns, "values":values}
+        print >> self.errors, "INSERT QUERY::: "+insert_query
         self.cursor.execute(insert_query)
         
         # Commit queries
