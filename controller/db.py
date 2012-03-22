@@ -53,23 +53,19 @@ class WebDB:
         # Build MySQL Geometry syntax            
         shp_file = form.getvalue('shp_file')
         lat = form.getvalue('lat')
-        lng = form.getvalue('lng')
-        print >> self.errors, "ShapeFile: "+shp_file
-        if shp_file:
-            print >> self.errors, "INNNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSIIIIIIIIIIIIDE"
+        lng = form.getvalue('lng')        
+        if shp_file:            
             # Get shp file contents to be stored as a blob
             #shp_file_contents = open(shp_file,'rb').read()
             shp_file_contents = "Test content"        
             # Set POLYGON GEOMETRY from shp file
             #location = set_poly_geo(shp_file_contents)            
-            location = "GeomFromText('POLYGON(0.0 0.0, 0.0 4.0, 4.0 0.0, 4.0 4.0)')"
+            location = "PolygonFromText('POLYGON((0 0, 0 4, 4 0, 4 4,0 0))')"
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
             # Set POINT GEOMETRY from latitude and longitude
-            location = "GeomFromText('POINT("+lat+" "+lng+")')"
-        
-        print >> self.errors, "LOCATION::: "+location
+            location = "GeomFromText('POINT("+lat+" "+lng+")')"            
         
         # Build MySQL insert query
         values = "'"+ "','".join(values)  +"',"+ location +",'"+ shp_file_contents +"'"
@@ -116,24 +112,30 @@ class WebDB:
         query_build = []
         
         if (CalSwimView.lat and CalSwimView.lng):
-            # Search query has a specified location
+            # Search query has a specified location to check agains points and polygons int he database
+            self.cursor.execute("SET @center = GeomFromText('POINT(%s %s)');",(CalSwimView.lat,CalSwimView.lng))
+            self.cursor.execute("SET @radius = %s;",(CalSwimView.radius))
+            self.cursor.execute("""
+                                   SET @bbox = CONCAT('POLYGON((',
+                                       X(@center) - @radius, ' ', Y(@center) - @radius, ',',
+                                       X(@center) + @radius, ' ', Y(@center) - @radius, ',',
+                                       X(@center) + @radius, ' ', Y(@center) + @radius, ',',
+                                       X(@center) - @radius, ' ', Y(@center) + @radius, ',',
+                                       X(@center) - @radius, ' ', Y(@center) - @radius, '))'
+                                   );
+                               """)
             query_build.append("""
                                   SELECT contact, description, source, AsText(location)
                                   FROM GeoData
-                                  WHERE Intersects( location, GeomFromText(
-                                
-                                      CONCAT('POLYGON((',
-                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s - %(Radius)s, ',',
-                                        %(Latitude)s + %(Radius)s, ' ', %(Longitude)s - %(Radius)s, ',',
-                                        %(Latitude)s + %(Radius)s, ' ', %(Longitude)s + %(Radius)s, ',',
-                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s + %(Radius)s, ',',
-                                        %(Latitude)s - %(Radius)s, ' ', %(Longitude)s - %(Radius)s, '))'
-                                      )
-                                    )
-                                  )
-                                  
-                                  AND SQRT(POW( ABS( X(location) - %(Latitude)s), 2) + POW( ABS(Y(location) - %(Longitude)s), 2 )) < %(Radius)s                                
-                               """ % {"Latitude":CalSwimView.lat, "Longitude":CalSwimView.lng, "Radius":CalSwimView.radius})
+                                  WHERE Intersects( location, GeomFromText(@bbox) )
+                                  AND
+                                      CASE geometrytype(location)
+                                          WHEN 'POINT' THEN
+                                              SQRT(POW( ABS( X(location) - X(@center)), 2) + POW( ABS(Y(location) - Y(@center)), 2 )) < @radius
+                                          ELSE
+                                              TRUE
+                                      END
+                               """)
             # Search query has at least 1 keyword
             if len(CalSwimView.keywords) > 0:
                 # Just a few MySQL notes:
