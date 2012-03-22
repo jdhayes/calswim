@@ -15,15 +15,22 @@ function initTableMap(json_table_data) {
 		
 		var tableGeoView = new google.visualization.DataView(geoData);	
 		tableGeoView.setColumns([1,2,3]);
-		var mapGeoView = new google.visualization.DataView(geoData);	
-		mapGeoView.setColumns([0,2]);
+		//var mapGeoView = new google.visualization.DataView(geoData);	
+		//mapGeoView.setColumns([0,2]);
 		
 		var table = new google.visualization.Table(document.getElementById('table_canvas'));
 		table.draw(tableGeoView, {showRowNumber: false});
 		
-		mapOptions = {showTip: true, mapTypeId: google.maps.MapTypeId.ROADMAP};
-	    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+		//mapOptions = {mapTypeId: google.maps.MapTypeId.ROADMAP};
+	    //var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 	    //map.draw(mapGeoView);
+		
+		var myOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(-34.397, 150.644),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 		
 		/////////////// Code snipet ////////////////
 		var myCoordinates = [
@@ -46,18 +53,18 @@ function initTableMap(json_table_data) {
 	    // Set a 'select' event listener for the table.
 	    // When the table is selected,
 	    // we set the selection on the map.
-	    google.visualization.events.addListener(table, 'select',
-	        function() {
-	          map.setSelection(table.getSelection());
-	        });
+	    //google.visualization.events.addListener(table, 'select',
+	    //    function() {
+	    //      map.setSelection(table.getSelection());
+	    //    });
 	
 	    // Set a 'select' event listener for the map.
 	    // When the map is selected,
 	    // we set the selection on the table.
-	    google.visualization.events.addListener(map, 'select',
-	        function() {
-	          table.setSelection(map.getSelection());
-	    });
+	    //google.visualization.events.addListener(map, 'select',
+	    //    function() {
+	    //      table.setSelection(map.getSelection());
+	    //    });
 	}
 }
 
