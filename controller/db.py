@@ -113,8 +113,8 @@ class WebDB:
         
         if (CalSwimView.lat and CalSwimView.lng):
             # Search query has a specified location to check agains points and polygons int he database
-            self.cursor.execute("SET @center = GeomFromText('POINT(%d %d)');",(CalSwimView.lat, CalSwimView.lng))
-            self.cursor.execute("SET @radius = %d;",(CalSwimView.radius))
+            self.cursor.execute("SET @center = GeomFromText('POINT(%s %s)');",(CalSwimView.lat, CalSwimView.lng))
+            self.cursor.execute("SET @radius = %s;",(CalSwimView.radius))
             self.cursor.execute("""
                                    SET @bbox = CONCAT('POLYGON((',
                                        X(@center) - @radius, ' ', Y(@center) - @radius, ',',
