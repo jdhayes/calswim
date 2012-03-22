@@ -113,8 +113,8 @@ class WebDB:
         
         if (CalSwimView.lat and CalSwimView.lng):            
             # Search query has a specified location thus check against intersection of points and polygons in database
-            self.cursor.execute("SET @center = GeomFromText('POINT(%d %d)');",(float(CalSwimView.lat), float(CalSwimView.lng)))
-            self.cursor.execute("SET @radius = %d;",(float(CalSwimView.radius)))
+            self.cursor.execute("SET @center = GeomFromText('POINT(%s %s)');",(float(CalSwimView.lat), float(CalSwimView.lng)))
+            self.cursor.execute("SET @radius = %s;",(CalSwimView.radius))
             self.cursor.execute("""
                                    SET @bbox = CONCAT('POLYGON((',
                                        X(@center) - @radius, ' ', Y(@center) - @radius, ',',
