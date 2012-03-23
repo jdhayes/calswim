@@ -175,7 +175,7 @@ class WebDB:
         # Fetch a single row using fetchone() method.
         rows = []    
         table_data = {}
-        coordinates = {}
+        coordinates = []
         while(1):
             row=self.cursor.fetchone()
             if row == None:
