@@ -63,11 +63,12 @@ class WebDB:
         values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
         values.append( form.getvalue('other') )
         
-        # Build MySQL Geometry syntax            
+        # Build MySQL Geometry syntax
         shp_file = form['shp_file'].file
+        shp_file_name = form.getvalue('shp_file')
         lat = form.getvalue('lat')
-        lng = form.getvalue('lng')        
-        if shp_file:            
+        lng = form.getvalue('lng')
+        if shp_file_name:
             # Get shp file contents to be stored as a blob
             shp_file_contents = open(shp_file,'rb').read()
             # Set POLYGON GEOMETRY from shp file
