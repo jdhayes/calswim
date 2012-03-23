@@ -76,8 +76,8 @@ class WebDB:
             polygons = self.set_poly_geo(StringIO(shp_file_contents))            
             locations = []
             for polygon in polygons:
-                for v, k in polygon:
-                    polygon[k] = " ".join( map( str, polygon[k]) )
+                for idx, val in enumerate(polygon):
+                    polygon[idx] = " ".join( map( str, polygon[idx]) )
                 locations.append("GeomFromText('POLYGON((%s)))'" % (",".join(polygon)))
         elif lat and lng:
             # Set MySQL NULL value for shp contents
