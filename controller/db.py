@@ -78,7 +78,7 @@ class WebDB:
             # Set POINT GEOMETRY from latitude and longitude
             locations = ["GeomFromText('POINT("+lat+" "+lng+")')"]            
         else:
-            json_data = {message:'ERROR:: No Shape File nor Coordinates were found.'}
+            json_data = {'message':'ERROR:: No Shape File nor Coordinates were found.'}
             self.return_message = json.dumps(json_data);
             return
         
@@ -95,7 +95,7 @@ class WebDB:
         self.db.commit()
         
         # Return JavaScript boolean to view 
-        json_data = {message:'Data import successful'}
+        json_data = {'message':'Data import successful'}
         self.return_message = json.dumps(json_data);
 #        except:
 #            e = sys.exc_info()[1]
