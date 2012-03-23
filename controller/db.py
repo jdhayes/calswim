@@ -76,7 +76,7 @@ class WebDB:
             polygons = self.set_poly_geo(StringIO(shp_file_contents))            
             locations = []
             for polygon in polygons:
-                for k, v in polygon.enumerate():
+                for k, v in polygon:
                     polygon[k] = " ".join( map( str, polygon[k]) )
                 locations.append("GeomFromText('POLYGON((%s)))'" % (",".join(polygon)))
         elif lat and lng:
