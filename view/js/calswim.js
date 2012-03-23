@@ -42,7 +42,6 @@ function initTableMap(json_data) {
                 for (var i = 0; i < coords.length; i++) {     	
                 	var coord = coords[i].split(" ");                    
                     path.push(new google.maps.LatLng(coord[0], coord[1]));
-                    alert(coord[0]+","+coord[1]);
                 }
                 // Define polygon options
                 var polyOptions = {
@@ -59,7 +58,6 @@ function initTableMap(json_data) {
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
-            	alert(coord[0]+","+coord[1]);
             	var marker = new google.maps.Marker({            		
             		position: (coord[0], coord[1]),
             		map: map            		
