@@ -33,6 +33,7 @@ function initTableMap(json_data) {
         //map.draw(mapGeoView);        
         
         $(geoObjects).each(function(index, coords){
+        	alert("Parsing geoObject");
         	var coords = coords.split(",");        	
         	
             if (coords.length > 1){                      
