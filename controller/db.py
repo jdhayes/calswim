@@ -15,6 +15,7 @@ import re, string;
 pattern = re.compile('[\W_]+')
 # ESRI Geographic data parser 
 import shapefile
+from StringIO import StringIO
 
 class WebDB:
     def __init__(self, errors):
@@ -72,7 +73,7 @@ class WebDB:
             # Get shp file contents to be stored as a blob
             shp_file_contents = shp_file.read()
             # Set POLYGON GEOMETRY from shp file
-            locations = self.set_poly_geo(shp_file)
+            locations = self.set_poly_geo(StringIO(shp_file_contents))
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
