@@ -64,12 +64,12 @@ class WebDB:
         values.append( form.getvalue('other') )
         
         # Build MySQL Geometry syntax            
-        shp_file = form.getvalue('shp_file')
+        shp_file = form['shp_file'].file
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')        
         if shp_file:            
             # Get shp file contents to be stored as a blob
-            shp_file_contents = open(shp_file.file,'rb').read()
+            shp_file_contents = open(shp_file,'rb').read()
             # Set POLYGON GEOMETRY from shp file
             locations = self.set_poly_geo(shp_file)
         elif lat and lng:
