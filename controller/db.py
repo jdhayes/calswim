@@ -69,8 +69,7 @@ class WebDB:
         lng = form.getvalue('lng')        
         if shp_file:            
             # Get shp file contents to be stored as a blob
-            shp_file_handler = form[shp_file].file
-            shp_file_contents = open(shp_file_handler,'rb').read()
+            shp_file_contents = open(shp_file.file,'rb').read()
             # Set POLYGON GEOMETRY from shp file
             locations = self.set_poly_geo(shp_file)
         elif lat and lng:
