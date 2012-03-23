@@ -37,10 +37,10 @@ function initTableMap(json_data) {
         	
             if (coords.length > 1){                      
                 // Parse coordinates and build polygons            	
-                var path = [];
+                var path = [];                
                 for (var i = 0; i < coords.length; i++) {
-                    var coord = coords[i].split(" ");
-                    alert(coord[0]+","+coord[1]);
+                	alert(coords[i]);
+                	var coord = coords[i].split(" ");                    
                     path.push(new google.maps.LatLng(coord[0], coord[1]));
                 }
                 // Define polygon options
