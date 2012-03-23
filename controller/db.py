@@ -78,7 +78,7 @@ class WebDB:
             for polygon in polygons:                
                 for points in polygon:
                     points = " ".join( map( str, points) )
-                locations.append(GeomFromText('POLYGON((%s))' % (",".join(polygon))))
+                locations.append("GeomFromText('POLYGON((%s)))'" % (",".join(polygon)))
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
