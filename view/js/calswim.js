@@ -34,7 +34,7 @@ function initTableMap(json_data) {
         
         $(geoObjects).each(function(index, coords){
         	var coords = coords.split(",");
-        	alert(coords[0][0]+" "+coords[0][1]);
+        	alert(coords[0]+" "+coords[1]);
         	
             if (coords.length > 1){                      
                 // Parse coordinates and build polygons            	
@@ -58,7 +58,7 @@ function initTableMap(json_data) {
             }else{
                 // Set point as Google Marker            	
             	var marker = new google.maps.Marker({
-            		position: (coords[0][0], coords[0][1]),
+            		position: (coords[0], coords[1]),
             		map: map            		
             	});
             	marker.setMap(map);
