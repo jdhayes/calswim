@@ -73,7 +73,7 @@ class WebDB:
             # Get shp file contents to be stored as a blob
             shp_file_contents = shp_file.read()
             # Set POLYGON GEOMETRY from shp file
-            locations = self.set_poly_geo(StringIO(shp_file_contents))
+            locations = self.set_poly_geo(shp=StringIO(shp_file_contents),"rb")
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
