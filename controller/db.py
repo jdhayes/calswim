@@ -13,6 +13,8 @@ import MySQLdb;
 import json;
 import re, string;
 pattern = re.compile('[\W_]+')
+# ESRI Geographic data parser 
+import shapefile
 
 class WebDB:
     def __init__(self, errors):
@@ -32,7 +34,18 @@ class WebDB:
         self.return_message = ""
         # Initialize error var
         self.errors = errors  
-        
+    
+    def set_poly_geo(self,shp_file):        
+        # Open shp_file with parser
+        sf = shapefile.Reader(shp_file)
+        # Get all shapes
+        shapes = sf.shapes() 
+        # Iterate over shapes
+        polygons=[]
+        for shape in shapes:
+            polygons.append(shape.points)
+        return polygons
+     
     def import_data(self, form):
         """
             Simple function to inhale form data and insert it into the Database
@@ -56,29 +69,34 @@ class WebDB:
         lng = form.getvalue('lng')        
         if shp_file:            
             # Get shp file contents to be stored as a blob
-            #shp_file_contents = open(shp_file,'rb').read()
-            shp_file_contents = "Test content"        
+            shp_file_contents = open(shp_file,'rb').read()
             # Set POLYGON GEOMETRY from shp file
-            #location = set_poly_geo(shp_file_contents)            
-            location = "PolygonFromText('POLYGON((0 0, 0 4, 4 0, 4 4,0 0))')"
+            locations = self.set_poly_geo(shp_file)
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
             # Set POINT GEOMETRY from latitude and longitude
-            location = "GeomFromText('POINT("+lat+" "+lng+")')"            
+            locations = ["GeomFromText('POINT("+lat+" "+lng+")')"]            
+        else:
+            json_data = {message:'ERROR:: No Shape File nor Coordinates were found.'}
+            self.return_message = json.dumps(json_data);
+            return
         
-        # Build MySQL insert query
-        values = "'"+ "','".join(values)  +"',"+ location +",'"+ shp_file_contents +"'"
-        insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
-        insert_query = insert_query % {"columns":columns, "values":values}
-        print >> self.errors, "INSERT QUERY::: "+insert_query
-        self.cursor.execute(insert_query)
+        # For each location insert details into DB
+        for location in locations:
+            # Build MySQL insert query
+            values = "'"+ "','".join(values)  +"',"+ location +",'"+ shp_file_contents +"'"
+            insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
+            insert_query = insert_query % {"columns":columns, "values":values}
+            print >> self.errors, "INSERT QUERY::: "+insert_query
+            self.cursor.execute(insert_query)
         
         # Commit queries
         self.db.commit()
         
         # Return JavaScript boolean to view 
-        self.return_message = 'Data import successful';
+        json_data = {message:'Data import successful'}
+        self.return_message = json.dumps(json_data);
 #        except:
 #            e = sys.exc_info()[1]
 #            self.return_message = e;

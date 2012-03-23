@@ -19,14 +19,14 @@
     <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        google.setOnLoadCallback(initialize);               
+        google.setOnLoadCallback(initialize);
     </script>
   </head>
   <body>
     <div id="header" class="dark">
         <h1>Welcome to CalSWIM!</h1>
         <a id="upload" class="button" href="#form_wrapper">Upload</a>
-    </div>    
+    </div>
     
     <div id="content">
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
