@@ -32,8 +32,8 @@ function initTableMap(json_data) {
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         //map.draw(mapGeoView);        
         
-        $(geoObjects).each(function(geoObject){
-        	var coords = geoObject.split(",");
+        $(geoObjects).each(function(index, coords){
+        	var coords = coords.split(",");
             if (coords.length() > 1){                      
                 // Parse coordinates and build polygons            	
                 var path = [];
