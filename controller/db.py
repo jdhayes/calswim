@@ -174,21 +174,23 @@ class WebDB:
 
         # Fetch a single row using fetchone() method.
         rows = []    
-        table_data = {}    
+        table_data = {}
+        coordinates = {}
         while(1):
             row=self.cursor.fetchone()
             if row == None:
                 break
-            coordinates = str(row[3]).replace('POINT(','').replace('POLYGON((','').replace(')','')
-            rows.append( {"c":[{"v":coordinates}, {"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )                
+            coordinates.append( str(row[3]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
+            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
     
         # Return search values as json
-        cols = [{"id":'coordinates', "label":'Coordinates', "type":'string'},{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
+        cols = [{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
         table_data["cols"] = cols
         table_data["rows"] = rows
         # Assign table data to json table data container
         json_data = {}
         json_data["table_data"] = table_data
+        json_data["coordinates"] = coordinates
         
         # Close DB connections        
         self.cursor.close()
