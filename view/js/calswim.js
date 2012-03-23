@@ -1,11 +1,8 @@
 // CalSWIM main Javascript file
 
-function initTableMap(json_data) {
-    // Define table data and map data
-    var json_table_data = json_data.table_data;
-    var geoObjects = json_data.coordinates;
+function initTableMap(json_data) {    
     
-    if (json_table_data == null){
+    if (json_data == null){
         // Init Google Map
         var geocoder = new google.maps.Geocoder();
         $('#map_canvas').gmap().bind('init', function() {     
@@ -15,6 +12,10 @@ function initTableMap(json_data) {
         });
     }
     else{
+    	// Define table data and map data
+        var json_table_data = json_data.table_data;
+        var geoObjects = json_data.coordinates;
+        
         // Define geo data
         var geoData = new google.visualization.DataTable(json_table_data);    
         // Filter geo data
