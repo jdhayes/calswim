@@ -26,8 +26,7 @@ function initTableMap(json_data) {
         table.draw(tableGeoView, {showRowNumber: false});
         
         // Add points and polygons to map                    
-    	$(geoObjects).each(function(index, coords){
-        	alert("Parsing geoObject");
+    	$(geoObjects).each(function(index, coords){        	
         	var coords = coords.split(",");        	
         	
             if (coords.length > 1){                      
@@ -44,7 +43,7 @@ function initTableMap(json_data) {
                 		'strokeWeight': 2,
                 		'fillColor': "#FF0000",
                 		'fillOpacity': 0.35,
-                		'path': path                		
+                		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
                 $('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
