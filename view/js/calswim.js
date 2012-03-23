@@ -32,39 +32,7 @@ function initTableMap(json_data) {
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         //map.draw(mapGeoView);        
         
-        $(geoObjects).each(function(index, coords){
-        	alert("Parsing geoObject");
-        	var coords = coords.split(",");        	
-        	
-            if (coords.length > 1){                      
-                // Parse coordinates and build polygons            	
-                var path = [];                
-                for (var i = 0; i < coords.length; i++) {     	
-                	var coord = coords[i].split(" ");                    
-                    path.push(new google.maps.LatLng(coord[0], coord[1]));
-                }
-                // Define polygon options
-                var polyOptions = {
-                    path: new google.maps.MVCArray(path),
-                    strokeColor: "#FF0000",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: "#0000FF",
-                    fillOpacity: 0.6
-                }
-                // Draw polygons
-                var polygon = new google.maps.Polygon(polyOptions);
-                polygon.setMap(map);
-            }else{
-                // Set point as Google Marker
-            	var coord = coords[0].split(" ");
-            	var marker = new google.maps.Marker({            		
-            		position: (coord[0], coord[1]),
-            		map: map            		
-            	});
-            	marker.setMap(map);
-            }
-        });
+        
         
         // Set a 'select' event listener for the table.
         // When the table is selected,
