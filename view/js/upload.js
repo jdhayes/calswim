@@ -27,7 +27,7 @@ google.setOnLoadCallback(function(){
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
         	else{
-        		$("form:upload_form").submit();   	
+        		$("form:upload_form").submit();
         	}
         }
     });

@@ -15,6 +15,7 @@
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript">
