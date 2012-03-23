@@ -40,11 +40,12 @@ def application(environ, start_response):
         """
             Handle AJAX call for data import into DB
         """        
-        CalSwimDB.import_data(form)        
-        CalSwimView.content = CalSwimDB.return_message
+        #CalSwimDB.import_data(form)
+        #CalSwimView.content = CalSwimDB.return_message
+        CalSwimView.content = str(form)
     else:        
         CalSwimView.set_content('index')
-        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}                
+        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
