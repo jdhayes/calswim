@@ -58,8 +58,7 @@ function initTableMap(json_data) {
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(",");
-            	var marker = new google.maps.Marker({
-            		alert(coord[0]+","+coord[1]);
+            	var marker = new google.maps.Marker({            		
             		position: (coord[0], coord[1]),
             		map: map            		
             	});
