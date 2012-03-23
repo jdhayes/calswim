@@ -57,7 +57,7 @@ function initTableMap(json_data) {
                 polygon.setMap(map);
             }else{
                 // Set point as Google Marker
-            	var coord = coords[0].split(",");
+            	var coord = coords[0].split(" ");
             	alert(coord[0]+","+coord[1]);
             	var marker = new google.maps.Marker({            		
             		position: (coord[0], coord[1]),
