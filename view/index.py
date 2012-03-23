@@ -23,6 +23,7 @@ def application(environ, start_response):
     # Initialize web classes
     CalSwimView = WebView(os.path.dirname(__file__), environ['wsgi.errors'])    
     CalSwimDB = WebDB(environ['wsgi.errors']);
+    #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
     
     """
         ================================================
@@ -38,10 +39,8 @@ def application(environ, start_response):
     elif 'submit' in form:
         """
             Handle AJAX call for data import into DB
-        """
-        print >> CalSwimView.errors, "Before Import"
-        CalSwimDB.import_data(form)
-        print >> CalSwimView.errors, "After Import"
+        """        
+        CalSwimDB.import_data(form)        
         CalSwimView.content = CalSwimDB.return_message
     else:        
         CalSwimView.set_content('index')
