@@ -33,8 +33,7 @@ function initTableMap(json_data) {
         //map.draw(mapGeoView);        
         
         $(geoObjects).each(function(index, coords){
-        	var coords = coords.split(",");
-        	alert(coords[0]+" "+coords[1]);
+        	var coords = coords.split(",");        	
         	
             if (coords.length > 1){                      
                 // Parse coordinates and build polygons            	
@@ -56,9 +55,10 @@ function initTableMap(json_data) {
                 var polygon = new google.maps.Polygon(polyOptions);
                 polygon.setMap(map);
             }else{
-                // Set point as Google Marker            	
+                // Set point as Google Marker
+            	var coord = coords[0].split(",");
             	var marker = new google.maps.Marker({
-            		position: (coords[0], coords[1]),
+            		position: (coord[0], coord[1]),
             		map: map            		
             	});
             	marker.setMap(map);
