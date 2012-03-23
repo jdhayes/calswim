@@ -73,7 +73,12 @@ class WebDB:
             # Get shp file contents to be stored as a blob
             shp_file_contents = shp_file.read()
             # Set POLYGON GEOMETRY from shp file
-            locations = self.set_poly_geo(StringIO(shp_file_contents))
+            polygons = self.set_poly_geo(StringIO(shp_file_contents))            
+            locations = []
+            for polygon in polygons:                
+                for points in polygon:
+                    points = " ".join(points)
+                locations.append(GeomFromText('POLYGON((%s))' % (",".join(polygon))))
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
@@ -87,7 +92,7 @@ class WebDB:
         # For each location insert details into DB
         for location in locations:
             # Build MySQL insert query
-            values = "'"+ "','".join(values)  +"',"+ str(location) +",'"+ str(shp_file_contents) +"'"
+            values = "'"+ "','".join(values)  +"',"+ str(location) +",'"+ shp_file_contents +"'"
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":values}
             print >> self.errors, "INSERT QUERY::: "+insert_query
