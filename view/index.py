@@ -44,10 +44,7 @@ def application(environ, start_response):
         CalSwimView.content = CalSwimDB.return_message
     else:        
         CalSwimView.set_content('index')
-        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
-        
-        output = str(environ['mod_wsgi.version'])
-        CalSwimView.content = output
+        CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}                
     
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
