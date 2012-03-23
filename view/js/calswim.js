@@ -42,7 +42,7 @@ function initTableMap(json_data) {
                 }
                 // Define polygon options
                 var polyOptions = {
-                    path: new google.maps.MVCArray(path),,
+                    path: new google.maps.MVCArray(path),
                     strokeColor: "#FF0000",
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
