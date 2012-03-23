@@ -44,11 +44,10 @@ function initTableMap(json_data) {
                 		'strokeWeight': 2,
                 		'fillColor': "#FF0000",
                 		'fillOpacity': 0.35,
-                		'center': new google.maps.LatLng(58.12, 12.01),
-                		'radius': 2000
+                		'path': path                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addShape', 'Circle', polyOptions);
+                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
