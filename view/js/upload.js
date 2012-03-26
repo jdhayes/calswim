@@ -39,9 +39,9 @@ google.setOnLoadCallback(function(){
         //timeout:   3000
     };
     // Bind form submission handler to form
-    $('#uploadForm').ajaxForm(options);
+    $('#upload_form').ajaxForm(options);
     
-    $("#uploadForm").validate({
+    $("#upload_form").validate({
     	rules: {
     		shp_file: {
     	        required: false,
@@ -66,7 +66,7 @@ google.setOnLoadCallback(function(){
         	}
         	else{
         		// Submit for via AJAX
-        		$("form:uploadForm").ajaxSubmit(options);
+        		$("#upload_form").ajaxSubmit(options);
         		
                 // !!! Important !!! 
                 // always return false to prevent standard browser submit and page navigation 
