@@ -88,7 +88,8 @@ class WebDB:
                 for polygon in polygons:
                     # Re-map polygon coordinates with spaces inbetween lat and lng
                     for idx, val in enumerate(polygon):
-                        polygon[idx] = " ".join( map( str, polygon[idx]) )
+                        # Reverse values so that latitude is first, then longitude
+                        polygon[idx] = " ".join( map( str, val.reverse()) )
                     locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
             else:
                 json_data = {'message':'ERROR:: '+errors}
