@@ -38,8 +38,6 @@ google.setOnLoadCallback(function(){
         // $.ajax options can be used here too, for example:
         //timeout:   3000
     };
-    // Bind form submission handler to form
-    $('#upload_form').ajaxForm(options);
     
     $("#upload_form").validate({
     	rules: {
