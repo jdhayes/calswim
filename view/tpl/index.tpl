@@ -114,7 +114,7 @@
                     <textarea id="other" name="other" class="upload"></textarea>
                 </div>
                                     
-                <button id="submit" name="submit" class="button">Submit</button>                
+                <button id="upload_button" class="button">Submit</button>                
             </form>
         </div>
     </div>

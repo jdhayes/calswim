@@ -84,8 +84,7 @@ label.error {
     padding-left: .5em;
     vertical-align: top;
 }
-#submit{
-    float: right;
+#upload_button{
     margin-top: 15px;
 }
 .indent{
