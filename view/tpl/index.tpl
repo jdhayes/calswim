@@ -59,10 +59,10 @@
         </div>
     </div>
     
+    <div id="upload_message"></div>
     <div id="form_hidden_wrapper">
         <div id="form_wrapper">
             <form id="upload_form" method="post" action="" enctype="multipart/form-data">              
-                <div id="upload_message"></div>
                 <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>
                 <div class="indent">
