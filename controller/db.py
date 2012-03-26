@@ -91,9 +91,9 @@ class WebDB:
         
         # For each location insert details into DB
         # Build MySQL insert query
-        values_template = "'"+ "','".join(values)  +"',%s,'"+ self.db.escape_string(shp_file_contents) +"'"
+        values_template = "'"+ "','".join(values)  +"',%(Location)s,'"+ self.db.escape_string(shp_file_contents) +"'"
         for location in locations:
-            values = values_template % (location)
+            values = values_template % {'Location':location}
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":values}
             print >> self.errors, "INSERT QUERY::: "+insert_query
