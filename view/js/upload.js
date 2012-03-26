@@ -19,7 +19,8 @@ google.setOnLoadCallback(function(){
         dataType:	'json',
         success:	function(data){
         	// Close colorbox after form submission
-    		$("#upload").colorbox.close();
+        	alert('Sucess');
+        	$("#upload").colorbox.close();
     		
     		// DB response            		
     		$("#upload_message").html("<p>"+data.message+"</p>");
@@ -66,7 +67,9 @@ google.setOnLoadCallback(function(){
         	}
         	else{
         		// Submit for via AJAX
+        		alert('Will Send Ajax');
         		$("#upload_form").ajaxSubmit(options);
+        		alert('Sent Ajax');
         		
                 // !!! Important !!! 
                 // always return false to prevent standard browser submit and page navigation 
