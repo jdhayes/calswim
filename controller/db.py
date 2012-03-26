@@ -95,8 +95,8 @@ class WebDB:
             mysql_values = "'"+ "','".join(values)  +"',"+ location +",'"+ self.db.escape_string(shp_file_contents) +"'"
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
-            print >> self.errors, "INSERT QUERY::: "+insert_query
-            #self.cursor.execute(insert_query)
+            #print >> self.errors, "INSERT QUERY::: "+insert_query
+            self.cursor.execute(insert_query)
         
         # Commit queries
         self.db.commit()
@@ -192,7 +192,7 @@ class WebDB:
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         select_query = "\n".join(query_build)
-        print >> CalSwimView.errors, select_query
+        #print >> CalSwimView.errors, select_query
         
         # execute SQL query using execute() method.
         self.cursor.execute(select_query)
