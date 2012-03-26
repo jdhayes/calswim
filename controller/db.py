@@ -47,7 +47,8 @@ class WebDB:
         count = 0
         errors = None
         for shape in shapes:
-            count = count+1            
+            count = count+1
+            # Make sure the first and last set of coordinate are the same, closed polygon
             if shape.points[0] == shape.points[-1]:
                 polygons.append(shape.points)
             else:                
@@ -77,14 +78,15 @@ class WebDB:
         shp_file_name = form.getvalue('shp_file')
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')
+        locations = []
         if shp_file_name:
             # Get shp file contents to be stored as a blob
             shp_file_contents = shp_file.read()
             # Set POLYGON GEOMETRY from shp file
             polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))            
-            if not errors:
-                locations = []            
+            if not errors:                        
                 for polygon in polygons:
+                    # Re-map polygon coordinates with spaces inbetween lat and lng
                     for idx, val in enumerate(polygon):
                         polygon[idx] = " ".join( map( str, polygon[idx]) )
                     locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
@@ -94,7 +96,7 @@ class WebDB:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
             # Set POINT GEOMETRY from latitude and longitude
-            locations = ["GeomFromText('POINT("+lat+" "+lng+")')"]            
+            locations.append("GeomFromText('POINT("+lat+" "+lng+")')")            
         else:
             json_data = {'message':'ERROR:: No Shape File nor Coordinates were found.'}
             self.return_message = json.dumps(json_data);
