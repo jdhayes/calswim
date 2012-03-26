@@ -66,14 +66,8 @@ google.setOnLoadCallback(function(){
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
         	else{
-        		// Submit for via AJAX
-        		alert('Will Send Ajax');
+        		// Submit for via AJAX        		
         		$("#upload_form").ajaxSubmit(options);
-        		alert('Sent Ajax');
-        		
-                // !!! Important !!! 
-                // always return false to prevent standard browser submit and page navigation 
-                return false;
         	}
         }
     });
