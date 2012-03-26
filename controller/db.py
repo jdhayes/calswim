@@ -16,6 +16,7 @@ pattern = re.compile('[\W_]+')
 # ESRI Geographic data parser 
 import shapefile
 from StringIO import StringIO
+import types
 
 class WebDB:
     def __init__(self, errors):
@@ -43,9 +44,16 @@ class WebDB:
         shapes = sf.shapes()
         # Iterate over shapes
         polygons=[]
+        count = 0
+        errors = None
         for shape in shapes:
-            polygons.append(shape.points)
-        return polygons
+            count = count+1            
+            if shape.points[0] == shape.points[-1]:
+                polygons.append(shape.points)
+            else:                
+                errors = "Shape number %d is not a enclosed polygon. First and last coordinates should be the same." % count
+                break
+        return polygons,errors
      
     def import_data(self, form):
         """
@@ -73,12 +81,15 @@ class WebDB:
             # Get shp file contents to be stored as a blob
             shp_file_contents = shp_file.read()
             # Set POLYGON GEOMETRY from shp file
-            polygons = self.set_poly_geo(StringIO(shp_file_contents))            
-            locations = []
-            for polygon in polygons:
-                for idx, val in enumerate(polygon):
-                    polygon[idx] = " ".join( map( str, polygon[idx]) )
-                locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
+            polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))            
+            if not errors:
+                locations = []            
+                for polygon in polygons:
+                    for idx, val in enumerate(polygon):
+                        polygon[idx] = " ".join( map( str, polygon[idx]) )
+                    locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
+            else:
+                json_data = {'message':'ERROR:: '+errors}
         elif lat and lng:
             # Set MySQL NULL value for shp contents
             shp_file_contents = "NULL"
@@ -99,12 +110,12 @@ class WebDB:
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
             print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
             self.cursor.execute(insert_query)
+            json_data = {'message':'Data import successful'}
         
         # Commit queries
         self.db.commit()
         
-        # Return JavaScript boolean to view 
-        json_data = {'message':'Data import successful'}
+        # Return JavaScript boolean to view         
         self.return_message = json.dumps(json_data);
 #        except:
 #            e = sys.exc_info()[1]
