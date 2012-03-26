@@ -18,8 +18,7 @@ google.setOnLoadCallback(function(){
         iframe:		'true',
         dataType:	'json',
         success:	function(data, statusText, xhr, $form){
-        	// Close colorbox after form submission
-        	alert('Sucess');
+        	// Close colorbox after form submission        	
         	$("#upload").colorbox.close();
     		
     		// DB response            		

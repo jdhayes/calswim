@@ -113,7 +113,8 @@
                     <label>Additional Information (optional)</label><br />
                     <textarea id="other" name="other" class="upload"></textarea>
                 </div>
-                                    
+                
+                <input type="hidden" name="import_data" id="import_data" value="import_data"/>
                 <button id="upload_button" class="button">Submit</button>                
             </form>
         </div>
