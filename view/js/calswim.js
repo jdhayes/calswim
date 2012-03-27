@@ -51,7 +51,7 @@ function initTableMap(json_data) {
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
             	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } ).click(function() {
-                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'].[2].['v']}, this);
+                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'][2]['v']}, this);
                 });
             }
         });                
