@@ -53,7 +53,7 @@ function initTableMap(json_data) {
 	                addEventListener(polygon,"click", function(){
 	                	alert("You clicked a polygon");
 	                });
-                });
+                }});
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
