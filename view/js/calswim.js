@@ -48,9 +48,10 @@ function initTableMap(json_data) {
                 }
                 // Draw Polygon
                 $('#map_canvas').gmap({'callback':function() {
+                	alert("number 234567");
 	                polygon = new google.maps.Polygon(polyOptions);
 	                polygon.setMap(this.get('map'));
-	                addEventListener(polygon,"click", function(){
+	                google.maps.event.addListener(polygon, 'click', function() {
 	                	alert("You clicked a polygon");
 	                });
                 }});
