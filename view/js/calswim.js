@@ -54,7 +54,7 @@ function initTableMap(json_data) {
                 	google.maps.event.addListener(polygon,"mouseover",function(){
                 		 self.setOptions({fillColor: "#00FF00"});
                 	});
-                });
+                }});
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
