@@ -37,7 +37,7 @@ function initTableMap(json_data) {
                     path.push(new google.maps.LatLng(coord[0], coord[1]));
                 }
                 // Define polygon options
-                var polyOptions = {                		
+                var polyOptions = {
                 		'strokeColor': "#FF0000",
                 		'strokeOpacity': 0.8,
                 		'strokeWeight': 2,
@@ -46,7 +46,7 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addPolygon', polyOptions).click(function() {
+                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions).click(function() {
                 	alert("Clicked map polygon");
                 });
             }else{
