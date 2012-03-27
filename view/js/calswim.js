@@ -38,6 +38,7 @@ function initTableMap(json_data) {
                 }
                 // Define polygon options
                 var polyOptions = {
+                		'clickable': true,
                 		'strokeColor': "#FF0000",
                 		'strokeOpacity': 0.8,
                 		'strokeWeight': 2,
