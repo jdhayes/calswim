@@ -47,8 +47,12 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions).click(function() {
-                	alert("Clicked map polygon");
+                $('#map_canvas').gmap({'callback':function() {
+	                polygon = new google.maps.Polygon(polyOptions);
+	                polygon.setMap(this.get('map'));
+	                addEventListener(polygon,"click", function(){
+	                	alert("You clicked a polygon");
+	                });
                 });
             }else{
                 // Set point as Google Marker
@@ -65,11 +69,7 @@ function initTableMap(json_data) {
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
               alert("Clicked table row");
-        });
-        
-        addEventListener(polygon,"click", function(){
-        	alert("You clicked a polygon");
-        });
+        });               
     }
 }
 
