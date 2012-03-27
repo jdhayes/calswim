@@ -48,13 +48,13 @@ function initTableMap(json_data) {
                 }
                 // Draw Polygon
                 $('#map_canvas').gmap({'callback':function() {
-                	alert("number 234567");
-	                polygon = new google.maps.Polygon(polyOptions);
-	                polygon.setMap(this.get('map'));
-	                google.maps.event.addListener(polygon, 'click', function() {
-	                	alert("You clicked a polygon");
-	                });
-                }});
+                	var self = this;
+                	var polygon = new google.maps.Polygon(polyOptions);
+                	$('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
+                	google.maps.event.addListener(polygon,"mouseover",function(){
+                		 self.setOptions({fillColor: "#00FF00"});
+                	});
+                });
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
@@ -70,7 +70,11 @@ function initTableMap(json_data) {
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
               alert("Clicked table row");
-        });               
+        });
+        
+        addEventListener(polygon,"click", function(){
+        	alert("You clicked a polygon");
+        });
     }
 }
 
