@@ -47,14 +47,14 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap({'callback':function() {
+                $('#map_canvas').gmap().bind('init', function() { 
                 	var self = this;
                 	var polygon = new google.maps.Polygon(polyOptions);
                 	$('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
                 	google.maps.event.addListener(polygon,"mouseover",function(){
                 		 self.setOptions({fillColor: "#00FF00"});
                 	});
-                }});
+                });
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
