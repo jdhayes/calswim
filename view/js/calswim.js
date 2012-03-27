@@ -38,6 +38,7 @@ function initTableMap(json_data) {
                 }
                 // Define polygon options
                 var polyOptions = {
+                		'clickable': true,
                 		'strokeColor': "#FF0000",
                 		'strokeOpacity': 0.8,
                 		'strokeWeight': 2,
@@ -53,7 +54,7 @@ function initTableMap(json_data) {
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
             	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } ).click(function() {
-                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'][2]['v']}, this);
+                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'][1]['v']}, this);
                     alert("Clicked map point");
                 });
             }
@@ -64,7 +65,11 @@ function initTableMap(json_data) {
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
               alert("Clicked table row");
-        });    
+        });
+        
+        addEventListener(polygon,"click", callback:function(){
+        	alert("You clicked a polygon");
+        });
     }
 }
 
