@@ -47,9 +47,7 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addPolygon', polyOptions).click(function() {
-                	alert("Clicked map polygon");
-                });
+                $('#map_canvas').gmap('addPolygon', polyOptions);
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
