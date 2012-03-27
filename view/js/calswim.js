@@ -46,12 +46,15 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
+                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions).click(function() {
+                	alert("Clicked map polygon");
+                });
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
             	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } ).click(function() {
                     $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'][2]['v']}, this);
+                    alert("Clicked map point");
                 });
             }
         });                
@@ -60,15 +63,8 @@ function initTableMap(json_data) {
         // When the table is selected,
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
-              map.setSelection(table.getSelection());
-        });
-    
-        // Set a 'select' event listener for the map.
-        // When the map is selected,
-        // we set the selection on the table.
-        google.visualization.events.addListener(map, 'select', function() {
-              table.setSelection(map.getSelection());
-        });
+              alert("Clicked table row");
+        });    
     }
 }
 
