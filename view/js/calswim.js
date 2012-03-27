@@ -67,7 +67,7 @@ function initTableMap(json_data) {
               alert("Clicked table row");
         });
         
-        addEventListener(polygon,"click", callback:function(){
+        addEventListener(polygon,"click", function(){
         	alert("You clicked a polygon");
         });
     }
