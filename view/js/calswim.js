@@ -47,7 +47,7 @@ function initTableMap(json_data) {
                 		'path': new google.maps.MVCArray(path)                		
                 }
                 // Draw Polygon
-                $('#map_canvas').gmap('addShape', 'Polygon', polyOptions).click(function() {
+                $('#map_canvas').gmap('addPolygon', polyOptions).click(function() {
                 	alert("Clicked map polygon");
                 });
             }else{
