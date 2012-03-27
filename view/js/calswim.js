@@ -26,7 +26,7 @@ function initTableMap(json_data) {
         table.draw(tableGeoView, {showRowNumber: false});
         
         // Add points and polygons to map                    
-    	$(geoObjects).each(function(index, coords){        	
+    	$(geoObjects).each(function(index, coords){      	
         	var coords = coords.split(",");        	
         	
             if (coords.length > 1){                      
@@ -50,25 +50,25 @@ function initTableMap(json_data) {
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
-            	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } );
+            	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } ).click(function() {
+                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]c.[2].v}, this);
+                });
             }
         });                
         
         // Set a 'select' event listener for the table.
         // When the table is selected,
         // we set the selection on the map.
-        //google.visualization.events.addListener(table, 'select',
-        //    function() {
-        //      map.setSelection(table.getSelection());
-        //    });
+        google.visualization.events.addListener(table, 'select', function() {
+              map.setSelection(table.getSelection());
+        });
     
         // Set a 'select' event listener for the map.
         // When the map is selected,
         // we set the selection on the table.
-        //google.visualization.events.addListener(map, 'select',
-        //    function() {
-        //      table.setSelection(map.getSelection());
-        //    });
+        google.visualization.events.addListener(map, 'select', function() {
+              table.setSelection(map.getSelection());
+        });
     }
 }
 
