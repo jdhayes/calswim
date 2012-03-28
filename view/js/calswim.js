@@ -17,10 +17,6 @@ google.maps.Polygon.prototype.getBounds = function() {
     }
     return bounds;
 }
-google.maps.Marker.prototype.getBounds = function() {
-    var bounds = this.getPosition();    
-    return bounds;
-}
 
 // Main function that populates table and map with data
 function initTableMap(json_data) {    
@@ -53,13 +49,14 @@ function initTableMap(json_data) {
                 }
                 // Define polygon options
                 var polyOptions = {
-                		'clickable': true,
-                		'strokeColor': "#FF0000",
-                		'strokeOpacity': 0.8,
-                		'strokeWeight': 2,
-                		'fillColor': "#FF0000",
-                		'fillOpacity': 0.35,
-                		'path': new google.maps.MVCArray(path)                		
+                		clickable: true,
+                		strokeColor: "#FF0000",
+                		strokeOpacity: 0.8,
+                		strokeWeight: 2,
+                		fillColor: "#FF0000",
+                		fillOpacity: 0.35,
+                		path: new google.maps.MVCArray(path),
+                		type:"polygon"
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
@@ -74,7 +71,8 @@ function initTableMap(json_data) {
             	    position: new google.maps.LatLng(coord[0], coord[1]),
             	    map: map,
             	    title: 'Click to zoom',
-            	    bounds: true
+            	    bounds: true,
+            	    type:"marker"
             	  });
             	map_items.push(marker);
             	var content = json_table_data.rows[index]['c'][1]['v'];
@@ -87,8 +85,14 @@ function initTableMap(json_data) {
         // Set a 'select' event listener for the table.        
         google.visualization.events.addListener(table, 'select', function() {        
         	var selected_items = table.getSelection()
-        	$(selected_items).each(function(key,value){        		
-        		map.fitBounds(map_items[value.row].getBounds());        		
+        	$(selected_items).each(function(key,value){
+        		if (map_items[value.row].type == "polygon"){
+        			map.fitBounds(map_items[value.row].getBounds());
+        		}
+        		else{
+        			bounds.extend(map_items[value.row].getPosition());
+        			map.fitBounds(bounds);
+        		}
         	});
         });
     }
