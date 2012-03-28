@@ -221,7 +221,7 @@ class WebDB:
         while(1):
             row=self.cursor.fetchone()
             if row == None:
-                break
+                break            
             coordinates.append( str(row[3]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
             rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
     

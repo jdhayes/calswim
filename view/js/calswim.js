@@ -2,8 +2,7 @@
 
 // Define Global Vars
 var map;
-var polygons=[];
-var markers=[];
+var map_items=[];
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -19,7 +18,7 @@ google.maps.Polygon.prototype.getBounds = function() {
     return bounds;
 }
 
-
+// Main function that populates table and map with data
 function initTableMap(json_data) {    
     // No search results found
     if (json_data == null){
@@ -27,13 +26,12 @@ function initTableMap(json_data) {
     }else{
     	// Define table data and map data
         var json_table_data = json_data.table_data;
-        var geoObjects = json_data.coordinates;
-        
+        var geoObjects = json_data.coordinates;        
         // Define geo data
         var geoData = new google.visualization.DataTable(json_table_data);    
         // Filter geo data
         var tableGeoView = new google.visualization.DataView(geoData);    
-        //tableGeoView.setColumns([0,1,2]);        
+        //tableGeoView.setColumns([0,1,2]);
         // Draw Table
         var table = new google.visualization.Table(document.getElementById('table_canvas'));
         table.draw(tableGeoView, {showRowNumber: false});
@@ -41,8 +39,8 @@ function initTableMap(json_data) {
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
         	var coords = coords.split(",");        	
-        	
-            if (coords.length > 1){                      
+        	// Check if polygon or marker point
+            if (coords.length > 1){                    
                 // Parse coordinates and build polygons            	
                 var path = [];                
                 for (var i = 0; i < coords.length; i++) {     	
@@ -61,7 +59,7 @@ function initTableMap(json_data) {
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
-                polygons.push(polygon);
+                map_items.push(polygon);
             	polygon.setMap(map);
             	google.maps.event.addListener(polygon,"click",function(){ alert("You clicked a polygon")});
             	map.fitBounds(polygon.getBounds());
@@ -74,7 +72,7 @@ function initTableMap(json_data) {
             	    title: 'Click to zoom',
             	    bounds: true
             	  });
-            	markers.push(marker);
+            	map_items.push(marker);
             	var content = json_table_data.rows[index]['c'][1]['v'];
             	google.maps.event.addListener(marker, 'click', function() {
             		alert(content);
@@ -82,25 +80,19 @@ function initTableMap(json_data) {
             }
         });                
         
-        // Set a 'select' event listener for the table.
-        // When the table is selected,
-        // we set the selection on the map.
-        google.visualization.events.addListener(table, 'select', function() {
-        	//map.fitBounds(polygon.getBounds());        	
+        // Set a 'select' event listener for the table.        
+        google.visualization.events.addListener(table, 'select', function() {        
         	var selected_items = table.getSelection()
-        	$(selected_items).each(function(key,value){
-        		alert(value.row);
-        	})        	
+        	$(selected_items).each(function(key,value){        		
+        		map.fitBounds(map_items[value.row].getBounds());        		
+        	});
         });
     }
 }
 
 function clearMap(){
-	for(var i = 0; i < markers.length; i++) {
-		markers[i].setMap(null);
-	}
-	for(var i = 0; i < polygons.length; i++) {
-		polygons[i].setMap(null);
+	for(var i = 0; i < map_items.length; i++) {
+		map_items[i].setMap(null);
 	}
 }
 
