@@ -87,7 +87,10 @@ function initTableMap(json_data) {
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
         	//map.fitBounds(polygon.getBounds());        	
-        	alert(table.getSelection());
+        	var selected_items = table.getSelection()
+        	$(selected_items).each(function(key,value){
+        		alert(key+" "+value);
+        	})        	
         });
     }
 }
