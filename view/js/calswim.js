@@ -4,10 +4,10 @@ function initTableMap(json_data) {
     // Determine if this is a search or initial page load
     if (json_data == null){
         // Init Google Map
-        var geocoder = new google.maps.Geocoder();
-        alert('inside');
+        var geocoder = new google.maps.Geocoder();        
         geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
-	    	var mapOptions = {
+        	alert(results[0].geometry.location);
+        	var mapOptions = {
 	    		center: new google.maps.LatLng(results[0].geometry.location)
 	    	}
 	    	var map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
