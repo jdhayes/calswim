@@ -89,7 +89,7 @@ function initTableMap(json_data) {
         	//map.fitBounds(polygon.getBounds());        	
         	var selected_items = table.getSelection()
         	$(selected_items).each(function(key,value){
-        		alert(key+" "+value);
+        		alert(value.row);
         	})        	
         });
     }
