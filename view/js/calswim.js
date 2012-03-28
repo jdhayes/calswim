@@ -1,17 +1,9 @@
 // CalSWIM main Javascript file
 
 function initTableMap(json_data) {    
-    // Determine if this is a search or initial page load
+    // No search results found
     if (json_data == null){
-        // Init Google Map
-        var geocoder = new google.maps.Geocoder();        
-        geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
-        	alert(results[0].geometry.location);
-        	var mapOptions = {
-	    		center: new google.maps.LatLng(results[0].geometry.location)
-	    	}
-	    	var map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
-        });
+        alert('empty');
     }else{
     	// Define table data and map data
         var json_table_data = json_data.table_data;
@@ -25,8 +17,6 @@ function initTableMap(json_data) {
         // Draw Table
         var table = new google.visualization.Table(document.getElementById('table_canvas'));
         table.draw(tableGeoView, {showRowNumber: false});
-        // Init Map        
-        var map = new google.maps.Map(document.getElementById("map_canvas"));
         
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
@@ -109,6 +99,15 @@ function initialize() {
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();    
+    // Init Google Map
+    var map;
+    var geocoder = new google.maps.Geocoder();        
+    geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {        	
+    	var mapOptions = {
+    		center: results[0].geometry.location
+    	}
+    	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+    });
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
@@ -126,10 +125,8 @@ function initialize() {
 //        $('#map_canvas').gmap('refresh');
     }    
     
-    // Init Google Data Table
-    initTableMap(null);
     
-    // Set click even on search button
+    // Set click event on search button
     $('#search_button').click(function() {
         var latlng;
         // Do DB search with no coordinates
