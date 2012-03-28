@@ -102,10 +102,10 @@ function initialize() {
     // Init Google Map
     var map;
     var geocoder = new google.maps.Geocoder();        
-    geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {        	
-    	var mapOptions = {
-    		center: results[0].geometry.location
-    	}
+    geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
+//    	var mapOptions = {
+//    		center: results[0].geometry.location
+//    	}
     	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
     });
     
