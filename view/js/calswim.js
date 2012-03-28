@@ -90,6 +90,7 @@ function initTableMap(json_data) {
         			map.fitBounds(map_items[value.row].getBounds());
         		}
         		else{
+        			var bounds = new google.maps.LatLngBounds();
         			bounds.extend(map_items[value.row].getPosition());
         			map.fitBounds(bounds);
         		}
