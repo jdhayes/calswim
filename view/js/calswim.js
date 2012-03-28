@@ -7,7 +7,7 @@ function initTableMap(json_data) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
 	    	var mapOptions = {
-	    		center: results[0].geometry.location
+	    		center: new google.maps.LatLng(results[0].geometry.location)
 	    	}
 	    	var map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
         });
