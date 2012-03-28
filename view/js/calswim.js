@@ -106,7 +106,7 @@ function initialize() {
 //    	var mapOptions = {
 //    		center: results[0].geometry.location
 //    	}
-    	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+    	map = new google.maps.Map(document.getElementById("map_canvas"));
     });
     
     // Method access database and pulls records according to search parameters
