@@ -1,17 +1,17 @@
 // CalSWIM main Javascript file
 
 function initTableMap(json_data) {    
-    
+    // Determine if this is a search or initial page load
     if (json_data == null){
         // Init Google Map
         var geocoder = new google.maps.Geocoder();
-        $('#map_canvas').gmap().bind('init', function() {     
-            geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
-                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
-            });
+        geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
+	    	var mapOptions = {
+	    		center: results[0].geometry.location
+	    	}
+	    	var map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
         });
-    }
-    else{
+    }else{
     	// Define table data and map data
         var json_table_data = json_data.table_data;
         var geoObjects = json_data.coordinates;
@@ -24,6 +24,8 @@ function initTableMap(json_data) {
         // Draw Table
         var table = new google.visualization.Table(document.getElementById('table_canvas'));
         table.draw(tableGeoView, {showRowNumber: false});
+        // Init Map        
+        var map = new google.maps.Map(document.getElementById("map_canvas"));
         
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
@@ -46,20 +48,23 @@ function initTableMap(json_data) {
                 		'fillOpacity': 0.35,
                 		'path': new google.maps.MVCArray(path)                		
                 }
-                // Draw Polygon
-                $('#map_canvas').gmap().bind('init', function() { 
-                	var map = this;
-                	var polygon = new google.maps.Polygon(polyOptions);
-                	polygon.setMap(map);                	
-                	google.maps.event.addListener(polygon,"mouseover",function(){ alert("You clicked a polygon")});
-                });
+                // Draw Polygon                 	
+            	var polygon = new google.maps.Polygon(polyOptions);
+            	polygon.setMap(map);                	
+            	google.maps.event.addListener(polygon,"click",function(){ alert("You clicked a polygon")});
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
-            	$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(coord[0], coord[1]), 'bounds':true } ).click(function() {
-                    $('#map_canvas').gmap('openInfoWindow', { 'content': json_table_data.rows[index]['c'][1]['v']}, this);
-                    alert("Clicked map point");
-                });
+            	var marker = new google.maps.Marker({
+            	    position: new google.maps.LatLng(coord[0], coord[1]),
+            	    map: map,
+            	    title: 'Click to zoom',
+            	    bounds: true
+            	  });
+            	var content = json_table_data.rows[index]['c'][1]['v'];
+            	google.maps.event.addListener(marker, 'click', function() {
+            		alert(content);
+            	});                    
             }
         });                
         
@@ -102,14 +107,14 @@ function initialize() {
     $('#content').layout({ applyDefaultStyles: true });
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
-    $(".button").button();
+    $(".button").button();    
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
         // Clear previously set markers
-        $('#map_canvas').gmap('clear', 'overlays');
-        $('#map_canvas').gmap('clear', 'markers');
-        $('#map_canvas').gmap('clear', 'services');
+//        $('#map_canvas').gmap('clear', 'overlays');
+//        $('#map_canvas').gmap('clear', 'markers');
+//        $('#map_canvas').gmap('clear', 'services');
         
         // Get json results from DB        
         $.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {                                
@@ -117,7 +122,7 @@ function initialize() {
         });
         
         // Refresh map, and resize
-        $('#map_canvas').gmap('refresh');
+//        $('#map_canvas').gmap('refresh');
     }    
     
     // Init Google Data Table
@@ -141,8 +146,8 @@ function initialize() {
                 }else {
                     alert("Geocode was not successful for the following reason: " + status);
                 }                
-                // Center map on resuts
-                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
+                // Center map on results
+//                $('#map_canvas').gmap('get', 'map').panTo(results[0].geometry.location);
             });
         }        
     });
