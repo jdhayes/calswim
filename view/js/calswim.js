@@ -102,13 +102,21 @@ function initialize() {
     // Init Google Map
     var map;
     var geocoder = new google.maps.Geocoder();        
-    geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
-    	var mapOptions = {
-    		center: results[0].geometry.location,
-    		mapTypeId: google.maps.MapTypeId.ROADMAP
-    	}
-    	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
-    });
+    geocoder.geocode( { 'address': 'U.S.A.'}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          var myOptions = {
+          zoom: 8,
+          center: results[0].geometry.location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        }
+      });
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
