@@ -65,6 +65,9 @@ function initTableMap(json_data) {
             	polygon.setMap(map);
             	// Set Google Map event handler
             	google.maps.event.addListener(polygon,"click",function(event){
+            		// Close previously opened infowindow
+            		infowindow.close();
+            		
             		// Highlight item
             		// Open infowindow
             		var content = json_table_data.rows[index]['c'][1]['v'];
