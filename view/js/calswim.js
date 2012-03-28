@@ -3,6 +3,7 @@
 // Define Global Vars
 var map;
 var map_items=[];
+var infowindow = new google.maps.InfoWindow();
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -62,7 +63,19 @@ function initTableMap(json_data) {
             	var polygon = new google.maps.Polygon(polyOptions);
                 map_items.push(polygon);
             	polygon.setMap(map);
-            	google.maps.event.addListener(polygon,"click",function(){ alert("You clicked a polygon")});
+            	// Set Google Map event handler
+            	google.maps.event.addListener(polygon,"click",function(event){
+            		// Highlight item
+            		// Open infowindow
+            		var content = json_table_data.rows[index]['c'][1]['v'];
+            		infowindow.setContent(content);
+            		if (event) {
+            			point = event.latLng;
+            		}
+            		infowindow.setPosition(point);
+            		infowindow.open(map); 
+            		// Set selection in table
+            	});
             	map.fitBounds(polygon.getBounds());
             }else{
                 // Set point as Google Marker
@@ -77,13 +90,18 @@ function initTableMap(json_data) {
             	map_items.push(marker);
             	var content = json_table_data.rows[index]['c'][1]['v'];
             	google.maps.event.addListener(marker, 'click', function() {
-            		alert(content);
+            	    // Highlight item
+            	    // Set contents then open infowindow
+            		infowindow.setContent(content);
+            	    infowindow.open(map,marker);
+            	    // Set selection in table
+            	    //table.setSelection()
             	});                    
             }
         });                
         
         // Set a 'select' event listener for the table.        
-        google.visualization.events.addListener(table, 'select', function() {        
+        google.visualization.events.addListener(table, 'select', function() {       
         	var selected_items = table.getSelection()
         	$(selected_items).each(function(key,value){
         		if (map_items[value.row].type == "polygon"){
@@ -96,6 +114,10 @@ function initTableMap(json_data) {
         		}
         	});
         });
+        // Set 'click' event on map to close infowindow
+        google.maps.event.addListener(map, 'click', function() {
+        	infowindow.close();
+        }); 
     }
 }
 
