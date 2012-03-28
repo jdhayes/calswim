@@ -5,6 +5,7 @@ function initTableMap(json_data) {
     if (json_data == null){
         // Init Google Map
         var geocoder = new google.maps.Geocoder();
+        alert('inside');
         geocoder.geocode( {'address': 'U.S.A' }, function(results, status) {
 	    	var mapOptions = {
 	    		center: new google.maps.LatLng(results[0].geometry.location)
