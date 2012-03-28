@@ -48,12 +48,10 @@ function initTableMap(json_data) {
                 }
                 // Draw Polygon
                 $('#map_canvas').gmap().bind('init', function() { 
-                	var self = this;
+                	var map = this;
                 	var polygon = new google.maps.Polygon(polyOptions);
-                	$('#map_canvas').gmap('addShape', 'Polygon', polyOptions);
-                	google.maps.event.addListener(polygon,"mouseover",function(){
-                		 self.setOptions({fillColor: "#00FF00"});
-                	});
+                	polygon.setMap(map);                	
+                	google.maps.event.addListener(polygon,"mouseover",function(){ alert("You clicked a polygon")});
                 });
             }else{
                 // Set point as Google Marker
@@ -70,10 +68,6 @@ function initTableMap(json_data) {
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
               alert("Clicked table row");
-        });
-        
-        addEventListener(polygon,"click", function(){
-        	alert("You clicked a polygon");
         });
     }
 }
