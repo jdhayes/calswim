@@ -1,5 +1,8 @@
 // CalSWIM main Javascript file
 
+// Define Global Vars
+var map;
+
 function initTableMap(json_data) {    
     // No search results found
     if (json_data == null){
@@ -99,22 +102,15 @@ function initialize() {
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();    
-    // Init Google Map
-    var map;
+    // Init Google Map    
     var geocoder = new google.maps.Geocoder();        
     geocoder.geocode( { 'address': 'U.S.A.'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          var myOptions = {
-          zoom: 8,
+          var myOptions = {          
           center: results[0].geometry.location,
           mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-          var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-          });
         }
       });
     
