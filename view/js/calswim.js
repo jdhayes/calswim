@@ -17,6 +17,10 @@ google.maps.Polygon.prototype.getBounds = function() {
     }
     return bounds;
 }
+google.maps.Marker.prototype.getBounds = function() {
+    var bounds = this.getPosition();    
+    return bounds;
+}
 
 // Main function that populates table and map with data
 function initTableMap(json_data) {    
