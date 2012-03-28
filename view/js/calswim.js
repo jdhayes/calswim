@@ -106,9 +106,10 @@ function initialize() {
     var geocoder = new google.maps.Geocoder();        
     geocoder.geocode( { 'address': 'U.S.A.'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          var myOptions = {          
-          center: results[0].geometry.location,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          var myOptions = {
+        	  zoom: 5,
+	          center: results[0].geometry.location,
+	          mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         }
