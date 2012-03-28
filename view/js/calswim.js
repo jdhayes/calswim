@@ -86,7 +86,10 @@ function initTableMap(json_data) {
         // When the table is selected,
         // we set the selection on the map.
         google.visualization.events.addListener(table, 'select', function() {
-              alert("Clicked table row");
+        	//map.fitBounds(polygon.getBounds());
+        	for (var item in table.getSelection()){
+        		alert(item);
+        	}
         });
     }
 }
