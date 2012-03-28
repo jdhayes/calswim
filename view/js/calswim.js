@@ -2,6 +2,23 @@
 
 // Define Global Vars
 var map;
+var polygons;
+var markers;
+
+// Extend Google Maps API v3
+google.maps.Polygon.prototype.getBounds = function() {
+    var bounds = new google.maps.LatLngBounds();
+    var paths = this.getPaths();
+    var path;        
+    for (var i = 0; i < paths.getLength(); i++) {
+        path = paths.getAt(i);
+        for (var ii = 0; ii < path.getLength(); ii++) {
+            bounds.extend(path.getAt(ii));
+        }
+    }
+    return bounds;
+}
+
 
 function initTableMap(json_data) {    
     // No search results found
@@ -44,8 +61,10 @@ function initTableMap(json_data) {
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
-            	polygon.setMap(map);                	
+                polygons.push(polygon);
+            	polygon.setMap(map);
             	google.maps.event.addListener(polygon,"click",function(){ alert("You clicked a polygon")});
+            	map.fitBounds(polygon.getBounds());
             }else{
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
@@ -55,6 +74,7 @@ function initTableMap(json_data) {
             	    title: 'Click to zoom',
             	    bounds: true
             	  });
+            	markers.push(marker);
             	var content = json_table_data.rows[index]['c'][1]['v'];
             	google.maps.event.addListener(marker, 'click', function() {
             		alert(content);
@@ -69,6 +89,15 @@ function initTableMap(json_data) {
               alert("Clicked table row");
         });
     }
+}
+
+function clearMap(){
+	for(var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+	for(var i = 0; i < polygons.length; i++) {
+		polygons[i].setMap(null);
+	}
 }
 
 function initialize() {    
@@ -107,7 +136,7 @@ function initialize() {
     geocoder.geocode( { 'address': 'U.S.A.'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var myOptions = {
-        	  zoom: 5,
+        	  zoom: 4,
 	          center: results[0].geometry.location,
 	          mapTypeId: google.maps.MapTypeId.ROADMAP
           }
@@ -117,18 +146,13 @@ function initialize() {
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
-        // Clear previously set markers
-//        $('#map_canvas').gmap('clear', 'overlays');
-//        $('#map_canvas').gmap('clear', 'markers');
-//        $('#map_canvas').gmap('clear', 'services');
+        // Clear previously set markers and polygons
+    	clearMap();
         
         // Get json results from DB        
         $.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {                                
             initTableMap(json_data);            
         });
-        
-        // Refresh map, and resize
-//        $('#map_canvas').gmap('refresh');
     }    
     
     
