@@ -2,8 +2,8 @@
 
 // Define Global Vars
 var map;
-var polygons;
-var markers;
+var polygons=[];
+var markers=[];
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
