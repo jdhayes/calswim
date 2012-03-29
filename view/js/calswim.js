@@ -21,20 +21,24 @@ google.maps.Polygon.prototype.getBounds = function() {
 
 // Main function that populates table and map with data
 function initTableMap(json_data) {    
-    // No search results found
-    if (json_data == null){
-        alert('empty');
-    }else{
-    	// Define table data and map data
-        var json_table_data = json_data.table_data;
-        var geoObjects = json_data.coordinates;        
+	// Define table data and map data
+    var json_table_data = json_data.table_data;
+    var geoObjects = json_data.coordinates; 
+    
+	// No search results found
+    if (geoObjects.length <= 0){
+    	// DB response            		
+		$("#upload_message").html("<p>No locations found.</p>");
+		$("#upload_message").dialog('open')
+    }else{    	      
         // Define geo data
         var geoData = new google.visualization.DataTable(json_table_data);    
         // Filter geo data
         var tableGeoView = new google.visualization.DataView(geoData);    
         //tableGeoView.setColumns([0,1,2]);
         // Draw Table
-        var table = new google.visualization.Table(document.getElementById('table_canvas'));
+        var tableOptions = {height:"30%"}
+        var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
         table.draw(tableGeoView, {showRowNumber: false});
         
         // Add points and polygons to map                    
