@@ -76,6 +76,8 @@ function initTableMap(json_data) {
             	google.maps.event.addListener(polygon,"click",function(event){
             		// Close previously opened infowindow
             		infowindow.close();
+            		Clear previsouly highlighted polygon
+            		clearSelected();
             		
             		// Highlight item
             		polygon.setOptions({fillColor: "#0000FF"});
@@ -103,6 +105,8 @@ function initTableMap(json_data) {
             	  });
             	map_items.push(marker);
             	google.maps.event.addListener(marker, 'click', function() {
+            		// Clear previsouly highlighted marker
+            		clearSelected()
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
