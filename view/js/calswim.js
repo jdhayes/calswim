@@ -123,7 +123,9 @@ function initTableMap(json_data) {
         			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
         			var bounds = new google.maps.LatLngBounds();
         			bounds.extend(map_items[value.row].getPosition());
-        			map.fitBounds(bounds);
+        			//map.fitBounds(bounds);
+        			map.setCenter(bounds.getCenter());
+        			map.setZoom(14);
         		}
         	});
         });
