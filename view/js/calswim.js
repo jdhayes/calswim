@@ -29,16 +29,16 @@ function initTableMap(json_data) {
     var geoData = new google.visualization.DataTable(json_table_data);    
     // Filter geo data
     var tableGeoView = new google.visualization.DataView(geoData);
+    // Filter viewable columns
     //tableGeoView.setColumns([0,1,2]);
-    // Draw Table
-    var tableOptions = {height:"30%"}
+    // Draw Table    
     var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
     table.draw(tableGeoView, {showRowNumber: false});
     
 	// No search results found
     if (geoObjects.length <= 0){
     	// Clear previously populated table data
-    	clearTable(table);    	
+    	clearTable(tableGeoView);    	
     	
     	// DB response            		
 		$("#upload_message").html("<p>No locations found.</p>");
