@@ -39,7 +39,7 @@ function initTableMap(json_data) {
 	// No search results found
     if (geoObjects.length <= 0){
     	// Clear previously populated table data
-    	clearTable(tableGeoView);    	
+    	clearTable(geoData);    	
     	
     	// DB response            		
 		$("#upload_message").html("<p>No locations found.</p>");
