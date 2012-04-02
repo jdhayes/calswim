@@ -31,7 +31,8 @@ function initTableMap(json_data) {
     var tableGeoView = new google.visualization.DataView(geoData);
     // Filter viewable columns
     //tableGeoView.setColumns([0,1,2]);
-    // Draw Table    
+    // Draw Table
+    var tableOptions = {height:"30%"};
     var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
     table.draw(tableGeoView, {showRowNumber: false});
     
