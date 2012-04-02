@@ -4,6 +4,7 @@
 var map;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
+var table;
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -38,7 +39,7 @@ function initTableMap(json_data) {
         //tableGeoView.setColumns([0,1,2]);
         // Draw Table
         var tableOptions = {height:"30%"}
-        var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
+        table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
         table.draw(tableGeoView, {showRowNumber: false});
         
         // Add points and polygons to map                    
