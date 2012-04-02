@@ -165,6 +165,10 @@ function clearMap(){
 	map_items.length=0;
 }
 
+function clearTable(){
+	table.removeRows(0,table.getNumberOfRows());
+}
+
 function initialize() {    
     /* ***************** */
     /* Initialize Layout */
@@ -213,6 +217,8 @@ function initialize() {
     function get_map_locs(latlng, radius, keywords){
         // Clear previously set markers and polygons
     	clearMap();
+    	// Clear table data
+    	clearTable();
         
         // Get json results from DB        
         $.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {                                
