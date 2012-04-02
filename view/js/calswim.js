@@ -111,11 +111,15 @@ function initTableMap(json_data) {
         google.visualization.events.addListener(table, 'select', function() {       
         	var selected_items = table.getSelection()
         	$(selected_items).each(function(key,value){
+        		// Clear the previously selected polygon or marker
+        		clearSelected();
+        		
+        		// Highlight the current selection
         		if (map_items[value.row].type == "polygon"){
-        			map_items[value.row].setOptions({strokeColor: "#0000FF"});
+        			map_items[value.row].setOptions({fillColor: "#0000FF"});
         			map.fitBounds(map_items[value.row].getBounds());
         		}
-        		else{
+        		else{        			
         			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
         			var bounds = new google.maps.LatLngBounds();
         			bounds.extend(map_items[value.row].getPosition());
@@ -128,6 +132,17 @@ function initTableMap(json_data) {
         	infowindow.close();
         }); 
     }
+}
+
+function clearSelected(){
+	for(var i = 0; i < map_items.length; i++) {
+		if (map_items[i].type == "polygon"){
+			map_items[i].setOptions({fillColor: "#FF0000"});
+		}
+		else{
+			map_items[i].setIcon('/images/gmap-red-dot.png');
+		}
+	}
 }
 
 function clearMap(){
