@@ -76,7 +76,7 @@ function initTableMap(json_data) {
             	google.maps.event.addListener(polygon,"click",function(event){
             		// Close previously opened infowindow
             		infowindow.close();
-            		Clear previsouly highlighted polygon
+            		// Clear previsouly highlighted polygon
             		clearSelected();
             		
             		// Highlight item
