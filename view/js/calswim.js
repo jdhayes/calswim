@@ -162,6 +162,7 @@ function clearMap(){
 	for(var i = 0; i < map_items.length; i++) {
 		map_items[i].setMap(null);
 	}
+	map_items.length=0;
 }
 
 function initialize() {    
