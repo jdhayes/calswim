@@ -169,7 +169,8 @@ function clearMap(){
 }
 
 function clearTable(table){
-	table.removeRows(0,table.getNumberOfRows());
+	var totalRows = table.getNumberOfRows();
+	table.removeRows(0,totalRows);
 }
 
 function initialize() {    
