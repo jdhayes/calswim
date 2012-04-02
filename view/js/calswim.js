@@ -78,6 +78,7 @@ function initTableMap(json_data) {
             		infowindow.close();
             		
             		// Highlight item
+            		polygon.setOptions({fillColor: "#0000FF"});
             		// Open infowindow            		
             		infowindow.setContent(content);
             		if (event) {
@@ -86,6 +87,7 @@ function initTableMap(json_data) {
             		infowindow.setPosition(point);
             		infowindow.open(map); 
             		// Set selection in table
+            		table.setSelection([{'row': index}])
             	});
             	map.fitBounds(polygon.getBounds());
             }else{            	
@@ -102,11 +104,12 @@ function initTableMap(json_data) {
             	map_items.push(marker);
             	google.maps.event.addListener(marker, 'click', function() {
             	    // Highlight item
+            		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
             		infowindow.setContent(content);
             	    infowindow.open(map,marker);
             	    // Set selection in table
-            	    //table.setSelection()
+            	    table.setSelection([{'row': index}])
             	});                    
             }
         });                
@@ -121,8 +124,7 @@ function initTableMap(json_data) {
         		// Highlight the current selection
         		if (map_items[value.row].type == "polygon"){
         			map_items[value.row].setOptions({fillColor: "#0000FF"});
-        			map.fitBounds(map_items[value.row].getBounds());
-        			map_items[value.row].click();
+        			map.fitBounds(map_items[value.row].getBounds());        			
         		}
         		else{        			
         			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
