@@ -122,6 +122,7 @@ function initTableMap(json_data) {
         		if (map_items[value.row].type == "polygon"){
         			map_items[value.row].setOptions({fillColor: "#0000FF"});
         			map.fitBounds(map_items[value.row].getBounds());
+        			map_items[value.row].click();
         		}
         		else{        			
         			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
