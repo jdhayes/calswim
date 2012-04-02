@@ -28,12 +28,12 @@ function initTableMap(json_data) {
     // Define geo data
     var geoData = new google.visualization.DataTable(json_table_data);    
     // Filter geo data
-    var tableGeoView = new google.visualization.DataView(geoData);    
+    var tableGeoView = new google.visualization.DataView(geoData);
     //tableGeoView.setColumns([0,1,2]);
     // Draw Table
     var tableOptions = {height:"30%"}
-    table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
-    var table.draw(tableGeoView, {showRowNumber: false});
+    var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
+    table.draw(tableGeoView, {showRowNumber: false});
     
 	// No search results found
     if (geoObjects.length <= 0){
