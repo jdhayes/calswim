@@ -4,7 +4,6 @@
 var map;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
-var content;
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -47,7 +46,7 @@ function initTableMap(json_data) {
         	// Place all coordinates into an array
     		var coords = coords.split(",");
         	// Define content for InfoWindow
-        	content = json_table_data.rows[index]['c'][1]['v'];        	
+        	var content = json_table_data.rows[index]['c'][1]['v'];        	
         	// Check if polygon or marker point
             if (coords.length > 1){
             	
