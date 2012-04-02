@@ -4,6 +4,7 @@
 var map;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
+var content;
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -43,9 +44,13 @@ function initTableMap(json_data) {
         
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
-        	var coords = coords.split(",");        	
+        	// Place all coordinates into an array
+    		var coords = coords.split(",");
+        	// Define content for InfoWindow
+        	content = json_table_data.rows[index]['c'][1]['v'];        	
         	// Check if polygon or marker point
-            if (coords.length > 1){                    
+            if (coords.length > 1){
+            	
                 // Parse coordinates and build polygons            	
                 var path = [];                
                 for (var i = 0; i < coords.length; i++) {     	
@@ -61,7 +66,8 @@ function initTableMap(json_data) {
                 		fillColor: "#FF0000",
                 		fillOpacity: 0.35,
                 		path: new google.maps.MVCArray(path),
-                		type:"polygon"
+                		type:"polygon",
+                		title: content
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
@@ -73,8 +79,7 @@ function initTableMap(json_data) {
             		infowindow.close();
             		
             		// Highlight item
-            		// Open infowindow
-            		var content = json_table_data.rows[index]['c'][1]['v'];
+            		// Open infowindow            		
             		infowindow.setContent(content);
             		if (event) {
             			point = event.latLng;
@@ -84,7 +89,7 @@ function initTableMap(json_data) {
             		// Set selection in table
             	});
             	map.fitBounds(polygon.getBounds());
-            }else{
+            }else{            	
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
             	var marker = new google.maps.Marker({
@@ -92,10 +97,10 @@ function initTableMap(json_data) {
             	    map: map,
             	    title: 'Click to zoom',
             	    bounds: true,
-            	    type:"marker"
+            	    type:"marker",
+            	    title: content
             	  });
             	map_items.push(marker);
-            	var content = json_table_data.rows[index]['c'][1]['v'];
             	google.maps.event.addListener(marker, 'click', function() {
             	    // Highlight item
             	    // Set contents then open infowindow
