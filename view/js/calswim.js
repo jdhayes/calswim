@@ -44,7 +44,10 @@ function initTableMap(json_data) {
     	// DB response            		
 		$("#upload_message").html("<p>No locations found.</p>");
 		$("#upload_message").dialog('open')
-    }else{    	                      
+    }else{
+    	// Initialize bounds object
+    	var bounds = new google.maps.LatLngBounds();
+    	
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
         	// Place all coordinates into an array
@@ -57,8 +60,10 @@ function initTableMap(json_data) {
                 // Parse coordinates and build polygons            	
                 var path = [];                
                 for (var i = 0; i < coords.length; i++) {     	
-                	var coord = coords[i].split(" ");                    
-                    path.push(new google.maps.LatLng(coord[0], coord[1]));
+                	var coord = coords[i].split(" ");
+                	var poly_cord = new google.maps.LatLng(coord[0], coord[1]);
+                    path.push(poly_cord);
+                    bounds.extend(poly_cord);
                 }
                 // Define polygon options
                 var polyOptions = {
@@ -94,13 +99,14 @@ function initTableMap(json_data) {
             		infowindow.open(map); 
             		// Set selection in table
             		table.setSelection([{'row': index}])
-            	});
-            	map.fitBounds(polygon.getBounds());
+            	});            	
             }else{            	
                 // Set point as Google Marker
             	var coord = coords[0].split(" ");
+            	var marker_cord = new google.maps.LatLng(coord[0], coord[1]);
+            	bounds.extend(marker_cord);
             	var marker = new google.maps.Marker({
-            	    position: new google.maps.LatLng(coord[0], coord[1]),
+            	    position: marker_cord,
             	    map: map,
             	    title: 'Click to zoom',
             	    bounds: true,
@@ -120,8 +126,10 @@ function initTableMap(json_data) {
             	    table.setSelection([{'row': index}])
             	});                    
             }
-        });                
-        
+        });            
+    	// Fit map to previsouly set bounds
+    	map.fitBounds(bounds);
+    	
         // Set a 'select' event listener for the table.        
         google.visualization.events.addListener(table, 'select', function() {       
         	var selected_items = table.getSelection()
