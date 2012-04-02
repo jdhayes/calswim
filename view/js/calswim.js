@@ -4,7 +4,6 @@
 var map;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
-var table;
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
@@ -26,22 +25,25 @@ function initTableMap(json_data) {
     var json_table_data = json_data.table_data;
     var geoObjects = json_data.coordinates; 
     
+    // Define geo data
+    var geoData = new google.visualization.DataTable(json_table_data);    
+    // Filter geo data
+    var tableGeoView = new google.visualization.DataView(geoData);    
+    //tableGeoView.setColumns([0,1,2]);
+    // Draw Table
+    var tableOptions = {height:"30%"}
+    table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
+    var table.draw(tableGeoView, {showRowNumber: false});
+    
 	// No search results found
     if (geoObjects.length <= 0){
+    	// Clear previously populated table data
+    	clearTable(table);    	
+    	
     	// DB response            		
 		$("#upload_message").html("<p>No locations found.</p>");
 		$("#upload_message").dialog('open')
-    }else{    	      
-        // Define geo data
-        var geoData = new google.visualization.DataTable(json_table_data);    
-        // Filter geo data
-        var tableGeoView = new google.visualization.DataView(geoData);    
-        //tableGeoView.setColumns([0,1,2]);
-        // Draw Table
-        var tableOptions = {height:"30%"}
-        table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
-        table.draw(tableGeoView, {showRowNumber: false});
-        
+    }else{    	                      
         // Add points and polygons to map                    
     	$(geoObjects).each(function(index, coords){      	
         	// Place all coordinates into an array
@@ -166,7 +168,7 @@ function clearMap(){
 	map_items.length=0;
 }
 
-function clearTable(){
+function clearTable(table){
 	table.removeRows(0,table.getNumberOfRows());
 }
 
@@ -218,8 +220,6 @@ function initialize() {
     function get_map_locs(latlng, radius, keywords){
         // Clear previously set markers and polygons
     	clearMap();
-    	// Clear table data
-    	clearTable();
         
         // Get json results from DB        
         $.getJSON("?get_map_locs="+latlng +"&radius="+radius +"&keywords="+keywords, function(json_data) {                                
