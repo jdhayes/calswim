@@ -112,9 +112,11 @@ function initTableMap(json_data) {
         	var selected_items = table.getSelection()
         	$(selected_items).each(function(key,value){
         		if (map_items[value.row].type == "polygon"){
+        			map_items[value.row].setOptions({strokeColor: "#0000FF"});
         			map.fitBounds(map_items[value.row].getBounds());
         		}
         		else{
+        			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
         			var bounds = new google.maps.LatLngBounds();
         			bounds.extend(map_items[value.row].getPosition());
         			map.fitBounds(bounds);
