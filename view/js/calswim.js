@@ -32,9 +32,9 @@ function initTableMap(json_data) {
     // Filter viewable columns
     //tableGeoView.setColumns([0,1,2]);
     // Draw Table
-    var tableOptions = {height:"100%", width:"100%", page: 'enable'};
-    var table = new google.visualization.Table(document.getElementById('table_canvas'), tableOptions);
-    table.draw(tableGeoView, {showRowNumber: false});
+    var tableOptions = {height:"100%", width:"100%", page:'enable', showRowNumber:false};
+    var table = new google.visualization.Table(document.getElementById('table_canvas'));
+    table.draw(tableGeoView, tableOptions);
     
 	// No search results found
     if (geoObjects.length <= 0){
