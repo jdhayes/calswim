@@ -30,10 +30,8 @@
     
     <div id="content">
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
-            <div id="map_canvas"></div>
-            <div id="table_canvas_wrapper">
-                <div id="table_canvas"></div>
-            </div>
+            <div id="map_canvas"></div>            
+            <div id="table_canvas"></div>            
         </div>
         
         <div id="search_canvas" class="rounded ui-layout-north">
