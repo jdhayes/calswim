@@ -12,6 +12,10 @@ google.setOnLoadCallback(function(){
     // Init form button
     $(".submit").button();
     
+    // Init datepicker widgets
+    $( "#timelineStart" ).datepicker();
+    $( "#timelineFinish" ).datepicker();
+    
     // Use jQuery Form Plugin
 	// http://malsup.com/jquery/form/
 	var options = {		

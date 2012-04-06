@@ -100,8 +100,9 @@
                         <textarea id="description" name="description" class="required upload"></textarea>
                     </div>
                     <div>
-                        <label>Project timeline</label>
-                        <textarea id="timeline" name="timeline" class="required upload">I am thinking of replacing this texarea with a calendar. That way a user can select dates easier.</textarea>
+                        <label>Project timeline</label><br />
+                        <input id="timelineStart" name="timelineStart" class="required" />
+                        <input id="timelineFinish" name="timelineFinish" class="required" />
                     </div>
                     <div>
                         <label>Project funder</label>
