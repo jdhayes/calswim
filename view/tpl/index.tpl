@@ -100,9 +100,11 @@
                         <textarea id="description" name="description" class="required full"></textarea>
                     </div>
                     <div>
-                        <label>Project timeline</label><br />
-                        <input id="timelineStart" name="timelineStart" class="required half_left" />
-                        <input id="timelineFinish" name="timelineFinish" class="required half_right" />
+                        <label>Project timeline</label>
+                        <div>
+                            <label>Start:</label><input id="timelineStart" name="timelineStart" class="required half_left" />
+                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="required half_right" />
+                        </div>
                     </div>
                     <div>
                         <label>Project funder</label>
