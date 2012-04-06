@@ -67,12 +67,24 @@
                 <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>
                 <div class="indent">
-                    <div>     
-                        <label>Organization/Person responsible</label>
+                    <div> 
+                        <label>Organization Name</label>
                         <input id="contact" name="contact" class="required" />
                     </div>
+                    <div>     
+                        <label>Contact Name</label>
+                        <input id="contact" name="contact" class="required" />
+                    </div>
+                    <div> 
+                        <label>Contact Email</label>
+                        <input id="email" name="email" class="required" />
+                    </div>
+                    <div> 
+                        <label>Contact Phone</label>
+                        <input id="phone" name="phone" class="required" />
+                    </div>
                     <div>
-                        <label>Source URL</label>
+                        <label>Data Link</label>
                         <input id="source" name="source" class="required url" />
                     </div>
                 </div>
@@ -80,21 +92,57 @@
                 <h2>Meta Data</h2>
                 <div class="indent">
                     <div>
-                        <label>Label</label>
-                        <textarea id="label" name="label" class="required upload"></textarea>
+                        <label>Project name</label>
+                        <textarea id="label" name="label" class="required"></textarea>
                     </div>            
                     <div>
-                        <label>Description</label>
-                        <textarea id="description" name="description" class="required upload"></textarea>
+                        <label>Project Description</label>
+                        <textarea id="description" name="description" class="required"></textarea>
                     </div>
                     <div>
+                        <label>Data collector</label>
+                        <textarea id="collector" name="collector" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Project funder</label>
+                        <textarea id="funder" name="funder" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Data type</label>
+                        <textarea id="datatype" name="datatype" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Data format</label>
+                        <textarea id="dataformat" name="dataformat" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Data sharing policies</label>
+                        <textarea id="policies" name="policies" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Project timeline</label>
+                        <textarea id="timeline" name="timeline" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Habitat or target species</label>
+                        <textarea id="target" name="target" class="required"></textarea>
+                    </div>
+                    <div>
+                        <label>Number of Sites</label>
+                        <textarea id="numsites" name="numsites" class="required"></textarea>
+                    </div>                    
+                    <div>
                         <label>Keywords</label>
-                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
+                        <textarea id="keyword" name="keyword" class="required"></textarea>
                     </div>
                 </div>
                 
                 <h2>Location</h2>
                 <div id="location" class="indent">
+                    <div>
+                        <label>Site location description</label>
+                        <textarea id="location" name="location" class="required"></textarea>
+                    </div>
                     <div>                
                         <label>Latitude</label>
                         <input id="lat" name="lat" class="number" />
