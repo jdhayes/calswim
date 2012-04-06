@@ -67,23 +67,23 @@
                 <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>
                 <div class="indent">
-                    <div> 
+                    <div class="input_wrapper"> 
                         <label>Organization Name</label>
-                        <input id="contact" name="contact" class="required full" />
+                        <input id="organization" name="organization" class="required full" />
                     </div>
-                    <div>     
+                    <div class="input_wrapper">     
                         <label>Contact Name</label>
                         <input id="contact" name="contact" class="required full" />
                     </div>
-                    <div> 
+                    <div class="input_wrapper"> 
                         <label>Contact Email</label>
                         <input id="email" name="email" class="required email full" />
                     </div>
-                    <div> 
+                    <div class="input_wrapper"> 
                         <label>Contact Phone</label>
                         <input id="phone" name="phone" class="required phone full" />
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Data Link</label>
                         <input id="source" name="source" class="required url full" />
                     </div>
@@ -91,22 +91,22 @@
                 
                 <h2>Project Information</h2>
                 <div class="indent">
-                    <div>
+                    <div class="input_wrapper">
                         <label>Project name</label>
                         <textarea id="label" name="label" class="required full"></textarea>
                     </div>            
-                    <div>
+                    <div class="input_wrapper">
                         <label>Project description</label>
                         <textarea id="description" name="description" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Project timeline</label>
                         <div>
                             <label>Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
                             <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="required half" />
                         </div>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Project funder</label>
                         <textarea id="funder" name="funder" class="required full"></textarea>
                     </div>
@@ -114,40 +114,39 @@
                 
                 <h2>Meta Data</h2>
                 <div class="indent">
-                    <div>
+                    <div class="input_wrapper">
                         <label>Habitat or target species</label>
                         <textarea id="target" name="target" class="required full"></textarea>
                     </div>                    
-                    <div>
+                    <div class="input_wrapper">
                         <label>Site location description</label>
                         <textarea id="location" name="location" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Number of Sites</label>
                         <textarea id="numsites" name="numsites" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Data collector</label>
                         <textarea id="collector" name="collector" class="required full"></textarea>
                     </div>                    
-                    <div>
+                    <div class="input_wrapper">
                         <label>Data type</label>
                         <textarea id="datatype" name="datatype" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Data format</label>
                         <textarea id="dataformat" name="dataformat" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Data sharing policies</label>
                         <textarea id="policies" name="policies" class="required full"></textarea>
                     </div>                    
                 </div>
                 
                 <h2>Location</h2>
-                <div id="location" class="indent">
-                    
-                    <div>                
+                <div id="location" class="indent">                    
+                    <div class="input_wrapper">                
                         <label>Latitude</label>
                         <input id="lat" name="lat" class="number" />
                         <br />
@@ -155,7 +154,7 @@
                         <input id="lng" name="lng" class="number" />
                     </div>
                     <h3>OR</h3>
-                    <div>
+                    <div class="input_wrapper">
                         <label for="shp_file">Shape file</label>
                         <input type="file" id="shp_file" name="shp_file" />
                     </div>
@@ -163,11 +162,11 @@
                 
                 <h2>Other</h2>
                 <div class="indent">
-                    <div>
+                    <div class="input_wrapper">
                         <label>Searchable keywords</label>
                         <textarea id="keyword" name="keyword" class="required full"></textarea>
                     </div>
-                    <div>
+                    <div class="input_wrapper">
                         <label>Additional Information (optional)</label><br />
                         <textarea id="other" name="other" class="full"></textarea>
                     </div>

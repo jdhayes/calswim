@@ -96,6 +96,14 @@ label.error {
 legend{
     font-size: 12pt;
 }
+.input_wrapper{
+	margin-bottom: 15px;
+}
+.input_wrapper label{
+	font-weight: bold;
+	font-style: italic;
+	color: #d4d4d4;
+}
 .full{
     width: 350px;
     clear: both;
