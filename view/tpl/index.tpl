@@ -89,24 +89,44 @@
                     </div>
                 </div>
                 
-                <h2>Meta Data</h2>
+                <h2>Project Information</h2>
                 <div class="indent">
                     <div>
                         <label>Project name</label>
                         <textarea id="label" name="label" class="required upload"></textarea>
                     </div>            
                     <div>
-                        <label>Project Description</label>
+                        <label>Project description</label>
                         <textarea id="description" name="description" class="required upload"></textarea>
                     </div>
                     <div>
-                        <label>Data collector</label>
-                        <textarea id="collector" name="collector" class="required upload"></textarea>
+                        <label>Project timeline</label>
+                        <textarea id="timeline" name="timeline" class="required upload">I am thinking of replacing this texarea with a calendar. That a way a user can select dates easier.</textarea>
                     </div>
                     <div>
                         <label>Project funder</label>
                         <textarea id="funder" name="funder" class="required upload"></textarea>
                     </div>
+                </div>
+                
+                <h2>Meta Data</h2>
+                <div class="indent">
+                    <div>
+                        <label>Habitat or target species</label>
+                        <textarea id="target" name="target" class="required upload"></textarea>
+                    </div>                    
+                    <div>
+                        <label>Site location description</label>
+                        <textarea id="location" name="location" class="required upload"></textarea>
+                    </div>
+                    <div>
+                        <label>Number of Sites</label>
+                        <textarea id="numsites" name="numsites" class="required upload"></textarea>
+                    </div>
+                    <div>
+                        <label>Data collector</label>
+                        <textarea id="collector" name="collector" class="required upload"></textarea>
+                    </div>                    
                     <div>
                         <label>Data type</label>
                         <textarea id="datatype" name="datatype" class="required upload"></textarea>
@@ -118,31 +138,12 @@
                     <div>
                         <label>Data sharing policies</label>
                         <textarea id="policies" name="policies" class="required upload"></textarea>
-                    </div>
-                    <div>
-                        <label>Project timeline</label>
-                        <textarea id="timeline" name="timeline" class="required upload"></textarea>
-                    </div>
-                    <div>
-                        <label>Habitat or target species</label>
-                        <textarea id="target" name="target" class="required upload"></textarea>
-                    </div>
-                    <div>
-                        <label>Number of Sites</label>
-                        <textarea id="numsites" name="numsites" class="required upload"></textarea>
                     </div>                    
-                    <div>
-                        <label>Keywords</label>
-                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
-                    </div>
                 </div>
                 
                 <h2>Location</h2>
                 <div id="location" class="indent">
-                    <div>
-                        <label>Site location description</label>
-                        <textarea id="location" name="location" class="required upload"></textarea>
-                    </div>
+                    
                     <div>                
                         <label>Latitude</label>
                         <input id="lat" name="lat" class="number" />
@@ -159,8 +160,14 @@
                 
                 <h2>Other</h2>
                 <div class="indent">
-                    <label>Additional Information (optional)</label><br />
-                    <textarea id="other" name="other" class="upload"></textarea>
+                    <div>
+                        <label>Searchable keywords</label>
+                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
+                    </div>
+                    <div>
+                        <label>Additional Information (optional)</label><br />
+                        <textarea id="other" name="other" class="upload"></textarea>
+                    </div>
                 </div>
                 
                 <input type="hidden" name="import_data" id="import_data" value="import_data"/>
