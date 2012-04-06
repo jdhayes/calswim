@@ -93,47 +93,47 @@
                 <div class="indent">
                     <div>
                         <label>Project name</label>
-                        <textarea id="label" name="label" class="required"></textarea>
+                        <textarea id="label" name="label" class="required upload"></textarea>
                     </div>            
                     <div>
                         <label>Project Description</label>
-                        <textarea id="description" name="description" class="required"></textarea>
+                        <textarea id="description" name="description" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Data collector</label>
-                        <textarea id="collector" name="collector" class="required"></textarea>
+                        <textarea id="collector" name="collector" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Project funder</label>
-                        <textarea id="funder" name="funder" class="required"></textarea>
+                        <textarea id="funder" name="funder" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Data type</label>
-                        <textarea id="datatype" name="datatype" class="required"></textarea>
+                        <textarea id="datatype" name="datatype" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Data format</label>
-                        <textarea id="dataformat" name="dataformat" class="required"></textarea>
+                        <textarea id="dataformat" name="dataformat" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Data sharing policies</label>
-                        <textarea id="policies" name="policies" class="required"></textarea>
+                        <textarea id="policies" name="policies" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Project timeline</label>
-                        <textarea id="timeline" name="timeline" class="required"></textarea>
+                        <textarea id="timeline" name="timeline" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Habitat or target species</label>
-                        <textarea id="target" name="target" class="required"></textarea>
+                        <textarea id="target" name="target" class="required upload"></textarea>
                     </div>
                     <div>
                         <label>Number of Sites</label>
-                        <textarea id="numsites" name="numsites" class="required"></textarea>
+                        <textarea id="numsites" name="numsites" class="required upload"></textarea>
                     </div>                    
                     <div>
                         <label>Keywords</label>
-                        <textarea id="keyword" name="keyword" class="required"></textarea>
+                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
                     </div>
                 </div>
                 
@@ -141,7 +141,7 @@
                 <div id="location" class="indent">
                     <div>
                         <label>Site location description</label>
-                        <textarea id="location" name="location" class="required"></textarea>
+                        <textarea id="location" name="location" class="required upload"></textarea>
                     </div>
                     <div>                
                         <label>Latitude</label>
