@@ -102,8 +102,8 @@
                     <div>
                         <label>Project timeline</label>
                         <div>
-                            <label>Start:</label><input id="timelineStart" name="timelineStart" class="required half_left" />
-                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="required half_right" />
+                            <label>Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
+                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="required half" />
                         </div>
                     </div>
                     <div>

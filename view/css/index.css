@@ -100,11 +100,6 @@ legend{
     width: 350px;
     clear: both;
 }
-input.half_right {
-	float: right;
-    width: 120px;  
-}
-input.half_left {
-    float: left;
-    width: 120px;  
+input.half_right {	
+    width: 125px;  
 }
