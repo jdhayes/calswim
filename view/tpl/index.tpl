@@ -101,7 +101,7 @@
                     </div>
                     <div>
                         <label>Project timeline</label>
-                        <textarea id="timeline" name="timeline" class="required upload">I am thinking of replacing this texarea with a calendar. That a way a user can select dates easier.</textarea>
+                        <textarea id="timeline" name="timeline" class="required upload">I am thinking of replacing this texarea with a calendar. That way a user can select dates easier.</textarea>
                     </div>
                     <div>
                         <label>Project funder</label>
