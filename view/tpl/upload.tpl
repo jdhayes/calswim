@@ -57,12 +57,24 @@
                     <span>%(uploadResult)s</span>
                     <h2>Source Information</h2>
                     <div class="indent">
-                        <div>     
-                            <label>Organization/Person responsible</label>
+                        <div> 
+                            <label>Organization Name</label>
                             <input id="contact" name="contact" class="required" />
                         </div>
+                        <div>     
+                            <label>Contact Name</label>
+                            <input id="contact" name="contact" class="required" />
+                        </div>
+                        <div> 
+                            <label>Contact Email</label>
+                            <input id="email" name="email" class="required" />
+                        </div>
+                        <div> 
+                            <label>Contact Phone</label>
+                            <input id="phone" name="phone" class="required" />
+                        </div>
                         <div>
-                            <label>Source URL</label>
+                            <label>Data Link</label>
                             <input id="source" name="source" class="required url" />
                         </div>
                     </div>
@@ -70,12 +82,48 @@
                     <h2>Meta Data</h2>
                     <div class="indent">
                         <div>
-                            <label>Label</label>
+                            <label>Project Name</label>
                             <textarea id="label" name="label" class="required"></textarea>
                         </div>            
                         <div>
                             <label>Description</label>
                             <textarea id="description" name="description" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Data collected by</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Project funded by</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Data type</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Data format</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Data sharing policies</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Project Timeline</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Habitat or target species</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Number of Sites</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
+                        </div>
+                        <div>
+                            <label>Site Locations</label>
+                            <textarea id="keyword" name="keyword" class="required"></textarea>
                         </div>
                         <div>
                             <label>Keywords</label>
