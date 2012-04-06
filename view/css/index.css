@@ -96,7 +96,15 @@ label.error {
 legend{
     font-size: 12pt;
 }
-input.required, textarea.upload{
+.full{
     width: 350px;
     clear: both;
+}
+input.half_right {
+	float: right;
+    width: 170px;  
+}
+input.half_left {
+    float: left;
+    width: 170px;  
 }

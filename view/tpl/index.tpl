@@ -69,23 +69,23 @@
                 <div class="indent">
                     <div> 
                         <label>Organization Name</label>
-                        <input id="contact" name="contact" class="required" />
+                        <input id="contact" name="contact" class="required full" />
                     </div>
                     <div>     
                         <label>Contact Name</label>
-                        <input id="contact" name="contact" class="required" />
+                        <input id="contact" name="contact" class="required full" />
                     </div>
                     <div> 
                         <label>Contact Email</label>
-                        <input id="email" name="email" class="required" />
+                        <input id="email" name="email" class="required email full" />
                     </div>
                     <div> 
                         <label>Contact Phone</label>
-                        <input id="phone" name="phone" class="required" />
+                        <input id="phone" name="phone" class="required phone full" />
                     </div>
                     <div>
                         <label>Data Link</label>
-                        <input id="source" name="source" class="required url" />
+                        <input id="source" name="source" class="required url full" />
                     </div>
                 </div>
                 
@@ -93,20 +93,20 @@
                 <div class="indent">
                     <div>
                         <label>Project name</label>
-                        <textarea id="label" name="label" class="required upload"></textarea>
+                        <textarea id="label" name="label" class="required full"></textarea>
                     </div>            
                     <div>
                         <label>Project description</label>
-                        <textarea id="description" name="description" class="required upload"></textarea>
+                        <textarea id="description" name="description" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Project timeline</label><br />
-                        <input id="timelineStart" name="timelineStart" class="required" />
-                        <input id="timelineFinish" name="timelineFinish" class="required" />
+                        <input id="timelineStart" name="timelineStart" class="required half_left" />
+                        <input id="timelineFinish" name="timelineFinish" class="required half_right" />
                     </div>
                     <div>
                         <label>Project funder</label>
-                        <textarea id="funder" name="funder" class="required upload"></textarea>
+                        <textarea id="funder" name="funder" class="required full"></textarea>
                     </div>
                 </div>
                 
@@ -114,31 +114,31 @@
                 <div class="indent">
                     <div>
                         <label>Habitat or target species</label>
-                        <textarea id="target" name="target" class="required upload"></textarea>
+                        <textarea id="target" name="target" class="required full"></textarea>
                     </div>                    
                     <div>
                         <label>Site location description</label>
-                        <textarea id="location" name="location" class="required upload"></textarea>
+                        <textarea id="location" name="location" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Number of Sites</label>
-                        <textarea id="numsites" name="numsites" class="required upload"></textarea>
+                        <textarea id="numsites" name="numsites" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Data collector</label>
-                        <textarea id="collector" name="collector" class="required upload"></textarea>
+                        <textarea id="collector" name="collector" class="required full"></textarea>
                     </div>                    
                     <div>
                         <label>Data type</label>
-                        <textarea id="datatype" name="datatype" class="required upload"></textarea>
+                        <textarea id="datatype" name="datatype" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Data format</label>
-                        <textarea id="dataformat" name="dataformat" class="required upload"></textarea>
+                        <textarea id="dataformat" name="dataformat" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Data sharing policies</label>
-                        <textarea id="policies" name="policies" class="required upload"></textarea>
+                        <textarea id="policies" name="policies" class="required full"></textarea>
                     </div>                    
                 </div>
                 
@@ -163,11 +163,11 @@
                 <div class="indent">
                     <div>
                         <label>Searchable keywords</label>
-                        <textarea id="keyword" name="keyword" class="required upload"></textarea>
+                        <textarea id="keyword" name="keyword" class="required full"></textarea>
                     </div>
                     <div>
                         <label>Additional Information (optional)</label><br />
-                        <textarea id="other" name="other" class="upload"></textarea>
+                        <textarea id="other" name="other" class="full"></textarea>
                     </div>
                 </div>
                 
