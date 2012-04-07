@@ -89,12 +89,15 @@ label.error {
 #upload_button{
     margin-top: 15px;
 }
-.indent{
-    background-color: #D4D4D4;
-    border-radius: 15px 15px 15px 15px;
+.indent{    
+    border-radius: 6px 6px 6px 6px;
     margin: auto;
     padding: 23px;
-    width: 350px;
+    width: 350px;    
+    background: url("/css/humanity/images/ui-bg_glass_70_ede4d4_1x400.png") repeat-x scroll 50% 50% #EDE4D4;
+    border: 1px solid #CDC3B7;
+    color: #3F3731;
+    font-weight: normal;
 }
 legend{
     font-size: 12pt;
@@ -105,7 +108,7 @@ legend{
 .input_wrapper label{
 	font-weight: bold;
 	font-style: italic;
-	color: #4d4d4d;
+	color: #3F3731;
 }
 .full{
     width: 350px;
