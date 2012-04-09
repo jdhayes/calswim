@@ -1,11 +1,4 @@
 // CalSWIM main Javascript file
-google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-
-// Define Global Vars
-var map;
-var table = new google.visualization.Table(document.getElementById('table_canvas'));
-var map_items=[];
-var infowindow = new google.maps.InfoWindow();
 
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
