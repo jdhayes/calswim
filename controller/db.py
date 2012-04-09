@@ -187,7 +187,7 @@ class WebDB:
                                    );
                                """)
             query_build.append("""
-                                  SELECT contact, project_description, data_url, AsText(location)
+                                  SELECT organization, project_name, project_description, data_type, target, AsText(location)
                                   FROM GeoData
                                   WHERE Intersects( location, GeomFromText(@bbox) )
                                   AND
@@ -242,11 +242,15 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break            
-            coordinates.append( str(row[3]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
-            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
+            coordinates.append( str(row[5]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
+            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}]} )
     
         # Return search values as json
-        cols = [{"id":'source', "label":'Data URL', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
+        cols = [{"id":'organization', "label":'Organization', "type":'string'},
+                {"id":'project', "label":'Project', "type":'string'},
+                {"id":'description', "label":'Description', "type":'string'},
+                {"id":'datatype', "label":'Data Type', "type":'string'},
+                {"id":'target', "label":'Data Target', "type":'string'}]
         table_data["cols"] = cols
         table_data["rows"] = rows
         # Assign table data to json table data container
