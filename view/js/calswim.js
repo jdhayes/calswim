@@ -1,5 +1,11 @@
 // CalSWIM main Javascript file
 
+// Define Global Vars
+var map;
+var table;
+var map_items=[];
+var infowindow = new google.maps.InfoWindow();
+        
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
     var bounds = new google.maps.LatLngBounds();
@@ -224,7 +230,8 @@ function initialize() {
     var data = new google.visualization.DataTable();
     data.setColumn("Source");
     data.setColumn("Description");
-    data.setColumn("URL");    
+    data.setColumn("URL");
+    table = new google.visualization.Table(document.getElementById('table_canvas'));
     table.draw(data, {showRowNumber: false});
     
     // Method access database and pulls records according to search parameters

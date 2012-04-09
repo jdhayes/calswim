@@ -19,11 +19,6 @@
     <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        // Define Global Vars
-        var map;
-        var table = new google.visualization.Table(document.getElementById('table_canvas'));
-        var map_items=[];
-        var infowindow = new google.maps.InfoWindow();
         google.setOnLoadCallback(initialize);
     </script>
   </head>
