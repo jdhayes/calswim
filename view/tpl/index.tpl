@@ -17,8 +17,7 @@
     <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript" src="js/upload.js"></script>
-    <script type="text/javascript">
-        google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
+    <script type="text/javascript">        
         google.setOnLoadCallback(initialize);
     </script>
   </head>

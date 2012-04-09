@@ -1,4 +1,5 @@
 // CalSWIM main Javascript file
+google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
 
 // Define Global Vars
 var map;
