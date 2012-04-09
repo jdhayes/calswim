@@ -2,6 +2,7 @@
 
 // Define Global Vars
 var map;
+var table;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
 
@@ -33,7 +34,7 @@ function initTableMap(json_data) {
     //tableGeoView.setColumns([0,1,2]);
     // Draw Table
     var tableOptions = {height:"100%", width:"100%", page:'disable', showRowNumber:false};
-    var table = new google.visualization.Table(document.getElementById('table_canvas'));
+    table = new google.visualization.Table(document.getElementById('table_canvas'));
     table.draw(tableGeoView, tableOptions);
     
 	// No search results found
@@ -226,6 +227,9 @@ function initialize() {
           map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         }
       });
+    // Init Table
+    table = new google.visualization.Table(document.getElementById('table_canvas'));
+    table.draw();
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
