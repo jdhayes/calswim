@@ -207,7 +207,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          AND
-                                         MATCH (contact,project_name,project_description,keyword,other)
+                                         MATCH (contact, project_name, project_description, keyword, other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         else:
@@ -225,7 +225,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          WHERE
-                                         MATCH (contact,project_name,project_description,keyword,other)
+                                         MATCH (contact, project_name, project_description, keyword,other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         select_query = "\n".join(query_build)
