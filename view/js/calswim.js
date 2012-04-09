@@ -229,7 +229,7 @@ function initialize() {
       });
     // Init Table
     table = new google.visualization.Table(document.getElementById('table_canvas'));
-    table.draw();
+    table.draw({"cols":[{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}], "rows":{} });
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
