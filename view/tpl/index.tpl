@@ -81,7 +81,7 @@
                     </div>
                     <div class="input_wrapper"> 
                         <label>Contact Phone</label>
-                        <input id="phone" name="phone" class="required phone full" />
+                        <input id="phone" name="phone" class="required digits full" />
                     </div>
                     <div class="input_wrapper">
                         <label>Data Link</label>
