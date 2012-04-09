@@ -124,7 +124,7 @@
                     </div>
                     <div class="input_wrapper">
                         <label>Number of Sites</label>
-                        <textarea id="numsites" name="numsites" class="required full"></textarea>
+                        <input id="numsites" name="numsites" class="required digits full" />
                     </div>
                     <div class="input_wrapper">
                         <label>Data collector</label>

@@ -112,7 +112,7 @@ class WebDB:
                         val.reverse()
                         polygon[idx] = " ".join( map( str, val) )
                     locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
-            else:
+            else:                
                 json_data = {'message':'ERROR:: '+errors}
         elif lat and lng:
             # Set MySQL NULL value for shp contents
