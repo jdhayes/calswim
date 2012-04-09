@@ -62,14 +62,34 @@ class WebDB:
         """
 #        try:
         # Set insert order
-        columns = "contact, source, label, description, keyword, other, location, shp_file"            
+        columns = "organization, contact, email, phone, data_url, \
+        project_name, project_description, timeline_start, timeline_finish, project_funder, \
+        data_target, location_description, site_count, data_collector, data_type, data_format, data_policies\
+        keyword, other, location, shp_file"
         
         # Gather submitted for values
         values = []
+        # Source data
+        values.append( form.getvalue('organization') )
         values.append( form.getvalue('contact') )
+        values.append( form.getvalue('email') )
+        values.append( form.getvalue('phone') )
         values.append( form.getvalue('source') )
+        # Project data
         values.append( form.getvalue('label') )
         values.append( form.getvalue('description') )
+        values.append( form.getvalue('timelineStart') )
+        values.append( form.getvalue('timelineFinish') )
+        values.append( form.getvalue('funder') )
+        # Meta data
+        values.append( form.getvalue('target') )
+        values.append( form.getvalue('location') )
+        values.append( form.getvalue('numsites') )
+        values.append( form.getvalue('collector') )
+        values.append( form.getvalue('datatype') )
+        values.append( form.getvalue('dataformat') )
+        values.append( form.getvalue('policies') )
+        # Other data
         values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
         values.append( form.getvalue('other') )
         
