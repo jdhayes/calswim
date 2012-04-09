@@ -214,8 +214,9 @@ function initialize() {
     $("#keywords").Watermark("Everything");
     $(".button").button();    
     // Init Google Map    
-    var geocoder = new google.maps.Geocoder();        
-    geocoder.geocode( { 'address': 'U.S.A.'}, function(results, status) {
+    var geocoder = new google.maps.Geocoder();
+    // Center initialized map on OC
+    geocoder.geocode( { 'address': 'Orange County, California'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var myOptions = {
         	  zoom: 4,
