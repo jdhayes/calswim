@@ -27,6 +27,9 @@ h1{
 .marker_content{
 	
 }
+.highlight_input{
+	border: 1px solid #F5AD66;
+}
 
 /* IDs */
 #header {  
