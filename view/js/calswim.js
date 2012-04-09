@@ -216,7 +216,7 @@ function initialize() {
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
     // Center initialized map on OC
-    geocoder.geocode( { 'address': 'Orange County, California'}, function(results, status) {
+    geocoder.geocode( { 'address': 'California'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var myOptions = {
         	  zoom: 4,
