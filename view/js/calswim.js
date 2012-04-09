@@ -228,9 +228,9 @@ function initialize() {
       });
     // Init Table
     var data = new google.visualization.DataTable();
-    data.setColumn("Source");
-    data.setColumn("Description");
-    data.setColumn("URL");
+    data.addColumn("Source");
+    data.addColumn("Description");
+    data.addColumn("URL");
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     table.draw(data, {showRowNumber: false});
     
