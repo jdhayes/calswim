@@ -219,7 +219,7 @@ function initialize() {
     geocoder.geocode( { 'address': 'Orange County, California'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var myOptions = {
-        	  zoom: 10,
+        	  zoom: 9,
 	          center: results[0].geometry.location,
 	          mapTypeId: google.maps.MapTypeId.ROADMAP
           }
