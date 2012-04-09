@@ -187,7 +187,7 @@ class WebDB:
                                    );
                                """)
             query_build.append("""
-                                  SELECT contact, description, source, AsText(location)
+                                  SELECT contact, project_description, data_url, AsText(location)
                                   FROM GeoData
                                   WHERE Intersects( location, GeomFromText(@bbox) )
                                   AND
@@ -207,7 +207,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          AND
-                                         MATCH (contact,label,description,keyword,other)
+                                         MATCH (contact,project_name,project_description,keyword,other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         else:
@@ -225,7 +225,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          WHERE
-                                         MATCH (contact,label,description,keyword,other)
+                                         MATCH (contact,project_name,project_description,keyword,other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         select_query = "\n".join(query_build)
