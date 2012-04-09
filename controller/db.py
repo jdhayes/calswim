@@ -63,36 +63,36 @@ class WebDB:
 #        try:
         # Set insert order
         columns = "organization, contact, email, phone, data_url, \
-        project_name, project_description, timeline_start, timeline_finish, project_funder, \
-        data_target, location_description, site_count, data_collector, data_type, data_format, data_policies\
+        project_name, project_description, timeline_start, timeline_finish, project_funder,\
+        data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, \
         keyword, other, location, shp_file"
         
         # Gather submitted for values
         values = []
         # Source data
-        values.append( form.getvalue('organization') )
-        values.append( form.getvalue('contact') )
-        values.append( form.getvalue('email') )
+        values.append( '"%s"' % form.getvalue('organization') )
+        values.append( '"%s"' % form.getvalue('contact') )
+        values.append( '"%s"' % form.getvalue('email') )
         values.append( form.getvalue('phone') )
-        values.append( form.getvalue('source') )
+        values.append( '"%s"' % form.getvalue('source') )
         # Project data
-        values.append( form.getvalue('label') )
-        values.append( form.getvalue('description') )
-        values.append( form.getvalue('timelineStart') )
-        values.append( form.getvalue('timelineFinish') )
-        values.append( form.getvalue('funder') )
+        values.append( '"%s"' % form.getvalue('label') )
+        values.append( '"%s"' % form.getvalue('description') )        
+        values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
+        values.append( "STR_TO_DATE('"+ form.getvalue('timelineFinish') +"', '%m/%d/%Y')" )
+        values.append( '"%s"' % form.getvalue('funder') )
         # Meta data
-        values.append( form.getvalue('target') )
-        values.append( form.getvalue('location') )
+        values.append( '"%s"' % form.getvalue('target') )
+        values.append( '"%s"' % form.getvalue('location') )
         values.append( form.getvalue('numsites') )
-        values.append( form.getvalue('collector') )
-        values.append( form.getvalue('datatype') )
-        values.append( form.getvalue('dataformat') )
-        values.append( form.getvalue('policies') )
-        # Other data
-        values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
-        values.append( form.getvalue('other') )
-        
+        values.append( '"%s"' % form.getvalue('collector') )
+        values.append( '"%s"' % form.getvalue('datatype') )
+        values.append( '"%s"' % form.getvalue('dataformat') )
+        values.append( '"%s"' % form.getvalue('policies') )
+        # Other Data
+        values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
+        values.append( '"%s"' % form.getvalue('other') )
+                
         # Build MySQL Geometry syntax
         shp_file = form['shp_file'].file
         shp_file_name = form.getvalue('shp_file')
@@ -129,12 +129,12 @@ class WebDB:
         for location in locations:
             count = count+1
             # Build MySQL insert query
-            mysql_values = "'"+ "','".join(values)  +"',"+ location +",'"+ self.db.escape_string(shp_file_contents) +"'"
+            mysql_values = ",".join(values) +","+ location +",'"+ self.db.escape_string(shp_file_contents) +"'"
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
             print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
-            self.cursor.execute(insert_query)
-            json_data = {'message':'Data import successful'}
+            #self.cursor.execute(insert_query)
+            json_data = {'message':insert_query} #'Data import successful'}
         
         # Commit queries
         self.db.commit()
