@@ -213,7 +213,7 @@ class WebDB:
         else:
             # Search query does not have a specified location
             query_build.append("""
-                                 SELECT contact, project_description, source, AsText(location)
+                                 SELECT contact, project_description, data_url, AsText(location)
                                  FROM GeoData
                               """)
             # Search query has at least 1 keyword
@@ -246,7 +246,7 @@ class WebDB:
             rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}]} )
     
         # Return search values as json
-        cols = [{"id":'source', "label":'Source', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
+        cols = [{"id":'source', "label":'Data URL', "type":'string'}, {"id":'description', "label":'Description', "type":'string'}, {"id":'url', "label":'URL', "type":'string'}]    
         table_data["cols"] = cols
         table_data["rows"] = rows
         # Assign table data to json table data container
