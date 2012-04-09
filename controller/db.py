@@ -213,7 +213,7 @@ class WebDB:
         else:
             # Search query does not have a specified location
             query_build.append("""
-                                 SELECT contact, project_description, data_url, AsText(location)
+                                 SELECT organization, project_name, project_description, data_type, target, AsText(location)
                                  FROM GeoData
                               """)
             # Search query has at least 1 keyword
