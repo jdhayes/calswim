@@ -7,7 +7,7 @@ google.setOnLoadCallback(function(){
     $("#upload_message").dialog({ autoOpen: false });
     
     /* Init upload form overlay */
-	$("#upload").colorbox({inline:true,maxHeight:"100%"});
+	$("#upload").colorbox({inline:true,maxHeight:"100%",width:"500px"});
 	
     // Init form button
     $(".submit").button();
