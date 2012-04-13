@@ -216,10 +216,10 @@ function initialize() {
     
     function autoResizeGTable() {
     	var this_layout = $('#center').data("layout");
-    	var state = pane_element.state;
-    	var new_width = state.PANE.size;
+//    	var state = pane_element.state;
+//    	var new_width = state.PANE.size;
     	
-    	for (item in new_width){    		
+    	for (item in this_layout){    		
     		alert('ITEM: '+ item);
     	}
     	//table.setOption('width', new_width);
