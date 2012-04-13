@@ -204,13 +204,12 @@ function initialize() {
         ,south__resizeable:      false
         ,south__size:            25                           
         ,south__maxSize:         25
-        ,onresize_end:		 function () {alert('You are resizeing');}
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    $('#content').layout({ applyDefaultStyles: true });
+    $('#content').layout({ applyDefaultStyles: true, onresize_end: function () {alert('You are resizeing');} });
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();    
