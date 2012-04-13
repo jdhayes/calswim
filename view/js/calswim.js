@@ -204,6 +204,7 @@ function initialize() {
         ,south__resizeable:      false
         ,south__size:            25                           
         ,south__maxSize:         25
+        ,onresize_start:		 function () {alert('You are resizeing');}
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
