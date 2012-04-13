@@ -215,10 +215,10 @@ function initialize() {
     $(".button").button();
     
     function autoResizeGTable() {    	
-    	var state = content_layout.state;
-    	var new_width = state.PANE.size;
+    	//var state = content_layout.state;
+    	//var new_width = state.PANE.size;
     	
-    	alert('You are resizing to: '+ new_width);
+    	alert('You are resizing to: ');
     	//table.setOption('width', new_width);
         //table.draw();
     }
