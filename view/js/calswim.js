@@ -213,8 +213,8 @@ function initialize() {
     var layout_options = { 
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
-    	, onresize_end: function (pane, $Pane) { 
-    		alert("Size: "+ $Pane.size);
+    	, center__onresize: function (pane, $Pane) { 
+    		alert("Size: "+ $Pane.size());
     	}
     };    
     $('#content').layout(layout_options);
