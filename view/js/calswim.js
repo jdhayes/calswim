@@ -214,7 +214,8 @@ function initialize() {
     $("#keywords").Watermark("Everything");
     $(".button").button();
     
-    function autoResizeGTable(this_layout) {
+    function autoResizeGTable(self) {
+    	var this_layout = self.data("layout");
     	
     	for (item in this_layout){    		
     		alert('ITEM: '+ item);
