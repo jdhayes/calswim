@@ -214,7 +214,9 @@ function initialize() {
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
     	, center__onresize: function (pane, $Pane) { 
-    		alert("Size: "+ $Pane.size());
+    		$.each($Pane, function(index, value) {    			
+    			alert("Index:"+index +" Value: "+ value);
+    		}
     	}
     };    
     $('#content').layout(layout_options);
@@ -222,18 +224,6 @@ function initialize() {
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
-    
-    function autoResizeGTable() {
-    	var this_layout = $('#center').data("layout");
-//    	var state = pane_element.state;
-//    	var new_width = state.PANE.size;
-    	
-    	for (item in this_layout){    		
-    		alert('ITEM: '+ item);
-    	}
-    	//table.setOption('width', new_width);
-        //table.draw();
-    }
     
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
