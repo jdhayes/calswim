@@ -214,11 +214,11 @@ function initialize() {
     $("#keywords").Watermark("Everything");
     $(".button").button();
     
-    function autoResizeGTable() {
-    	alert('You are resizing now');
+    function autoResizeGTable(pane_name, pane_elem, pane_state, pane_options, layout_name) {    	
+    	var state = myLayout.state;
+    	var new_width = state.PANE.size;
     	
-    	//var state = myLayout.state;
-    	//var new_width = state.PANE.size * .30;
+    	alert('You are resizing to: '+ new_width);
     	//table.setOption('width', new_width);
         //table.draw();
     }
