@@ -209,10 +209,19 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    $('#content').layout({ applyDefaultStyles: true, onresize_end: function () {alert('You are resizeing');} });
+    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable });    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
-    $(".button").button();    
+    $(".button").button();
+    
+    function autoResizeGTable() {
+    	alert('You are resizing now');
+    	
+    	//var state = myLayout.state;
+    	//var new_width = state.PANE.size * .30;
+    	//table.setOption('width', new_width);
+        //table.draw();
+    }
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
     // Center initialized map on OC
