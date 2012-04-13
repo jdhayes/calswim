@@ -216,9 +216,9 @@ function initialize() {
     
     function autoResizeGTable() {    	
     	//var state = myLayout.state;
-    	//var new_width = state.PANE.size;
+    	var new_width = 'stuff'; //state.PANE.size;
     	
-    	//alert('You are resizing to: '+ new_width);
+    	alert('You are resizing to: '+ new_width);
     	//table.setOption('width', new_width);
         //table.draw();
     }
