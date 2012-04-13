@@ -218,11 +218,10 @@ function initialize() {
     	var this_layout = $('#center').data("layout");
     	var state = pane_element.state;
     	var new_width = state.PANE.size;
-    	alert('DATA: '+new_width);
     	
-    	//for (item in this_layout){    		
-    	//	alert('ITEM: '+ item);
-    	//}
+    	for (item in new_width){    		
+    		alert('ITEM: '+ item);
+    	}
     	//table.setOption('width', new_width);
         //table.draw();
     }
