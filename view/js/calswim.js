@@ -209,16 +209,14 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable($.layout) });    
+    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable($.layout.state.PANE.size) });    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
     
-    function autoResizeGTable(this_layout) {    	
-    	var state = this_layout.state;
-    	var new_width = state.PANE.size;
+    function autoResizeGTable(this_size) {    	    	
     	
-    	alert('You are resizing to: '+ new_width);
+    	alert('You are resizing to: '+ this_size);
     	//table.setOption('width', new_width);
         //table.draw();
     }
