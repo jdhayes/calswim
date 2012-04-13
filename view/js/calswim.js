@@ -216,7 +216,9 @@ function initialize() {
     
     function autoResizeGTable() {
     	var this_layout = $('#center').data("layout");
-    	alert('DATA: '+this_layout);
+    	var state = pane_element.state;
+    	var new_width = state.PANE.size;
+    	alert('DATA: '+new_width);
     	
     	//for (item in this_layout){    		
     	//	alert('ITEM: '+ item);
