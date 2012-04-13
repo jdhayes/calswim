@@ -209,19 +209,20 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable });    
+    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable($.layout) });    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
     
-    function autoResizeGTable(pane_name, pane_element) {    	
-    	var state = pane_element.state;
+    function autoResizeGTable(this_layout) {    	
+    	var state = this_layout.state;
     	var new_width = state.PANE.size;
     	
     	alert('You are resizing to: '+ new_width);
     	//table.setOption('width', new_width);
         //table.draw();
     }
+    
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
     // Center initialized map on OC
