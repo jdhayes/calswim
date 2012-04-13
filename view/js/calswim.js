@@ -209,7 +209,7 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable($) });    
+    $('#content').layout({ applyDefaultStyles: true, onresize_end: autoResizeGTable });    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
