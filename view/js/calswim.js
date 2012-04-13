@@ -215,7 +215,7 @@ function initialize() {
     $(".button").button();
     
     function autoResizeGTable(object) {
-    	var this_layout = object.data; //.data("layout");
+    	var this_layout = object.data("layout");
     	alert('DATA: '+this_layout);
     	
     	//for (item in this_layout){    		
