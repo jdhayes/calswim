@@ -214,7 +214,7 @@ function initialize() {
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
     	, center__onresize: function (pane, $Pane) { 
-    		$.each($Pane, function(index, value) {    			
+    		for (value, index in $Pane){    			
     			alert("Index:"+index +" Value: "+ value);
     		}
     	}
