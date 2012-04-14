@@ -213,8 +213,8 @@ function initialize() {
     var layout_options = { 
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
-    	, center__onresize: function (pane, $Pane) { 
-    		for (value, index in $Pane){    			
+    	, center__onresize: function (layout, $Layout) { 
+    		for (value, index in $Layout){    			
     			alert("Index:"+index +" Value: "+ value);
     		}
     	}
