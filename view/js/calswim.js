@@ -214,9 +214,9 @@ function initialize() {
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
     	, center__onresize: function (layout, $Layout) { 
-    		for (value, index in $Layout){    			
-    			alert("Index:"+index +" Value: "+ value);
-    		}
+    		var state = $Layout.state;
+    		var size = state.PANE.size;
+    		alert("Size: "+ size);	
     	}
     };    
     $('#content').layout(layout_options);
