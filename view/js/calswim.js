@@ -122,7 +122,7 @@ function initTableMap(json_data) {
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
-            		infowindow.setContent('<p>'+ content +'</p><a id='+ data_id +' href="#">More Details</a>');
+            		infowindow.setContent('<p>'+ content +'</p><span class="details_link" id='+ data_id +' href="#">More Details</span>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);            	                	  
