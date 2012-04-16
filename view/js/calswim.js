@@ -126,8 +126,11 @@ function initTableMap(json_data) {
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);
-            	    // Send ID to ajax call for data details
-            	    $("#data_details_wrapper").html("Found and ID: " + data_id);
+            	    
+                    // Send ID to ajax call for data details        
+                    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
+                    	$("#data_details_wrapper").html(json_data);
+                    });
             	});
             }
         });            

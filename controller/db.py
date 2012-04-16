@@ -165,6 +165,18 @@ class WebDB:
         deg, min, sec  = deg_min_sec.split()
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
+    def get_data_details(self, gd_id):
+        # Select all details from table according to gd_id
+        select_query = "SELECT organization, contact, email, phone, data_url,\
+        project_name, project_description, timeline_start, timeline_finish, project_funder,\
+        data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other \
+        WHERE gd_id=%s" % gd_id
+        self.cursor.execute(select_query)
+        rows = self.cursor.fetchall()
+        
+        # Return results
+        return json.dumps(rows)
+    
     def get_map_locs(self, CalSwimView):
         """
             This is a simple script to query the database.
