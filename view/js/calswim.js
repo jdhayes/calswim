@@ -213,8 +213,16 @@ function initialize() {
     var layout_options = { 
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
-    	, center__onresize: function () { 
-    		alert("Calculate size");
+    	, center__onresize: function () {
+    		// ReSize GTable
+    		var new_width = $('#table_canvas').parent().width();    		
+    		$table.setOption('width',new_width);    		
+    		var new_height = $('#table_canvas').parent().height();
+    		// Calculate height to 30% of parent container
+    		new_height = new_height * .3;
+    		$table.setOption('height',new_height);
+    		// Re draw table with new dimensions
+    		$table.draw();
     	}
     };
     $('#content').layout(layout_options);
