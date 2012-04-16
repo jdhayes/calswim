@@ -210,23 +210,25 @@ function initialize() {
         //,south__togglerContent_open:   toggleButtons
     });       
     
+    // Init Table
+    var data = new google.visualization.DataTable();
+    data.addColumn('string','Source');
+    data.addColumn('string','Description');
+    data.addColumn('string','URL');
+    table = new google.visualization.Table(document.getElementById('table_canvas'));
+    table.draw(data, {showRowNumber: false});
+    
     var layout_options = {
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
     	, center__onresize: function () {
     		// ReSize GTable
-    		var new_width = $('#table_canvas').parent().width();    		  	
-    		
-    		// Init Table
-    	    var data = new google.visualization.DataTable();
-    	    data.addColumn('string','Source');
-    	    data.addColumn('string','Description');
-    	    data.addColumn('string','URL');
-    	    table = new google.visualization.Table(document.getElementById('table_canvas'));
-    	    table.draw(data, {showRowNumber: false, width:new_width, height:'100'});
+    		var new_width = $('#table_canvas').parent().width();
+    		table.draw(data, {showRowNumber: false, width:new_width});
     	}
     };
-    $('#content').layout(layout_options);    
+    $('#content').layout(layout_options);
+    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
