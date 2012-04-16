@@ -115,25 +115,7 @@ function initTableMap(json_data) {
             	    type:"marker",
             	    title: content
             	  });
-            	map_items.push(marker);
-            	
-            	// Add click event to 'More Details' link
-                function get_data_details(data_id) {
-                	// Send ID to ajax call for data details
-            	    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
-                    	var html_details = "";
-                    	$.each(json_data, function(index, value){
-                    		if (value){
-                    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
-                    		}                    		
-                    	});
-                    	$("#data_details").html(html_details);
-                    });
-                    
-                    // Open the data details pane
-            	    west_layout = $("#content").layout();
-            	    west_layout.toggle('west');
-                }
+            	map_items.push(marker);            	            
                 
             	google.maps.event.addListener(marker, 'click', function() {
             		// Clear previsouly highlighted marker
@@ -180,6 +162,7 @@ function initTableMap(json_data) {
     }
 }
 
+// Clear all selections on the map
 function clearSelected(){
 	for(var i = 0; i < map_items.length; i++) {
 		if (map_items[i].type == "polygon"){
@@ -191,6 +174,7 @@ function clearSelected(){
 	}
 }
 
+// Delete all the markers on the map
 function clearMap(){
 	for(var i = 0; i < map_items.length; i++) {
 		map_items[i].setMap(null);
@@ -198,9 +182,27 @@ function clearMap(){
 	map_items.length=0;
 }
 
+// Delete all rows in table
 function clearTable(table){
 	var totalRows = table.getNumberOfRows();
 	table.removeRows(0,totalRows);
+}
+
+// Send ID via ajax call to DB for data details
+function get_data_details(data_id) {
+    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
+    	var html_details = "";
+    	$.each(json_data, function(index, value){
+    		if (value){
+    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
+    		}                    		
+    	});
+    	$("#data_details").html(html_details);
+    });
+    
+    // Open the data details pane
+    west_layout = $("#content").layout();
+    west_layout.toggle('west');
 }
 
 function initialize() {    
