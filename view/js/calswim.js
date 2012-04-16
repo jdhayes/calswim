@@ -224,7 +224,7 @@ function initialize() {
     	, center__onresize: function () {
     		// ReSize GTable
     		var new_width = $('#table_canvas').parent().width();
-    		$('#table_canvas').find("table").get(0).width(new_width);
+    		$('.google-visualization-table-table').width(new_width);
     	}
     };
     $('#content').layout(layout_options);
