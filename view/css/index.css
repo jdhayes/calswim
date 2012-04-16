@@ -111,10 +111,12 @@ form div.indent{
     background-color: #EDE4D4;
     border: 1px solid #CDC3B7;
     color: #3F3731;
-    font-weight: normal;
-    overflow: auto;
+    font-weight: normal;    
 }
-
+#data_details_wrapper{
+	width: 300px;
+	overflow: auto;
+}
 legend{
     font-size: 12pt;
 }

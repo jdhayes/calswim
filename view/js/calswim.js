@@ -244,7 +244,7 @@ function initialize() {
     // Initialize center layout
     var layout_options = {
     	applyDefaultStyles:     true
-    	, west__initClosed:     true
+    	, west__initClosed:     true    	
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
