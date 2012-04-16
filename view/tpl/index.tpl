@@ -37,12 +37,7 @@
         <div id="search_canvas" class="rounded ui-layout-north">
             <h2>Search</h2>      
             <label>Address</label>
-            <input id="address"/>
-            <span id="search_button" class="button">Search</span>    
-        </div>
-        
-        <div class="rounded ui-layout-west">
-            <h2>Filters</h2>
+            <input id="address"/>            
             
             <label>Search Radius (Miles)</label>
             <select id="radius">
@@ -52,9 +47,16 @@
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select>
-            <br />
+            
             <label>Keywords</label>
-            <textarea id="keywords"></textarea>               
+            <input id="keywords" />
+            
+            <span id="search_button" class="button">Search</span>    
+        </div>
+        
+        <div class="rounded ui-layout-west">
+            <h2>Data Detail</h2>                     
+            <div id="data_details_wrapper"></div>               
         </div>
     </div>
     

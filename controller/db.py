@@ -187,7 +187,7 @@ class WebDB:
                                    );
                                """)
             query_build.append("""
-                                  SELECT organization, project_name, project_description, data_type, data_target, AsText(location)
+                                  SELECT gd_id, organization, project_name, project_description, data_type, data_target, AsText(location)
                                   FROM GeoData
                                   WHERE Intersects( location, GeomFromText(@bbox) )
                                   AND
@@ -213,7 +213,7 @@ class WebDB:
         else:
             # Search query does not have a specified location
             query_build.append("""
-                                 SELECT organization, project_name, project_description, data_type, data_target, AsText(location)
+                                 SELECT gd_id, organization, project_name, project_description, data_type, data_target, AsText(location)
                                  FROM GeoData
                               """)
             # Search query has at least 1 keyword
@@ -242,8 +242,8 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break            
-            coordinates.append( str(row[5]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
-            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}]} )
+            coordinates.append( str(row[6]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
+            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}, {"v":row[5]}]} )
     
         # Return search values as json
         cols = [{"id":'organization', "label":'Organization', "type":'string'},

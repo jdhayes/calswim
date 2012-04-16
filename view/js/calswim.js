@@ -31,7 +31,7 @@ function initTableMap(json_data) {
     // Filter geo data
     var tableGeoView = new google.visualization.DataView(geoData);
     // Filter viewable columns
-    //tableGeoView.setColumns([0,1,2]);
+    tableGeoView.setColumns([1,2,3,4,5]);
     // Draw Table
     var tableOptions = {page:'disable', showRowNumber:false};    
     table.draw(tableGeoView, tableOptions);
@@ -53,7 +53,9 @@ function initTableMap(json_data) {
         	// Place all coordinates into an array
     		var coords = coords.split(",");
         	// Define content for InfoWindow
-        	var content = json_table_data.rows[index]['c'][1]['v'];        	
+        	var content = json_table_data.rows[index]['c'][2]['v'];
+        	// Define database ID for data details ajax call
+        	var data_id = json_table_data.rows[index]['c'][0]['v'];
         	// Check if polygon or marker point
             if (coords.length > 1){
             	
@@ -116,15 +118,17 @@ function initTableMap(json_data) {
             	map_items.push(marker);
             	google.maps.event.addListener(marker, 'click', function() {
             		// Clear previsouly highlighted marker
-            		clearSelected()
+            		clearSelected();
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
             		infowindow.setContent(content);
             	    infowindow.open(map,marker);
             	    // Set selection in table
-            	    table.setSelection([{'row': index}])
-            	});                    
+            	    table.setSelection([{'row': index}]);
+            	    // Send ID to ajax call for data details
+            	    $("#data_details_wrapper").html("Found and ID: " + data_id);
+            	});
             }
         });            
     	// Fit map to previsouly set bounds
