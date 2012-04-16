@@ -131,7 +131,9 @@ function initTableMap(json_data) {
                     $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
                     	var html_details = "";
                     	$.each(json_data, function(index, value){
-                    		html_details += value + "<br/>";
+                    		if (value){
+                    			html_details += "<h3>"+index+"</h3>"+"<p>"+ value +"</p>";
+                    		}                    		
                     	});
                     	$("#data_details_wrapper").html(html_details);
                     });

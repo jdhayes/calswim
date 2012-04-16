@@ -172,10 +172,14 @@ class WebDB:
         project_funder, data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other \
         FROM GeoData WHERE gd_id=" + gd_id
         self.cursor.execute(select_query)
-        rows = self.cursor.fetchone()
+        row = self.cursor.fetchone()
+        
+        # Create a dictionary of column names and values                
+        labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
+        data_details = dict(zip(lables, row))
         
         # Return results
-        return json.dumps(rows)
+        return json.dumps(data_details)
     
     def get_map_locs(self, CalSwimView):
         """
