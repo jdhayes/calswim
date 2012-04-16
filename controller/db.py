@@ -172,7 +172,7 @@ class WebDB:
         project_funder, data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other \
         FROM GeoData WHERE gd_id=" + gd_id
         self.cursor.execute(select_query)
-        rows = self.cursor.fetchall()
+        rows = self.cursor.fetchone()
         
         # Return results
         return json.dumps(rows)

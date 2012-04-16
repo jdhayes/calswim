@@ -129,7 +129,11 @@ function initTableMap(json_data) {
             	    
                     // Send ID to ajax call for data details        
                     $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
-                    	$("#data_details_wrapper").html(json_data);
+                    	var html_details = "";
+                    	$.each(json_data, function(index, value){
+                    		html_details = value + "<br/>";
+                    	});
+                    	$("#data_details_wrapper").html(html_details);
                     });
             	});
             }
