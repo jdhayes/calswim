@@ -244,6 +244,7 @@ function initialize() {
     // Initialize center layout
     var layout_options = {
     	applyDefaultStyles:     true
+    	, west__initClosed:     true
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
@@ -253,10 +254,6 @@ function initialize() {
     		var new_width = $('#table_canvas').parent().width();
     		$('.google-visualization-table-table').width(new_width);
     	}
-        //, west: {
-        //	initClosed: true,
-        //	size:       300
-        //}
     };
     $('#content').layout(layout_options);
     
