@@ -170,7 +170,7 @@ class WebDB:
         select_query = "SELECT organization, contact, email, phone, data_url,\
         project_name, project_description, DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start, DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,\
         project_funder, data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other \
-        FROM GeoData WHERE gd_id=%s" % gd_id
+        FROM GeoData WHERE gd_id=" + gd_id
         self.cursor.execute(select_query)
         rows = self.cursor.fetchall()
         
