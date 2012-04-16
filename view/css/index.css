@@ -113,8 +113,7 @@ form div.indent{
     color: #3F3731;
     font-weight: normal;    
 }
-#data_details_wrapper{
-	width: 300px;
+#data_details_wrapper{	
 	overflow: auto;
 }
 legend{
