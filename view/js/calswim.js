@@ -215,8 +215,7 @@ function initialize() {
     	, triggerEventsOnLoad: true
     	, center__onresize: function () {
     		// ReSize GTable
-    		var new_width = $('#table_canvas').parent().width();
-    		alert("new width: "+ new_width);    		
+    		var new_width = $('#table_canvas').parent().width();    		  	
     		
     		// Init Table
     	    var data = new google.visualization.DataTable();
@@ -224,7 +223,7 @@ function initialize() {
     	    data.addColumn('string','Description');
     	    data.addColumn('string','URL');
     	    table = new google.visualization.Table(document.getElementById('table_canvas'));
-    	    table.draw(data, {showRowNumber: false, width:'30', height:'100'});
+    	    table.draw(data, {showRowNumber: false, width:new_width, height:'100'});
     	}
     };
     $('#content').layout(layout_options);    
