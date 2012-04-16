@@ -221,7 +221,7 @@ function initialize() {
     		
     		var new_height = $('#table_canvas').parent().height();
     		// Calculate height to 30% of parent container
-    		new_height = parseInt(new_height) * .3;
+    		//new_height = parseInt(new_height) * .3;
     		alert("new height: "+ new_height);
     		$table.setOption('height',new_height);
     		
