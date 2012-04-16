@@ -125,7 +125,7 @@ function initTableMap(json_data) {
             		infowindow.setContent(content);
             	    infowindow.open(map,marker);
             	    // Set selection in table
-            	    table.setSelection([{'row': index}]);
+            	    table.setSelection([{'row': index}]);            	                	  
             	    
                     // Send ID to ajax call for data details        
                     $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
@@ -135,8 +135,12 @@ function initTableMap(json_data) {
                     			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
                     		}                    		
                     	});
-                    	$("#data_details_wrapper").html(html_details);
+                    	$("#data_details").html(html_details);
                     });
+                    
+                    // Open the data details pane
+            	    west_layout = $("div.ui-layout-west").layout();
+            	    west_layout.open();
             	});
             }
         });            
@@ -231,14 +235,21 @@ function initialize() {
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     table.draw(data, {showRowNumber: false});
     
+    // Initialize center layout
     var layout_options = {
-    	  applyDefaultStyles: true
-    	, triggerEventsOnLoad: true
-    	, center__onresize: function () {
+    	center__paneSelector:   "#map_canvas_wrapper"    	
+    	, west__paneSelector:   "#data_details_wrapper"
+    	, north__paneSelector:  "#search_canvas"
+    	, triggerEventsOnLoad:  true
+    	, center__onresize:     function () {
     		// ReSize GTable
     		var new_width = $('#table_canvas').parent().width();
     		$('.google-visualization-table-table').width(new_width);
     	}
+        , west: {
+        	initClosed: true,
+        	size:       300
+        }
     };
     $('#content').layout(layout_options);
     

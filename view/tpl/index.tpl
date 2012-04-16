@@ -28,12 +28,7 @@
         <a id="upload" class="button" href="#form_wrapper">Upload</a>
     </div>
     
-    <div id="content">
-        <div id="map_canvas_wrapper" class="rounded ui-layout-center">
-            <div id="map_canvas"></div>            
-            <div id="table_canvas"></div>            
-        </div>
-        
+    <div id="content">                
         <div id="search_canvas" class="rounded ui-layout-north">
             <h2>Search</h2>      
             <label>Address</label>
@@ -54,9 +49,14 @@
             <span id="search_button" class="button">Search</span>    
         </div>
         
-        <div class="rounded ui-layout-west">
+        <div id="map_canvas_wrapper" class="rounded ui-layout-center">
+            <div id="map_canvas"></div>            
+            <div id="table_canvas"></div>            
+        </div>
+        
+        <div id="data_details_wrapper" class="rounded ui-layout-west">
             <h2>Data Detail</h2>                     
-            <div id="data_details_wrapper"></div>               
+            <div id="data_details"></div>               
         </div>
     </div>
     
