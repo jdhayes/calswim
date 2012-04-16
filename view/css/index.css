@@ -99,7 +99,7 @@ form div.indent{
     color: #3F3731;
     font-weight: normal;
 }
-#data_details_wrapper p.indent{
+#data_details_wrapper{
 	border-radius: 6px 6px 6px 6px;
     margin: auto;
     padding: 23px; 
