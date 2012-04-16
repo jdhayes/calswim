@@ -217,7 +217,8 @@ function initialize() {
     		// ReSize GTable
     		var new_width = $('#table_canvas').parent().width();
     		alert("new width: "+ new_width);
-    		table.setOption('width',30);    		
+    		alert(table);
+    		table.setOption('width','30');    		
     		
     		alert('after set option');
     		//var new_height = $('#table_canvas').parent().height();
