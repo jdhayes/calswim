@@ -215,12 +215,16 @@ function initialize() {
     	, triggerEventsOnLoad: true
     	, center__onresize: function () {
     		// ReSize GTable
-    		var new_width = $('#table_canvas').parent().width();    		
+    		var new_width = $('#table_canvas').parent().width();
+    		alert("new width: "+ new_width);
     		$table.setOption('width',new_width);    		
+    		
     		var new_height = $('#table_canvas').parent().height();
     		// Calculate height to 30% of parent container
     		new_height = new_height * .3;
+    		alert("new width: "+ new_width);
     		$table.setOption('height',new_height);
+    		
     		// Re draw table with new dimensions
     		$table.draw();
     	}
