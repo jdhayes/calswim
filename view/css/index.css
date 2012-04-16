@@ -88,7 +88,7 @@ label.error {
 #upload_button{
     margin-top: 15px;
 }
-.indent{    
+form div.indent{    
     border-radius: 6px 6px 6px 6px;
     margin: auto;
     padding: 23px;
@@ -99,6 +99,17 @@ label.error {
     color: #3F3731;
     font-weight: normal;
 }
+#data_details_wrapper p.indent{
+	border-radius: 6px 6px 6px 6px;
+    margin: auto;
+    padding: 23px; 
+    background-color: #EDE4D4;
+    border: 1px solid #CDC3B7;
+    color: #3F3731;
+    font-weight: normal;
+    overflow: auto;
+}
+
 legend{
     font-size: 12pt;
 }

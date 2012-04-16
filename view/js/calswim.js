@@ -132,7 +132,7 @@ function initTableMap(json_data) {
                     	var html_details = "";
                     	$.each(json_data, function(index, value){
                     		if (value){
-                    			html_details += "<h3>"+index+"</h3>"+"<p>"+ value +"</p>";
+                    			html_details += '<h3>'+ index +'</h3><p class="indent">'+ value +'</p>';
                     		}                    		
                     	});
                     	$("#data_details_wrapper").html(html_details);
