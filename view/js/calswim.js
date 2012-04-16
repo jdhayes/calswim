@@ -123,14 +123,14 @@ function initTableMap(json_data) {
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
-            		infowindow.setContent('<p>'+ content +'</p><button onclick="get_data_details('+data_id+'); return false;" class="details_link">More Details</button>');
+            		infowindow.setContent('<p>'+ content +'</p><a href="#" onclick="get_data_details('+data_id+'); return false;" class="details_link">More Details</a>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);
             	});
             }
         });            
-    	// Fit map to previsouly set bounds
+    	// Fit map to previously set bounds
     	map.fitBounds(bounds);
     	
         // Set a 'select' event listener for the table.        
@@ -244,19 +244,19 @@ function initialize() {
     // Initialize center layout
     var layout_options = {
     	applyDefaultStyles:     true
-    	, center__paneSelector:   "#map_canvas_wrapper"    	
-    	, west__paneSelector:   "#data_details_wrapper"
-    	, north__paneSelector:  "#search_canvas"
-    	, triggerEventsOnLoad:  true
-    	, center__onresize:     function () {
+    	//, center__paneSelector: "#map_canvas_wrapper"    	
+    	//, west__paneSelector:   "#data_details_wrapper"
+    	//, north__paneSelector:  "#search_canvas"
+    	//, triggerEventsOnLoad:  true
+    	//, center__onresize:     function () {
     		// ReSize GTable
-    		var new_width = $('#table_canvas').parent().width();
-    		$('.google-visualization-table-table').width(new_width);
-    	}
-        , west: {
-        	initClosed: true,
-        	size:       300
-        }
+    	//	var new_width = $('#table_canvas').parent().width();
+    	//	$('.google-visualization-table-table').width(new_width);
+    	//}
+        //, west: {
+        //	initClosed: true,
+        //	size:       300
+        //}
     };
     $('#content').layout(layout_options);
     
