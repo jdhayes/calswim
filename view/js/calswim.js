@@ -213,12 +213,10 @@ function initialize() {
     var layout_options = { 
     	  applyDefaultStyles: true
     	, triggerEventsOnLoad: true
-    	, center__onresize: function (layout, $Layout) { 
-    		var state = $Layout.state;
-    		var size = state.PANE.size;
-    		alert("Size: "+ size);	
+    	, center__onresize: function () { 
+    		alert("Calculate size");
     	}
-    };    
+    };
     $('#content').layout(layout_options);
     
     $("#address").Watermark("Everywhere");
