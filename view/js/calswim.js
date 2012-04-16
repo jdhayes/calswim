@@ -116,34 +116,35 @@ function initTableMap(json_data) {
             	    title: content
             	  });
             	map_items.push(marker);
+            	
+            	// Add click event to 'More Details' link
+                function get_data_details(data_id) {
+                	// Send ID to ajax call for data details
+            	    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
+                    	var html_details = "";
+                    	$.each(json_data, function(index, value){
+                    		if (value){
+                    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
+                    		}                    		
+                    	});
+                    	$("#data_details").html(html_details);
+                    });
+                    
+                    // Open the data details pane
+            	    west_layout = $("#content").layout();
+            	    west_layout.toggle('west');
+                }
+                
             	google.maps.event.addListener(marker, 'click', function() {
             		// Clear previsouly highlighted marker
             		clearSelected();
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
-            		infowindow.setContent('<p>'+ content +'</p><button onclick="alert(\'hi\')" class="details_link" id='+ data_id +'>More Details"</button>');
+            		infowindow.setContent('<p>'+ content +'</p><button onclick="get_data_details('+data_id+'); return false;" class="details_link">More Details</button>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
-            	    table.setSelection([{'row': index}]);            	                	  
-            	    
-                    // Add click event to 'More Details' link
-                    $('#'+data_id).click(function() {
-                    	// Send ID to ajax call for data details
-	            	    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
-	                    	var html_details = "";
-	                    	$.each(json_data, function(index, value){
-	                    		if (value){
-	                    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
-	                    		}                    		
-	                    	});
-	                    	$("#data_details").html(html_details);
-	                    });
-	                    
-	                    // Open the data details pane
-	            	    west_layout = $("#content").layout();
-	            	    west_layout.toggle('west');
-                    });
+            	    table.setSelection([{'row': index}]);
             	});
             }
         });            
