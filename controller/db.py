@@ -176,7 +176,7 @@ class WebDB:
         
         # Create a dictionary of column names and values                
         labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
-        data_details = dict(zip(lables, row))
+        data_details = dict(zip(labels, row))
         
         # Return results
         return json.dumps(data_details)
