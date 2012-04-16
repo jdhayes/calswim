@@ -243,7 +243,8 @@ function initialize() {
     
     // Initialize center layout
     var layout_options = {
-    	center__paneSelector:   "#map_canvas_wrapper"    	
+    	applyDefaultStyles:     true
+    	, center__paneSelector:   "#map_canvas_wrapper"    	
     	, west__paneSelector:   "#data_details_wrapper"
     	, north__paneSelector:  "#search_canvas"
     	, triggerEventsOnLoad:  true
