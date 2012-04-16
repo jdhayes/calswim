@@ -122,25 +122,28 @@ function initTableMap(json_data) {
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
             	    // Set contents then open infowindow
-            		infowindow.setContent(content);
+            		infowindow.setContent('<p>'+ content +'</p><a id='+ data_id +' href="#">More Details</a>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);            	                	  
             	    
-                    // Send ID to ajax call for data details        
-                    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
-                    	var html_details = "";
-                    	$.each(json_data, function(index, value){
-                    		if (value){
-                    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
-                    		}                    		
-                    	});
-                    	$("#data_details").html(html_details);
+                    // Add click event to 'More Details' link
+                    $('#'+data_id).click(function() {
+                    	// Send ID to ajax call for data details
+	            	    $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
+	                    	var html_details = "";
+	                    	$.each(json_data, function(index, value){
+	                    		if (value){
+	                    			html_details += '<h3>'+ index +'</h3><p>'+ value +'</p>';
+	                    		}                    		
+	                    	});
+	                    	$("#data_details").html(html_details);
+	                    });
+	                    
+	                    // Open the data details pane
+	            	    west_layout = $("#content").layout();
+	            	    west_layout.toggle('west');
                     });
-                    
-                    // Open the data details pane
-            	    west_layout = $("div.ui-layout-west").layout();
-            	    west_layout.open();
             	});
             }
         });            
