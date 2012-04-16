@@ -210,6 +210,24 @@ function initialize() {
         //,south__togglerContent_open:   toggleButtons
     });       
     
+    var layout_options = {
+    	  applyDefaultStyles: true
+    	, triggerEventsOnLoad: true
+    	, center__onresize: function () {
+    		// ReSize GTable
+    		var new_width = $('#table_canvas').parent().width();
+    		alert("new width: "+ new_width);    		
+    		
+    		// Init Table
+    	    var data = new google.visualization.DataTable();
+    	    data.addColumn('string','Source');
+    	    data.addColumn('string','Description');
+    	    data.addColumn('string','URL');
+    	    table = new google.visualization.Table(document.getElementById('table_canvas'));
+    	    table.draw(data, {showRowNumber: false, width:'30', height:'100'});
+    	}
+    };
+    $('#content').layout(layout_options);    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
@@ -226,38 +244,7 @@ function initialize() {
           }
           map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         }
-      });
-    // Init Table
-    var data = new google.visualization.DataTable();
-    data.addColumn('string','Source');
-    data.addColumn('string','Description');
-    data.addColumn('string','URL');
-    table = new google.visualization.Table(document.getElementById('table_canvas'));
-    table.draw(data, {showRowNumber: false});
-    
-    var layout_options = {
-      	  applyDefaultStyles: true
-      	, triggerEventsOnLoad: true
-      	, center__onresize: function () {
-      		// ReSize GTable
-      		var new_width = $('#table_canvas').parent().width();
-      		alert("new width: "+ new_width);
-      		alert(table);
-      		table.setOptions({'width':'30'});    		
-      		
-      		alert('after set option');
-      		//var new_height = $('#table_canvas').parent().height();
-      		// Calculate height to 30% of parent container
-      		//new_height = parseInt(new_height) * .3;
-      		//alert("new height: "+ new_height);
-      		//$table.setOption('height',new_height);
-      		
-      		// Re draw table with new dimensions
-      		table.draw();
-      		alert('table redrawn');
-      	}
-      };
-      $('#content').layout(layout_options);
+      });          
     
     // Method access database and pulls records according to search parameters
     function get_map_locs(latlng, radius, keywords){
