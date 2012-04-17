@@ -176,10 +176,13 @@ class WebDB:
         
         # Create a dictionary of column names and values                
         labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
-        for index, item in enumerate(row):
+        html_row = []
+        for item in row:
             if isinstance(item, str):
-                row[index] = "<br />".join(item.split("\n"))
-        data_details = dict(zip(labels, row))
+                html_row.append("<br />".join(item.split("\n")))
+            else:
+                html_row.append(item)
+        data_details = dict(zip(labels, html_row))
         
         # Return results
         return json.dumps(data_details)
