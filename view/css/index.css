@@ -99,7 +99,7 @@ form div.indent{
     color: #3F3731;
     font-weight: normal;
 }
-#data_details pre{
+#data_details p{
 	word-wrap: break-word;
     background-color: white;
     border-radius: 6px 6px 6px 6px;
