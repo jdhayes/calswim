@@ -122,7 +122,7 @@ legend{
 .input_wrapper{
 	margin-bottom: 15px;
 }
-.input_wrapper label{
+label{
 	font-weight: bold;
 	font-style: italic;	
 }
