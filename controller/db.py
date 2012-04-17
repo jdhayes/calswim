@@ -134,7 +134,7 @@ class WebDB:
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
             print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
             #self.cursor.execute(insert_query)
-            json_data = {'message':insert_query} #'Data import successful'}
+            json_data = {'message':'Data import successful'}
         
         # Commit queries
         self.db.commit()
