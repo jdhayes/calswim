@@ -176,9 +176,9 @@ class WebDB:
         
         # Create a dictionary of column names and values                
         labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
-        for item in row:
+        for index, item in enumerate(row):
             if isinstance(item, str):
-                item = "<br />".join(item.split("\n"))
+                row[index] = "<br />".join(item.split("\n"))
         data_details = dict(zip(labels, row))
         
         # Return results
