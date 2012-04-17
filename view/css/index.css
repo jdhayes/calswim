@@ -104,7 +104,7 @@ form div.indent{
     border-radius: 6px 6px 6px 6px;
     padding: 10px;
 }
-#data_details{
+.rounded_box{
 	border-radius: 6px 6px 6px 6px;
     margin: auto;
     padding: 23px; 
