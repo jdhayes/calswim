@@ -57,7 +57,7 @@
         </div>
         
         <div id="data_details_wrapper" class="rounded ui-layout-west">
-            <h2>Data Detail</h2>                     
+            <h2>Data Details</h2>                     
             <div id="data_details" class="rounded_box"></div>               
         </div>
     </div>
