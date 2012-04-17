@@ -33,7 +33,7 @@ function initTableMap(json_data) {
     // Filter viewable columns
     tableGeoView.setColumns([2,3,4]);
     // Draw Table
-    var tableOptions = {page:'disable', showRowNumber:false};    
+    var tableOptions = {page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);
     
 	// No search results found
@@ -239,7 +239,7 @@ function initialize() {
     data.addColumn('string','Description');
     data.addColumn('string','URL');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
-    table.draw(data, {showRowNumber: false});
+    table.draw(data, {showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
     
     // Initialize center layout
     var layout_options = {
