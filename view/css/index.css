@@ -99,7 +99,7 @@ form div.indent{
     color: #3F3731;
     font-weight: normal;
 }
-#data_details p{
+#data_details pre{
     background-color: white;
     border-radius: 6px 6px 6px 6px;
     padding: 10px;
