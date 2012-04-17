@@ -133,7 +133,7 @@ class WebDB:
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
             print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
-            #self.cursor.execute(insert_query)
+            self.cursor.execute(insert_query)
             json_data = {'message':'Data import successful'}
         
         # Commit queries
