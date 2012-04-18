@@ -35,14 +35,16 @@
                 <label>Address</label>
                 <input id="address"/>            
                 
-                <label>Search Radius (Miles)</label>
-                <select id="radius">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
+                <div style="display: inline; padding:0px 50px 0px 50px">
+                    <label>Search Radius (Miles)</label>
+                    <select id="radius">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
                 
                 <label>Keywords</label>
                 <input id="keywords" />
