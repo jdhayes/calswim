@@ -31,7 +31,7 @@ function initTableMap(json_data) {
     // Filter geo data
     var tableGeoView = new google.visualization.DataView(geoData);
     // Filter viewable columns
-    tableGeoView.setColumns([1,2,3,4]);
+    tableGeoView.setColumns([1,2,3,4,5]);
     // Draw Table
     var tableOptions = {page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);
@@ -235,7 +235,9 @@ function initialize() {
     
     // Init Table
     var data = new google.visualization.DataTable();
-    data.addColumn('string','Project Name');
+    data.addColumn('string','Organization');
+    data.addColumn('string','Project');
+    data.addColumn('string','Description');
     data.addColumn('string','Data Type');
     data.addColumn('string','Data Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
