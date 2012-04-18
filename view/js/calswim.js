@@ -31,7 +31,7 @@ function initTableMap(json_data) {
     // Filter geo data
     var tableGeoView = new google.visualization.DataView(geoData);
     // Filter viewable columns
-    tableGeoView.setColumns([2,3,4]);
+    tableGeoView.setColumns([1,2,3,4]);
     // Draw Table
     var tableOptions = {page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);
