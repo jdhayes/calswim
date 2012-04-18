@@ -268,7 +268,8 @@ class WebDB:
             rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}, {"v":row[5]}]} )
     
         # Return search values as json
-        cols = [{"id":'organization', "label":'Organization', "type":'string'},
+        cols = [{"id":'gd_id', "label":'gd_id', "type":'string'},
+                {"id":'organization', "label":'Organization', "type":'string'},
                 {"id":'project', "label":'Project', "type":'string'},
                 {"id":'description', "label":'Description', "type":'string'},
                 {"id":'datatype', "label":'Data Type', "type":'string'},

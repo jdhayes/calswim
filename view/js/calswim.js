@@ -235,9 +235,9 @@ function initialize() {
     
     // Init Table
     var data = new google.visualization.DataTable();
-    data.addColumn('string','Source');
-    data.addColumn('string','Description');
-    data.addColumn('string','URL');
+    data.addColumn('string','Project Name');
+    data.addColumn('string','Data Type');
+    data.addColumn('string','Data Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     table.draw(data, {showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
     
