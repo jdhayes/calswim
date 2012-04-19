@@ -263,6 +263,7 @@ function initialize() {
     			if (index > 0){	    			
 	    			$(obj).width(new_width);
 	    			$(obj).height(new_height);
+	    			$(obj).css('overflow','visible');
     			}
     		});
     	}
