@@ -257,13 +257,14 @@ function initialize() {
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header
     		var new_width = $('table.google-visualization-table-table').width();
-    		alert(new_width);
-    		    		    		    	
-    		$('table.google-visualization-table-table').parent().each(function(index, obj){
-    			var old_width = $(obj).width()
-    			alert(old_width);
-    			$(obj).width(new_width);
-    		});
+    		//alert(new_width);
+    		
+    		$('table.google-visualization-table-table').parent().get(-1).width(new_width);
+    		//$('table.google-visualization-table-table').parent().each(function(index, obj){
+    		//	var old_width = $(obj).width()
+    		//	alert(old_width);
+    		//	$(obj).width(new_width);
+    		//});
     	}
     };
     $('#content').layout(layout_options);
