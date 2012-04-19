@@ -258,6 +258,8 @@ function initialize() {
     		// ReSize GTable
     		var new_width = $('#table_canvas').width();
     		alert(new_width);
+    		var phtml = $('table.google-visualization-table-table').parent.html()
+    		alert(phtml);
     		$('table.google-visualization-table-table').parent.width(new_width);
     		$('table.google-visualization-table-table').parent.height('45px');
     	}
