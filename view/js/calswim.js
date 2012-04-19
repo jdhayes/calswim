@@ -257,7 +257,12 @@ function initialize() {
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header
     		var new_width = $('table.google-visualization-table-table').width();
-    		$('table.google-visualization-table-table').parent().get(1).width(new_width);    		
+    		alert(new_width);
+    		var width = $('table.google-visualization-table-table').css('width');
+    		alert(width);
+    		var pwidth = $('table.google-visualization-table-table').parent().css('width');
+    		alert(pwidth);
+    		//$('table.google-visualization-table-table').parent().get(1).width(new_width);    		
     		//$('table.google-visualization-table-table').parent().each(function(index, obj){});
     	}
     };
