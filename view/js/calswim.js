@@ -258,9 +258,12 @@ function initialize() {
     		// ReSize GTable Fixed Header to the duplicated header underneath
     		var new_width = $('tr.ui-widget-header').width();
     		var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
-    		var gtable_wrapper = $('#table_canvas div:last');    		
-    		$(gtable_wrapper).width(new_width);
-			$(gtable_wrapper).height(new_height);			
+    		$('#table_canvas div').each( function(index, obj){
+    			if (index > 0){
+	    			$(obj).width(new_width);
+	    			$(obj).height(new_height);
+    			}
+    		});    		    			
     	}
     };
     $('#content').layout(layout_options);
