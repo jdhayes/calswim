@@ -256,8 +256,9 @@ function initialize() {
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header
-    		var new_width = $('tr.ui-widget-header').width();
-    		var new_height = $('td.google-visualization-table-th').height();
+    		var new_width = $('tr.ui-widget-header').css('width');
+    		var new_height = $('td.google-visualization-table-th').css('height');
+    		alert(new_height);
     		var gtable_wrapper = $('#table_canvas div:last');    		
     		$(gtable_wrapper).width(new_width);
 			$(gtable_wrapper).height(new_height);
