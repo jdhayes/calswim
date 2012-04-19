@@ -256,8 +256,10 @@ function initialize() {
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header
-    		var new_width = $('table.google-visualization-table-table').width();
-    		alert(new_width);    		    		    		    
+    		var new_width = $('tr.ui-widget-header').width();
+    		var new_height = $('tr.ui-widget-header').height();
+    		alert(new_width);
+    		alert(new_height);
     		
     		$('table.google-visualization-table-table').parent().each(function(index, obj){
     			if (index > 0){
