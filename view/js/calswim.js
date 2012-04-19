@@ -255,10 +255,10 @@ function initialize() {
     	//, north__paneSelector:  "#search_canvas"
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
-    		// ReSize GTable    		
-    		$('table.google-visualization-table-table').parent().each(function(index, obj){
-    			alert(obj);
-    		});
+    		// ReSize GTable Fixed Header
+    		var new_width = $('table.google-visualization-table-table').width();
+    		$('table.google-visualization-table-table').parent().get(1).width(new_width);    		
+    		//$('table.google-visualization-table-table').parent().each(function(index, obj){});
     	}
     };
     $('#content').layout(layout_options);
