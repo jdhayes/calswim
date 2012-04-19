@@ -260,9 +260,9 @@ function initialize() {
     		alert(new_width);
     		    		    		    	
     		$('table.google-visualization-table-table').parent().each(function(index, obj){
-    			var old_width = $obj.width()
+    			var old_width = obj.width()
     			alert(old_width);
-    			$(obj).width(new_width);
+    			obj.width(new_width);
     		});
     	}
     };
