@@ -255,10 +255,9 @@ function initialize() {
     	//, north__paneSelector:  "#search_canvas"
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
-    		// ReSize GTable Fixed Header
+    		// ReSize GTable Fixed Header to the duplicated header underneath
     		var new_width = $('tr.ui-widget-header').width();
-    		var new_height = $('td.google-visualization-table-th').outerHeight(true);
-    		alert(new_height);
+    		var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
     		var gtable_wrapper = $('#table_canvas div:last');    		
     		$(gtable_wrapper).width(new_width);
 			$(gtable_wrapper).height(new_height);			
