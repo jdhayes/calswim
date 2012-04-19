@@ -257,7 +257,7 @@ function initialize() {
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header
     		var new_width = $('tr.ui-widget-header').width();
-    		var new_height = $('tr.ui-widget-header').height();
+    		var new_height = $('td.google-visualization-table-th').height();
     		alert(new_width);
     		alert(new_height);
     		
