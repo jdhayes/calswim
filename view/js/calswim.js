@@ -33,7 +33,8 @@ function initTableMap(json_data) {
     // Filter viewable columns
     tableGeoView.setColumns([1,2,3,4,5]);
     // Draw Table
-    var tableOptions = {width:'100%',height:'30%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
+    var new_height = $('#table_canvas').height();
+    var tableOptions = {width:'100%',height: new_height,page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);
     
 	// No search results found
@@ -241,7 +242,8 @@ function initialize() {
     data.addColumn('string','Data Type');
     data.addColumn('string','Data Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
-    table.draw(data, {width:'100%', height:'30%', showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
+    var new_height = $('#table_canvas').height();
+    table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
     
     // Initialize center layout
     var layout_options = {
