@@ -259,8 +259,8 @@ function initialize() {
     		var new_width = $('table.google-visualization-table-table').width();
     		alert(new_width);
     		    		
-    		alert('help')
     		var old_width = $('table.google-visualization-table-table').parent().get(0).width();
+    		alert('help')
     		alert(old_width);
     		old_width = $('table.google-visualization-table-table').parent().get(1).width();
     		alert(old_width);
