@@ -254,7 +254,7 @@ function initialize() {
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
     		// ReSize GTable
-    		var new_width = $('#table_canvas').parent().width();
+    		var new_width = parsInt($('#table_canvas').parent().width()) - 16;
     		$('.google-visualization-table-table').width(new_width);
     	}
     };
