@@ -258,14 +258,11 @@ function initialize() {
     		// ReSize GTable Fixed Header
     		var new_width = $('tr.ui-widget-header').width();
     		var new_height = $('td.google-visualization-table-th').height();
-    		alert(new_width);
-    		alert(new_height);
     		
     		$('table.google-visualization-table-table').parent().each(function(index, obj){
-    			if (index > 0){
-	    			var old_width = $(obj).width()
-	    			alert(old_width);
+    			if (index > 0){	    			
 	    			$(obj).width(new_width);
+	    			$(obj).height(new_height);
     			}
     		});
     	}
