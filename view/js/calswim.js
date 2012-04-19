@@ -256,7 +256,7 @@ function initialize() {
     		// ReSize GTable
     	//	var new_width = $('#table_canvas').parent().width();
     	//	$('.google-visualization-table-table').width(new_width);
-    	}
+    	//}
     };
     $('#content').layout(layout_options);
     
