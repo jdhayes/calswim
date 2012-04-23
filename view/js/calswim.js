@@ -222,7 +222,7 @@ function initialize() {
         ,north__closable:        false
         ,north__resizeable:      false
         ,north__size:            100                         
-        ,north__maxSize:         50
+        ,north__maxSize:         100
         ,south__paneSelector:    "#footer"
         ,south__closable:        false
         ,south__resizeable:      false
