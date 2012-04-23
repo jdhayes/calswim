@@ -54,8 +54,11 @@ h1{
     width: 100%;
     z-index: 99999;
     height: 50px;
-    background-color: #FFDAB9;
-    color: #5E2612;
+    background-color: #E9C2A6;
+    color: #E9C2A6;
+}
+#title{
+	margin-left: 35px;
 }
 #uppload_message{
 	display: none;
