@@ -194,6 +194,12 @@
         </div>
     </div>
     
-    <div id="footer" class="dark">CalSWIM &copy; ICS @ UCI</div>
+    <div id="footer">
+        <p>
+            Center for Environmental Biology<br />
+            School of Biological Science<br />
+            University of California, Irvine
+        </p>        
+    </div>
   </body>
 </html>

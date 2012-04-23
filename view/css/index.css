@@ -82,7 +82,8 @@ h1{
     color: #655241; 
 	clear: both;
 	padding-left: 35px;
-	font-size: 8pt;	
+	font-size: 8pt;
+	font-variant:small-caps;
 }
 
 /* Upload Form CSS */
