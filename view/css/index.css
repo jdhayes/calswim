@@ -50,11 +50,8 @@ h1{
 
 /* IDs */
 #header {  
-    position: fixed;
-    top: 0;
     width: 100%;
-    z-index: 99999;
-    height: 50px;
+    height: 120px;
     background-color: #FFF6C1;
     color: #655241;  
 }
