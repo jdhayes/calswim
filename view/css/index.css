@@ -48,6 +48,8 @@ h1{
     width: 100%;
     z-index: 99999;
     height: 50px;
+    background-color: #FFDAB9;
+    color: #5E2612;
 }
 #upload {
 	float: right;

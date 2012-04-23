@@ -23,7 +23,7 @@
     </script>
   </head>
   <body>
-    <div id="header" class="dark">
+    <div id="header">
         <h1>ECOLOGICAL DATA PORTAL</h1>
         <p>A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND</p>
         <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>

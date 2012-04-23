@@ -221,7 +221,7 @@ function initialize() {
         ,north__paneSelector:    "#header"
         ,north__closable:        false
         ,north__resizeable:      false
-        ,north__size:            50                         
+        ,north__size:            100                         
         ,north__maxSize:         50
         ,south__paneSelector:    "#footer"
         ,south__closable:        false
