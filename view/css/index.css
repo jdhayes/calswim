@@ -37,8 +37,12 @@ h1{
 .tab{
 	background-color: #EE4000;
 	color: white;
-	font-size: 12pt;
-	font-family: 'Helvetica Neue', Arial, sans-serif;
+	font-size: 10pt;
+	/*font-family: 'Helvetica Neue', Arial, sans-serif;*/
+	font-family: 'Lucida Fax', monospace;
+	padding: 5px 15px 5px 15px;
+	float: left;
+	clear: both;
 }
 
 /* IDs */
