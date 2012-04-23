@@ -226,8 +226,8 @@ function initialize() {
         ,south__paneSelector:    "#footer"
         ,south__closable:        false
         ,south__resizeable:      false
-        ,south__size:            25                           
-        ,south__maxSize:         25
+        ,south__size:            100                           
+        ,south__maxSize:         100
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
