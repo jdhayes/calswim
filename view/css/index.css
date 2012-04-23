@@ -43,6 +43,8 @@ h1{
 	padding: 5px 15px 5px 15px;
 	float: left;
 	clear: both;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 /* IDs */

@@ -26,7 +26,13 @@
     <div id="header">
         <h1>ECOLOGICAL DATA PORTAL</h1>
         <p>A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND</p>
-        <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>
+        <div id="menu">
+            <a id="home" class="tab" href="#form_wrapper">Home</a>
+            <a id="about" class="tab" href="#form_wrapper">About</a>
+            <a id="tools" class="tab" href="#form_wrapper">Tools</a>
+            <a id="upload" class="tab" href="#form_wrapper">Upload</a>
+            <a id="contact" class="tab" href="#form_wrapper">Contact</a>            
+        </div>
     </div>
     
     <div id="content">                
