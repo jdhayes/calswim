@@ -249,6 +249,7 @@ function initialize() {
     var layout_options = {
     	applyDefaultStyles:     true
     	, west__initClosed:     true
+    	, north__initClosed:    true
     	, west__size:           300
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"

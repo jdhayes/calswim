@@ -25,7 +25,7 @@
   <body>
     <div id="header">
         <div id="title">
-            <h1>ECOL<span>O</span>GI<span>C</span>AL DATA PORTAL</h1>
+            <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
             <p>
                A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA<br />
                FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND

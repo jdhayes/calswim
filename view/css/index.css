@@ -36,11 +36,10 @@ h1{
 	height: 100%;
 }
 .tab{
-	background-color: #FF2F28;
+	background-color: #FF4500;
 	color: #FFF6C1;
 	font-size: 10pt;
-	/*font-family: 'Helvetica Neue', Arial, sans-serif;*/
-	font-family: 'Lucida Fax', monospace;
+	font-family: 'Helvetica Neue', Arial, sans-serif;	
 	padding: 5px 15px 5px 15px;
 	float: left;
 	margin-right: 5px;
