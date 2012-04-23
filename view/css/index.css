@@ -34,6 +34,12 @@ h1{
 	width: 100%;
 	height: 100%;
 }
+.tab{
+	background-color: #EE4000;
+	color: white;
+	font-size: 12pt;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+}
 
 /* IDs */
 #header {  

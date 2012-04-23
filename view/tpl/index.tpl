@@ -24,8 +24,9 @@
   </head>
   <body>
     <div id="header" class="dark">
-        <h1>Welcome to CalSWIM!</h1>
-        <a id="upload" class="button" href="#form_wrapper">Upload</a>
+        <h1>ECOLOGICAL DATA PORTAL</h1>
+        <p>A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND</p>
+        <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>
     </div>
     
     <div id="content">                
