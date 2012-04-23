@@ -25,8 +25,11 @@
   <body>
     <div id="header">
         <div id="title">
-            <h1>ECOLOGICAL DATA PORTAL</h1>
-            <p>A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND</p>
+            <h1>ECOL<span>O</span>GI<span>C</span>AL DATA PORTAL</h1>
+            <p>
+               A RESOURCE FOR LOCATING EXPERIMENTAL AND MONITORING DATA<br />
+               FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND
+            </p>
         </div>
         <div id="menu">
             <a id="home" class="tab" href="#form_wrapper">Home</a>
