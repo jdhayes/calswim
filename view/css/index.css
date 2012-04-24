@@ -16,6 +16,10 @@ h1{
 	padding: 0px;
 	margin: 0px;
 }
+h2{
+	color: #655241;
+	font-variant:small-caps;
+}
 h3{
 	margin-top: 0px;
 	padding: 3px;
