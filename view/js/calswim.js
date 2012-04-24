@@ -265,7 +265,7 @@ function initialize() {
 	    			$(obj).height(new_height);
     			}
     		});
-    		$('table.google-visualization-table-table').parent().height($('#table_canvas').height());
+    		$('table.google-visualization-table-table :first').parent().height($('#table_canvas').height());
     	}
     };
     $('#content').layout(layout_options);
