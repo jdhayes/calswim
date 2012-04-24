@@ -269,7 +269,7 @@ function initialize() {
     
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
-    //$(".button").button();
+    $(".button").button();
     
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
