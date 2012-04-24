@@ -195,7 +195,7 @@ function get_data_details(data_id) {
     	var html_details = "";
     	$.each(json_data, function(index, value){
     		if (value){    			
-    			html_details += '<h3 class="ui-widget-header">'+ index +'</h3><p>'+ value +'</p>';
+    			html_details += '<h3 class="ui-widget-header ui-corner-top">'+ index +'</h3><p>'+ value +'</p>';
     		}                    		
     	});
     	$("#data_details").html(html_details);
