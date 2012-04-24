@@ -4,7 +4,7 @@
     <style type="text/css" title="CalSWIMStyle">  
         @import "css/index.css";
         @import "css/jquery.colorbox.css";
-        @import "css/humanity/jquery-ui-1.8.18.custom.css";
+        @import "css/sunny/jquery-ui-1.8.19.custom.css";
     </style>   
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDYIRhex5ycocL6uuYWa5ZVf1yxwV-4eDk&sensor=false"></script>
