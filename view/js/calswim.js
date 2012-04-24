@@ -257,15 +257,12 @@ function initialize() {
     	//, triggerEventsOnLoad:  true
     	, center__onresize:     function () {
     		// ReSize GTable Fixed Header to the duplicated header underneath
+    		$('#table_canvas div div:first').height($('#table_canvas').height());
+    		
     		var new_width = $('table.google-visualization-table-table').width();
     		var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
-    		$('#table_canvas div').children('DIV').each( function(index, obj){
-    			if (index > 0){
-	    			$(obj).width(new_width);
-	    			$(obj).height(new_height);
-    			}
-    		});
-    		$('table.google-visualization-table-table :first').parent().height($('#table_canvas').height());
+    		$('#table_canvas div div:last').width(new_width);
+    		$('#table_canvas div div:last').height(new_height);    		    		
     	}
     };
     $('#content').layout(layout_options);
