@@ -43,7 +43,7 @@
     <div id="content">                
         <div id="search_canvas" class="rounded ui-layout-north">
             <h2>Search</h2>            
-            <div class="rounded_box">
+            <div class="ui-widget ui-widget-content ui-corner-all">
                 <label>Address</label>
                 <input id="address"/>            
                 
