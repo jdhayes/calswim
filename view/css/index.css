@@ -81,6 +81,9 @@ h1{
 #search_canvas {	
 	clear:both;	
 }
+#search{
+	padding: 15px 30px 15px 30px;
+}
 #footer{
     background-color: #FFF6C1;
     color: #655241; 
@@ -124,9 +127,7 @@ form div.indent{
     font-weight: normal;
 }
 #data_details p{
-	word-wrap: break-word;
-    background-color: white;
-    border-radius: 6px 6px 6px 6px;
+	word-wrap: break-word;    
     padding: 10px;
 }
 .rounded_box{

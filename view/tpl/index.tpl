@@ -32,18 +32,18 @@
             </p>
         </div>
         <div id="menu">
-            <a id="home" class="tab" href="#form_wrapper">Home</a>
-            <a id="about" class="tab" href="#form_wrapper">About The Data Portal</a>
-            <a id="tools" class="tab" href="#form_wrapper">Educational Tools</a>
-            <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>
-            <a id="contact" class="tab" href="#form_wrapper">Contact Us</a>            
+            <a id="home" class="tab" href="#home">Home</a>
+            <a id="about" class="tab" href="#about">About The Data Portal</a>
+            <a id="tools" class="tab" href="#tools">Educational Tools</a>
+            <a id="upload" class="tab" href="#upload">Upload Your Data</a>
+            <a id="contact" class="tab" href="#contact">Contact Us</a>
+            <a id="search_link" class="tab" href="#search">Search</a>
         </div>
     </div>
     
     <div id="content">                
-        <div id="search_canvas" class="rounded ui-layout-north">
-            <h2>Search</h2>            
-            <div class="ui-widget ui-widget-content ui-corner-all">
+        <div id="search_canvas" class="rounded ui-layout-north">                
+            <div id="search" class="ui-widget ui-widget-content ui-corner-all">
                 <label>Address</label>
                 <input id="address"/>            
                 

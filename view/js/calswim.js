@@ -265,7 +265,10 @@ function initialize() {
     		$('#table_canvas div div:last').height(new_height);    		    		
     	}
     };
-    $('#content').layout(layout_options);
+    var myLayout = $('#content').layout(layout_options);
+    $('#search_link').click(function(){
+    	myLayout.toggle('north');
+    });
     
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
