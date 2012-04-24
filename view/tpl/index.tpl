@@ -72,7 +72,7 @@
         
         <div id="data_details_wrapper" class="rounded ui-layout-west">
             <h2>Data Details</h2>                     
-            <div id="data_details" class="rounded_box"></div>               
+            <div id="data_details" class="ui-widget ui-widget-content ui-corner-all"></div>               
         </div>
     </div>
     
@@ -82,7 +82,7 @@
             <form id="upload_form" method="post" action="" enctype="multipart/form-data">              
                 <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>
-                <div class="indent">
+                <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper"> 
                         <label>Organization Name</label>
                         <input id="organization" name="organization" class="required full" />
@@ -106,7 +106,7 @@
                 </div>
                 
                 <h2>Project Information</h2>
-                <div class="indent">
+                <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
                         <label>Project name</label>
                         <textarea id="label" name="label" class="required full"></textarea>
@@ -129,7 +129,7 @@
                 </div>
                 
                 <h2>Meta Data</h2>
-                <div class="indent">
+                <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
                         <label>Habitat or target species</label>
                         <textarea id="target" name="target" class="required full"></textarea>
@@ -161,7 +161,7 @@
                 </div>
                 
                 <h2>Location</h2>
-                <div id="location" class="indent">                    
+                <div id="location" class="indent ui-widget ui-widget-content ui-corner-all">                    
                     <div class="input_wrapper">                
                         <label>Latitude</label>
                         <input id="lat" name="lat" class="number" />
@@ -177,7 +177,7 @@
                 </div>
                 
                 <h2>Other</h2>
-                <div class="indent">
+                <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
                         <label>Searchable keywords</label>
                         <textarea id="keyword" name="keyword" class="required full"></textarea>
