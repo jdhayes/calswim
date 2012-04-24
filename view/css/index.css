@@ -57,6 +57,9 @@ h1{
 #title{
 	margin-left: 35px;
 }
+#title p{
+	font-family: georgia;
+}
 #uppload_message{
 	display: none;
 }
