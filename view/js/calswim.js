@@ -270,6 +270,9 @@ function initialize() {
     	myLayout.toggle('north');
     });
     
+    // Initialize resizable table container
+    $('table_canvas').resizable();
+    
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
