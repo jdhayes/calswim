@@ -271,6 +271,7 @@ function initialize() {
     });
     
     // Initialize resizable table container
+    resizeOptions = {containment:"parent", handles:"n"}
     $('#table_canvas').resizable();
     
     $("#address").Watermark("Everywhere");
