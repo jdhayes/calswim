@@ -272,7 +272,7 @@ function initialize() {
     
     // Initialize resizable table container
     resizeOptions = {containment:"parent", handles:"n"}
-    $('#table_canvas').resizable();
+    $('#table_canvas').resizable(resizeOptions);
     
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
