@@ -33,10 +33,10 @@
         </div>
         <div id="menu">
             <a id="home" class="tab" href="#home">Home</a>
-            <a id="about" class="tab" href="#about">About The Data Portal</a>
-            <a id="tools" class="tab" href="#tools">Educational Tools</a>
+            <a id="about_link" class="tab" href="#about">About The Data Portal</a>
+            <a id="tools_link" class="tab" href="#tools">Educational Tools</a>
             <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>
-            <a id="contact" class="tab" href="#contact">Contact Us</a>
+            <a id="contact_link" class="tab" href="#contact">Contact Us</a>
             <a id="search_link" class="tab" href="#search">Search</a>
         </div>
     </div>

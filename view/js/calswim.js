@@ -275,9 +275,9 @@ function initialize() {
     });       
     
     /* Init colorbox overlays */
-	$("#about").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
-	$("#tools").colorbox({inline:true,maxHeight:"100%",width:"500px"});
-	$("#contact").colorbox({inline:true,maxHeight:"100%",width:"500px"});
+	$("#about_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
+	$("#tools_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
+	$("#contact_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
     /* Init watermarks and buttons */
 	$("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
