@@ -271,7 +271,7 @@ function initialize() {
     });
     
     // Initialize resizable table container
-    $('table_canvas').resizable();
+    $('#table_canvas').resizable();
     
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
