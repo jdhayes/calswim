@@ -44,7 +44,7 @@
     <div id="content">                
         <div id="search_canvas" class="rounded ui-layout-north">                
             <div id="search" class="ui-widget ui-widget-content ui-corner-all">
-                <label>Address</label>
+                <label>Location</label>
                 <input id="address"/>            
                 
                 <div style="display: inline; padding:0px 50px 0px 50px">

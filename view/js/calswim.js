@@ -161,6 +161,10 @@ function initTableMap(json_data) {
         	infowindow.close();
         }); 
     }
+    
+    // Initialize resizable table container
+    resizeOptions = {handles:"n"}
+    $('#table_canvas').resizable(resizeOptions);
 }
 
 // Clear all selections on the map
@@ -268,11 +272,7 @@ function initialize() {
     var myLayout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
     	myLayout.toggle('north');
-    });
-    
-    // Initialize resizable table container
-    resizeOptions = {handles:"n"}
-    $('#table_canvas').resizable(resizeOptions);
+    });       
     
     $("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
