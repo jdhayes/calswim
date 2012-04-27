@@ -45,7 +45,7 @@
         <div id="search_canvas" class="rounded ui-layout-north">                
             <div id="search" class="ui-widget ui-widget-content ui-corner-all">
                 <label>Location</label>
-                <input id="address"/>            
+                <input id="address"/>
                 
                 <div style="display: inline; padding:0px 50px 0px 50px">
                     <label>Search Radius (Miles)</label>
@@ -78,7 +78,40 @@
     
     <div id="upload_message"></div>
     <div id="form_hidden_wrapper">
-        <div id="form_wrapper">
+        <div id="about"  class="colorbox_content">
+            <p>
+                The Ecological Data Portal is a web portal that maps and links available
+                information on ecological datasets collected in Orange County. It is being
+                developed through collaborations between UC Irvine’s Center for
+                Environmental Biology (CEB), the UC Irvine Dept. of Informatics, and
+                numerous agencies and NGOs.
+            </p>
+            <p>
+                Over time, many agencies, consulting firms, and academic researchers have
+                conducted ecological monitoring projects and experiments throughout Orange
+                County.  There is currently a large volume of data held by different
+                agencies on a variety of parameters, held in different forms without
+                common metadata.  The data portal provides knowledge of these datasets,
+                useful for improving the potential for future collaborations, addressing
+                basic questions in local ecology, and for developing a baseline for future
+                monitoring.
+            </p>
+        </div>
+        <div id="tools"  class="colorbox_content">
+            In the future, we hope to provide specific ecological data sets and lesson plans for instructional purposes.            
+        </div>
+        <div id="contact"  class="colorbox_content">
+            <pre>
+                Sarah Kimball
+                Center for Environmental Biology
+                3110 Biological Sciences III
+                University of California, Irvine
+                Irvine, CA 92697
+                (949)824-7151
+                <a href="mailto:skimball@uci.edu">skimball@uci.edu</a>
+            </pre>
+        </div>
+        <div id="form_wrapper" class="colorbox_content">
             <form id="upload_form" method="post" action="" enctype="multipart/form-data">              
                 <h3>Please fill out and submit the following form to register your data location[s]</h3>                
                 <h2>Source Information</h2>

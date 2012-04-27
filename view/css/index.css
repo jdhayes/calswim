@@ -107,7 +107,7 @@ h3{
 #form_hidden_wrapper{
 	display: none;
 }
-#form_wrapper{
+.colorbox_content{
 	margin: auto;	
 	padding: 15px;
 	overflow-x: hidden;

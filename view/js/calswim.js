@@ -163,7 +163,7 @@ function initTableMap(json_data) {
     }
     
     // Initialize resizable table container
-    resizeOptions = {handles:"n"}
+    resizeOptions = {handles:"n", alsoResize:'#table_canvas div div:last'}
     $('#table_canvas').resizable(resizeOptions);
 }
 
@@ -274,7 +274,12 @@ function initialize() {
     	myLayout.toggle('north');
     });       
     
-    $("#address").Watermark("Everywhere");
+    /* Init colorbox overlays */
+	$("#about").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
+	$("#tools").colorbox({inline:true,maxHeight:"100%",width:"500px"});
+	$("#contact").colorbox({inline:true,maxHeight:"100%",width:"500px"});
+    /* Init watermarks and buttons */
+	$("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");
     $(".button").button();
     
