@@ -104,10 +104,7 @@ h3{
 	padding-left: 35px;
 	font-size: 8pt;
 	font-variant:small-caps;
-	width: 350px;
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
+    height: 200px;
 }
 
 /* Upload Form CSS */
@@ -142,6 +139,10 @@ form div.indent{
     /*border: 1px solid #CDC3B7;*/
     /*color: #3F3731;*/
     font-weight: normal;
+}
+
+#data_details {
+	margin-bottom: 200px;
 }
 #data_details p{
 	word-wrap: break-word; 

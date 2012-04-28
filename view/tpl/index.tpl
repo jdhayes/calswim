@@ -66,7 +66,15 @@
         
         <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
             <h2>Data Details</h2>                     
-            <div id="data_details" class=""></div>               
+            <div id="data_details" class=""></div>
+            
+            <div id="footer">
+                <p>
+                    Center for Environmental Biology<br />
+                    School of Biological Science<br />
+                    University of California, Irvine
+                </p>        
+            </div>
         </div>
     </div>
     
@@ -219,14 +227,6 @@
                 <button id="upload_button" class="button">Submit</button>                
             </form>
         </div>
-    </div>
-    
-    <div id="footer">
-        <p>
-            Center for Environmental Biology<br />
-            School of Biological Science<br />
-            University of California, Irvine
-        </p>        
-    </div>
+    </div>       
   </body>
 </html>
