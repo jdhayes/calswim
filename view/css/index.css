@@ -10,6 +10,7 @@ body {
 	font-family: arial,sans-serif;
     font-size: 13px;
     color: #222222;
+    background-color: #FEEEBD;
 }
 h1{
 	font-size: 33px;
@@ -60,8 +61,11 @@ h3{
 #header {  
     width: 100%;
     height: 120px;
-    background-color: #FFF6C1;
+    background-color: #FEEEBD; /*#FFF6C1*/
     color: #655241;  
+}
+#menu {
+	margin-left: 35px;
 }
 #title{
 	width: 470px;
@@ -95,7 +99,7 @@ h3{
 	padding: 15px 30px 15px 30px;
 }
 #footer{
-    background-color: #FFF6C1;
+    background-color: #FEEEBD; /*#FFF6C1*/
     color: #655241; 
 	clear: both;
 	padding-left: 35px;

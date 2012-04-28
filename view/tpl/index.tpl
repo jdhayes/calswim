@@ -26,10 +26,6 @@
     <div id="header">
         <div id="title">
             <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
-            <p>
-               A RESOURCE FOR LOCATING EXPERIMENTAL, RESTORATION, AND MONITORING DATA
-               FROM ORANGE COUNTY, CALIFORNIA, AND BEYOND
-            </p>
         </div>
         <div id="menu">
             <a id="home" class="tab" href="#home">Home</a>
@@ -48,7 +44,7 @@
                 <input id="address"/>
                 
                 <div style="display: inline; padding:0px 50px 0px 50px">
-                    <label>Search Radius (Miles)</label>
+                    <label>Radius (Miles)</label>
                     <select id="radius">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -61,7 +57,7 @@
                 <label>Keywords</label>
                 <input id="keywords" />
                 
-                <span id="search_button" class="button">Search</span>
+                <span id="search_button" class="button">Show</span>
             </div>
         </div>
         
