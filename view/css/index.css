@@ -105,6 +105,8 @@ h3{
 	font-size: 8pt;
 	font-variant:small-caps;
     height: 200px;
+    bottom: 0px;
+    position: absolute;
 }
 
 /* Upload Form CSS */
