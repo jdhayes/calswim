@@ -104,6 +104,10 @@ h3{
 	padding-left: 35px;
 	font-size: 8pt;
 	font-variant:small-caps;
+	width: 350px;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
 }
 
 /* Upload Form CSS */

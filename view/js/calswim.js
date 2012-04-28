@@ -227,11 +227,11 @@ function initialize() {
         ,north__resizeable:      false
         ,north__size:            63                         
         ,north__maxSize:         63
-        ,south__paneSelector:    "#footer"
-        ,south__closable:        false
-        ,south__resizeable:      false
-        ,south__size:            100                           
-        ,south__maxSize:         100
+        //,south__paneSelector:    "#footer"
+        //,south__closable:        false
+        //,south__resizeable:      false
+        //,south__size:            100                           
+        //,south__maxSize:         100
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
