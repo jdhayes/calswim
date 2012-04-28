@@ -225,8 +225,8 @@ function initialize() {
         ,north__paneSelector:    "#header"
         ,north__closable:        false
         ,north__resizeable:      false
-        ,north__size:            120                         
-        ,north__maxSize:         120
+        ,north__size:            63                         
+        ,north__maxSize:         63
         ,south__paneSelector:    "#footer"
         ,south__closable:        false
         ,south__resizeable:      false
