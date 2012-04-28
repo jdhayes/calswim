@@ -271,9 +271,8 @@ class WebDB:
         cols = [{"id":'gd_id', "label":'gd_id', "type":'string'},
                 {"id":'organization', "label":'Organization', "type":'string'},
                 {"id":'project', "label":'Project', "type":'string'},
-                {"id":'description', "label":'Description', "type":'string'},
-                {"id":'datatype', "label":'Data Type', "type":'string'},
-                {"id":'target', "label":'Data Target', "type":'string'}]
+                {"id":'description', "label":'Description', "type":'string'},                
+                {"id":'target', "label":'Target', "type":'string'}]
         table_data["cols"] = cols
         table_data["rows"] = rows
         # Assign table data to json table data container

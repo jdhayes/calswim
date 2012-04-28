@@ -242,9 +242,8 @@ function initialize() {
     var data = new google.visualization.DataTable();
     data.addColumn('string','Organization');
     data.addColumn('string','Project');
-    data.addColumn('string','Description');
-    data.addColumn('string','Data Type');
-    data.addColumn('string','Data Target');
+    data.addColumn('string','Description');    
+    data.addColumn('string','Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     var new_height = $('#table_canvas').height();
     table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
