@@ -64,9 +64,9 @@
             <div id="table_canvas"></div>            
         </div>
         
-        <div id="data_details_wrapper" class="rounded ui-layout-west">
+        <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
             <h2>Data Details</h2>                     
-            <div id="data_details" class="ui-widget ui-widget-content ui-corner-all"></div>               
+            <div id="data_details" class=""></div>               
         </div>
     </div>
     
