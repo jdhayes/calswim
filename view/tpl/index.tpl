@@ -38,27 +38,25 @@
     </div>
     
     <div id="content">                
-        <div id="search_canvas" class="rounded ui-layout-north">                
-            <div id="search" class="ui-widget ui-widget-content ui-corner-all">
-                <label>Location</label>
-                <input id="address"/>
-                
-                <div style="display: inline; padding:0px 50px 0px 50px">
-                    <label>Radius (Miles)</label>
-                    <select id="radius">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                
-                <label>Keywords</label>
-                <input id="keywords" />
-                
-                <span id="search_button" class="button">Show</span>
+        <div id="search" class="rounded ui-layout-north ui-widget ui-widget-content ui-corner-all">            
+            <label>Location</label>
+            <input id="address"/>
+            
+            <div style="display: inline; padding:0px 50px 0px 50px">
+                <label>Radius (Miles)</label>
+                <select id="radius">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
             </div>
+            
+            <label>Keywords</label>
+            <input id="keywords" />
+            
+            <span id="search_button" class="button">Show</span>            
         </div>
         
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
