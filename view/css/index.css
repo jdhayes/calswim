@@ -65,9 +65,9 @@ h3{
 }
 #header_image_wrapper{
     float: right;
-    background-image: url("/images/edp_header.png") no-repeat #EDE4D4;
-    width: 73px;
-    height:	189px;
+    background: #FEEEBD url("/images/edp_header.png") no-repeat right top;
+    height: 73px;
+    width: 189px;
 }
 #menu {
 	margin-left: 35px;
