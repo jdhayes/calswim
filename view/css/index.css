@@ -63,6 +63,12 @@ h3{
     background-color: #FEEEBD; /*#FFF6C1*/
     color: #655241;  
 }
+#header_image_wrapper{
+    float: right;
+    background-image: url("/images/edp_header.png") no-repeat #EDE4D4;
+    width: 73px;
+    height:	189px;
+}
 #menu {
 	margin-left: 35px;
 }
@@ -104,7 +110,7 @@ h3{
 	padding-left: 35px;
 	font-size: 8pt;
 	font-variant:small-caps;
-    height: 200px;
+    height: 60px;
     bottom: 0px;
     position: absolute;
 }
