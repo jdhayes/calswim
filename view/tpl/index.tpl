@@ -86,15 +86,14 @@
             <p>
                 The Ecological Data Portal is a web portal that maps and links available
                 information on ecological datasets collected in Orange County. It is being
-                developed through collaborations between UC Irvine's Center for
-                Environmental Biology (CEB), the UC Irvine Dept. of Informatics, and
-                numerous agencies and NGOs.
+                developed through collaborations between the following:
             </p>
             <ul id="logos">
-                <li><img src="/images/ceb_logo.png" /></li>
-                <li><img src="/images/mg_logo.png" /></li>
-                <li><img src="/images/igb_logo.png" /></li>
+                <li><img src="/images/ceb_logo.png" alt="Center for Environmental Biology" title="Center for Environmental Biology" /></li>
+                <li class="list-spacing"><img src="/images/mg_logo.png" alt="Mondego Group" title="Mondego Group" /></li>
+                <li><img src="/images/igb_logo.png" alt="Institute for Genomics and Bioinformatics" title="Institute for Genomics and Bioinformatics" /></li>
             </ul>
+            <p> and numerous other agencies and NGOs.</p>
             <p>
                 Over time, many agencies, consulting firms, and academic researchers have
                 conducted ecological monitoring projects and experiments throughout Orange

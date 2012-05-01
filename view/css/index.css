@@ -123,8 +123,8 @@ h3{
 #logos{
 	list-style-type: none;
 }
-#logos li{
-	margin-bottom: 30px;
+.list-spacing{
+	margin: 30px 0px 30px 0px;	
 }
 
 /* Upload Form CSS */
