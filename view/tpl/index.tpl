@@ -89,9 +89,9 @@
                 developed through collaborations between the following:
             </p>
             <ul id="logos">
-                <li><img src="/images/ceb_logo.png" alt="Center for Environmental Biology" title="Center for Environmental Biology" /></li>
-                <li class="list-spacing"><img src="/images/mg_logo.png" alt="Mondego Group" title="Mondego Group" /></li>
-                <li><img src="/images/igb_logo.png" alt="Institute for Genomics and Bioinformatics" title="Institute for Genomics and Bioinformatics" /></li>
+                <li><a href="http://www.uciceb.com/" target="_blank"><img src="/images/ceb_logo.png" alt="Center for Environmental Biology" title="Center for Environmental Biology" /></a></li>
+                <li class="list-spacing"><a href="http://mondego.ics.uci.edu/" target="_blank"><img src="/images/mg_logo.png" alt="Mondego Group" title="Mondego Group" /></a></li>
+                <li><a href="http://www.igb.uci.edu/" target="_blank"><img src="/images/igb_logo.png" alt="Institute for Genomics and Bioinformatics" title="Institute for Genomics and Bioinformatics" /></a></li>
             </ul>
             <p> and numerous other agencies and NGOs.</p>
             <p>
