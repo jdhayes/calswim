@@ -119,6 +119,14 @@ h3{
     position: fixed;
 }
 
+/*About Us*/
+#logos{
+	list-style-type: none;
+}
+#logos li{
+	margin-bottom: 30px;
+}
+
 /* Upload Form CSS */
 #form_hidden_wrapper{
 	display: none;

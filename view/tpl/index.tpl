@@ -90,10 +90,10 @@
                 Environmental Biology (CEB), the UC Irvine Dept. of Informatics, and
                 numerous agencies and NGOs.
             </p>
-            <ul>
-                <li><img src="/images/ceb_logo.png" /> Center for Environmental Biology</li>
-                <li><img src="/images/mg_logo.png" /> Mondego Group</li>
-                <li><img src="/images/igb_logo.png" /> Institute for Genomics and Bioinformatics</li>
+            <ul id="logos">
+                <li><img src="/images/ceb_logo.png" /></li>
+                <li><img src="/images/mg_logo.png" /></li>
+                <li><img src="/images/igb_logo.png" /></li>
             </ul>
             <p>
                 Over time, many agencies, consulting firms, and academic researchers have
