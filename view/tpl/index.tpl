@@ -24,10 +24,10 @@
   </head>
   <body>
     <div id="header">
+        <div id="header_image_wrapper"></div>
         <div id="title">
             <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
         </div>
-        <div id="header_image_wrapper"></div>
         <div id="menu">
             <a id="home" class="tab" href="#home">Home</a>
             <a id="about_link" class="tab" href="#about">About The Data Portal</a>

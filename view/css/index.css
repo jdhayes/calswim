@@ -68,6 +68,7 @@ h3{
     background: #FEEEBD url("/images/edp_header.png") no-repeat right top;
     height: 73px;
     width: 189px;
+    margin-bottom: 10px;
 }
 #menu {
 	margin-left: 35px;
