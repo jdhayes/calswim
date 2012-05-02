@@ -66,7 +66,7 @@
         </div>
         
         <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
-            <h2>Data Details</h2>                     
+            <h2></h2>                     
             <div id="data_details" class=""></div>                       
         </div>
     </div>
@@ -121,23 +121,23 @@
                 <h2>Source Information</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper"> 
-                        <label>Organization Name</label>
-                        <input id="organization" name="organization" class="required full" />
-                    </div>
+                        <label><span class="red">*</span> Organization Name</label>
+                        <input id="organization" name="organization" class="required full" />                        
+                    </div>                    
                     <div class="input_wrapper">     
-                        <label>Contact Name</label>
+                        <label><span class="red">*</span> Contact Name</label>
                         <input id="contact" name="contact" class="required full" />
                     </div>
                     <div class="input_wrapper"> 
-                        <label>Contact Email</label>
+                        <label><span class="red">*</span> Contact Email</label>
                         <input id="email" name="email" class="required email full" />
                     </div>
                     <div class="input_wrapper"> 
                         <label>Contact Phone</label>
-                        <input id="phone" name="phone" class="required digits full" />
+                        <input id="phone" name="phone" class="digits full" />
                     </div>
                     <div class="input_wrapper">
-                        <label>Data Link</label>
+                        <label><span class="red">*</span> Data Link</label>
                         <input id="source" name="source" class="required url full" />
                     </div>
                 </div>
@@ -145,54 +145,58 @@
                 <h2>Project Information</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
-                        <label>Project name</label>
+                        <label><span class="red">*</span> Project name</label>
                         <textarea id="label" name="label" class="required full"></textarea>
+                    </div>
+                    <div class="input_wrapper">
+                        <label>Short Project name (optional)</label>
+                        <textarea id="shortLabel" name="shortLabel" class="full"></textarea>
                     </div>            
                     <div class="input_wrapper">
-                        <label>Project description</label>
+                        <label><span class="red">*</span> Project description</label>
                         <textarea id="description" name="description" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label>Project timeline</label>
                         <div>
-                            <label>Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
-                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="required half" />
+                            <label><span class="red">*</span> Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
+                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="half" />
                         </div>
                     </div>
                     <div class="input_wrapper">
                         <label>Project funder</label>
-                        <textarea id="funder" name="funder" class="required full"></textarea>
+                        <textarea id="funder" name="funder" class="full"></textarea>
                     </div>
                 </div>
                 
                 <h2>Meta Data</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
-                        <label>Habitat or target species</label>
+                        <label><span class="red">*</span> Habitat or target species</label>
                         <textarea id="target" name="target" class="required full"></textarea>
                     </div>                    
                     <div class="input_wrapper">
-                        <label>Site location description</label>
+                        <label><span class="red">*</span> Site location description</label>
                         <textarea id="location" name="location" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
-                        <label>Number of Sites</label>
+                        <label><span class="red">*</span> Number of Sites</label>
                         <input id="numsites" name="numsites" class="required digits full" />
                     </div>
                     <div class="input_wrapper">
-                        <label>Data collector</label>
+                        <label><span class="red">*</span> Data collector</label>
                         <textarea id="collector" name="collector" class="required full"></textarea>
                     </div>                    
                     <div class="input_wrapper">
-                        <label>Data type</label>
+                        <label><span class="red">*</span> Data type</label>
                         <textarea id="datatype" name="datatype" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
-                        <label>Data format</label>
+                        <label><span class="red">*</span> Data format</label>
                         <textarea id="dataformat" name="dataformat" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
-                        <label>Data sharing policies</label>
+                        <label><span class="red">*</span> Data sharing policies</label>
                         <textarea id="policies" name="policies" class="required full"></textarea>
                     </div>                    
                 </div>
@@ -216,7 +220,7 @@
                 <h2>Other</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
-                        <label>Searchable keywords</label>
+                        <label><span class="red">*</span> Searchable keywords</label>
                         <textarea id="keyword" name="keyword" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
