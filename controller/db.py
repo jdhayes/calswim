@@ -63,7 +63,7 @@ class WebDB:
 #        try:
         # Set insert order
         columns = "organization, contact, email, phone, data_url, \
-        project_name, project_description, timeline_start, timeline_finish, project_funder,\
+        project_name_short, project_name, project_description, timeline_start, timeline_finish, project_funder,\
         data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, \
         keyword, other, location, shp_file"
         
@@ -76,6 +76,7 @@ class WebDB:
         values.append( form.getvalue('phone') )
         values.append( '"%s"' % form.getvalue('source') )
         # Project data
+        values.append( '"%s"' % form.getvalue('labelShort') )
         values.append( '"%s"' % form.getvalue('label') )
         values.append( '"%s"' % form.getvalue('description') )        
         values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
@@ -209,7 +210,7 @@ class WebDB:
                                    );
                                """)
             query_build.append("""
-                                  SELECT gd_id, organization, project_name, project_description, data_type, data_target, AsText(location)
+                                  SELECT gd_id, organization, project_name_short, project_name, project_description, data_type, data_target, AsText(location)
                                   FROM GeoData
                                   WHERE Intersects( location, GeomFromText(@bbox) )
                                   AND
@@ -235,7 +236,7 @@ class WebDB:
         else:
             # Search query does not have a specified location
             query_build.append("""
-                                 SELECT gd_id, organization, project_name, project_description, data_type, data_target, AsText(location)
+                                 SELECT gd_id, organization, project_name_short, project_name, project_description, data_type, data_target, AsText(location)
                                  FROM GeoData
                               """)
             # Search query has at least 1 keyword
@@ -264,12 +265,13 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break            
-            coordinates.append( str(row[6]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
-            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}, {"v":row[5]}]} )
+            coordinates.append( str(row[7]).replace('POINT(','').replace('POLYGON((','').replace(')','') )
+            rows.append( {"c":[{"v":row[0]}, {"v":row[1]}, {"v":row[2]}, {"v":row[3]}, {"v":row[4]}, {"v":row[5]}, {"v":row[6]}]} )
     
         # Return search values as json
         cols = [{"id":'gd_id', "label":'gd_id', "type":'string'},
                 {"id":'organization', "label":'Organization', "type":'string'},
+                {"id":'project_short', "label":'Project Short', "type":'string'},
                 {"id":'project', "label":'Project', "type":'string'},
                 {"id":'description', "label":'Description', "type":'string'},                
                 {"id":'target', "label":'Target', "type":'string'}]
