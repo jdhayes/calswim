@@ -110,13 +110,10 @@ h3{
     background-color: #FEEEBD; /*#FFF6C1*/
     color: #655241; 
 	clear: both;
-	padding-left: 35px;
-	font-size: 8pt;
-	font-variant:small-caps;
-    height: 60px;
-    width: 100%;
-    bottom: 0px;
-    position: fixed;
+	padding: 3px;
+	font-size: 7pt;
+	font-variant:small-caps;    
+    width: 100%;    
 }
 
 /*About Us*/

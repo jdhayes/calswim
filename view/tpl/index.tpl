@@ -67,16 +67,12 @@
         
         <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
             <h2>Data Details</h2>                     
-            <div id="data_details" class=""></div>
-            
-            <div id="footer">
-                <p>
-                    Center for Environmental Biology<br />
-                    School of Biological Science<br />
-                    University of California, Irvine
-                </p>        
-            </div>
+            <div id="data_details" class=""></div>                       
         </div>
+    </div>
+    
+    <div id="footer">                
+        Center for Environmental Biology, School of Biological Science @ UCI | Mondego Group, Donald Bren School of Information and Computer Science @ UCI | Institute for Genomics and Bioinformatics @ UCI
     </div>
     
     <div id="upload_message"></div>
