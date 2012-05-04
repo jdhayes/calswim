@@ -259,16 +259,7 @@ function initialize() {
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
-    	//, triggerEventsOnLoad:  true
-    	//, center__onresize:     function () {
-    		// ReSize GTable Fixed Header to the duplicated header underneath
-    	//	$('#table_canvas div div:first').height($('#table_canvas').height());
-    		
-    	//	var new_width = $('table.google-visualization-table-table').width();
-    	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
-    	//	$('#table_canvas div div:last').width(new_width);
-    	//	$('#table_canvas div div:last').height(new_height);    		    		
-    	}
+    	//, triggerEventsOnLoad:  true    	
     };
     var myLayout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
