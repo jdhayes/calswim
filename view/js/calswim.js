@@ -239,6 +239,8 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
+    var myLayout = $("body").layout();
+    myLayout.toggle('west');
     
     // Init Table
     var data = new google.visualization.DataTable();
@@ -270,12 +272,10 @@ function initialize() {
     		$('#table_canvas div div:last').height(new_height);    		    		
     	}
     };
-    var myLayout = $('#content').layout(layout_options);
+    myLayout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
     	myLayout.toggle('north');
     });       
-    
-    $('#table_canvas table').hide();
     
     /* Init colorbox overlays */
 	$("#about_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
