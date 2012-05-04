@@ -62,18 +62,19 @@
         
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
             <div id="map_canvas"></div>            
-            <div id="table_canvas"></div>            
         </div>
         
         <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
             <h2></h2>                     
             <div id="data_details" class=""></div>                       
         </div>
+        
+        <div id="table_canvas" class="rounded ui-layout-south ui-widget ui-widget-content ui-corner-all"></div>                
     </div>
     
-    <div id="footer">                
+    <!-- <div id="footer">                
         Center for Environmental Biology, School of Biological Science @ UCI | Mondego Group, Donald Bren School of Information and Computer Science @ UCI | Institute for Genomics and Bioinformatics @ UCI
-    </div>
+    </div> -->
     
     <div id="upload_message"></div>
     <div id="form_hidden_wrapper">
