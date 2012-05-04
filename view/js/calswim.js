@@ -238,7 +238,7 @@ function initialize() {
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
-    });       
+    });
     
     // Init Table
     var data = new google.visualization.DataTable();
@@ -249,6 +249,7 @@ function initialize() {
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     var new_height = $('#table_canvas').height();
     table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
+    $('#table_canvas').hide();
     
     // Initialize center layout
     var layout_options = {
