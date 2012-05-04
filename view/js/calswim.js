@@ -227,7 +227,7 @@ function initialize() {
         ,north__resizeable:      false
         ,north__size:            75                         
         ,north__maxSize:         75
-        //,south__paneSelector:    "#table_canvas"
+        ,south__paneSelector:    "#table_canvas"
         ,south__initClosed:      true
         ,south__size:            "30%"  
         //,south__closable:        false
