@@ -248,8 +248,7 @@ function initialize() {
     data.addColumn('string','Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));
     var new_height = $('#table_canvas').height();
-    table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});
-    $('#table_canvas').hide();
+    table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});    
     
     // Initialize center layout
     var layout_options = {
@@ -275,6 +274,8 @@ function initialize() {
     $('#search_link').click(function(){
     	myLayout.toggle('north');
     });       
+    
+    $('#table_canvas table').hide();
     
     /* Init colorbox overlays */
 	$("#about_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
