@@ -240,7 +240,7 @@ function initialize() {
         //,south__togglerContent_open:   toggleButtons
     });
     var myLayout = $("body").layout();
-    myLayout.toggle('west');
+    myLayout.toggle('south');
     
     // Init Table
     var data = new google.visualization.DataTable();
