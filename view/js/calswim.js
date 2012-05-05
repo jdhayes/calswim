@@ -32,9 +32,8 @@ function initTableMap(json_data) {
     var tableGeoView = new google.visualization.DataView(geoData);
     // Filter viewable columns
     tableGeoView.setColumns([1,3,4,5]);
-    // Draw Table
-    var new_height = $('#table_canvas').height();
-    var tableOptions = {width:'100%',height: new_height,page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
+    // Draw Table    
+    var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);
     
 	// No search results found
@@ -246,9 +245,8 @@ function initialize() {
     data.addColumn('string','Project');
     data.addColumn('string','Description');    
     data.addColumn('string','Target');
-    table = new google.visualization.Table(document.getElementById('table_canvas'));
-    var new_height = $('#table_canvas').height();
-    table.draw(data, {width:'100%', height: new_height, showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});    
+    table = new google.visualization.Table(document.getElementById('table_canvas'));    
+    table.draw(data, {width:'100%', height: '100%', showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});    
     
     // Initialize center layout
     var layout_options = {
@@ -260,15 +258,15 @@ function initialize() {
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
     	//, triggerEventsOnLoad:  true
-    	, center__onresize:     function () {
+    	//, center__onresize:     function () {
     		// ReSize GTable Fixed Header to the duplicated header underneath
-    		$('#table_canvas div div:first').height($('#table_canvas').height());
+    	//	$('#table_canvas div div:first').height($('#table_canvas').height());
     		
-    		var new_width = $('table.google-visualization-table-table').width();
-    		var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
-    		$('#table_canvas div div:last').width(new_width);
-    		$('#table_canvas div div:last').height(new_height);    		    		
-    	}
+    	//	var new_width = $('table.google-visualization-table-table').width();
+    	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
+    	//	$('#table_canvas div div:last').width(new_width);
+    	//	$('#table_canvas div div:last').height(new_height);    		    		
+    	//}
     };
     myLayout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
