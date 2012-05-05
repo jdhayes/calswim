@@ -6,6 +6,7 @@ import os
 import sys
 import getopt
 import csv
+import re
 # Web level
 import cgi;
 import urllib;
@@ -36,6 +37,18 @@ class WebDB:
         self.return_message = ""
         # Initialize error var
         self.errors = errors  
+    
+    def html_filter(self, string):
+        """
+            Just apply <a> tags to E-Mails and URLs
+        """
+        words = string.split()
+        for word in words:
+            if re.search('^http:\/\/.*&', word):
+                word = '<a href="%(url)s">%(url)s</a>' % {'url':word}
+            if re.search('.*\@.*', word):
+                word = '<a href="mailto:%(email)s">%(email)s</a>' % {'email':word}                    
+        return ' '.join(words)
     
     def set_poly_geo(self,shp_file):        
         # Open shp_file with parser
@@ -180,6 +193,7 @@ class WebDB:
         html_row = []
         for item in row:
             if isinstance(item, str):
+                item = html_filter(item)
                 html_row.append("<br />".join(item.split("\n")))
             else:
                 html_row.append(item)
