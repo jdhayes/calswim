@@ -114,6 +114,15 @@
                 Irvine, CA 92697
                 (949)824-7151
                 <a href="mailto:skimball@uci.edu">skimball@uci.edu</a>
+                
+                Cristina Videira Lopes
+                Associate Professor
+                Department of Informatics
+                Donald Bren School of Information and Computer Sciences
+                University of California, Irvine
+                Irvine, CA 92697
+                (949) 824-1525
+                <a href="mailto:lopes@ics.uci.edu">lopes@ics.uci.edu</a> 
             </pre>
         </div>
         <div id="form_wrapper" class="colorbox_content">
