@@ -44,9 +44,9 @@ class WebDB:
         """
         words = string.split()
         for word in words:
-            if re.search('^http:\/\/.*&', word):
+            if re.search('^http:\/\/.*$', word):
                 word = '<a href="%(url)s">%(url)s</a>' % {'url':word}
-            if re.search('.*\@.*', word):
+            if re.search('^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$', word.upper()):
                 word = '<a href="mailto:%(email)s">%(email)s</a>' % {'email':word}                    
         return ' '.join(words)
     
