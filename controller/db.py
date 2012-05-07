@@ -179,7 +179,7 @@ class WebDB:
         deg, min, sec  = deg_min_sec.split()
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
-    def get_data_details(self, gd_id):
+    def get_data_details(self, gd_id, csv=False):
         # Select all details from table according to gd_id
         select_query = """
         SELECT organization, contact,
@@ -203,10 +203,16 @@ class WebDB:
                 html_row.append("<br />".join(item.split("\n")))
             else:
                 html_row.append(item)
-        data_details = dict(zip(labels, html_row))
-        
+                
         # Return results
-        return json.dumps(data_details)
+        if csv:
+            buffer = StringIO()
+            csv_model = csv.DictWriter(csvfile=buffer, fieldnames=labels)            
+            csv_model.writerow(html_row)
+            return buffer
+        else:
+            data_details = dict(zip(labels, html_row))
+            return json.dumps(data_details)
     
     def get_map_locs(self, CalSwimView):
         """
