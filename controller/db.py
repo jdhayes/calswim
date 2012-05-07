@@ -193,7 +193,7 @@ class WebDB:
         html_row = []
         for item in row:
             if isinstance(item, str):
-                item = html_filter(item)
+                item = self.html_filter(item)
                 html_row.append("<br />".join(item.split("\n")))
             else:
                 html_row.append(item)
