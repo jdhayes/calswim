@@ -45,8 +45,12 @@ def application(environ, start_response):
     elif 'get_data_details' in form:
         """
            Return AJAX call results for data details
-        """        
-        CalSwimView.content = CalSwimDB.get_data_details(form.getvalue('get_data_details'))
+        """
+        if 'format' in form:
+            format = form.getvalue('format')
+        else:
+            format = 'json'
+        CalSwimView.content = CalSwimDB.get_data_details(form.getvalue('get_data_details'), format)
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
