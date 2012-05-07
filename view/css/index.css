@@ -106,7 +106,10 @@ h3{
     overflow: hidden;
     display: none;    
 }
-#search_canvas {	
+#table_canvas div div{	
+	overflow: visible !important;
+}
+#search_canvas {
 	clear:both;	
 }
 #search{
