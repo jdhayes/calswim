@@ -265,7 +265,7 @@ function initialize() {
     	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
     	//	$('#table_canvas div div:last').width(new_width);
     	//	$('#table_canvas div div:last').height(new_height);    		    		
-    	}
+    	//}
     };
     myLayout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
