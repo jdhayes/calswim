@@ -229,10 +229,8 @@ function initialize() {
         ,south__paneSelector:    "#table_canvas"
         ,south__initClosed:      true
         ,south__size:            "30%"  
-        //,south__closable:        false
-        //,south__resizeable:      false
-        //,south__size:            100                           
-        //,south__maxSize:         100
+        ,south__closable:        true
+        ,south__resizeable:      true        
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
