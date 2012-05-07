@@ -207,7 +207,7 @@ class WebDB:
         # Return results
         if format == 'csv':
             buffer = StringIO()
-            csv_model = csv.DictWriter(csvfile=buffer, fieldnames=labels)            
+            csv_model = csv.DictWriter(buffer, fieldnames=labels)            
             csv_model.writerow(html_row)
             return buffer
         else:
