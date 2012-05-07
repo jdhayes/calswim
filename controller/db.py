@@ -186,7 +186,7 @@ class WebDB:
         location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other,
         concat('<a href="mailto:',email,'">',email,'</a>') as email,
         concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
-        concat('<a href="',data_url,'">',data_url,'</a>') as data_url,        
+        concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,        
         DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
         DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish        
         FROM GeoData WHERE gd_id=""" + gd_id
@@ -248,7 +248,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          AND
-                                         MATCH (contact, project_name, project_description, keyword, other)
+                                         MATCH (organization, contact, project_name, project_description, project_funder, data_target, location_description, data_collector, data_type, keyword, other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         else:
@@ -266,7 +266,7 @@ class WebDB:
                 keyword_query = "*, ".join(CalSwimView.keywords) +"*"        
                 query_build.append("""                          
                                          WHERE
-                                         MATCH (contact, project_name, project_description, keyword,other)
+                                         MATCH (organization, contact, project_name, project_description, project_funder, data_target, location_description, data_collector, data_type, keyword, other)
                                          AGAINST ('%(KeywordQuery)s' IN BOOLEAN MODE)
                                       """ % {"KeywordQuery":keyword_query})
         select_query = "\n".join(query_build)
