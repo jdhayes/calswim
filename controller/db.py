@@ -181,10 +181,13 @@ class WebDB:
     
     def get_data_details(self, gd_id):
         # Select all details from table according to gd_id
-        select_query = "SELECT organization, contact, email, phone, data_url,\
-        project_name, project_description, DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start, DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,\
-        project_funder, data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other \
-        FROM GeoData WHERE gd_id=" + gd_id
+        select_query = """
+        SELECT organization, contact, concat('<a href="mailto:',email,'">',email,'</a>') as email,
+        concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, data_url,
+        project_name, project_description,
+        DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start, DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
+        project_funder, data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, keyword, other
+        FROM GeoData WHERE gd_id=""" + gd_id
         self.cursor.execute(select_query)
         row = self.cursor.fetchone()
         
@@ -192,8 +195,7 @@ class WebDB:
         labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
         html_row = []
         for item in row:
-            if isinstance(item, str):
-                item = self.html_filter(item)
+            if isinstance(item, str):                
                 html_row.append("<br />".join(item.split("\n")))
             else:
                 html_row.append(item)
