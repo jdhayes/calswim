@@ -252,6 +252,7 @@ function initialize() {
     	, west__initClosed:     true
     	//, north__initClosed:    true
     	, west__size:           300
+    	,south__initClosed:      true
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
