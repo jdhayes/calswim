@@ -197,22 +197,24 @@ class WebDB:
         
         # Create a dictionary of column names and values                
         labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
-        html_row = []
-        for item in row:
-            if isinstance(item, str):                
-                html_row.append("<br />".join(item.split("\n")))
-            else:
-                html_row.append(item)
-                
+        
         # Return results
         if format == 'csv':
             buffer = StringIO()
-            csv_model = csv.DictWriter(buffer, fieldnames=labels)            
-            csv_model.writerow(html_row)
-            return buffer
-        else:
-            data_details = dict(zip(labels, html_row))
-            return json.dumps(data_details)
+            csv_model = csv.writer(buffer)            
+            csv_model.writerow(labels)
+            csv_model.writerow(row)
+            return buffer.getvalue()
+        else:        
+            html_row = []
+            for item in row:
+                if isinstance(item, str):                
+                    html_row.append("<br />".join(item.split("\n")))
+                else:
+                    html_row.append(item)
+                            
+                data_details = dict(zip(labels, html_row))
+                return json.dumps(data_details)
     
     def get_map_locs(self, CalSwimView):
         """
