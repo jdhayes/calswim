@@ -201,6 +201,14 @@ function get_data_details(data_id) {
     			html_details += '<h3 class="ui-widget-header">'+ index +'</h3><p>'+ value +'</p>';
     		}                    		
     	});
+    	
+    	// Initialize button
+    	$("#data_details_wrapper .download_details").button({    	
+    		icons: {
+				secondary: "ui-icon-disk"
+			}
+    	});
+    	// Initialize html details
     	$("#data_details").html(html_details);
     });
     

@@ -166,7 +166,13 @@ form div.indent{
     /*color: #3F3731;*/
     font-weight: normal;
 }
-
+.download_details{
+	font-size: 15pt;
+	font-family: arial,sans-serif;
+	color: #655241;
+    font-variant: small-caps;
+    text-decoration: underline;
+}
 #data_details {
 	margin-bottom: 200px;
 }
