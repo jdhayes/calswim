@@ -56,7 +56,7 @@ def application(environ, start_response):
         
         if format != 'json':
             # Define headers and return content
-            start_response('200 OK', [('content-type', 'application/CSV')('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
+            start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
             return CalSwimView.content
     else:        
         CalSwimView.set_content('index')
