@@ -226,8 +226,8 @@ class WebDB:
                 else:
                     html_row.append(item)
                             
-                data_details = dict(zip(labels, html_row))
-                return json.dumps(data_details)
+            data_details = dict(zip(labels, html_row))
+            return json.dumps(data_details)
     
     def get_map_locs(self, CalSwimView):
         """
