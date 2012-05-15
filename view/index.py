@@ -51,6 +51,11 @@ def application(environ, start_response):
         else:
             format = 'json'
         CalSwimView.content = CalSwimDB.get_data_details(form.getvalue('get_data_details'), format)
+        
+        if format == 'csv':
+            # Define headers and return content
+            start_response('200 OK', [('content-type', 'application/CSV')])
+            return CalSwimView.content
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
