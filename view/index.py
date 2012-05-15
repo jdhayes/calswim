@@ -46,15 +46,17 @@ def application(environ, start_response):
         """
            Return AJAX call results for data details
         """
+        dataID = form.getvalue('get_data_details')
+        
         if 'format' in form:
             format = form.getvalue('format')
         else:
-            format = 'json'
-        CalSwimView.content = CalSwimDB.get_data_details(form.getvalue('get_data_details'), format)
+            format = 'json'        
+        CalSwimView.content = CalSwimDB.get_data_details(dataID, format)
         
         if format != 'json':
             # Define headers and return content
-            start_response('200 OK', [('content-type', 'application/CSV')])
+            start_response('200 OK', [('content-type', 'application/CSV')('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
             return CalSwimView.content
     else:        
         CalSwimView.set_content('index')
