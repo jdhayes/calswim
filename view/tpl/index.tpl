@@ -65,7 +65,7 @@
         </div>
         
         <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
-            <a href="#" class="download_details">Download</a>                     
+            <a href="#" class="download_details">Save as CSV/Excel</a>                     
             <div id="data_details" class=""></div>                       
         </div>
         

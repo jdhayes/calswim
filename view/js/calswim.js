@@ -199,10 +199,11 @@ function get_data_details(data_id) {
     	$.each(json_data, function(index, value){
     		if (value){    			
     			html_details += '<h3 class="ui-widget-header">'+ index +'</h3><p>'+ value +'</p>';
-    		}                    		
+    		}
     	});
     	
-    	// Initialize button
+    	// Initialize button    	
+    	$(".download_details").attr("href", "/?format=json&get_data_details="+data_id)
     	$("#data_details_wrapper .download_details").button({    	
     		icons: {
 				secondary: "ui-icon-disk"

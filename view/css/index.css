@@ -172,6 +172,7 @@ form div.indent{
 	color: #655241;
     font-variant: small-caps;
     text-decoration: underline;
+    margin-bottom: 10px;
 }
 #data_details {
 	margin-bottom: 200px;
