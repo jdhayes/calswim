@@ -203,7 +203,7 @@ function get_data_details(data_id) {
     	});
     	
     	// Initialize button    	
-    	$(".download_details").attr("href", "/?format=json&get_data_details="+data_id)
+    	$(".download_details").attr("href", "/?format=csv&get_data_details="+data_id)
     	$("#data_details_wrapper .download_details").button({    	
     		icons: {
 				secondary: "ui-icon-disk"
