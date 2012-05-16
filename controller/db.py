@@ -162,18 +162,16 @@ class WebDB:
             self.cursor.execute(select_query)
             row = self.cursor.fetchone()
             
-            data_file_name = form.getvalue('data_file')
-            print >> self.errors, "File Name: "+data_file_name
-            if data_file_name:
-                data_file = form['data_file'].file
+            data_file = form.getvalue('data_file')
+            if data_file.filename:
+                data_file_name = os.path.basename(data_file.filename)                
                 
                 download_dir = self.base_dir +"/downloads/"+ str(row[0]) +"/"                
-                exit(download_dir)
                 if not os.path.exists(download_dir):
                     os.makedirs(download_dir)
                                 
                 data_save_file = open(download_dir+data_file_name, "w")
-                data_save_file.write(data_file.read())
+                data_save_file.write(data_file.file.read())
                 data_save_file.close
             
             # Return JavaScript boolean to view         
