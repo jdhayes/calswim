@@ -12,6 +12,16 @@ google.setOnLoadCallback(function(){
     // Init form button
     $(".submit").button();
     
+    // Init local Data URL checkbox
+    $("#data_check").click(function(){
+    	// Toggle disabled input
+    	var input_bool = $("#source").prop('disabled')
+    	$("#source").prop('disabled', !input_bool);
+    	
+    	// Toggle visibility of file input
+    	$("#data_file").toggle();
+    });
+    
     // Init datepicker widgets
     $( "#timelineStart" ).datepicker();
     $( "#timelineFinish" ).datepicker();

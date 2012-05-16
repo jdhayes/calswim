@@ -147,8 +147,9 @@
                         <input id="phone" name="phone" class="digits full" />
                     </div>
                     <div class="input_wrapper">
-                        <label><span class="red">*</span> Data Link</label>
+                        <label><span class="red">*</span> Data Link</label> <span>(host locally <input id="data_check" name="data_check" type="checkbox" /> )</span>
                         <input id="source" name="source" class="required url full" />
+                        <input id="data_file" name="data_file" type="file"/>
                     </div>
                 </div>
                 
@@ -170,6 +171,7 @@
                         <label>Project timeline</label>
                         <div>
                             <label><span class="red">*</span> Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
+                            <br />
                             <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="half" />
                         </div>
                     </div>
