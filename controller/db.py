@@ -157,14 +157,14 @@ class WebDB:
         
         select_query = "SELECT LAST_INSERT_ID() as id"
         self.cursor.execute(select_query)
-        id = self.cursor.fetchone()
+        row = self.cursor.fetchone()
         
         if 'data_file' in form:
             data_file = form['data_file'].file
             data_file_name = form.getvalue('data_file')
             data_file_contents = data_file.read()                    
             
-            download_dir = str(os.path.dirname(__file__)) + id
+            download_dir = os.path.dirname(__file__) + row[0]
             exit(download_dir)
 #            if not os.path.exists(download_dir):                
 #                os.makedirs(download_dir)
