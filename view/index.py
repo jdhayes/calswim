@@ -21,8 +21,9 @@ def application(environ, start_response):
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
     # Initialize web classes
-    CalSwimView = WebView(os.path.dirname(__file__), environ['wsgi.errors'])    
-    CalSwimDB = WebDB(environ['wsgi.errors']);
+    base_dir = os.path.dirname(__file__)
+    CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
+    CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
     #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
     
     """
