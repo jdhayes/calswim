@@ -20,6 +20,11 @@ google.setOnLoadCallback(function(){
     	
     	// Toggle visibility of file input
     	$("#data_file").toggle();
+    	
+    	// Add event handler for file name selection
+    	$("#data_file").change(function(){
+    		$("#source").val($(this).val());
+    	});
     });
     
     // Init datepicker widgets

@@ -134,10 +134,13 @@ h3{
 }
 
 /* Upload Form CSS */
-#form_hidden_wrapper{
+#form_hidden_wrapper {
 	display: none;
 }
-.colorbox_content{
+#data_file {
+	display: none;
+}
+.colorbox_content {
 	margin: auto;	
 	padding: 15px;
 	overflow-x: hidden;
@@ -152,10 +155,10 @@ label.error {
     padding-left: .5em;
     vertical-align: top;
 }
-#upload_button{
+#upload_button {
     margin-top: 15px;
 }
-form div.indent{    
+form div.indent {    
     /*border-radius: 6px 6px 6px 6px;*/
     margin: auto;
     padding: 23px;
@@ -166,7 +169,7 @@ form div.indent{
     /*color: #3F3731;*/
     font-weight: normal;
 }
-.download_details{
+.download_details {
 	font-size: 15pt;
 	font-family: arial,sans-serif;
 	color: #655241;
@@ -177,13 +180,13 @@ form div.indent{
 #data_details {
 	margin-bottom: 200px;
 }
-#data_details p{
+#data_details p {
 	word-wrap: break-word; 
     padding: 10px;
     margin: 0px;
     background-color: #FFFFFF;
 }
-.rounded_box{
+.rounded_box {
 	border-radius: 6px 6px 6px 6px;
     margin: auto;
     padding: 23px; 
@@ -192,20 +195,20 @@ form div.indent{
     color: #3F3731;
     font-weight: normal;    
 }
-#data_details_wrapper{	
+#data_details_wrapper {	
 	overflow: auto;
 }
-legend{
+legend {
     font-size: 12pt;
 }
-.input_wrapper{
+.input_wrapper {
 	margin-bottom: 15px;
 }
-label{
+label {
 	font-weight: bold;
 	font-style: italic;	
 }
-.full{
+.full {
     width: 350px;
     clear: both;
 }
