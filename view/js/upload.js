@@ -15,8 +15,14 @@ google.setOnLoadCallback(function(){
     // Init local Data URL checkbox
     $("#data_check").click(function(){
     	// Toggle disabled input
-    	var input_bool = $("#source").prop('disabled')
-    	$("#source").prop('disabled', !input_bool);
+    	    	
+    	// Disabled form inputs are not submitted!
+    	/*
+    	 * var input_bool = $("#source").prop('disabled')
+    	 * $("#source").prop('disabled', !input_bool);
+    	 */    	
+    	// Lets just toggle visibility instead
+    	$("#source").toggle();
     	
     	// Toggle visibility of file input
     	$("#data_file").toggle();
