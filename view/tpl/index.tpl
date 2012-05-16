@@ -161,7 +161,7 @@
                     </div>
                     <div class="input_wrapper">
                         <label>Short Project name (optional)</label>
-                        <textarea id="shortLabel" name="shortLabel" class="full"></textarea>
+                        <textarea id="shortLabel" name="labelShort" class="full"></textarea>
                     </div>            
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Project description</label>
