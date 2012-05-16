@@ -147,9 +147,9 @@
                         <input id="phone" name="phone" class="digits full" />
                     </div>
                     <div class="input_wrapper">
-                        <label><span class="red">*</span> Data Link</label> <span>(host locally <input id="data_check" name="data_check" type="checkbox" /> )</span>
+                        <label><span class="red">*</span> Data Link</label> <span>(local <input id="data_check" name="data_check" type="checkbox" /> )</span>
                         <input id="source" name="source" class="required url full" />
-                        <input id="data_file" name="data_file" type="file"/>
+                        <input id="data_file" name="data_file" type="file" class="full"/>
                     </div>
                 </div>
                 

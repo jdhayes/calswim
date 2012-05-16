@@ -109,9 +109,11 @@ class WebDB:
                 
         # Build MySQL Geometry syntax
         shp_file = form['shp_file'].file
-        shp_file_name = form.getvalue('shp_file')
+        shp_file_name = form.getvalue('shp_file')                    
+        
         lat = form.getvalue('lat')
         lng = form.getvalue('lng')
+        
         locations = []
         if shp_file_name:
             # Get shp file contents to be stored as a blob
@@ -146,12 +148,30 @@ class WebDB:
             mysql_values = ",".join(values) +","+ location +",'"+ self.db.escape_string(shp_file_contents) +"'"
             insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
             insert_query = insert_query % {"columns":columns, "values":mysql_values}
-            print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
+            print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"            
             self.cursor.execute(insert_query)
             json_data = {'message':'Data import successful'}
         
         # Commit queries
         self.db.commit()
+        
+        select_query = "SELECT LAST_INSERT_ID() as id"
+        self.cursor.execute(select_query)
+        id = self.cursor.fetchone()
+        
+        if 'data_file' in form:
+            data_file = form['data_file'].file
+            data_file_name = form.getvalue('data_file')
+            data_file_contents = data_file.read()                    
+            
+            download_dir = os.path.dirname(__file__) + id
+            exit(download_dir)
+#            if not os.path.exists(download_dir):                
+#                os.makedirs(download_dir)
+#                
+#            data_save_file = open(download_dir+data_file_name, "w")
+#            data_save_file.write(data_file_contents)
+#            data_save_file.close
         
         # Return JavaScript boolean to view         
         self.return_message = json.dumps(json_data);

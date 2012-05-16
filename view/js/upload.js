@@ -23,7 +23,7 @@ google.setOnLoadCallback(function(){
     	
     	// Add event handler for file name selection
     	$("#data_file").change(function(){
-    		$("#source").val($(this).val());
+    		$("#source").val("http://ecodataportal.ics.uci.edu/downloads/"+$(this).val());
     	});
     });
     
