@@ -166,7 +166,7 @@ class WebDB:
                 data_file = form['data_file'].file
                 data_file_name = form.getvalue('data_file')                                
                 
-                download_dir = self.base_dir +"/downloads/"+ str(row[0] +"/")                
+                download_dir = self.base_dir +"/downloads/"+ str(row[0]) +"/"                
                 if not os.path.exists(download_dir):                
                     os.makedirs(download_dir)
                     
