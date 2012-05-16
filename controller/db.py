@@ -173,6 +173,10 @@ class WebDB:
                 data_save_file = open(download_dir+data_file_name, "w")
                 data_save_file.write(data_file.file.read())
                 data_save_file.close
+                
+                update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gid=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
+                self.cursor.execute(select_query)
+                row = self.cursor.fetchone()
             
             # Return JavaScript boolean to view         
             self.return_message = json.dumps(json_data);
