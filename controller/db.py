@@ -162,7 +162,7 @@ class WebDB:
             self.cursor.execute(select_query)
             row = self.cursor.fetchone()
             
-            data_file = form.getvalue('data_file')
+            data_file = form['data_file']
             if data_file.filename:
                 data_file_name = os.path.basename(data_file.filename)                
                 
