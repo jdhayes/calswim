@@ -66,6 +66,8 @@ google.setOnLoadCallback(function(){
     	    }
     	},
         submitHandler: function(form) {
+        	alert('inside');
+        	
         	// Assess which values were entered
         	if ( $('#lat').val() && $('#lng').val() ){
                 var latlng = true;
