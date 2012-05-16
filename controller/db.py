@@ -174,7 +174,7 @@ class WebDB:
                 data_save_file.write(data_file.file.read())
                 data_save_file.close
                 
-                update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gid=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
+                update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gd_id=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
                 self.cursor.execute(select_query)
                 row = self.cursor.fetchone()
             
