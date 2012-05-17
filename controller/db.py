@@ -100,7 +100,7 @@ class WebDB:
             values.append( '"%s"' % form.getvalue('funder') )
             # Meta data
             values.append( '"%s"' % form.getvalue('target') )
-            values.append( '"%s"' % form.getvalue('location') )
+            values.append( '"%s"' % form.getvalue('locdescription') )
             values.append( form.getvalue('numsites') )
             values.append( '"%s"' % form.getvalue('collector') )
             values.append( '"%s"' % form.getvalue('datatype') )

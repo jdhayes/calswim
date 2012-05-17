@@ -189,7 +189,7 @@
                     </div>                    
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Site location description</label>
-                        <textarea id="location" name="location" class="required full"></textarea>
+                        <textarea id="locdescription" name="locdescription" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Number of Sites</label>
