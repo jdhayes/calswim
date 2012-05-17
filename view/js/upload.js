@@ -87,6 +87,7 @@ google.setOnLoadCallback(function(){
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
         	}
         	else if (latlng==false && shpFile==false){
+        		alert('Appending label to location');
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
         	else{
