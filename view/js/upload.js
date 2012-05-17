@@ -75,25 +75,29 @@ google.setOnLoadCallback(function(){
         	// Assess which values were entered
         	if ( $('#lat').val() && $('#lng').val() ){
                 var latlng = true;
-                alert('latlng true');
-        	}else{ var latlng = false; alert('latlng false');}
+        	}else{ var latlng = false;}
         	if ( $('#shp_file').val() ){
         		var shpFile = true;
-        		alert('shp true');
-        	}else{ var shpFile = false; alert('shp false');}
+        	}else{ var shpFile = false;}
+        	
+        	alert('before appending');
         	
         	// Append error message according to values entered
         	if (latlng==true && shpFile==true){
+        		alert('true append');
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
         	}
         	else if (latlng==false && shpFile==false){
-        		alert('Appending label to location');
+        		alert('false append');
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
         	else{
+        		alert('no append');
         		// Submit for via AJAX        		
         		$("#upload_form").ajaxSubmit(options);
         	}
+        	
+        	alert('after appending');
         }
     });
 });
