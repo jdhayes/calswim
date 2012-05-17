@@ -78,26 +78,19 @@ google.setOnLoadCallback(function(){
         	}else{ var latlng = false;}
         	if ( $('#shp_file').val() ){
         		var shpFile = true;
-        	}else{ var shpFile = false;}
-        	
-        	alert('before appending');
+        	}else{ var shpFile = false;}        	        
         	
         	// Append error message according to values entered
-        	if (latlng==true && shpFile==true){
-        		alert('true append');
+        	if (latlng==true && shpFile==true){        		
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file, not both.</label>');
         	}
-        	else if (latlng==false && shpFile==false){
-        		alert('false append');
+        	else if (latlng==false && shpFile==false){        		
         		$('#location').append('<label class="error">Please fill out coordinates OR upload shape file.</label>');
         	}
-        	else{
-        		alert('no append');
+        	else{        		
         		// Submit for via AJAX        		
         		$("#upload_form").ajaxSubmit(options);
-        	}
-        	
-        	alert('after appending');
+        	}        	       
         }
     });
 });
