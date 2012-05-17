@@ -35,6 +35,7 @@
             <a id="upload" class="tab" href="#form_wrapper">Upload Your Data</a>
             <a id="contact_link" class="tab" href="#contact">Contact Us</a>
             <a id="search_link" class="tab" href="#search">Search</a>
+            <a id="login_link" class="tab" style="float:right;" href="#login">login</a>
         </div>
     </div>
     
@@ -243,6 +244,13 @@
                 
                 <input type="hidden" name="import_data" id="import_data" value="import_data"/>
                 <button id="upload_button" class="button">Submit</button>                
+            </form>
+        </div>
+        
+        <div id="login" class="colorbox_content">
+            <form id="upload_form" method="post" action="?login=admin">
+                <label>User Name</label><input name="username" type="text" />
+                <label>Password</label><input name="password" type="password" />
             </form>
         </div>
     </div>       

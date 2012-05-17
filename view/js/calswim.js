@@ -285,6 +285,7 @@ function initialize() {
 	$("#about_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});	
 	$("#tools_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
 	$("#contact_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
+	$("#login_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
     /* Init watermarks and buttons */
 	$("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");

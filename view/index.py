@@ -59,6 +59,15 @@ def application(environ, start_response):
             # Define headers and return content
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
             return CalSwimView.content
+    elif 'login' in form:
+        user = form.getvalue('username')
+        passwd = form.getvalue('password')
+        
+        if user=='admin' and passwd=='EcoAdminPass2012':
+            CalSwimView.set_content('admin')
+        else:
+            CalSwimView.set_content('index')
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
