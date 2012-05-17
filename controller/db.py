@@ -40,6 +40,21 @@ class WebDB:
         self.return_message = ""
         # Initialize error var
         self.errors = errors  
+    def get_items(self):
+        # Get all records from DB
+        select_query="""SELECT gd_id, organization, project_name_short, project_name, project_description, data_type, data_target, AsText(location), FROM GeoData"""        
+        self.cursor.execute(select_query)
+
+        # Compile all records into an HTML string
+        rows = []
+        html_rows = ""        
+        while(1):
+            row=self.cursor.fetchone()
+            if row == None:
+                break
+            html_row = "</td><td>".join(row)
+            html_rows.append("<td>"+ html_row +"</td>")
+        return "<table>"+html_rows+"</table>"
     
     def html_filter(self, string):
         """

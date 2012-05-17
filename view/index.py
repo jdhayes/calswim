@@ -64,7 +64,11 @@ def application(environ, start_response):
         passwd = form.getvalue('password')
         
         if user=='admin' and passwd=='EcoAdminPass2012':
+            # Get all records
+            items = CalSwimDB.get_items()
+            # Place all records in html frontend
             CalSwimView.set_content('admin')
+            CalSwimView.content = CalSwimView.content % {'items' : items}
         else:
             CalSwimView.set_content('index')
             CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}
