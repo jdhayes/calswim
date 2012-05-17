@@ -248,9 +248,11 @@
         </div>
         
         <div id="login" class="colorbox_content">
+            <h2>This is for administrative use only.</h2>
             <form id="upload_form" method="post" action="?login=admin">
-                <label>User Name</label><input name="username" type="text" />
-                <label>Password</label><input name="password" type="password" />
+                <label>User Name</label><input name="username" type="text" /> <br />
+                <label>Password</label><input name="password" type="password" /><br />
+                <input type="submit" name="submit">Login</input>
             </form>
         </div>
     </div>       
