@@ -71,16 +71,16 @@ google.setOnLoadCallback(function(){
     	        accept: "shp|txt"
     	    }
     	},
-        submitHandler: function(form) {
-        	alert('inside');
-        	
+        submitHandler: function(form) {        	
         	// Assess which values were entered
         	if ( $('#lat').val() && $('#lng').val() ){
                 var latlng = true;
-        	}else{ var latlng = false; }
+                alert('latlng true');
+        	}else{ var latlng = false; alert('latlng false');}
         	if ( $('#shp_file').val() ){
         		var shpFile = true;
-        	}else{ var shpFile = false; }
+        		alert('shp true');
+        	}else{ var shpFile = false; alert('shp false');}
         	
         	// Append error message according to values entered
         	if (latlng==true && shpFile==true){
