@@ -45,9 +45,9 @@ class WebDB:
         select_query="SELECT CAST(gd_id as CHAR) as gd_id, organization, project_name_short, project_name, project_description, data_type, data_target FROM GeoData"        
         self.cursor.execute(select_query)
 
-        # Compile all records into an HTML string
-        rows = []
-        html_rows = ""        
+        # Compile all records into an HTML string        
+        html_rows = "" 
+        html_row = ""
         while(1):
             row=self.cursor.fetchone()
             if row == None:
