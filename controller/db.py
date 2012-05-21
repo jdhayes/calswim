@@ -42,7 +42,7 @@ class WebDB:
         self.errors = errors  
     def get_items(self):
         # Get all records from DB
-        select_query="SELECT CONVERT(gd_id, CHAR(8)) AS gd_id, organization, project_name_short, project_name, project_description, data_type, data_target, AsText(location) FROM GeoData"        
+        select_query="SELECT CAST(gd_id as CHAR) as gd_id, organization, project_name_short, project_name, project_description, data_type, data_target, AsText(location) FROM GeoData"        
         self.cursor.execute(select_query)
 
         # Compile all records into an HTML string
