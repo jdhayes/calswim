@@ -42,7 +42,7 @@ class WebDB:
         self.errors = errors  
     def get_items(self):
         # Get all records from DB
-        select_query="SELECT CAST(gd_id as CHAR) as gd_id, organization, project_name_short, project_name, project_description, data_type, data_target FROM GeoData"        
+        select_query="SELECT gd_id, organization, project_name_short, project_name, project_description, data_type, data_target FROM GeoData"        
         self.cursor.execute(select_query)
 
         # Compile all records into an HTML string        
@@ -53,7 +53,7 @@ class WebDB:
             if row == None:
                 break
             for html_item in row:                
-                html_row += "<td>"+html_item+"</td>"
+                html_row += "<td>"+str(html_item)+"</td>"
             html_rows += html_row
         return "<table>"+html_rows+"</table>"
     
