@@ -249,10 +249,10 @@
         
         <div id="login" class="colorbox_content">
             <h2>This is for administrative use only.</h2>
-            <form id="upload_form" method="post" action="?login=admin">
+            <form id="login_form" method="post" action="?login=admin">
                 <label>User Name</label><input name="username" type="text" /> <br />
                 <label>Password</label><input name="password" type="password" /><br />
-                <input type="submit" name="login_button">Login</input>
+                <input type="submit" name="login_button" value="Login" />
             </form>
         </div>
     </div>       
