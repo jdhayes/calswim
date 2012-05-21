@@ -169,11 +169,12 @@ class WebDB:
             for location in locations:
                 count = count+1
                 # Build MySQL insert query
-                mysql_values = ",".join(values) +","+ location +",'"+ self.db.escape_string(shp_file_contents) +"'"
-                insert_query = "INSERT INTO calswim.GeoData (%(columns)s) VALUES(%(values)s);"
-                insert_query = insert_query % {"columns":columns, "values":mysql_values}
-                print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"            
-                self.cursor.execute(insert_query)
+                values.append(location)
+                values.append(shp_file_contents)
+                
+                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+                print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"
+                self.cursor.execute(insert_query,insert_values)
                 if not json_data:
                     json_data = {'message':'Data import successful'}                    
             
