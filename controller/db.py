@@ -52,9 +52,9 @@ class WebDB:
             row=self.cursor.fetchone()
             if row == None:
                 break
-            for html_row in row:                
-                row = "<td>"+row+"</td>"
-            html_rows += row
+            for html_item in row:                
+                html_row += "<td>"+html_item+"</td>"
+            html_rows += html_row
         return "<table>"+html_rows+"</table>"
     
     def html_filter(self, string):
