@@ -172,8 +172,8 @@ class WebDB:
                 values.append(location)
                 values.append(shp_file_contents)
                 
-                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
-                #print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query % values+"\n"
+                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
+                print >> self.errors, insert_query % values
                 self.cursor.execute(insert_query, values)
                 if not json_data:
                     json_data = {'message':'Data import successful'}                    
