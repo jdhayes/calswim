@@ -83,9 +83,10 @@ class WebDB:
             # Make sure the first and last set of coordinate are the same, closed polygon
             if shape.points[0] == shape.points[-1]:
                 polygons.append(shape.points)
-            else:                
-                errors = "Shape number %d is not a enclosed polygon. First and last coordinates should be the same." % count
-                break
+            else:
+                errors = "Shape number %d is not an enclosed polygon. First and last coordinates should be the same." % count
+                shape.points.append(shape.points[0])
+                polygons.append(shape.points)
         return polygons,errors
      
     def import_data(self, form):
@@ -137,18 +138,22 @@ class WebDB:
             if shp_file_name:
                 # Get shp file contents to be stored as a blob
                 shp_file_contents = shp_file.read()
+                
                 # Set POLYGON GEOMETRY from shp file
-                polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))            
-                if not errors:                        
-                    for polygon in polygons:
-                        # Re-map polygon coordinates with spaces inbetween lat and lng
-                        for idx, val in enumerate(polygon):
-                            # Reverse values so that latitude is first, then longitude
-                            val.reverse()
-                            polygon[idx] = " ".join( map( str, val) )
-                        locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
-                else:                
-                    json_data = {'message':'ERROR:: '+errors}
+                polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))                                    
+                
+                # Regardless of errors process polygons
+                for polygon in polygons:
+                    # Re-map polygon coordinates with spaces inbetween lat and lng
+                    for idx, val in enumerate(polygon):
+                        # Reverse values so that latitude is first, then longitude
+                        val.reverse()
+                        polygon[idx] = " ".join( map( str, val) )
+                    locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
+                
+                # Send errors, if any
+                if errors:
+                    json_data = {'message':'ERROR:: Data imported, with errors. Please validate your polygon shapes.'}
             elif lat and lng:
                 # Set MySQL NULL value for shp contents
                 shp_file_contents = "NULL"
@@ -169,7 +174,8 @@ class WebDB:
                 insert_query = insert_query % {"columns":columns, "values":mysql_values}
                 print >> self.errors, str(count)+" INSERT QUERY:: "+insert_query+"\n"            
                 self.cursor.execute(insert_query)
-                json_data = {'message':'Data import successful'}
+                if not json_data:
+                    json_data = {'message':'Data import successful'}                    
             
             # Commit queries
             self.db.commit()
