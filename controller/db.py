@@ -42,7 +42,7 @@ class WebDB:
         self.errors = errors  
     def get_items(self):
         # Get all records from DB
-        select_query="SELECT gd_id, organization, project_name_short, project_name, project_description, data_type, data_target FROM GeoData"        
+        select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData"        
         self.cursor.execute(select_query)
 
         # Compile all records into an HTML string        
@@ -55,7 +55,8 @@ class WebDB:
             for html_item in row:                
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
-        return "<table width=\"100%%\">"+html_rows+"</table>"
+        columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
+        return "<table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
     
     def html_filter(self, string):
         """
