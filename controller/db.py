@@ -103,32 +103,32 @@ class WebDB:
         # Gather submitted for values
         values = []
         # Source data
-        values.append( '"%s"' % form.getvalue('organization') )
-        values.append( '"%s"' % form.getvalue('contact') )
-        values.append( '"%s"' % form.getvalue('email') )
+        values.append( form.getvalue('organization') )
+        values.append( form.getvalue('contact') )
+        values.append( form.getvalue('email') )
         if form.getvalue('phone'):
             values.append( form.getvalue('phone') )
         else:
             values.append('NULL')
-        values.append( '"%s"' % form.getvalue('source') )
+        values.append( form.getvalue('source') )
         # Project data
-        values.append( '"%s"' % form.getvalue('labelShort') )
-        values.append( '"%s"' % form.getvalue('label') )
-        values.append( '"%s"' % form.getvalue('description') )        
+        values.append( form.getvalue('labelShort') )
+        values.append( form.getvalue('label') )
+        values.append( form.getvalue('description') )        
         values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
         values.append( "STR_TO_DATE('"+ form.getvalue('timelineFinish') +"', '%m/%d/%Y')" )
-        values.append( '"%s"' % form.getvalue('funder') )
+        values.append( form.getvalue('funder') )
         # Meta data
-        values.append( '"%s"' % form.getvalue('target') )
-        values.append( '"%s"' % form.getvalue('locdescription') )
+        values.append( form.getvalue('target') )
+        values.append( form.getvalue('locdescription') )
         values.append( form.getvalue('numsites') )
-        values.append( '"%s"' % form.getvalue('collector') )
-        values.append( '"%s"' % form.getvalue('datatype') )
-        values.append( '"%s"' % form.getvalue('dataformat') )
-        values.append( '"%s"' % form.getvalue('policies') )
+        values.append( form.getvalue('collector') )
+        values.append( form.getvalue('datatype') )
+        values.append( form.getvalue('dataformat') )
+        values.append( form.getvalue('policies') )
         # Other Data
-        values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
-        values.append( '"%s"' % form.getvalue('other') )
+        values.append( " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
+        values.append( form.getvalue('other') )
                 
         # Build MySQL Geometry syntax
         shp_file = form['shp_file'].file
@@ -177,8 +177,8 @@ class WebDB:
             values.append( '"%s"' % self.db.escape_string(shp_file_contents) )                
             
             insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-            insert_query_with_values = insert_query % tuple(values)                
-            self.cursor.execute(insert_query_with_values)
+            #insert_query_with_values = insert_query % tuple(values)                
+            self.cursor.execute(insert_query, values)
             if json_data == "":
                 json_data = {'message':'Data import successful'}                    
         
