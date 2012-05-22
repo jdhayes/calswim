@@ -106,7 +106,10 @@ class WebDB:
             values.append( '"%s"' % form.getvalue('organization') )
             values.append( '"%s"' % form.getvalue('contact') )
             values.append( '"%s"' % form.getvalue('email') )
-            values.append( form.getvalue('phone') )
+            if form.getvalue('phone'):
+                values.append( form.getvalue('phone') )
+            else:
+                values.append('NULL')
             values.append( '"%s"' % form.getvalue('source') )
             # Project data
             values.append( '"%s"' % form.getvalue('labelShort') )
