@@ -215,7 +215,8 @@ class WebDB:
             self.return_message = json.dumps(json_data)
         except:
             e = sys.exc_info()[1]
-            json_data = {'message': error_msg+" "+str(e)} 
+            #json_data = {'message': error_msg+" "+str(e)}
+            json_data = {'message': "ERROR:: Please try again."} 
             self.return_message = json.dumps(json_data)
             print >> self.errors, "ERROR:: "+error_msg+" "+str(e)
             
