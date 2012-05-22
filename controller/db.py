@@ -93,6 +93,8 @@ class WebDB:
         """
             Simple function to inhale form data and insert it into the Database
         """
+        error_msg = ""
+        
         try:
             # Set insert order
             columns = "organization, contact, email, phone, data_url, \
