@@ -47,11 +47,11 @@ class WebDB:
 
         # Compile all records into an HTML string        
         html_rows = "" 
-        html_row = ""
         while(1):
             row=self.cursor.fetchone()
             if row == None:
                 break
+            html_row = ""
             for html_item in row:                
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
