@@ -138,6 +138,7 @@ class WebDB:
             lng = form.getvalue('lng')
             
             locations = []
+            json_data = ""
             if shp_file_name:
                 # Get shp file contents to be stored as a blob
                 shp_file_contents = shp_file.read()
@@ -178,7 +179,7 @@ class WebDB:
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 insert_query_with_values = insert_query % tuple(values)                
                 self.cursor.execute(insert_query_with_values)
-                if json_data == None or json_data == "":
+                if json_data == "":
                     json_data = {'message':'Data import successful'}                    
             
             # Commit queries
