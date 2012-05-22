@@ -54,8 +54,8 @@ class WebDB:
                 break
             for html_item in row:                
                 html_row += "<td>"+str(html_item)+"</td>"
-            html_rows += html_row
-        return "<table>"+html_rows+"</table>"
+            html_rows += "<tr>"+html_row+"</tr>"
+        return "<table width=\"100%%\">"+html_rows+"</table>"
     
     def html_filter(self, string):
         """
@@ -184,7 +184,6 @@ class WebDB:
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 insert_values = tuple(values+locs_shps)
                 insert_query_with_values = insert_query % insert_values                
-                error_msg = str(count)+" "+str(location)
                 self.cursor.execute(insert_query_with_values)
                 if json_data == "":
                     json_data = {'message':'Data import successful'}                    
