@@ -176,7 +176,7 @@ class WebDB:
                 values.append(self.db.escape_string(shp_file_contents))                
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-                insert_query_with_values = insert_query % tuple(values)                
+                insert_query_with_values = insert_query % tuple(values)
                 print >> self.errors, insert_query_with_values
                 self.cursor.execute(insert_query_with_values)
                 if not json_data:
@@ -208,7 +208,8 @@ class WebDB:
             self.return_message = json.dumps(json_data);
         except:
             e = sys.exc_info()[1]
-            self.return_message = "{message: '"+str(e)+"'}"
+            #self.return_message = "{message: '"+str(e)+"'}"
+            self.return_message = "{message: '"+str(insert_query_with_values)+"'}"
             
         # Close DB connections        
         self.cursor.close()
