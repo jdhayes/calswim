@@ -180,8 +180,8 @@ class WebDB:
                 locs_shps.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-                error_msg = tuple(values+locs_shps)
-                insert_query_with_values = insert_query % error_msg                
+                insert_values = tuple(values+locs_shps)
+                insert_query_with_values = insert_query % insert_values                
                 self.cursor.execute(insert_query_with_values)
                 if json_data == "":
                     json_data = {'message':'Data import successful'}                    
@@ -209,11 +209,12 @@ class WebDB:
                 self.cursor.execute(update_query)                
             
             # Return JavaScript boolean to view         
-            self.return_message = json.dumps(json_data);
+            self.return_message = json.dumps(json_data)
         except:
             e = sys.exc_info()[1]
-            self.return_message = "{message: '"+str(error_msg)+" "+str(e)+"'}"
-            print >> self.errors, "ERROR:: "+str(error_msg)+" "+ str(e)
+            json_data = {'message': str(e)} 
+            self.return_message = json.dumps(json_data)
+            print >> self.errors, "ERROR:: "+str(e)
             
         # Close DB connections        
         self.cursor.close()
