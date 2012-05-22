@@ -169,16 +169,19 @@ class WebDB:
                 return
             
             # For each location insert details into DB
-            count = 0
+            count = 0            
             for location in locations:
+                # Init reusable list to append location and shapefile
+                locs_shps = []
                 count = count+1
+                
                 # Build MySQL insert query
-                values.append(location)
-                values.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
+                locs_shps.append(location)
+                locs_shps.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 error_msg = values
-                insert_query_with_values = insert_query % tuple(values)                
+                insert_query_with_values = insert_query % tuple(values+locs_shps)                
                 self.cursor.execute(insert_query_with_values)
                 if json_data == "":
                     json_data = {'message':'Data import successful'}                    
