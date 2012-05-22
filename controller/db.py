@@ -180,8 +180,8 @@ class WebDB:
                 locs_shps.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-                error_msg = values
-                insert_query_with_values = insert_query % tuple(values+locs_shps)                
+                error_msg = tuple(values+locs_shps)
+                insert_query_with_values = insert_query % error_msg                
                 self.cursor.execute(insert_query_with_values)
                 if json_data == "":
                     json_data = {'message':'Data import successful'}                    
