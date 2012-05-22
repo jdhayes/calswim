@@ -177,8 +177,8 @@ class WebDB:
                 values.append('1')
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-                print >> self.errors, insert_query % tuple(values)                
-                self.cursor.execute(insert_query, tuple(values))
+                insert_query_with_values = insert_query % tuple(values)                
+                self.cursor.execute(insert_query_with_values)
                 if not json_data:
                     json_data = {'message':'Data import successful'}                    
             
