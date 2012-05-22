@@ -173,7 +173,7 @@ class WebDB:
                 count = count+1
                 # Build MySQL insert query
                 values.append(location)
-                values.append(self.db.escape_string(shp_file_contents))                
+                values.append( '"%s"' % self.db.escape_string(shp_file_contents) )                
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 insert_query_with_values = insert_query % tuple(values)
