@@ -207,7 +207,7 @@ class WebDB:
             self.return_message = json.dumps(json_data);
         except:
             e = sys.exc_info()[1]
-            self.return_message = "{message: '"+e+"'}"
+            self.return_message = "{message: '"+str(e)+"'}"
             
         # Close DB connections        
         self.cursor.close()
