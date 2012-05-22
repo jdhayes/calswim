@@ -173,6 +173,7 @@ class WebDB:
             for location in locations:
                 count = count+1
                 # Build MySQL insert query
+                error_msg = location
                 values.append(location)
                 values.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
                 
@@ -208,8 +209,8 @@ class WebDB:
             self.return_message = json.dumps(json_data);
         except:
             e = sys.exc_info()[1]
-            self.return_message = "{message: '"+str(count)+" "+str(e)+"'}"
-            print >> self.errors, "ERROR:: "+str(count)+" "+ str(e)
+            self.return_message = "{message: '"+str(error_msg)+" "+str(e)+"'}"
+            print >> self.errors, "ERROR:: "+str(error_msg)+" "+ str(e)
             
         # Close DB connections        
         self.cursor.close()
