@@ -93,124 +93,123 @@ class WebDB:
         """
             Simple function to inhale form data and insert it into the Database
         """
-#        try:
-        # Set insert order
-        columns = "organization, contact, email, phone, data_url, \
-        project_name_short, project_name, project_description, timeline_start, timeline_finish, project_funder,\
-        data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, \
-        keyword, other, location, shp_file"
-        
-        # Gather submitted for values
-        values = []
-        # Source data
-        values.append( '"%s"' % form.getvalue('organization') )
-        values.append( '"%s"' % form.getvalue('contact') )
-        values.append( '"%s"' % form.getvalue('email') )
-        if form.getvalue('phone'):
-            values.append( form.getvalue('phone') )
-        else:
-            values.append('NULL')
-        values.append( '"%s"' % form.getvalue('source') )
-        # Project data
-        values.append( '"%s"' % form.getvalue('labelShort') )
-        values.append( '"%s"' % form.getvalue('label') )
-        values.append( '"%s"' % form.getvalue('description') )        
-        values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
-        values.append( "STR_TO_DATE('"+ form.getvalue('timelineFinish') +"', '%m/%d/%Y')" )
-        values.append( '"%s"' % form.getvalue('funder') )
-        # Meta data
-        values.append( '"%s"' % form.getvalue('target') )
-        values.append( '"%s"' % form.getvalue('locdescription') )
-        values.append( form.getvalue('numsites') )
-        values.append( '"%s"' % form.getvalue('collector') )
-        values.append( '"%s"' % form.getvalue('datatype') )
-        values.append( '"%s"' % form.getvalue('dataformat') )
-        values.append( '"%s"' % form.getvalue('policies') )
-        # Other Data
-        values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
-        values.append( '"%s"' % form.getvalue('other') )
+        try:
+            # Set insert order
+            columns = "organization, contact, email, phone, data_url, \
+            project_name_short, project_name, project_description, timeline_start, timeline_finish, project_funder,\
+            data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, \
+            keyword, other, location, shp_file"
+            
+            # Gather submitted for values
+            values = []
+            # Source data
+            values.append( '"%s"' % form.getvalue('organization') )
+            values.append( '"%s"' % form.getvalue('contact') )
+            values.append( '"%s"' % form.getvalue('email') )
+            if form.getvalue('phone'):
+                values.append( form.getvalue('phone') )
+            else:
+                values.append('NULL')
+            values.append( '"%s"' % form.getvalue('source') )
+            # Project data
+            values.append( '"%s"' % form.getvalue('labelShort') )
+            values.append( '"%s"' % form.getvalue('label') )
+            values.append( '"%s"' % form.getvalue('description') )        
+            values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
+            values.append( "STR_TO_DATE('"+ form.getvalue('timelineFinish') +"', '%m/%d/%Y')" )
+            values.append( '"%s"' % form.getvalue('funder') )
+            # Meta data
+            values.append( '"%s"' % form.getvalue('target') )
+            values.append( '"%s"' % form.getvalue('locdescription') )
+            values.append( form.getvalue('numsites') )
+            values.append( '"%s"' % form.getvalue('collector') )
+            values.append( '"%s"' % form.getvalue('datatype') )
+            values.append( '"%s"' % form.getvalue('dataformat') )
+            values.append( '"%s"' % form.getvalue('policies') )
+            # Other Data
+            values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
+            values.append( '"%s"' % form.getvalue('other') )
+                    
+            # Build MySQL Geometry syntax
+            shp_file = form['shp_file'].file
+            shp_file_name = form.getvalue('shp_file')                    
+            
+            lat = form.getvalue('lat')
+            lng = form.getvalue('lng')
+            
+            locations = []
+            json_data = ""
+            if shp_file_name:
+                # Get shp file contents to be stored as a blob
+                shp_file_contents = shp_file.read()
                 
-        # Build MySQL Geometry syntax
-        shp_file = form['shp_file'].file
-        shp_file_name = form.getvalue('shp_file')                    
-        
-        lat = form.getvalue('lat')
-        lng = form.getvalue('lng')
-        
-        locations = []
-        json_data = ""
-        if shp_file_name:
-            # Get shp file contents to be stored as a blob
-            shp_file_contents = shp_file.read()
+                # Set POLYGON GEOMETRY from shp file
+                polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))                                    
+                
+                # Regardless of errors process polygons
+                for polygon in polygons:
+                    # Re-map polygon coordinates with spaces inbetween lat and lng
+                    for idx, val in enumerate(polygon):
+                        # Reverse values so that latitude is first, then longitude
+                        val.reverse()
+                        polygon[idx] = " ".join( map( str, val) )
+                    locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
+                
+                # Send errors, if any
+                if errors:
+                    json_data = {'message':'ERROR:: Data imported, with errors. Please validate your polygon shapes.'}
+            elif lat and lng:
+                # Set MySQL NULL value for shp contents
+                shp_file_contents = "NULL"
+                # Set POINT GEOMETRY from latitude and longitude
+                locations.append("GeomFromText('POINT("+lat+" "+lng+")')")            
+            else:
+                json_data = {'message':'ERROR:: No Shape File nor Coordinates were found.'}
+                self.return_message = json.dumps(json_data);
+                return
             
-            # Set POLYGON GEOMETRY from shp file
-            polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))                                    
+            # For each location insert details into DB
+            count = 0
+            for location in locations:
+                count = count+1
+                # Build MySQL insert query
+                values.append(location)
+                values.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
+                
+                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
+                insert_query_with_values = insert_query % tuple(values)                
+                self.cursor.execute(insert_query_with_values)
+                if json_data == "":
+                    json_data = {'message':'Data import successful'}                    
             
-            # Regardless of errors process polygons
-            for polygon in polygons:
-                # Re-map polygon coordinates with spaces inbetween lat and lng
-                for idx, val in enumerate(polygon):
-                    # Reverse values so that latitude is first, then longitude
-                    val.reverse()
-                    polygon[idx] = " ".join( map( str, val) )
-                locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
+            # Commit queries
+            self.db.commit()
             
-            # Send errors, if any
-            if errors:
-                json_data = {'message':'ERROR:: Data imported, with errors. Please validate your polygon shapes.'}
-        elif lat and lng:
-            # Set MySQL NULL value for shp contents
-            shp_file_contents = "NULL"
-            # Set POINT GEOMETRY from latitude and longitude
-            locations.append("GeomFromText('POINT("+lat+" "+lng+")')")            
-        else:
-            json_data = {'message':'ERROR:: No Shape File nor Coordinates were found.'}
+            select_query = "SELECT LAST_INSERT_ID() as id"
+            self.cursor.execute(select_query)
+            row = self.cursor.fetchone()
+            
+            data_file = form['data_file']
+            if data_file.filename:
+                data_file_name = os.path.basename(data_file.filename)                
+                
+                download_dir = self.base_dir +"/downloads/"+ str(row[0]) +"/"                
+                if not os.path.exists(download_dir):
+                    os.makedirs(download_dir)
+                                
+                data_save_file = open(download_dir+data_file_name, "w")
+                data_save_file.write(data_file.file.read())
+                data_save_file.close
+                
+                update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gd_id=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
+                self.cursor.execute(update_query)                
+            
+            # Return JavaScript boolean to view         
             self.return_message = json.dumps(json_data);
-            return
-        
-        # For each location insert details into DB
-        count = 0
-        for location in locations:
-            count = count+1
-            # Build MySQL insert query
-            values.append(location)
-            #values.append( '"%s"' % self.db.escape_string(shp_file_contents) )                
-            values.append( '"%s"' % self.db.escape_string("sfdgfnm'sdbgswey5gbeavbs") )
-            
-            insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
-            insert_query_with_values = insert_query % tuple(values)                
-            self.cursor.execute(insert_query_with_values)
-            if json_data == "":
-                json_data = {'message':'Data import successful'}                    
-        
-        # Commit queries
-        self.db.commit()
-        
-        select_query = "SELECT LAST_INSERT_ID() as id"
-        self.cursor.execute(select_query)
-        row = self.cursor.fetchone()
-        
-        data_file = form['data_file']
-        if data_file.filename:
-            data_file_name = os.path.basename(data_file.filename)                
-            
-            download_dir = self.base_dir +"/downloads/"+ str(row[0]) +"/"                
-            if not os.path.exists(download_dir):
-                os.makedirs(download_dir)
-                            
-            data_save_file = open(download_dir+data_file_name, "w")
-            data_save_file.write(data_file.file.read())
-            data_save_file.close
-            
-            update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gd_id=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
-            self.cursor.execute(update_query)                
-        
-        # Return JavaScript boolean to view         
-        self.return_message = json.dumps(json_data);
-#        except:
-#            e = sys.exc_info()[1]
-#            self.return_message = "{message: '"+str(e)+"'}"
-#            print >> self.errors, "ERROR:: "+ str(e)
+        except:
+            e = sys.exc_info()[1]
+            self.return_message = "{message: '"+count+" "+str(e)+"'}"
+            print >> self.errors, "ERROR:: "+count+" "+ str(e)
             
         # Close DB connections        
         self.cursor.close()
