@@ -173,8 +173,7 @@ class WebDB:
                 count = count+1
                 # Build MySQL insert query
                 values.append(location)
-                #values.append(self.db.escape_string(shp_file_contents))
-                values.append('1')
+                values.append(self.db.escape_string(shp_file_contents))                
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 insert_query_with_values = insert_query % tuple(values)                
@@ -208,7 +207,7 @@ class WebDB:
             self.return_message = json.dumps(json_data);
         except:
             e = sys.exc_info()[1]
-            self.return_message = e;
+            self.return_message = "{message: '"+e+"'}"
             
         # Close DB connections        
         self.cursor.close()
