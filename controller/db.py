@@ -52,11 +52,12 @@ class WebDB:
             if row == None:
                 break
             html_row = ""
-            for html_item in row:                
+            row[0] = '<a href="/?login=admin&edit='+row[0]+'">'+row[0]+'</a>'
+            for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
         columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
-        return "<table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
+        return "<table border='1px'><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
     
     def html_filter(self, string):
         """

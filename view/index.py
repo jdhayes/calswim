@@ -8,8 +8,21 @@ import cgi;
 import urllib;
 from view import WebView;
 from db import WebDB;
+from pesto import dispatcher_app
+dispatcher = dispatcher_app()
 
-def application(environ, start_response):
+@dispatcher.match('/login', 'POST')
+def login(request):
+
+    username = request.get('username')
+    password = request.get('password')
+
+    if is_valid(username, password):
+        request.session['username'] = username
+        request.session['logged_in'] = True
+        
+@dispatcher.match('/', 'GET')
+def app(environ, start_response):
     
     """
         ==========================================================        
@@ -79,3 +92,6 @@ def application(environ, start_response):
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
+
+application = dispatcher
+application = sessioning(application)
