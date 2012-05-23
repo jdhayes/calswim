@@ -49,9 +49,9 @@ class WebDB:
         html_rows = "" 
         while(1):
             row=self.cursor.fetchone()
-            row = list(row)
             if row == None:
                 break
+            row = list(row)
             html_row = ""
             row[0] = '<a href="/?login=admin&edit='+str(row[0])+'">'+str(row[0])+'</a>'
             for html_item in row:
