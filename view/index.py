@@ -9,6 +9,7 @@ import urllib;
 from view import WebView;
 from db import WebDB;
 from pesto.session.memorysessionmanager import MemorySessionManager
+from pesto.session import session_middleware
 
 def wsgi_app(environ, start_response):
     
