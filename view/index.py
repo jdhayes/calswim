@@ -10,6 +10,7 @@ from view import WebView;
 from db import WebDB;
 from pesto import dispatcher_app
 dispatcher = dispatcher_app()
+from pesto.session.memorysessionmanager import MemorySessionManager
 
 @dispatcher.match('/login', 'POST')
 def login(request):
@@ -92,6 +93,8 @@ def app(environ, start_response):
     # Define headers and return content
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
+
+sessioning = pesto.session_middleware(MemorySessionManager())
 
 application = dispatcher
 application = sessioning(application)
