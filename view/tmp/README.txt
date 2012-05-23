@@ -1,0 +1,1 @@
+This directory contains the cached sessions for this WSGI application
