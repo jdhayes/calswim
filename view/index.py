@@ -63,10 +63,13 @@ def wsgi_app(environ, start_response):
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
             return CalSwimView.content
     elif 'login' in form:
-        user = form.getvalue('username')
-        passwd = form.getvalue('password')
+        # Set user name in session to mark successful login
+        if 'admin' in form:
+            passwd = form.getvalue('password')
+            if passwd=='EcoAdminPass2012':
+                session['user'] = 'admin'
         
-        if user=='admin' and passwd=='EcoAdminPass2012':
+        if 'admin' in session:
             # Get all records
             items = CalSwimDB.get_items()
             # Place all records in html frontend
