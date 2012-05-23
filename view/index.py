@@ -8,8 +8,9 @@ import cgi;
 import urllib;
 from view import WebView;
 from db import WebDB;
-from pesto.session.memorysessionmanager import MemorySessionManager
+from pesto.session.filesessionmanager import FileSessionManager
 from pesto.session import session_middleware
+base_dir = os.path.dirname(__file__)
 
 def wsgi_app(environ, start_response):
     
@@ -23,8 +24,7 @@ def wsgi_app(environ, start_response):
     session = environ['pesto.session']
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
-    # Initialize web classes
-    base_dir = os.path.dirname(__file__)
+    # Initialize web classes    
     CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
     CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
     #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
@@ -79,10 +79,7 @@ def wsgi_app(environ, start_response):
             CalSwimView.content = CalSwimView.content % {'Items' : items}
         else:            
             CalSwimView.set_content('index')
-            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}
-            
-            # Debug line
-            CalSwimView.content = str(session['user'])
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
@@ -91,4 +88,13 @@ def wsgi_app(environ, start_response):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-application = session_middleware(MemorySessionManager())(wsgi_app)
+""""application = session_middleware(MemorySessionManager())(wsgi_app)"""
+
+# Create a file based sessioning middleware, that runs a purge every 600s
+# for sessions older than 1800s..
+sessioning = pesto.session_middleware(
+    FileSessionManager(base_dir+"/tmp"),
+    auto_purge_every=600,
+    auto_purge_olderthan=1800
+)
+application = session_middleware(sessioning)(wsgi_app)
