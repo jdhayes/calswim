@@ -48,7 +48,8 @@ class WebDB:
         # Compile all records into an HTML string        
         html_rows = "" 
         while(1):
-            row=list(self.cursor.fetchone())
+            row=self.cursor.fetchone()
+            row = list(row)
             if row == None:
                 break
             html_row = ""
