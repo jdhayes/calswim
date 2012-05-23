@@ -71,7 +71,9 @@ def wsgi_app(environ, start_response):
             else:
                 session['user'] = "guest"
         
-        if 'admin' == session['user']:
+        # Get user if it exists, and verify if it is admin
+        user = session.get('user')
+        if 'admin' == user:
             # Get all records
             items = CalSwimDB.get_items()
             # Place all records in html frontend
