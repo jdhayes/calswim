@@ -23,8 +23,8 @@ def login(request):
         request.session['username'] = username
         request.session['logged_in'] = True
         
-@dispatcher.match('/index', 'GET')
-def index(environ, start_response):
+@dispatcher.match('/', 'GET')
+def root(environ, start_response):
     
     """
         ==========================================================        
