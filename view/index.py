@@ -9,7 +9,7 @@ import urllib;
 from view import WebView;
 from db import WebDB;
 from pesto.session import session_middleware
-from pesto.session.memorysessionmanager import MemorySessionManager
+from pesto.session.filesessionmanager import FileSessionManager
 base_dir = os.path.dirname(__file__)
 
 def wsgi_app(environ, start_response):
@@ -91,5 +91,8 @@ def wsgi_app(environ, start_response):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-manager = MemorySessionManager()
-application = session_middleware(manager)(wsgi_app)
+application = session_middleware(
+    FileSessionManager(base_dir+"/tmp"),
+    cookie_path='/',
+    cookie_domain='ecodataportal.ics.uci.edu',
+)(wsgi_app)
