@@ -10,7 +10,7 @@ from view import WebView;
 from db import WebDB;
 import pesto
 dispatcher = pesto.dispatcher_app()
-from pesto.session.memorysessionmanager import MemorySessionManager
+from pesto.session.filesessionmanager import FileSessionManager
 BASE_DIR = os.path.dirname(__file__)
 
 @dispatcher.match('/login', 'POST')
