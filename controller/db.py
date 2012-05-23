@@ -40,7 +40,7 @@ class WebDB:
         self.return_message = ""
         # Initialize error var
         self.errors = errors  
-    def get_items(self):
+    def get_items(self, session_id):
         # Get all records from DB
         select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData"        
         self.cursor.execute(select_query)
@@ -53,7 +53,7 @@ class WebDB:
                 break
             row = list(row)
             html_row = ""
-            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'">'+str(row[0])+'</a>'
+            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'&pesto_session="'+session_id+'>'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"

@@ -75,7 +75,7 @@ def wsgi_app(environ, start_response):
         user = session.get('user')
         if 'admin' == user:
             # Get all records
-            items = CalSwimDB.get_items()
+            items = CalSwimDB.get_items(session.session_id)
             # Place all records in html frontend
             CalSwimView.set_content('admin')
             CalSwimView.content = CalSwimView.content % {'Items' : items}
