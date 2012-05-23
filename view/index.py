@@ -88,13 +88,11 @@ def wsgi_app(environ, start_response):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-""""application = session_middleware(MemorySessionManager())(wsgi_app)"""
-
 # Create a file based sessioning middleware, that runs a purge every 600s
 # for sessions older than 1800s..
-sessioning = pesto.session_middleware(
+sessioning = session_middleware(
     FileSessionManager(base_dir+"/tmp"),
     auto_purge_every=600,
     auto_purge_olderthan=1800
 )
-application = session_middleware(sessioning)(wsgi_app)
+application = sessioning(wsgi_app)
