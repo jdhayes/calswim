@@ -11,6 +11,7 @@ from db import WebDB;
 import pesto
 dispatcher = pesto.dispatcher_app()
 from pesto.session.memorysessionmanager import MemorySessionManager
+BASE_DIR = os.path.dirname(__file__)
 
 @dispatcher.match('/login', 'POST')
 def login(request):
@@ -34,10 +35,9 @@ def app(environ, start_response):
     # Retrieve GET variables and store them as a dictionary
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
-    # Initialize web classes
-    base_dir = os.path.dirname(__file__)
-    CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
-    CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
+    # Initialize web classes    
+    CalSwimView = WebView(BASE_DIR, environ['wsgi.errors'])    
+    CalSwimDB = WebDB(BASE_DIR, environ['wsgi.errors']);
     #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
     
     """
@@ -94,7 +94,13 @@ def app(environ, start_response):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-sessioning = pesto.session_middleware(MemorySessionManager())
+# Create a file based sessioning middleware, that runs a purge every 600s
+# for sessions older than 1800s..
+sessioning = pesto.session_middleware(
+    FileSessionManager(BASE_DIR+"/tmp"),
+    auto_purge_every=600,
+    auto_purge_olderthan=1800
+)
 
 application = dispatcher
 application = sessioning(application)
