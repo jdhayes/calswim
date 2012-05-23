@@ -52,7 +52,7 @@ class WebDB:
             if row == None:
                 break
             html_row = ""
-            row[0] = '<a href="/?login=admin&edit='+row[0]+'">'+row[0]+'</a>'
+            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'">'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
