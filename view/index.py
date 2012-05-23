@@ -8,23 +8,9 @@ import cgi;
 import urllib;
 from view import WebView;
 from db import WebDB;
-import pesto
-dispatcher = pesto.dispatcher_app()
-from pesto.session.filesessionmanager import FileSessionManager
-BASE_DIR = os.path.dirname(__file__)
+from pesto.session.memorysessionmanager import MemorySessionManager
 
-@dispatcher.match('/login', 'POST')
-def login(request):
-
-    username = request.get('username')
-    password = request.get('password')
-
-    if is_valid(username, password):
-        request.session['username'] = username
-        request.session['logged_in'] = True
-        
-@dispatcher.match('/', 'GET')
-def root(request):
+def wsgi_app(environ, start_response):
     
     """
         ==========================================================        
@@ -33,11 +19,13 @@ def root(request):
     """
     
     # Retrieve GET variables and store them as a dictionary
+    session = environ['pesto.session']
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
-    # Initialize web classes    
-    CalSwimView = WebView(BASE_DIR, environ['wsgi.errors'])    
-    CalSwimDB = WebDB(BASE_DIR, environ['wsgi.errors']);
+    # Initialize web classes
+    base_dir = os.path.dirname(__file__)
+    CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
+    CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
     #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
     
     """
@@ -94,13 +82,4 @@ def root(request):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-# Create a file based sessioning middleware, that runs a purge every 600s
-# for sessions older than 1800s..
-sessioning = pesto.session_middleware(
-    FileSessionManager(BASE_DIR+"/tmp"),
-    auto_purge_every=600,
-    auto_purge_olderthan=1800
-)
-
-application = dispatcher
-application = sessioning(application)
+application = session_middleware(MemorySessionManager())(wsgi_app)
