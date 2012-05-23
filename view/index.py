@@ -24,7 +24,7 @@ def login(request):
         request.session['logged_in'] = True
         
 @dispatcher.match('/', 'GET')
-def root(environ, start_response):
+def root(request):
     
     """
         ==========================================================        
