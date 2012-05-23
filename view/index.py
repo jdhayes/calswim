@@ -64,12 +64,12 @@ def wsgi_app(environ, start_response):
             return CalSwimView.content
     elif 'login' in form:
         # Set user name in session to mark successful login
-        if 'admin' in form:
+        if 'username' in form:
             passwd = form.getvalue('password')
             if passwd=='EcoAdminPass2012':
                 session['user'] = 'admin'
         
-        if 'admin' in session:
+        if 'admin' == session['user']:
             # Get all records
             items = CalSwimDB.get_items()
             # Place all records in html frontend
@@ -80,7 +80,7 @@ def wsgi_app(environ, start_response):
             CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}
             
             # Debug line
-            CalSwimView.content = str(session)
+            CalSwimView.content = str(session['user'])
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
