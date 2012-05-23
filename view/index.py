@@ -75,9 +75,12 @@ def wsgi_app(environ, start_response):
             # Place all records in html frontend
             CalSwimView.set_content('admin')
             CalSwimView.content = CalSwimView.content % {'Items' : items}
-        else:
+        else:            
             CalSwimView.set_content('index')
             CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}
+            
+            # Debug line
+            CalSwimView.content = str(session)
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
