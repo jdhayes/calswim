@@ -21,7 +21,7 @@ def wsgi_app(environ, start_response):
     """
     
     # Retrieve GET variables and store them as a dictionary
-    session = environ['pesto.session']    
+    session = environ['pesto.session']  
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
     # Initialize web classes    
@@ -76,10 +76,10 @@ def wsgi_app(environ, start_response):
         # Get user if it exists, and verify if it is admin        
         if 'admin' == user:
             # Get all records
-            items = CalSwimDB.get_items(session.session_id)
+            items = CalSwimDB.get_items()
             # Place all records in html frontend
             CalSwimView.set_content('admin')
-            CalSwimView.content = CalSwimView.content % {'Items' : items}
+            CalSwimView.content = CalSwimView.content % {'Items' : session.session_id}
         else:            
             CalSwimView.set_content('index')
             CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
