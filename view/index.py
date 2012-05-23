@@ -95,6 +95,7 @@ def wsgi_app(environ, start_response):
 sessioning = session_middleware(
     FileSessionManager(base_dir+"/tmp"),
     auto_purge_every=600,
-    auto_purge_olderthan=1800
+    auto_purge_olderthan=1800,
+    persist='querystring'
 )
 application = sessioning(wsgi_app)
