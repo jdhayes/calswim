@@ -8,8 +8,8 @@ import cgi;
 import urllib;
 from view import WebView;
 from db import WebDB;
-from pesto import dispatcher_app
-dispatcher = dispatcher_app()
+import pesto
+dispatcher = pesto.dispatcher_app()
 from pesto.session.memorysessionmanager import MemorySessionManager
 
 @dispatcher.match('/login', 'POST')
