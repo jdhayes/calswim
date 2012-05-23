@@ -68,6 +68,8 @@ def wsgi_app(environ, start_response):
             passwd = form.getvalue('password')
             if passwd=='EcoAdminPass2012':
                 session['user'] = 'admin'
+            else:
+                session['user'] = "guest"
         
         if 'admin' == session['user']:
             # Get all records
