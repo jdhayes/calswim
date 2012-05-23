@@ -20,7 +20,8 @@ def wsgi_app(environ, start_response):
         ==========================================================
     """
     
-    # Retrieve GET variables and store them as a dictionary    
+    # Retrieve GET variables and store them as a dictionary
+    session = environ['pesto.session']    
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
     # Initialize web classes    
@@ -62,27 +63,26 @@ def wsgi_app(environ, start_response):
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
             return CalSwimView.content
     elif 'login' in form:
+        user = session.get('user')
+        
         # Set user name in session to mark successful login
-#        if 'username' in form:
-#            passwd = form.getvalue('password')
-#            if passwd=='EcoAdminPass2012':
-#                session = environ['pesto.session']
-#                session['user'] = 'admin'
-#            else:
-#                session['user'] = "guest"
-#        
-#        # Get user if it exists, and verify if it is admin
-#        user = session.get('user')
-#        if 'admin' == user:
-#            # Get all records
-#            items = CalSwimDB.get_items(session.session_id)
-#            # Place all records in html frontend
-#            CalSwimView.set_content('admin')
-#            CalSwimView.content = CalSwimView.content % {'Items' : items}
-#        else:            
-#            CalSwimView.set_content('index')
-#            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
-        CalSwimView.content = environ['pesto.session']
+        if 'username' in form:
+            passwd = form.getvalue('password')
+            if passwd=='EcoAdminPass2012':                
+                session['user'] = 'admin'
+            else:
+                session['user'] = "guest"
+        
+        # Get user if it exists, and verify if it is admin        
+        if 'admin' == user:
+            # Get all records
+            items = CalSwimDB.get_items(session.session_id)
+            # Place all records in html frontend
+            CalSwimView.set_content('admin')
+            CalSwimView.content = CalSwimView.content % {'Items' : items}
+        else:            
+            CalSwimView.set_content('index')
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
