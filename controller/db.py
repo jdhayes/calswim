@@ -53,7 +53,7 @@ class WebDB:
                 break
             row = list(row)
             html_row = ""
-            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'&pesto_session="'+session_id+'>'+str(row[0])+'</a>'
+            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'">'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"

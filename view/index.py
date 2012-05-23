@@ -8,8 +8,8 @@ import cgi;
 import urllib;
 from view import WebView;
 from db import WebDB;
-from pesto.session.filesessionmanager import FileSessionManager
 from pesto.session import session_middleware
+from pesto.session.memorysessionmanager import MemorySessionManager
 base_dir = os.path.dirname(__file__)
 
 def wsgi_app(environ, start_response):
@@ -20,8 +20,7 @@ def wsgi_app(environ, start_response):
         ==========================================================
     """
     
-    # Retrieve GET variables and store them as a dictionary
-    session = environ['pesto.session']
+    # Retrieve GET variables and store them as a dictionary    
     form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
        
     # Initialize web classes    
@@ -64,24 +63,26 @@ def wsgi_app(environ, start_response):
             return CalSwimView.content
     elif 'login' in form:
         # Set user name in session to mark successful login
-        if 'username' in form:
-            passwd = form.getvalue('password')
-            if passwd=='EcoAdminPass2012':
-                session['user'] = 'admin'
-            else:
-                session['user'] = "guest"
-        
-        # Get user if it exists, and verify if it is admin
-        user = session.get('user')
-        if 'admin' == user:
-            # Get all records
-            items = CalSwimDB.get_items(session.session_id)
-            # Place all records in html frontend
-            CalSwimView.set_content('admin')
-            CalSwimView.content = CalSwimView.content % {'Items' : items}
-        else:            
-            CalSwimView.set_content('index')
-            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
+#        if 'username' in form:
+#            passwd = form.getvalue('password')
+#            if passwd=='EcoAdminPass2012':
+#                session = environ['pesto.session']
+#                session['user'] = 'admin'
+#            else:
+#                session['user'] = "guest"
+#        
+#        # Get user if it exists, and verify if it is admin
+#        user = session.get('user')
+#        if 'admin' == user:
+#            # Get all records
+#            items = CalSwimDB.get_items(session.session_id)
+#            # Place all records in html frontend
+#            CalSwimView.set_content('admin')
+#            CalSwimView.content = CalSwimView.content % {'Items' : items}
+#        else:            
+#            CalSwimView.set_content('index')
+#            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
+        CalSwimView.content = environ['pesto.session']
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
@@ -90,12 +91,5 @@ def wsgi_app(environ, start_response):
     start_response('200 OK', [('content-type', 'text/html')])
     return CalSwimView.content
 
-# Create a file based sessioning middleware, that runs a purge every 600s
-# for sessions older than 1800s..
-sessioning = session_middleware(
-    FileSessionManager(base_dir+"/tmp"),
-    auto_purge_every=600,
-    auto_purge_olderthan=1800,
-    persist='querystring'
-)
-application = sessioning(wsgi_app)
+manager = MemorySessionManager()
+application = session_middleware(manager)(wsgi_app)
