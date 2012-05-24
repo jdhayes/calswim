@@ -254,7 +254,7 @@ class WebDB:
                 elif column == "phone" or column == "site_count":
                     update_query += column+"="+form.getvalue(column)+","
                 elif column == "timeline_start" or column == "timeline_finish":
-                    update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y'),"
+                    update_query += column+"=STR_TO_DATE('"+ form.getvalue(column) +"', '%Y-%m-%d'),"
                 else:
                     update_query += column+'="'+form.getvalue(column)+'",'
             
