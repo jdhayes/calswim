@@ -244,7 +244,7 @@ class WebDB:
     
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
-        if format == "json":
+        if format == "json" or format == "html":
             select_query = """
             SELECT organization, contact,
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
@@ -281,6 +281,12 @@ class WebDB:
             csv_model.writerow(labels)
             csv_model.writerow(row)
             return buffer.getvalue()
+        elif format == 'html':
+            columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
+            html_row = ""            
+            for index, item in enumerate(row):
+                html_row += "<tr><td>"+columns[index]+"</td><td>"+str(item)+"</td></tr>"            
+            return "<table border='1px'>"+ html_row +"</table>"
         else:        
             html_row = []
             for item in row:

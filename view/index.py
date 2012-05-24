@@ -75,14 +75,19 @@ def wsgi_app(environ, start_response):
         user = session.get('user')
         # Get user if it exists, and verify if it is admin        
         if 'admin' == user:
-            # Get all records
-            items = CalSwimDB.get_items()
-            # Place all records in html frontend
-            CalSwimView.set_content('admin')
-            CalSwimView.content = CalSwimView.content % {'Items' : items}
+            if 'edit' in form:
+                gd_id = form.getvalue('edit')
+                CalSwimView.set_content('admin')
+                CalSwimView.content = CalSwimDB.get_data_details(gd_id, 'html')
+            else:
+                # Get all records
+                items = CalSwimDB.get_items()
+                # Place all records in html frontend
+                CalSwimView.set_content('admin')
+                CalSwimView.content = CalSwimView.content % {'Items' : items}
         else:            
             CalSwimView.set_content('index')
-            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Your user name or password was incorrect."}            
+            CalSwimView.content = CalSwimView.content % {'uploadResult' : "Incorrect name or password."}            
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
