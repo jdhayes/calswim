@@ -58,7 +58,7 @@ class WebDB:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='delete[]' value='"+str(row[0])+"'/></td></tr>"
         columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target","Delete</th>"]
-        return "<form action='' method='post'><a id='add' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/><table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table></form>"
+        return "<form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/><table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table></form>"
     
     def html_filter(self, string):
         """
