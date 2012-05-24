@@ -247,8 +247,10 @@ class WebDB:
         values = []
         update_query = "UPDATE GeoData SET "
         columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
-        for column in columns:
-            if column == "phone" or column == "site_count":
+        for column in columns:            
+            if form.getvalue(column) == None or form.getvalue(column) == "":
+                update_query += column+"=NULL "
+            elif column == "phone" or column == "site_count":
                 update_query += column+"="+form.getvalue(column)+" "
             elif column == "timeline_start" or column == "timeline_finish":
                 update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y')"
