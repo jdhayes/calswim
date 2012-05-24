@@ -242,7 +242,7 @@ class WebDB:
         deg, min, sec  = deg_min_sec.split()
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
-    def set_data_details(self, gd_id, format='json'):            
+    def set_data_details(self, gd_id, form):            
         # Gather submitted for values
         values = []
         update_query = "UPDATE GeoData SET "

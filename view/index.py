@@ -78,7 +78,7 @@ def wsgi_app(environ, start_response):
             if 'edit' in form:
                 gd_id = form.getvalue('edit')                
                 if 'organization' in form:                    
-                    CalSwimView.content = CalSwimDB.set_data_details(gd_id)
+                    CalSwimView.content = CalSwimDB.set_data_details(gd_id, form)
                 else:
                     CalSwimView.set_content('admin')
                     items = CalSwimDB.get_data_details(gd_id, 'html')
