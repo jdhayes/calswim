@@ -242,6 +242,24 @@ class WebDB:
         deg, min, sec  = deg_min_sec.split()
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
+    def set_data_details(self, gd_id, format='json'):            
+        # Gather submitted for values
+        values = []
+        update_query = "UPDATE GeoData SET "
+        columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+        for column in columns:
+            if column == "phone" or column == "site_count":
+                update_query += column+"="+form.getvalue(column)+" "
+            elif column == "timeline_start" or column == "timeline_finish":
+                update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y')"
+            else:
+                update_query += column+"='"+form.getvalue(column)+"' "
+        update_query = " WHERE gd_id="+gd_id
+        self.cursor.execute(update_query)
+        # Close DB connections        
+        self.cursor.close()
+        return "Success"
+        
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
         if format == "json":
@@ -258,7 +276,7 @@ class WebDB:
             FROM GeoData WHERE gd_id=""" + gd_id
         if format == "html":
             select_query = """
-            SELECT organization, contact,email,phone, data_url, project_name, project_description,
+            SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
             timeline_start,timeline_finish,project_funder, data_target, location_description, 
             site_count, data_collector,data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
@@ -278,7 +296,7 @@ class WebDB:
         row = self.cursor.fetchone()
         
         # Create a dictionary of column names and values                
-        labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","Other"]
+        labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","Other"]
         
         # Return results
         if format == 'csv':

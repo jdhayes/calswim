@@ -76,10 +76,9 @@ def wsgi_app(environ, start_response):
         # Get user if it exists, and verify if it is admin        
         if 'admin' == user:
             if 'edit' in form:
-                gd_id = form.getvalue('edit')
-                
-                if 'organization' in form:
-                    CalSwimView.content = "Update Successful"
+                gd_id = form.getvalue('edit')                
+                if 'organization' in form:                    
+                    CalSwimView.content = CalSwimDB.set_data_details(gd_id)
                 else:
                     CalSwimView.set_content('admin')
                     items = CalSwimDB.get_data_details(gd_id, 'html')
