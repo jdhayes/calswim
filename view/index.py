@@ -40,12 +40,6 @@ def wsgi_app(environ, start_response):
         """
         CalSwimView.set_search(form.getvalue('get_map_locs'),form.getvalue('radius'),form.getvalue('keywords'))
         CalSwimView.content = CalSwimDB.get_map_locs(CalSwimView)    
-    elif 'import_data' in form:
-        """
-            Handle AJAX call for data import into DB
-        """        
-        CalSwimDB.import_data(form)
-        CalSwimView.content = CalSwimDB.return_message
     elif 'get_data_details' in form:
         """
            Return AJAX call results for data details
@@ -83,6 +77,12 @@ def wsgi_app(environ, start_response):
                     CalSwimView.set_content('admin')
                     items = CalSwimDB.get_data_details(gd_id, 'html')
                     CalSwimView.content = CalSwimView.content % {'Items' : items}
+            elif 'import_data' in form:
+                """
+                    Handle AJAX call for data import into DB
+                """        
+                CalSwimDB.import_data(form)
+                CalSwimView.content = CalSwimDB.return_message
             else:
                 # Get all records
                 items = CalSwimDB.get_items()
