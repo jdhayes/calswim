@@ -304,7 +304,7 @@ class WebDB:
         row = self.cursor.fetchone()
         
         # Create a dictionary of column names and values                
-        labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","Other"]
+        labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
         
         # Return results
         if format == 'csv':
