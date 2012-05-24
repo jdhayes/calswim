@@ -254,9 +254,9 @@ class WebDB:
                 elif column == "phone" or column == "site_count":
                     update_query += column+"="+form.getvalue(column)+" "
                 elif column == "timeline_start" or column == "timeline_finish":
-                    update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y')"
+                    update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y') "
                 else:
-                    update_query += column+'="'+form.getvalue(column)+' "'
+                    update_query += column+'="'+form.getvalue(column)+'" '
             update_query += " WHERE gd_id="+gd_id
             self.cursor.execute(update_query)
             # Close DB connections        
