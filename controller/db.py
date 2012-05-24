@@ -282,6 +282,7 @@ class WebDB:
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
         if format == "json":
+            exit()
             select_query = """
             SELECT organization, contact,
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
