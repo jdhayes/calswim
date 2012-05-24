@@ -164,6 +164,7 @@ function initTableMap(json_data) {
     // Initialize resizable table container
     resizeOptions = {handles:"n", alsoResize:'#table_canvas div div:last'}
     $('#table_canvas').resizable(resizeOptions);
+    $('#table_canvas').open('south');
 }
 
 // Clear all selections on the map
@@ -215,7 +216,7 @@ function get_data_details(data_id) {
     
     // Open the data details pane
     west_layout = $("#content").layout();
-    west_layout.toggle('west');
+    west_layout.open('west');
 }
 
 function initialize() {    

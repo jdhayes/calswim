@@ -294,7 +294,7 @@ class WebDB:
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
             # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]            
+            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
         elif format == "html":
             select_query = """
             SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
@@ -316,7 +316,7 @@ class WebDB:
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id            
             # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]            
+            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
             
         self.cursor.execute(select_query)
         row = self.cursor.fetchone()            
