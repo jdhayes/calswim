@@ -39,7 +39,18 @@ class WebDB:
         # Set return message to blank
         self.return_message = ""
         # Initialize error var
-        self.errors = errors  
+        self.errors = errors
+    def delete_items(self, delete_ids):
+        delete_query="DELETE FROM GeoData WHERE gd_id IN ("
+        for id in delete_ids:
+            delete_query += id+","
+        delete_query = delete_query.rstrip(',') + ")"
+        self.cursor.execute(select_query)
+        # Commit queries
+        self.db.commit()
+        # Close connection
+        self.db.close()
+        
     def get_items(self):
         # Get all records from DB
         select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData"        
@@ -56,7 +67,7 @@ class WebDB:
             row[0] = '<a href="/?login=admin&edit='+str(row[0])+'" target="_blank">'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
-            html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='delete[]' value='"+str(row[0])+"'/></td></tr>"
+            html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='deletes[]' value='"+str(row[0])+"'/></td></tr>"
         columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target","Delete</th>"]
         return "<form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/><table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table></form>"
     

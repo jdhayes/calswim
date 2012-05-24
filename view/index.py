@@ -70,6 +70,9 @@ def wsgi_app(environ, start_response):
         # Get user if it exists, and verify if it is admin        
         if 'admin' == user:
             if 'edit' in form:
+                """
+                    Handler for a single item edit
+                """
                 gd_id = form.getvalue('edit')                
                 if 'organization' in form:                    
                     CalSwimView.content = CalSwimDB.set_data_details(gd_id, form)
@@ -83,6 +86,17 @@ def wsgi_app(environ, start_response):
                 """        
                 CalSwimDB.import_data(form)
                 CalSwimView.content = CalSwimDB.return_message
+            elif 'delete' in form:
+                """
+                    Handler for deleting items
+                """
+                # Delete items from a list of ids
+                CalSwimDB.delete_items(form.getvalue('deletes'))                
+                # Get all records
+                items = CalSwimDB.get_items()
+                # Place all records in html frontend
+                CalSwimView.set_content('admin')
+                CalSwimView.content = CalSwimView.content % {'Items' : items}
             else:
                 # Get all records
                 items = CalSwimDB.get_items()
