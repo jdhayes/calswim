@@ -243,24 +243,29 @@ class WebDB:
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
     def set_data_details(self, gd_id, form):            
-        # Gather submitted for values
-        values = []
-        update_query = "UPDATE GeoData SET "
-        columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
-        for column in columns:            
-            if form.getvalue(column) == None or form.getvalue(column) == "":
-                update_query += column+"=NULL "
-            elif column == "phone" or column == "site_count":
-                update_query += column+"="+form.getvalue(column)+" "
-            elif column == "timeline_start" or column == "timeline_finish":
-                update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y')"
-            else:
-                update_query += column+"='"+form.getvalue(column)+"' "
-        update_query += " WHERE gd_id="+gd_id
-        self.cursor.execute(update_query)
-        # Close DB connections        
-        self.cursor.close()
-        return "Success"
+        try:
+            # Gather submitted for values
+            values = []
+            update_query = "UPDATE GeoData SET "
+            columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+            for column in columns:
+                if form.getvalue(column) == None or form.getvalue(column) == "":
+                    update_query += column+"=NULL "
+                elif column == "phone" or column == "site_count":
+                    update_query += column+"="+form.getvalue(column)+" "
+                elif column == "timeline_start" or column == "timeline_finish":
+                    update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y')"
+                else:
+                    update_query += column+'="'+form.getvalue(column)+' "'
+            update_query += " WHERE gd_id="+gd_id
+            self.cursor.execute(update_query)
+            # Close DB connections        
+            self.cursor.close()
+            return "Success"
+        except:
+            e = sys.exc_info()[1]
+            print >> self.errors, "ERROR:: "+str(e)
+            return str(e)
         
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
