@@ -53,7 +53,7 @@ class WebDB:
                 break
             row = list(row)
             html_row = ""
-            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'">'+str(row[0])+'</a>'
+            row[0] = '<a href="/?login=admin&edit='+str(row[0])+'" target="_blank">'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
@@ -278,7 +278,7 @@ class WebDB:
         row = self.cursor.fetchone()
         
         # Create a dictionary of column names and values                
-        labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Project Start","Project Finish","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
+        labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","Other"]
         
         # Return results
         if format == 'csv':
@@ -290,7 +290,7 @@ class WebDB:
         elif format == 'html':            
             html_row = ""            
             for index, item in enumerate(row):                
-                html_row += "<tr><td width='150px'>"+labels[index]+"</td><td><textarea name='"+str(index)+"'>"+str(item)+"</textarea></td></tr>"            
+                html_row += "<tr><td width='150px'>"+(labels[index].capitalize()).replace("_"," ")+"</td><td><textarea name='"+labels[index]+"'>"+str(item)+"</textarea></td></tr>"            
             return "<h2>"+gd_id+"</h2><form action='' method='post'><table>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
         else:        
             html_row = []
