@@ -58,7 +58,7 @@ class WebDB:
                 html_row += "<td>"+str(html_item)+"</td>"
             html_rows += "<tr>"+html_row+"</tr>"
         columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
-        return "<table border='1px'><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
+        return "<table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
     
     def html_filter(self, string):
         """
@@ -244,7 +244,7 @@ class WebDB:
     
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
-        if format == "json" or format == "html":
+        if format == "json":
             select_query = """
             SELECT organization, contact,
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
@@ -255,6 +255,12 @@ class WebDB:
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
             project_funder, data_target, location_description, site_count, data_collector,
             data_type, data_format, data_policies, keyword, other
+            FROM GeoData WHERE gd_id=""" + gd_id
+        if format == "html":
+            select_query = """
+            SELECT organization, contact,email,phone, data_url, project_name, project_description,
+            timeline_start,timeline_finish,project_funder, data_target, location_description, 
+            site_count, data_collector,data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
         else:
             select_query = """
@@ -284,8 +290,8 @@ class WebDB:
         elif format == 'html':            
             html_row = ""            
             for index, item in enumerate(row):                
-                html_row += "<tr><td>"+labels[index]+"</td><td><textarea name='"+str(index)+"'>"+str(item)+"</textarea></td></tr>"            
-            return "<h2>"+gd_id+"</h2><form action='' method='post'><table border='1px'>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
+                html_row += "<tr><td width='150px'>"+labels[index]+"</td><td><textarea name='"+str(index)+"'>"+str(item)+"</textarea></td></tr>"            
+            return "<h2>"+gd_id+"</h2><form action='' method='post'><table>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
         else:        
             html_row = []
             for item in row:
