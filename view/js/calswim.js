@@ -164,7 +164,10 @@ function initTableMap(json_data) {
     // Initialize resizable table container
     resizeOptions = {handles:"n", alsoResize:'#table_canvas div div:last'}
     $('#table_canvas').resizable(resizeOptions);
-    $('#table_canvas').open('south');
+    
+    // Open the google table canvas pane
+    west_layout = $("#content").layout();
+    west_layout.open('south');
 }
 
 // Clear all selections on the map
