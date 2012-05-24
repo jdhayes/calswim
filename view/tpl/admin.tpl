@@ -1,9 +1,11 @@
 <html>
 <head>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>    
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.form.js"></script>    
+    <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
     <script type="text/javascript" src="js/upload.js"></script>
     <style type="text/css" title="CalSWIMStyle">          
         @import "css/index.css";
