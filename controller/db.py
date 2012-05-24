@@ -284,7 +284,7 @@ class WebDB:
         elif format == 'html':            
             html_row = ""            
             for index, item in enumerate(row):                
-                html_row += "<tr><td>"+labels[index]+"</td><td><textarea name='"+index+"'>"+str(item)+"</textarea></td></tr>"            
+                html_row += "<tr><td>"+labels[index]+"</td><td><textarea name='"+str(index)+"'>"+str(item)+"</textarea></td></tr>"            
             return "<h2>"+gd_id+"</h2><form action='' method='post'><table border='1px'>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
         else:        
             html_row = []
