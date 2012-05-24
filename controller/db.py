@@ -56,8 +56,8 @@ class WebDB:
             row[0] = '<a href="/?login=admin&edit='+str(row[0])+'" target="_blank">'+str(row[0])+'</a>'
             for html_item in row:
                 html_row += "<td>"+str(html_item)+"</td>"
-            html_rows += "<tr>"+html_row+"</tr>"
-        columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
+            html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='delete[]' value='"+str(row[0])+"'/></td></tr>"
+        columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target","Delete</th>"]
         return "<table><thead><tr>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody></table>"
     
     def html_filter(self, string):
@@ -276,35 +276,40 @@ class WebDB:
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
             concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
             concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,        
-            project_name, project_description,
+            project_name, project_name_short, project_description,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
             project_funder, data_target, location_description, site_count, data_collector,
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
+            
+            # Create a list of column names                
+            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
         if format == "html":
             select_query = """
             SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
             timeline_start,timeline_finish,project_funder, data_target, location_description, 
             site_count, data_collector,data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
+            # Create a list of column names                
+            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
         else:
             select_query = """
             SELECT organization, contact,
             email,
             concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
             data_url,        
-            project_name, project_description,
+            project_name, project_name_short, project_description,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
             project_funder, data_target, location_description, site_count, data_collector,
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
+            # Create a list of column names                
+            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+            
         self.cursor.execute(select_query)
-        row = self.cursor.fetchone()
-        
-        # Create a dictionary of column names and values                
-        labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+        row = self.cursor.fetchone()            
         
         # Return results
         if format == 'csv':
