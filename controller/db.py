@@ -257,8 +257,8 @@ class WebDB:
                     update_query += "STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y'), "
                 else:
                     update_query += column+'="'+form.getvalue(column)+'", '
-            update_query.rstrip(',')
-            update_query += " WHERE gd_id="+gd_id
+            
+            update_query = update_query.rstrip(',') + " WHERE gd_id="+gd_id
             self.cursor.execute(update_query)
             # Close DB connections        
             self.cursor.close()
