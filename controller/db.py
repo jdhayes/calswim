@@ -281,31 +281,7 @@ class WebDB:
         
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
-        if format == "json":
-            exit()
-            select_query = """
-            SELECT organization, contact,
-            concat('<a href="mailto:',email,'">',email,'</a>') as email,
-            concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
-            concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,        
-            project_name, project_name_short, project_description,
-            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
-            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
-            project_funder, data_target, location_description, site_count, data_collector,
-            data_type, data_format, data_policies, keyword, other
-            FROM GeoData WHERE gd_id=""" + gd_id
-            
-            # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
-        if format == "html":
-            select_query = """
-            SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
-            timeline_start,timeline_finish,project_funder, data_target, location_description, 
-            site_count, data_collector,data_type, data_format, data_policies, keyword, other
-            FROM GeoData WHERE gd_id=""" + gd_id
-            # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
-        else:
+        if format == "csv":
             select_query = """
             SELECT organization, contact,
             email,
@@ -318,7 +294,29 @@ class WebDB:
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
             # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]            
+        elif format == "html":
+            select_query = """
+            SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
+            timeline_start,timeline_finish,project_funder, data_target, location_description, 
+            site_count, data_collector,data_type, data_format, data_policies, keyword, other
+            FROM GeoData WHERE gd_id=""" + gd_id
+            # Create a list of column names                
+            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+        else:
+            select_query = """
+            SELECT organization, contact,
+            concat('<a href="mailto:',email,'">',email,'</a>') as email,
+            concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
+            concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,        
+            project_name, project_name_short, project_description,
+            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
+            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
+            project_funder, data_target, location_description, site_count, data_collector,
+            data_type, data_format, data_policies, keyword, other
+            FROM GeoData WHERE gd_id=""" + gd_id            
+            # Create a list of column names                
+            labels = ["organization","contact","email","phone","data_url","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]            
             
         self.cursor.execute(select_query)
         row = self.cursor.fetchone()            
