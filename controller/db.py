@@ -281,12 +281,11 @@ class WebDB:
             csv_model.writerow(labels)
             csv_model.writerow(row)
             return buffer.getvalue()
-        elif format == 'html':
-            columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target</th>"]
+        elif format == 'html':            
             html_row = ""            
             for index, item in enumerate(row):
-                html_row += "<tr><td>"+columns[index]+"</td><td>"+str(item)+"</td></tr>"            
-            return "<table border='1px'>"+ html_row +"</table>"
+                html_row += "<tr><td>"+labels[index]+"</td><td>"+str(item)+"</td></tr>"            
+            return "<h2>"+gd_id+"</h2><table border='1px'>"+ html_row +"</table>"
         else:        
             html_row = []
             for item in row:
