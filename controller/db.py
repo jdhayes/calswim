@@ -264,8 +264,8 @@ class WebDB:
             return "Success"
         except:
             e = sys.exc_info()[1]
-            print >> self.errors, "ERROR:: "+str(e)
-            return str(e)
+            print >> self.errors, "ERROR:: "+ str(e)
+            return "ERROR:: "+ str(e) +"<br/><br/>STATMENT"+ update_query
         
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
