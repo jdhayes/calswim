@@ -336,6 +336,8 @@ class WebDB:
         else:        
             html_row = []
             for item in row:
+                if item == None:
+                    item = ""
                 if isinstance(item, str):                
                     html_row.append("<br />".join(item.split("\n")))
                 else:
