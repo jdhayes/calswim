@@ -91,13 +91,13 @@ def wsgi_app(environ, start_response):
                     Handler for deleting items
                 """                
 #                # Delete items from a list of ids
-#                CalSwimDB.delete_items(form.getall('deletes'))                
+#                CalSwimDB.delete_items(form.getlist('deletes'))                
 #                # Get all records
 #                items = CalSwimDB.get_items()
 #                # Place all records in html frontend
 #                CalSwimView.set_content('admin')
 #                CalSwimView.content = CalSwimView.content % {'Items' : items}
-                CalSwimView.content = str(form.getall('deletes'))
+                CalSwimView.content = str(form.getlist('deletes'))
             else:
                 # Get all records
                 items = CalSwimDB.get_items()
