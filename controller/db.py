@@ -45,7 +45,7 @@ class WebDB:
         for id in delete_ids:
             delete_query += id+","
         delete_query = delete_query.rstrip(',') + ")"
-        self.cursor.execute(select_query)
+        self.cursor.execute(delete_query)
         # Commit queries
         self.db.commit()
         # Close connection
