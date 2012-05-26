@@ -40,17 +40,14 @@ class WebDB:
         self.return_message = ""
         # Initialize error var
         self.errors = errors
+        
     def delete_items(self, delete_ids):
         delete_query="DELETE FROM GeoData WHERE gd_id IN ("
         for id in delete_ids:
             delete_query += id+","
         delete_query = delete_query.rstrip(',') + ")"
         self.cursor.execute(delete_query)
-        # Commit queries
-        self.db.commit()
-        # Close connection
-        self.db.close()
-        
+                
     def get_items(self):
         # Get all records from DB
         select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData"        
