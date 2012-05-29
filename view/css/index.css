@@ -115,6 +115,11 @@ h3{
 #search{
 	padding: 15px 30px 15px 30px;
 }
+#search_button{
+	font-family: arial,sans-serif;
+	font-variant: small-caps;
+	font-size: 10pt;
+}
 #footer{
     background-color: #FEEEBD; /*#FFF6C1*/
     color: #655241; 

@@ -300,8 +300,12 @@ function initialize() {
 	$("#login_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
     /* Init watermarks and buttons */
 	$("#address").Watermark("Everywhere");
-    $("#keywords").Watermark("Everything");
-    $(".button").button();
+    $("#keywords").Watermark("Everything");    
+    $("#search_button").button(.button({    	
+		icons: {
+			secondary: "ui-icon-search"
+		}
+	});
     
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();
