@@ -55,7 +55,7 @@ def wsgi_app(environ, start_response):
         if format == 'cvs':
             # Return CVS content
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])          
-            return CalSwimView.content
+            return [CalSwimView.content]
     elif 'login' in form:
         
         # Set user name in session to mark successful login
@@ -112,7 +112,7 @@ def wsgi_app(environ, start_response):
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
     # Return finalized content    
-    return CalSwimView.content
+    return [CalSwimView.content]
 
 # Filter wsgi app so that it is Pesto compatible
 def altered_wsgi_app(environ, start_response):
