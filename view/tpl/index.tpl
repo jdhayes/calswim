@@ -28,8 +28,7 @@
         <div id="title">
             <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
         </div>
-        <div id="menu">
-            <a id="home" class="tab" href="#home">Home</a>
+        <div id="menu">            
             <a id="about_link" class="tab" href="#about">About The Data Portal</a>
             <a id="tools_link" class="tab" href="#tools">Educational Tools</a>            
             <a id="contact_link" class="tab" href="#contact">Contact Us</a>
