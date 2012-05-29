@@ -55,13 +55,8 @@ def wsgi_app(environ, start_response):
         
         if format == 'cvs':
             # Define headers and return content
-            return Response(
-                status = '200 OK',
-                content_type = 'application/CSV',
-                allow = ['GET','POST'],
-                content_disposition = 'attachment; filename=ecodata'+dataID+'.csv',
-                content = [CalSwimView.content]
-            )
+            start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
+            return CalSwimView.content
     elif 'login' in form:
         
         # Set user name in session to mark successful login
@@ -116,11 +111,19 @@ def wsgi_app(environ, start_response):
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
-        
-    return Response([CalSwimView.content])
+    
+    # Define headers and return content
+    start_response('200 OK', [('content-type', 'text/html')])
+    return CalSwimView.content
 
+# Filter wsgi app so that it is Pesto compatible
+def altered_wsgi_app(environ, start_response):
+    response = Response.from_wsgi(wsgi_app, environ, start_response)
+    return response.add_headers(x_powered_by='pesto')(environ, start_response)
+
+# Pass wsgi app to session handler
 application = session_middleware(
     FileSessionManager(base_dir+"/tmp"),
     cookie_path='/',
     cookie_domain='ecodataportal.ics.uci.edu',
-)(wsgi_app)
+)(altered_wsgi_app)
