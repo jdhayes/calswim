@@ -29,9 +29,9 @@
             <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
         </div>
         <div id="menu">            
-            <a id="about_link" class="tab" href="#about">About The Data Portal</a>
-            <a id="tools_link" class="tab" href="#tools">Educational Tools</a>            
-            <a id="contact_link" class="tab" href="#contact">Contact Us</a>
+            <a id="about_link" class="tab" href="#about">About</a>
+            <a id="tools_link" class="tab" href="#tools">Tools</a>            
+            <a id="contact_link" class="tab" href="#contact">Contact</a>
             <a id="search_link" class="tab" href="#search">Search</a>
             <a id="login_link" class="tab" style="float:right;" href="#login">login</a>
         </div>
