@@ -343,7 +343,7 @@ class WebDB:
                 if isinstance(item, str):                
                     html_row.append("<br />".join(item.split("\n")))
                 else:
-                    html_row.append(item)
+                    html_row.append(str(item))
                             
             data_details = "{"
             for index,label in enumerate(labels):
