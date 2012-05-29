@@ -348,7 +348,7 @@ class WebDB:
             data_details = "{"
             for index,label in enumerate(labels):
                  data_details += '"'+label+'":"'+html_row[index]+'",'
-            data_details.rstrip(',') + "}"
+            data_details = data_details.rstrip(',') + "}"
             # Return raw json
             return data_details
     
