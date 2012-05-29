@@ -116,9 +116,9 @@ h3{
 	padding: 15px 30px 15px 30px;
 }
 #search_button{
-	font-family: arial,sans-serif;
-	font-variant: small-caps;
-	font-size: 10pt;
+	font-family: arial,sans-serif;	
+	font-size: 11pt;
+	color: #655241;
 }
 #footer{
     background-color: #FEEEBD; /*#FFF6C1*/
@@ -177,8 +177,7 @@ form div.indent {
 .download_details {
 	font-size: 15pt;
 	font-family: arial,sans-serif;
-	color: #655241;
-    font-variant: small-caps;
+	color: #655241;    
     text-decoration: underline;
     margin-bottom: 10px;
 }
