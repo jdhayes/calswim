@@ -88,7 +88,7 @@
                 <li class="list-spacing"><a href="http://mondego.ics.uci.edu/" target="_blank"><img src="/images/mg_logo.png" alt="Mondego Group" title="Mondego Group" /></a></li>
                 <li><a href="http://www.igb.uci.edu/" target="_blank"><img src="/images/igb_logo.png" alt="Institute for Genomics and Bioinformatics" title="Institute for Genomics and Bioinformatics" /></a></li>
             </ul>
-            <p> and numerous other agencies and NGOs.</p>
+            <p>...and numerous other agencies and NGOs.</p>
             <p>
                 Over time, many agencies, consulting firms, and academic researchers have
                 conducted ecological monitoring projects and experiments throughout Orange
@@ -104,7 +104,7 @@
             In the future, we hope to provide specific ecological data sets and lesson plans for instructional purposes.            
         </div>
         <div id="contact"  class="colorbox_content">
-            <pre>
+            <p>
                 Sarah Kimball
                 Center for Environmental Biology
                 3110 Biological Sciences III
@@ -112,7 +112,8 @@
                 Irvine, CA 92697
                 (949)824-7151
                 <a href="mailto:skimball@uci.edu">skimball@uci.edu</a>
-                
+             </p>
+             <p>  
                 Cristina Videira Lopes
                 Associate Professor
                 Department of Informatics
@@ -121,7 +122,7 @@
                 Irvine, CA 92697
                 (949) 824-1525
                 <a href="mailto:lopes@ics.uci.edu">lopes@ics.uci.edu</a> 
-            </pre>
+            </p>
         </div>                
         <div id="login" class="colorbox_content">
             <h2>Administrative Use Only</h2>

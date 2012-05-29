@@ -29,12 +29,21 @@
             width: 100%%;
             height: 200px;
         }
+        #logout {
+            float: right;
+        }
     </style>    
 </head>
 <body>    
-    <div id="content">
-        <h1>Admin Area</h1>
-        <div id="items">%(Items)s</div>
+    <h1>Admin Area</h1>    
+    <div id="content">        
+        <div id="items">
+            <form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
+                <table>
+                    %(Items)s
+                </table>
+            </form>
+        </div>
     </div>
     
     <div id="upload_message"></div>

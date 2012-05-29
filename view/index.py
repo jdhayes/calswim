@@ -57,7 +57,10 @@ def wsgi_app(environ, start_response):
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])          
             return CalSwimView.content
     elif 'login' in form:
-        
+        # Logout from admin area
+        if 'false' == form.getvalue('login'):
+            session['user'] = ""
+              
         # Set user name in session to mark successful login
         if 'username' in form:
             passwd = form.getvalue('password')
