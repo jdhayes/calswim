@@ -328,8 +328,12 @@ class WebDB:
             return buffer.getvalue()
         elif format == 'html':            
             html_row = ""            
-            for index, item in enumerate(row):                
-                html_row += "<tr><td width='150px'>"+(labels[index].capitalize()).replace("_"," ")+"</td><td><textarea name='"+labels[index]+"'>"+str(item)+"</textarea></td></tr>"            
+            for index, item in enumerate(row):
+                if item: 
+                    html_item = str(item)
+                else:
+                    html_item = ""                
+                html_row += "<tr><td width='150px'>"+(labels[index].capitalize()).replace("_"," ")+"</td><td><textarea name='"+labels[index]+"'>"+html_item+"</textarea></td></tr>"            
             return "<h2>"+gd_id+"</h2><form action='' method='post'><table>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
         else:        
             html_row = []
