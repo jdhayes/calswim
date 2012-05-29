@@ -345,8 +345,12 @@ class WebDB:
                 else:
                     html_row.append(item)
                             
-            data_details = dict(zip(labels, html_row))
-            return json.dumps(data_details)
+            data_details = "{"
+            for index,label in enumerate(labels):
+                 data_details += '"'+label+'":"'+html_row[index]+'",'
+            data_details.rstrip(',') + "}"
+            # Return raw json
+            return data_details
     
     def get_map_locs(self, CalSwimView):
         """
