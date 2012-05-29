@@ -56,7 +56,7 @@ def wsgi_app(environ, start_response):
         if format == 'cvs':
             # Define headers and return content
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
-            return CalSwimView.content
+            return [CalSwimView.content]
     elif 'login' in form:
         
         # Set user name in session to mark successful login
