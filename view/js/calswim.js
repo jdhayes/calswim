@@ -81,7 +81,7 @@ function initTableMap(json_data) {
                 		path: new google.maps.MVCArray(path),
                 		type:"polygon",
                 		title: content,                		
-                	    gdID = data_id
+                	    gdID: data_id
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
@@ -120,7 +120,7 @@ function initTableMap(json_data) {
             	    bounds: true,
             	    type:"marker",
             	    title: content,
-            	    gdID = data_id
+            	    gdID: data_id
             	  });
             	map_items.push(marker);            	            
                 
