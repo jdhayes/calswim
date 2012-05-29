@@ -49,12 +49,15 @@ def wsgi_app(environ, start_response):
         if 'format' in form:
             format = form.getvalue('format')
         else:
-            format = 'json'        
+            format = 'json'                
         CalSwimView.content = CalSwimDB.get_data_details(dataID, format)
         
         if format == 'csv':
             # Return CVS content
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])          
+            return CalSwimView.content
+        if format == 'json':
+            start_response('200 OK', [('content-type', 'application/json')])
             return CalSwimView.content
     elif 'login' in form:
         # Logout from admin area
