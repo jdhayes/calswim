@@ -34,7 +34,10 @@ function initTableMap(json_data) {
     tableGeoView.setColumns([1,3,4,5]);
     // Draw Table    
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
-    table.draw(tableGeoView, tableOptions);
+    table.draw(tableGeoView, tableOptions);    
+    // Open the Table canvas pane
+    west_layout = $("#content").layout();
+    west_layout.open('south');
     
 	// No search results found
     if (geoObjects.length <= 0){
@@ -77,7 +80,8 @@ function initTableMap(json_data) {
                 		fillOpacity: 0.35,
                 		path: new google.maps.MVCArray(path),
                 		type:"polygon",
-                		title: content
+                		title: content,                		
+                	    gdID = data_id
                 }
                 // Draw Polygon                 	
             	var polygon = new google.maps.Polygon(polyOptions);
@@ -115,7 +119,8 @@ function initTableMap(json_data) {
             	    title: 'Click to zoom',
             	    bounds: true,
             	    type:"marker",
-            	    title: content
+            	    title: content,
+            	    gdID = data_id
             	  });
             	map_items.push(marker);            	            
                 
@@ -138,7 +143,7 @@ function initTableMap(json_data) {
     	map.fitBounds(bounds);
     	
         // Set a 'select' event listener for the table.        
-        google.visualization.events.addListener(table, 'select', function() {       
+        google.visualization.events.addListener(table, 'select', function() {
         	var selected_items = table.getSelection()
         	$(selected_items).each(function(key,value){
         		// Clear the previously selected polygon or marker
@@ -147,9 +152,9 @@ function initTableMap(json_data) {
         		// Highlight the current selection
         		if (map_items[value.row].type == "polygon"){
         			map_items[value.row].setOptions({fillColor: "#0000FF"});
-        			map.fitBounds(map_items[value.row].getBounds());        			
+        			map.fitBounds(map_items[value.row].getBounds());
         		}
-        		else{        			
+        		else{
         			map_items[value.row].setIcon('/images/gmap-blue-dot.png');
         			var bounds = new google.maps.LatLngBounds();
         			bounds.extend(map_items[value.row].getPosition());
@@ -157,6 +162,9 @@ function initTableMap(json_data) {
         			map.setCenter(bounds.getCenter());
         			map.setZoom(14);
         		}
+        		
+        		// Open data details pane
+        	    get_data_details(map_items[value.row].gdID);
         	});
         });
         // Set 'click' event on map to close infowindow
@@ -167,11 +175,7 @@ function initTableMap(json_data) {
     
     // Initialize resizable table container
     resizeOptions = {handles:"n", alsoResize:'#table_canvas div div:last'}
-    $('#table_canvas').resizable(resizeOptions);
-    
-    // Open the google table canvas pane
-    west_layout = $("#content").layout();
-    west_layout.open('south');
+    $('#table_canvas').resizable(resizeOptions);       
 }
 
 // Clear all selections on the map
