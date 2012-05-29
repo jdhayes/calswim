@@ -112,7 +112,7 @@ def wsgi_app(environ, start_response):
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
     # Return finalized content
-    start_response('200 OK', [('content-type', 'text/html')]) 
+    start_response('200 OK', [('content-type', 'text/plain')]) 
     return CalSwimView.content
 
 # Pass wsgi app to session handler
