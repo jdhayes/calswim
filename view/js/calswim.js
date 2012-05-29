@@ -301,7 +301,7 @@ function initialize() {
     /* Init watermarks and buttons */
 	$("#address").Watermark("Everywhere");
     $("#keywords").Watermark("Everything");    
-    $("#search_button").button(.button({    	
+    $("#search_button").button({    	
 		icons: {
 			secondary: "ui-icon-search"
 		}
