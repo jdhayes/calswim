@@ -56,7 +56,7 @@
             <label>Keywords</label>
             <input id="keywords" />
             
-            <span id="search_button" class="button">Show</span>            
+            <span id="search_button" class="button">Find</span>            
         </div>
         
         <div id="map_canvas_wrapper" class="rounded ui-layout-center">
