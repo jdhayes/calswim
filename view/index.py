@@ -10,6 +10,7 @@ from view import WebView;
 from db import WebDB;
 from pesto.session import session_middleware
 from pesto.session.filesessionmanager import FileSessionManager
+from pesto.response import Response
 base_dir = os.path.dirname(__file__)
 
 def wsgi_app(environ, start_response):
@@ -54,8 +55,12 @@ def wsgi_app(environ, start_response):
         
         if format == 'cvs':
             # Define headers and return content
-            start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
-            return CalSwimView.content
+            return Response(
+                status = '200 OK',
+                content_type = 'application/CSV',
+                content_disposition = 'attachment; filename=ecodata'+dataID+'.csv',
+                content = CalSwimView.content
+            )
     elif 'login' in form:
         
         # Set user name in session to mark successful login
@@ -110,9 +115,7 @@ def wsgi_app(environ, start_response):
     else:        
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
-    
-    # Define headers and return content
-    start_response('200 OK', [('content-type', 'text/html')])
+        
     return CalSwimView.content
 
 application = session_middleware(
