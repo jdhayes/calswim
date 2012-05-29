@@ -118,12 +118,14 @@ function initTableMap(json_data) {
             	map_items.push(marker);            	            
                 
             	google.maps.event.addListener(marker, 'click', function() {
-            		// Clear previsouly highlighted marker
+            		// Clear previously highlighted marker
             		clearSelected();
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
+            		// Open data details pane
+            		get_data_details('+data_id+');            		
             	    // Set contents then open infowindow
-            		infowindow.setContent('<p>'+ content +'</p><a href="#" onclick="get_data_details('+data_id+'); return false;" class="details_link">More Details</a>');
+            		infowindow.setContent('<p>'+ content +'</p>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);

@@ -123,7 +123,10 @@ class WebDB:
                 values.append('NULL')
             values.append( '"%s"' % form.getvalue('source') )
             # Project data
-            values.append( '"%s"' % form.getvalue('labelShort') )
+            if len(form.getvalue('labelShort')) > 0:
+                values.append( '"%s"' % form.getvalue('labelShort') )
+            else:
+                values.append( '"%s"' % form.getvalue('label') )
             values.append( '"%s"' % form.getvalue('label') )
             values.append( '"%s"' % form.getvalue('description') )        
             values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
