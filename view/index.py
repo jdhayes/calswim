@@ -13,17 +13,17 @@ from pesto.session.filesessionmanager import FileSessionManager
 from pesto.response import Response
 base_dir = os.path.dirname(__file__)
 
-# Activate session storage
-session = environ['pesto.session']  
-# Retrieve GET variables and store them as a dictionary
-form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
-
 def wsgi_app(environ, start_response):    
     """
         ==========================================================        
         * Logic for determining web view content is located here *
         ==========================================================
-    """       
+    """
+    # Activate session storage
+    session = environ['pesto.session']  
+    # Retrieve GET variables and store them as a dictionary
+    form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
+
     # Initialize web classes    
     CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
     CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
@@ -53,7 +53,8 @@ def wsgi_app(environ, start_response):
         CalSwimView.content = CalSwimDB.get_data_details(dataID, format)
         
         if format == 'cvs':
-            # Return CVS content            
+            # Return CVS content
+            start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])          
             return CalSwimView.content
     elif 'login' in form:
         
@@ -115,11 +116,6 @@ def wsgi_app(environ, start_response):
 
 # Filter wsgi app so that it is Pesto compatible
 def altered_wsgi_app(environ, start_response):
-    if 'format' in form:
-        format = form.getvalue('format')
-        if format == 'csv':
-            dataID = '1'
-            start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])
     response = Response.from_wsgi(wsgi_app, environ, start_response)
     return response.add_headers(x_powered_by='pesto')(environ, start_response)
 
