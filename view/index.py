@@ -58,8 +58,9 @@ def wsgi_app(environ, start_response):
             return Response(
                 status = '200 OK',
                 content_type = 'application/CSV',
+                allow = ['GET','POST'],
                 content_disposition = 'attachment; filename=ecodata'+dataID+'.csv',
-                content = CalSwimView.content
+                content = [CalSwimView.content]
             )
     elif 'login' in form:
         
@@ -116,7 +117,7 @@ def wsgi_app(environ, start_response):
         CalSwimView.set_content('index')
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
         
-    return CalSwimView.content
+    return Response([CalSwimView.content])
 
 application = session_middleware(
     FileSessionManager(base_dir+"/tmp"),
