@@ -52,7 +52,7 @@ def wsgi_app(environ, start_response):
             format = 'json'        
         CalSwimView.content = CalSwimDB.get_data_details(dataID, format)
         
-        if format == 'cvs':
+        if format == 'csv':
             # Return CVS content
             start_response('200 OK', [('content-type', 'application/CSV'),('Content-Disposition','attachment; filename=ecodata'+dataID+'.csv')])          
             return CalSwimView.content
@@ -112,7 +112,7 @@ def wsgi_app(environ, start_response):
         CalSwimView.content = CalSwimView.content % {'uploadResult' : ""}
     
     # Return finalized content
-    start_response('200 OK', [('content-type', 'text/plain')]) 
+    start_response('200 OK', [('content-type', 'text/html')]) 
     return CalSwimView.content
 
 # Pass wsgi app to session handler
