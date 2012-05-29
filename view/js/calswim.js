@@ -101,6 +101,8 @@ function initTableMap(json_data) {
             		infowindow.open(map); 
             		// Set selection in table
             		table.setSelection([{'row': index}])
+            	    // Open data details pane
+            	    get_data_details(data_id);
             	});            	
             }else{            	
                 // Set point as Google Marker
@@ -122,13 +124,13 @@ function initTableMap(json_data) {
             		clearSelected();
             	    // Highlight item
             		marker.setIcon('/images/gmap-blue-dot.png');
-            		// Open data details pane
-            		get_data_details('+data_id+');            		
             	    // Set contents then open infowindow
             		infowindow.setContent('<p>'+ content +'</p>');
             	    infowindow.open(map,marker);
             	    // Set selection in table
             	    table.setSelection([{'row': index}]);
+            	    // Open data details pane
+            	    get_data_details(data_id);            		
             	});
             }
         });            
