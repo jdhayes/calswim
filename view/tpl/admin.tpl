@@ -165,7 +165,7 @@
                 </div>
                 
                 <input type="hidden" name="import_data" id="import_data" value="import_data"/>
-                <button id="upload_button" class="button">Submit</button>                
+                <button type="submit" id="upload_button" class="button">Submit</button>                
             </form>
         </div>
     </div>
