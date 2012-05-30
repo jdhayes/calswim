@@ -105,22 +105,22 @@
         </div>
         <div id="contact"  class="colorbox_content">
             <p>
-                Sarah Kimball
-                Center for Environmental Biology
-                3110 Biological Sciences III
-                University of California, Irvine
-                Irvine, CA 92697
-                (949)824-7151
+                Sarah Kimball<br/>
+                Center for Environmental Biology<br/>
+                3110 Biological Sciences III<br/>
+                University of California, Irvine<br/>
+                Irvine, CA 92697<br/>
+                (949)824-7151<br/>
                 <a href="mailto:skimball@uci.edu">skimball@uci.edu</a>
              </p>
              <p>  
-                Cristina Videira Lopes
-                Associate Professor
-                Department of Informatics
-                Donald Bren School of Information and Computer Sciences
-                University of California, Irvine
-                Irvine, CA 92697
-                (949) 824-1525
+                Cristina Videira Lopes<br/>
+                Associate Professor<br/>
+                Department of Informatics<br/>
+                Donald Bren School of Information and Computer Sciences<br/>
+                University of California, Irvine<br/>
+                Irvine, CA 92697<br/>
+                (949)824-1525<br/>
                 <a href="mailto:lopes@ics.uci.edu">lopes@ics.uci.edu</a> 
             </p>
         </div>                
