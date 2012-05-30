@@ -129,12 +129,14 @@ h3{
 	font-variant:small-caps;    
     width: 100%;    
 }
+
 /*Contact*/
 .subheader{
 	text-decoration:underline;
 	font-size: 12pt;
 	font-weight: bold;
 }
+
 /*About Us*/
 #logos{
 	list-style-type: none;
@@ -223,4 +225,9 @@ label {
 }
 input.half {	
     width: 125px;  
+}
+
+/*Login Popup*/
+#login_button{
+	float:right;
 }

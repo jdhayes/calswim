@@ -305,7 +305,6 @@ function initialize() {
     $("#keywords").Watermark("Everything");        
     $("#login_button").button({    	
 		icons: {
-			primary: "ui-icon-person",
 			secondary: "ui-icon-locked"
 		}
 	});
