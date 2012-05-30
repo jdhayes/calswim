@@ -302,7 +302,13 @@ function initialize() {
 	$("#login_link").colorbox({inline:true,maxHeight:"100%",width:"500px"});
     /* Init watermarks and buttons */
 	$("#address").Watermark("Everywhere");
-    $("#keywords").Watermark("Everything");    
+    $("#keywords").Watermark("Everything");        
+    $("#login_button").button({    	
+		icons: {
+			primary: "ui-icon-person",
+			secondary: "ui-icon-locked"
+		}
+	});
     $("#search_button").button({    	
 		icons: {
 			secondary: "ui-icon-search"
