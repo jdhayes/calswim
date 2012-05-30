@@ -129,7 +129,7 @@
             <form id="login_form" method="post" action="?login=admin">
                 <label>User Name</label><input name="username" type="text" /> <br />
                 <label>Password</label><input name="password" type="password" /><br />
-                <input type="submit" name="login_button" value="Login" />
+                <input type="submit" id="login_button" name="login_button" value="Login" />
             </form>
         </div>
     </div>       
