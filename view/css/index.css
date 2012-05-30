@@ -24,7 +24,7 @@ h2{
 }
 h3{
 	margin: 0px;
-	padding: 3px;
+	padding: 0px;	
 }
 
 /* Classes */
@@ -129,7 +129,12 @@ h3{
 	font-variant:small-caps;    
     width: 100%;    
 }
-
+/*Contact*/
+.subheader{
+	text-decoration:underline;
+	font-size: 12pt;
+	font-weight: bold;
+}
 /*About Us*/
 #logos{
 	list-style-type: none;
