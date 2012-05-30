@@ -208,7 +208,9 @@ function clearTable(table){
 function get_data_details(data_id) {
     $.getJSON("?get_data_details="+data_id, function(json_data) {                    	
     	var html_details = "";
-    	$.each(json_data, function(index, value){
+    	$.each(json_data, function(jindex, tuple){
+    		index = tuple[0];
+    		value = tuple[1];
     		if (value && value!="None" && value!="" && value!=" "){
     			html_details += '<h3 class="ui-widget-header">'+ index +'</h3><p>'+ value +'</p>';
     		}
