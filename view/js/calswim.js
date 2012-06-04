@@ -38,6 +38,8 @@ function initTableMap(json_data) {
     // Open the Table canvas pane
     west_layout = $("#content").layout();
     west_layout.open('south');
+    // Close the Data Details pane   
+    west_layout.close('west');
     
 	// No search results found
     if (geoObjects.length <= 0){
@@ -276,6 +278,8 @@ function initialize() {
     	//, north__initClosed:    true
     	, west__size:           300
     	,south__initClosed:      true
+    	,togglerContent_open = "Close"
+    	,togglerContent_close = "Open"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"

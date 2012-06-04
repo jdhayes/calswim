@@ -33,7 +33,7 @@
             <a id="tools_link" class="tab" href="#tools">Tools</a>            
             <a id="contact_link" class="tab" href="#contact">Contact</a>
             <a id="search_link" class="tab" href="#search">Search</a>
-            <a id="login_link" class="tab" style="float:right;" href="#login">login</a>
+            <a id="login_link" class="tab" style="float:right;" href="#login">Login</a>
         </div>
     </div>
     
