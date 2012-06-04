@@ -1,3 +1,4 @@
 #####################################################
 # CalSWIM - A Google Maps mashup of ecological data #
 #####################################################
+Data can be pushed/pulled via HTTP or SSH
