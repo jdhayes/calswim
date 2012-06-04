@@ -273,13 +273,13 @@ function initialize() {
     
     // Initialize center layout
     var layout_options = {
-    	applyDefaultStyles:     true
-    	, west__initClosed:     true
-    	//, north__initClosed:    true
-    	, west__size:           300
-    	,south__initClosed:      true
-    	,togglerContent_open = "Close"
-    	,togglerContent_close = "Open"
+    	applyDefaultStyles:    true
+    	, west__initClosed:    true
+    	//, north__initClosed: true
+    	, west__size:          300
+    	,south__initClosed:    true
+    	,togglerContent_open:  "Close"
+    	,togglerContent_close: "Open"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
