@@ -278,8 +278,8 @@ function initialize() {
     	//, north__initClosed: true
     	, west__size:          300
     	,south__initClosed:    true
-    	,togglerContent_open:  "Close"
-    	,togglerContent_close: "Open"
+    	,south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
+    	,south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
     	//, west__paneSelector:   "#data_details_wrapper"
     	//, north__paneSelector:  "#search_canvas"
