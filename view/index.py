@@ -124,6 +124,5 @@ def wsgi_app(environ, start_response):
 # Pass wsgi app to session handler
 application = session_middleware(
     FileSessionManager(base_dir+"/tmp"),
-    cookie_path='/',
-    cookie_domain='ecodataportal.ics.uci.edu',
+    cookie_path='/'    
 )(wsgi_app)
