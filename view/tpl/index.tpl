@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>EcoDataPortal</title>
+    <meta charset="utf-8" />
     <style type="text/css" title="CalSWIMStyle">  
         @import "css/index.css";
         @import "css/jquery.colorbox.css";

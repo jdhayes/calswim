@@ -1,5 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <title>EcoDataPortal: Admin Area</title>
+    <meta charset="utf-8" />
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
