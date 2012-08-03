@@ -81,20 +81,25 @@ class WebDB:
         # Iterate over shapes
         polygons=[]
         count = 0
-        errors = None
+        errors = []
         for shape in shapes:
             count = count+1
             # Make sure the first and last set of coordinate are the same, closed polygon
             if shape.points[0] == shape.points[-1]:
                 polygons.append(shape.points)
             else:
-                errors = "Shape number %d is not an enclosed polygon. First and last coordinates should be the same." % count
+                errors.append("Shape number %d is not an enclosed polygon. First and last coordinates should be the same." % count)
                 shape.points.append(shape.points[0])
                 polygons.append(shape.points)
         
         if count == 0:
-            errors = "No valid shapes detected."
+            errors.append("No valid shapes found.")
         
+        count = 0;
+        for poly in polygons:
+            count = count+1
+            if len(poly) < 1:
+                errors.append("Shape number %d has no valid points." % count)
         return polygons,errors
      
     def find_shapefile(self, temp_dir):
@@ -180,8 +185,11 @@ class WebDB:
                     locations.append("GeomFromText('POLYGON((%s))')" % (",".join(polygon)))
                 
                 # Send errors, if any
-                if errors:
-                    json_data = {'message':'ERROR:: Data imported, with errors. Please validate your polygon shapes.'}
+                if len(errors) > 0:
+                    html_errors = "<br>".join(errors)
+                    json_data = {'message':'ERROR::'+html_errors}
+                    self.return_message = json.dumps(json_data);
+                    return
             elif lat and lng:
                 # Set MySQL NULL value for shp contents
                 zip_shp_file_contents = "NULL"
