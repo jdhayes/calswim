@@ -91,6 +91,10 @@ class WebDB:
                 errors = "Shape number %d is not an enclosed polygon. First and last coordinates should be the same." % count
                 shape.points.append(shape.points[0])
                 polygons.append(shape.points)
+        
+        if count == 0:
+            errors = "No valid shapes detected."
+        
         return polygons,errors
      
     def find_shapefile(self, temp_dir):
