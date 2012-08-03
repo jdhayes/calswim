@@ -93,7 +93,7 @@ class WebDB:
                 polygons.append(shape.points)
         return polygons,errors
      
-    def find_shapefile(temp_dir):
+    def find_shapefile(self, temp_dir):
         matches = []
         for root, dirnames, filenames in os.walk(temp_dir):
             for filename in fnmatch.filter(filenames, '*.shp'):
