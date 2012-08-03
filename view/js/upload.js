@@ -68,7 +68,7 @@ google.setOnLoadCallback(function(){
     	rules: {
     		shp_file: {
     	        required: false,
-    	        accept: "shp|txt"
+    	        accept: "zip"
     	    }
     	},
         submitHandler: function(form) {        	
