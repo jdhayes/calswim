@@ -161,7 +161,7 @@ class WebDB:
                 with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
                     temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
                     zip_sf.extractall(path=temp_dir)
-                    path_to_shapefile = find_shapefile(temp_dir)
+                    path_to_shapefile = self.find_shapefile(temp_dir)
                     sf = shapefile.Reader(path_to_shapefile[0])                    
                 
                 # Set POLYGON GEOMETRY from shp file
