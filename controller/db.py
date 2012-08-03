@@ -2,22 +2,17 @@
     DB interface script powered by WSGI
 """
 # Script level 
-import os
-import sys
-import getopt
-import csv
-import re
-# Web level
-import cgi;
-import urllib;
-import MySQLdb;
-import json;
-import re, string;
+import os, sys, getopt, csv, re, string, types, shutil;
 pattern = re.compile('[\W_]+')
+# Web level
+import cgi, urllib, MySQLdb, json;
 # ESRI Geographic data parser 
 import shapefile
+# File handling
+import fnmatch
 from StringIO import StringIO
-import types
+from tempfile import mkdtemp
+from zipfile import ZipFile
 
 class WebDB:
     def __init__(self, base_dir, errors):
