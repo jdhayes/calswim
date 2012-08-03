@@ -45,7 +45,7 @@ class WebDB:
                 
     def get_items(self):
         # Get all records from DB
-        select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData"        
+        select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData ORDER BY gd_id DESC"        
         self.cursor.execute(select_query)
 
         # Compile all records into an HTML string        
