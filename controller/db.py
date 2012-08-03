@@ -98,6 +98,13 @@ class WebDB:
                 polygons.append(shape.points)
         return polygons,errors
      
+    def find_shapefile(temp_dir):
+        matches = []
+        for root, dirnames, filenames in os.walk(temp_dir):
+            for filename in fnmatch.filter(filenames, '*.shp'):
+                matches.append(os.path.join(root, filename))
+        return matches
+
     def import_data(self, form):
         """
             Simple function to inhale form data and insert it into the Database
@@ -143,26 +150,31 @@ class WebDB:
             # Other Data
             values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
             values.append( '"%s"' % form.getvalue('other') )
-                    
-            # Build MySQL Geometry syntax
-            shp_file = form['shp_file'].file
-            shp_file_name = form.getvalue('shp_file')                    
-            
+            # Shape file data            
+            zip_shp_file = form['shp_file'].file
+            zip_shp_file_name = form.getvalue('shp_file')                    
+            # Latitude/Longitude data
             lat = form.getvalue('lat')
             lng = form.getvalue('lng')
             
+            # Build MySQL Geometry syntax
             locations = []
             json_data = ""
             if shp_file_name:
-                # Get shp file contents to be stored as a blob
-                shp_file_contents = shp_file.read()
+                # Extract all files from compressed shapefile
+                zip_shp_file_contents = shp_file.read()
+                with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
+                    temp_dir = mkdtemp(dir="tmp/")
+                    zip_sf.extractall(path=temp_dir)
+                    path_to_shapefile = find_shapefile(temp_dir)
+                    sf = shapefile.Reader(path_to_shapefile[0])                    
                 
                 # Set POLYGON GEOMETRY from shp file
-                polygons,errors = self.set_poly_geo(StringIO(shp_file_contents))                                    
+                polygons,errors = self.set_poly_geo(sf)                                    
                 
                 # Regardless of errors process polygons
                 for polygon in polygons:
-                    # Re-map polygon coordinates with spaces inbetween lat and lng
+                    # Re-map polygon coordinates with spaces between lat and lng
                     for idx, val in enumerate(polygon):
                         # Reverse values so that latitude is first, then longitude
                         val.reverse()
@@ -174,7 +186,7 @@ class WebDB:
                     json_data = {'message':'ERROR:: Data imported, with errors. Please validate your polygon shapes.'}
             elif lat and lng:
                 # Set MySQL NULL value for shp contents
-                shp_file_contents = "NULL"
+                zip_shp_file_contents = "NULL"
                 # Set POINT GEOMETRY from latitude and longitude
                 locations.append("GeomFromText('POINT("+lat+" "+lng+")')")            
             else:
@@ -191,7 +203,7 @@ class WebDB:
                 
                 # Build MySQL insert query
                 locs_shps.append(location)
-                locs_shps.append( '"%s"' % self.db.escape_string(shp_file_contents) )            
+                locs_shps.append( '"%s"' % self.db.escape_string(zip_shp_file_contents) )            
                 
                 insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
                 insert_values = tuple(values+locs_shps)

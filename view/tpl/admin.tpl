@@ -35,7 +35,7 @@
         #logout {
             float: right;
         }
-    </style>    
+    </style>       
 </head>
 <body>    
     <h1>Admin Area</h1>    
