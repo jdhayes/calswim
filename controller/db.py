@@ -160,7 +160,7 @@ class WebDB:
             # Build MySQL Geometry syntax
             locations = []
             json_data = ""
-            if shp_file_name:
+            if zip_shp_file_name:
                 # Extract all files from compressed shapefile
                 zip_shp_file_contents = shp_file.read()
                 with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
