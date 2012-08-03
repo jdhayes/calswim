@@ -162,6 +162,9 @@ class WebDB:
                     temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
                     zip_sf.extractall(path=temp_dir)
                     path_to_shapefile = self.find_shapefile(temp_dir)
+                    json_data = {'message':str(path_to_shapefile)}
+                    self.return_message = json.dumps(json_data);
+                    return
                     sf = shapefile.Reader(path_to_shapefile[0])                    
                 
                 # Set POLYGON GEOMETRY from shp file
@@ -237,7 +240,13 @@ class WebDB:
             json_data = {'message': "ERROR:: Please try again."} 
             self.return_message = json.dumps(json_data)
             print >> self.errors, "ERROR:: "+error_msg+" "+str(e)
-            
+        
+        # Delete temp files
+        try:
+            shutil.rmtree(temp_dir) # delete directory
+        except:
+            e = sys.exc_info()[1]
+            print >> self.errors,"ERROR:: "+error_msg+" "+str(e)
         # Close DB connections        
         self.cursor.close()
     
