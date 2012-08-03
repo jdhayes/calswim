@@ -161,14 +161,10 @@ class WebDB:
                 with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
                     temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
                     zip_sf.extractall(path=temp_dir)
-                    path_to_shapefile = self.find_shapefile(temp_dir)
-                    json_data = {'message':str(path_to_shapefile)}
-                    self.return_message = json.dumps(json_data);
-                    return
-                    sf = shapefile.Reader(path_to_shapefile[0])                    
+                    path_to_shapefile = self.find_shapefile(temp_dir)                                    
                 
                 # Set POLYGON GEOMETRY from shp file
-                polygons,errors = self.set_poly_geo(sf)                                    
+                polygons,errors = self.set_poly_geo(path_to_shapefile[0])                                    
                 
                 # Regardless of errors process polygons
                 for polygon in polygons:
