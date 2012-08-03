@@ -162,7 +162,7 @@ class WebDB:
             json_data = ""
             if zip_shp_file_name:
                 # Extract all files from compressed shapefile
-                zip_shp_file_contents = shp_file.read()
+                zip_shp_file_contents = zip_shp_file.read()
                 with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
                     temp_dir = mkdtemp(dir="tmp/")
                     zip_sf.extractall(path=temp_dir)
