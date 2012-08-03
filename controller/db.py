@@ -75,7 +75,7 @@ class WebDB:
     
     def set_poly_geo(self,shp_file):        
         # Open shp_file with parser
-        sf = shapefile.Reader(shp=shp_file)
+        sf = shapefile.Reader(shp_file)
         # Get all shapes
         shapes = sf.shapes()
         # Iterate over shapes
