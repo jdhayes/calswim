@@ -213,7 +213,7 @@ class WebDB:
                 self.return_message = json.dumps(json_data);
                 return
             
-            json_data = {'message':'DEBUG::'+str(locations)}                    
+            json_data = {'message':'DEBUG::'+str(locations[4])}                    
             self.return_message = json.dumps(json_data);
             return
             
