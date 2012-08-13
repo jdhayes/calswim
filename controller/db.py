@@ -313,7 +313,7 @@ class WebDB:
             self.cursor.execute(update_query)
             # Close DB connections        
             self.cursor.close()
-            return "Success"
+            return "Success "+update_query
         except:
             e = sys.exc_info()[1]
             print >> self.errors, "ERROR:: "+ str(e)
