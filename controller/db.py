@@ -212,9 +212,14 @@ class WebDB:
                 json_data = {'message':'ERROR:: Coordinates were not found.'}
                 self.return_message = json.dumps(json_data);
                 return
+            
+            json_data = {'message':'DEBUG::'+locations}                    
+            self.return_message = json.dumps(json_data);
+            return
+            
             for location in locations:
                 if not location:
-                    json_data = {'message':'ERROR:: Empty location.'}
+                    json_data = {'message':'ERROR:: Empty location.'}                    
                     self.return_message = json.dumps(json_data);
                     return
             
