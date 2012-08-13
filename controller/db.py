@@ -173,9 +173,9 @@ class WebDB:
                     zip_sf.extractall(path=temp_dir)
                     path_to_shapefile = self.find_shapefile(temp_dir)
                     
-                    json_data = {'message':'DEBUG::Temp Dir:'+temp_dir}
-                    self.return_message = json.dumps(json_data);
-                    return
+                    #json_data = {'message':'DEBUG::Temp Dir:'+temp_dir}
+                    #self.return_message = json.dumps(json_data);
+                    #return
                 
                 # Set POLYGON GEOMETRY from shp file
                 polygons,errors,warnings = self.set_poly_geo(path_to_shapefile[0])                                    
