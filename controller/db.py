@@ -213,10 +213,10 @@ class WebDB:
                 self.return_message = json.dumps(json_data);
                 return
             for location in locations:
-                #if not location:
-                json_data = {'message':'ERROR:: Empty location. '+ str(location)}
-                self.return_message = json.dumps(json_data);
-                return
+                if not location:
+                    json_data = {'message':'ERROR:: Empty location.'}
+                    self.return_message = json.dumps(json_data);
+                    return
             
                 # Init reusable list to append location and shapefile
                 locs_shps = []
