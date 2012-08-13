@@ -171,7 +171,11 @@ class WebDB:
                 with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
                     temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
                     zip_sf.extractall(path=temp_dir)
-                    path_to_shapefile = self.find_shapefile(temp_dir)                                    
+                    path_to_shapefile = self.find_shapefile(temp_dir)
+                    
+                    json_data = {'message':'DEBUG::Temp Dir:'+temp_dir}
+                    self.return_message = json.dumps(json_data);
+                    return
                 
                 # Set POLYGON GEOMETRY from shp file
                 polygons,errors,warnings = self.set_poly_geo(path_to_shapefile[0])                                    
@@ -203,17 +207,25 @@ class WebDB:
                 return
             
             # For each location insert details into DB
-            count = 0            
+            count = 0
+            if len(locations) < 1:
+                json_data = {'message':'ERROR:: Coordinates were not found.'}
+                self.return_message = json.dumps(json_data);
+                return
             for location in locations:
+                if not location:
+                    json_data = {'message':'ERROR:: Empty location.'}
+                    self.return_message = json.dumps(json_data);
+                    return
                 # Init reusable list to append location and shapefile
                 locs_shps = []
                 count = count+1
                 
                 # Build MySQL insert query
                 locs_shps.append(location)
-                locs_shps.append( '"%s"' % self.db.escape_string(zip_shp_file_contents) )            
+                locs_shps.append( '"%s"' % self.db.escape_string(zip_shp_file_contents) )
                 
-                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"                
+                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
                 insert_values = tuple(values+locs_shps)
                 insert_query_with_values = insert_query % insert_values                
                 self.cursor.execute(insert_query_with_values)
