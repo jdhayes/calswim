@@ -282,10 +282,12 @@ class WebDB:
             # Gather submitted for values
             values = []
             update_query = "UPDATE GeoData SET "
-            columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+            columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
             for column in columns:
                 if form.getvalue(column) == None or form.getvalue(column) == "":
                     update_query += column+"=NULL,"
+                elif column == "location":
+                    update_query += "GeomFromText('"+column+"')"
                 elif column == "phone" or column == "site_count":
                     update_query += column+"="+form.getvalue(column)+","
                 elif column == "timeline_start" or column == "timeline_finish":
@@ -306,6 +308,7 @@ class WebDB:
     def get_data_details(self, gd_id, format='json'):
         # Select all details from table according to gd_id
         if format == "csv":
+            # This is the CSV format, used for front end users to download details 
             select_query = """
             SELECT organization, contact,
             email,
@@ -320,14 +323,16 @@ class WebDB:
             # Create a list of column names                
             labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
         elif format == "html":
+            # This is the HTML format, used for editing details        
             select_query = """
             SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
-            timeline_start,timeline_finish,project_funder, data_target, location_description, 
-            site_count, data_collector,data_type, data_format, data_policies, keyword, other
+            timeline_start,timeline_finish,project_funder, data_target, location_description,
+            site_count, data_collector,data_type, data_format, data_policies, AsText(location) as location, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
             # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","keyword","other"]
+            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
         else:
+            #This is the JSON format used for front end web queries
             select_query = """
             SELECT organization, contact,
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
