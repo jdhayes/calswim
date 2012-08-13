@@ -90,7 +90,7 @@ class WebDB:
                 polygons.append(shape.points)
             else:
                 warnings.append("WARNING:: Shape number %d is not an enclosed polygon. First and last coordinates should be the same. This was automatically corrected." % count)
-                shape.points.append(shape.points[0])
+                shape.points.append(shape.points[0].reverse())
                 polygons.append(shape.points)
         
         if count == 0:
