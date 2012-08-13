@@ -90,7 +90,7 @@ class WebDB:
                 polygons.append(shape.points)
             else:
                 warnings.append("WARNING:: Shape number %d is not an enclosed polygon. First and last coordinates should be the same. This was automatically corrected." % count)
-                shape.points.append(shape.points[0].reverse())
+                shape.points.append((shape.points[0][0],shape.points[0][1]))
                 polygons.append(shape.points)
         
         if count == 0:
@@ -213,7 +213,7 @@ class WebDB:
                 self.return_message = json.dumps(json_data);
                 return
             
-            json_data = {'message':'DEBUG::'+str(locations[4])}                    
+            json_data = {'message':'DEBUG::'+str(locations[4])}
             self.return_message = json.dumps(json_data);
             return
             
