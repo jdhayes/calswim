@@ -287,7 +287,7 @@ class WebDB:
                 if form.getvalue(column) == None or form.getvalue(column) == "":
                     update_query += column+"=NULL,"
                 elif column == "location":
-                    update_query += "GeomFromText('"+column+"')"
+                    update_query += "GeomFromText('"+form.getvalue(column)+"'),"
                 elif column == "phone" or column == "site_count":
                     update_query += column+"="+form.getvalue(column)+","
                 elif column == "timeline_start" or column == "timeline_finish":
