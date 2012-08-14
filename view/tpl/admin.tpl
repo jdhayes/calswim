@@ -15,7 +15,7 @@
     <style type="text/css" title="CalSWIMStyle">          
 
         @import "css/sunny/jquery-ui-1.8.19.custom.css";
-        @import "http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css";        
+        @import "css/jqueryui.dataTables.css";        
         #logout {
             float: right;
         }
