@@ -11,6 +11,9 @@
         #logout {
             float: right;
         }
+        #items {
+            margin: 10px;
+        }
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -36,7 +39,8 @@
     <h1>Admin Area</h1>    
     <div id="content">        
         <div id="items">
-            <form action='' method='post'><a id='upload' class="button" href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
+            <form action='' method='post'>
+                <a id='upload' class="button" href='#form_wrapper'>Add</a> | <input class="button" type='submit' name='delete' value='Delete'/> <a class="button" id="logout" href="?login=false">Logout</a>
                 <div class="demo_jui">
                     <div role="grid" class="dataTables_wrapper" id="example_wrapper">
                         <table class="data_table display">
