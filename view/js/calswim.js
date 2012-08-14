@@ -274,13 +274,13 @@ function initialize() {
     // Initialize center layout
     var layout_options = {
     	applyDefaultStyles:    true
-    	//, north__paneSelector:  "#search"
-    	//, north__size:          100
+    	, north__paneSelector:  "#search"
+    	, north__size:          100
     	//, north__initClosed: true
-		//, west__paneSelector:   "#data_details_wrapper"
+		, west__paneSelector:   "#data_details_wrapper"
     	, west__initClosed:    true
     	, west__size:          300
-    	//, west__paneSelector:   "#table_canvas"
+    	, south__paneSelector:   "#table_canvas"
     	, south__initClosed:    true
     	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
     	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
