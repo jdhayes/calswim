@@ -10,6 +10,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>       
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
          $('body').layout({
             center__paneSelector:   "#content" 
             ,north__paneSelector:    "#header"
@@ -57,6 +58,7 @@
         //$('#search_link').click(function(){
         //    myLayout.toggle('north');
         //});
+    });
     </script>
   </head>
   <body>
