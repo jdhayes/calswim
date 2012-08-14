@@ -41,7 +41,7 @@
     </div>
     
     <div id="content">                
-        <div id="search" class="display rounded ui-layout-north ui-widget ui-widget-content ui-corner-all">            
+        <div id="search" class="rounded ui-layout-north ui-widget ui-widget-content ui-corner-all">            
             <label>Location</label>
             <input id="address"/>
             
