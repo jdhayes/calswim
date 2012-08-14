@@ -14,6 +14,12 @@
         #items {
             margin: 10px;
         }
+        #topnav {
+            margin-bottom: 10px;
+        }
+        #textarea{
+            width: 100%
+        }
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -31,16 +37,18 @@
         	// Initialize table
         	$(".data_table").dataTable({
         		"bJQueryUI": true
-        	});
+        	});        	
         });
     </script>
 </head>
 <body>    
-    <h1>Admin Area</h1>    
+    <h1>Admin Area</h1>
     <div id="content">        
         <div id="items">
             <form action='' method='post'>
-                <a id='upload' class="button" href='#form_wrapper'>Add</a> | <input class="button" type='submit' name='delete' value='Delete'/> <a class="button" id="logout" href="?login=false">Logout</a>
+                <div id="topnav">
+                    <a id='upload' class="button" href='#form_wrapper'>Add</a> | <input class="button" type='submit' name='delete' value='Delete'/> <a class="button" id="logout" href="?login=false">Logout</a>
+                </div>
                 <div class="demo_jui">
                     <div role="grid" class="dataTables_wrapper" id="example_wrapper">
                         <table class="data_table display">

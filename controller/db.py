@@ -383,7 +383,7 @@ class WebDB:
                 else:
                     html_item = ""                
                 html_row += "<tr><td width='150px'>"+(labels[index].capitalize()).replace("_"," ")+"</td><td><textarea name='"+labels[index]+"'>"+html_item+"</textarea></td></tr>"            
-            return "<h2>"+gd_id+"</h2><form action='' method='post'><table>"+ html_row +"</table><input type='submit' name='submit' value='submit'/></form>"
+            return "<h2>"+gd_id+"</h2><form action='' method='post'><input type='submit' name='submit' value='submit'/><thead><tr><th></th><th></th></tr></thead><tbody>"+ html_row +"</tbody><input type='submit' name='submit' value='submit'/></form>"
         else:        
             html_row = []
             for item in row:
