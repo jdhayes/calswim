@@ -17,8 +17,9 @@
         #topnav {
             margin-bottom: 10px;
         }
-        #textarea{
+        textarea{
             width: 100%%;
+            height: 100px;
         }
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
