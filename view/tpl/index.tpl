@@ -4,23 +4,18 @@
     <title>EcoDataPortal</title>
     <meta charset="utf-8" />
     <style type="text/css" title="CalSWIMStyle">  
-        @import "css/index.css";
         @import "css/sunny/jquery-ui-1.8.22.custom.css";
-        @import "css/jquery.colorbox.css";
     </style>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>   
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>       
-    <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>    
-    <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="js/calswim.js"></script>
-    <script type="text/javascript" src="js/upload.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
     <script type="text/javascript">
-        google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        google.setOnLoadCallback(initialize);
+        $(document).ready(function(){
+        	$("#search_button").button({       
+                icons: {
+                    secondary: "ui-icon-search"
+                }
+            });
+        });
     </script>    
   </head>
   <body>
