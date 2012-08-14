@@ -30,7 +30,9 @@
         	// Initialize buttons
         	$(".button").button();
         	// Initialize table
-        	$(".data_table").dataTable();
+        	$(".data_table").dataTable({
+        		"bJQueryUI": true
+        	});
         });
     </script>
 </head>
