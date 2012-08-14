@@ -36,7 +36,7 @@
     <h1>Admin Area</h1>    
     <div id="content">        
         <div id="items">
-            <form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
+            <form action='' method='post'><a id='upload' class="button" href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
                 <div class="demo_jui">
                     <div role="grid" class="dataTables_wrapper" id="example_wrapper">
                         <table class="data_table display">
