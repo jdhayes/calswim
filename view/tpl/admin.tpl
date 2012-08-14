@@ -21,6 +21,12 @@
             width: 100%%;
             height: 100px;
         }
+        .float-right{
+            float: right;
+        }
+        .margin-bottom{
+            margin-bottom: 10px;
+        }
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
