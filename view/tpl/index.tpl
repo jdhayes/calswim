@@ -15,13 +15,13 @@
             ,north__paneSelector:    "#header"
             ,north__closable:        false
             ,north__resizeable:      false
-            ,north__size:            75                         
+            ,north__size:            75
             ,north__maxSize:         75
             ,south__paneSelector:    "#table_canvas"
             ,south__initClosed:      true
-            ,south__size:            "30%"  
+            ,south__size:            "30%%"
             ,south__closable:        true
-            ,south__resizeable:      true        
+            ,south__resizeable:      true
             //,south__togglerLength_closed: 105
             //,south__togglerLength_open:   105
             //,south__togglerContent_closed: toggleButtons
