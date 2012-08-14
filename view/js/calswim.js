@@ -274,19 +274,19 @@ function initialize() {
     // Initialize center layout
     var layout_options = {
     	applyDefaultStyles:    true
-    	, west__initClosed:    true
+    	, north__paneSelector:  "#search"
     	//, north__initClosed: true
+		//, west__paneSelector:   "#data_details_wrapper"
+    	, west__initClosed:    true
     	, west__size:          300
-    	,south__initClosed:    true
-    	//,south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
-    	//,south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
+    	, south__initClosed:    true
+    	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
+    	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
-    	//, west__paneSelector:   "#data_details_wrapper"
-    	//, north__paneSelector:  "#search_canvas"
-    	//, triggerEventsOnLoad:  true
     	//, center__onresize:     function () {
     		// ReSize GTable Fixed Header to the duplicated header underneath
     	//	$('#table_canvas div div:first').height($('#table_canvas').height());
+    	//, triggerEventsOnLoad:  true
     		
     	//	var new_width = $('table.google-visualization-table-table').width();
     	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
