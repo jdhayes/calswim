@@ -3,6 +3,15 @@
 <head>
     <title>EcoDataPortal: Admin Area</title>
     <meta charset="utf-8" />
+    <style type="text/css" title="CalSWIMStyle">          
+        @import "css/index.css";
+        @import "css/jquery.colorbox.css";
+        @import "css/sunny/jquery-ui-1.8.22.custom.css";
+        @import "css/jqueryui.dataTables.css";
+        #logout {
+            float: right;
+        }
+    </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
@@ -12,14 +21,6 @@
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js"></script> 
     <script type="text/javascript" src="js/upload.js"></script>
-    <style type="text/css" title="CalSWIMStyle">          
-
-        @import "css/sunny/jquery-ui-1.8.19.custom.css";
-        @import "css/jqueryui.dataTables.css";        
-        #logout {
-            float: right;
-        }
-    </style>
     <script type="text/javascript">
         $(document).ready(function(){
         	// Initialize buttons
