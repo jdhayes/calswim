@@ -244,7 +244,7 @@ function initialize() {
         toggleButtons = '<div class="btnToggler"></div>' + '<div class="btnReset"></div>' + '<div class="btnExpand"></div>'
     */
     
-    $('body').layout({
+    $('body').layout({ 
          center__paneSelector:   "#content" 
         ,north__paneSelector:    "#header"
         ,north__closable:        false
@@ -260,7 +260,6 @@ function initialize() {
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
-        ,applyDefaultStyles: false
     });
     
     // Init Table
