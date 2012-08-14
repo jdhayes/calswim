@@ -273,7 +273,7 @@ function initialize() {
     
     // Initialize center layout
     var layout_options = {
-    	applyDefaultStyles:    true
+    	applyDefaultStyles:    false
     	, north__paneSelector:  "#search"
     	//, north__initClosed: true
 		//, west__paneSelector:   "#data_details_wrapper"
