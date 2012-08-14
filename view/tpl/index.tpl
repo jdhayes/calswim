@@ -41,7 +41,7 @@
     </div>
     
     <div id="content">                
-        <div id="search" class="rounded ui-widget ui-widget-content ui-corner-all">            
+        <div id="search" class="ui-widget ui-widget-content ui-corner-all">            
             <label>Location</label>
             <input id="address"/>
             
@@ -66,12 +66,12 @@
             <div id="map_canvas"></div>            
         </div>
         
-        <div id="data_details_wrapper" class="rounded ui-layout-west ui-widget ui-widget-content ui-corner-all">
+        <div id="data_details_wrapper" class="ui-widget ui-widget-content ui-corner-all">
             <a href="#" class="download_details">Save as CSV/Excel</a>                     
             <div id="data_details" class=""></div>                       
         </div>
         
-        <div id="table_canvas" class="rounded ui-layout-south ui-widget ui-widget-content ui-corner-all"></div>                
+        <div id="table_canvas" class="ui-widget ui-widget-content ui-corner-all"></div>                
     </div>
     
     <!-- <div id="footer">                
