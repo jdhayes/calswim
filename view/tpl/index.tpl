@@ -7,6 +7,7 @@
         @import "css/index.css";
         @import "css/jquery.colorbox.css";
         @import "css/sunny/jquery-ui-1.8.22.custom.css";
+        @import "css/jqueryui.dataTables.css";
     </style>   
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
