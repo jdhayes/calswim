@@ -6,18 +6,57 @@
     <style type="text/css" title="CalSWIMStyle">  
         @import "css/index.css";
         @import "css/jquery.colorbox.css";
-    </style>   
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-           
+    </style>       
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>       
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
-    
-        
-    
     <script type="text/javascript">
-        google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
-        google.setOnLoadCallback(initialize);
+         $('body').layout({
+            center__paneSelector:   "#content" 
+            ,north__paneSelector:    "#header"
+            ,north__closable:        false
+            ,north__resizeable:      false
+            ,north__size:            75                         
+            ,north__maxSize:         75
+            ,south__paneSelector:    "#table_canvas"
+            ,south__initClosed:      true
+            ,south__size:            "30%"  
+            ,south__closable:        true
+            ,south__resizeable:      true        
+            //,south__togglerLength_closed: 105
+            //,south__togglerLength_open:   105
+            //,south__togglerContent_closed: toggleButtons
+            //,south__togglerContent_open:   toggleButtons
+        });
+        
+        // Initialize center layout
+        var layout_options = {
+            applyDefaultStyles:    true
+            //, north__paneSelector:  "#search"
+            //, north__size:          100
+            //, north__initClosed: true
+            //, west__paneSelector:   "#data_details_wrapper"
+            , west__initClosed:    true
+            , west__size:          300
+            //, west__paneSelector:   "#table_canvas"
+            , south__initClosed:    true
+            //, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
+            //, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
+            //, center__paneSelector: "#map_canvas_wrapper"     
+            //, center__onresize:     function () {
+                // ReSize GTable Fixed Header to the duplicated header underneath
+            //  $('#table_canvas div div:first').height($('#table_canvas').height());
+            //, triggerEventsOnLoad:  true
+                
+            //  var new_width = $('table.google-visualization-table-table').width();
+            //  var new_height = $('td.google-visualization-table-th').outerHeight(true);           
+            //  $('#table_canvas div div:last').width(new_width);
+            //  $('#table_canvas div div:last').height(new_height);                     
+            //}
+        };
+        myLayout = $('#content').layout(layout_options);
+        $('#search_link').click(function(){
+            myLayout.toggle('north');
+        });
     </script>
   </head>
   <body>
