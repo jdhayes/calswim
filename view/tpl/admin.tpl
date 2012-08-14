@@ -36,9 +36,13 @@
     <div id="content">        
         <div id="items">
             <form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
-                <table class="data_table">
-                    %(Items)s
-                </table>
+                <div class="demo_jui">
+                    <div role="grid" class="dataTables_wrapper" id="example_wrapper">
+                        <table class="data_table">
+                            %(Items)s
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
