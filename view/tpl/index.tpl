@@ -7,7 +7,7 @@
         @import "css/index.css";
         @import "css/jquery.colorbox.css";
     </style>       
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>       
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>       
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript">
          $('body').layout({
@@ -54,9 +54,9 @@
             //}
         };
         myLayout = $('#content').layout(layout_options);
-        $('#search_link').click(function(){
-            myLayout.toggle('north');
-        });
+        //$('#search_link').click(function(){
+        //    myLayout.toggle('north');
+        //});
     </script>
   </head>
   <body>
