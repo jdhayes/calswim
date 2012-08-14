@@ -9,8 +9,8 @@
         @import "css/jquery.colorbox.css";
     </style>       
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>       
+    <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
          $('body').layout({
