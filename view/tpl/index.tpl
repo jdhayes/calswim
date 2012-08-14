@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <style type="text/css" title="CalSWIMStyle">  
         @import "css/index.css";
-        @import "css/humanity/jquery-ui-1.8.22.custom.css";
+        @import "css/sunny/jquery-ui-1.8.22.custom.css";
         @import "css/jquery.colorbox.css";
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
