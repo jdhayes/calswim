@@ -13,14 +13,9 @@
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js"></script> 
     <script type="text/javascript" src="js/upload.js"></script>
     <style type="text/css" title="CalSWIMStyle">          
-        @import "css/index.css";
-        @import "css/jquery.colorbox.css";
+
         @import "css/sunny/jquery-ui-1.8.19.custom.css";
         @import "http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css";        
-        textarea{
-            width: 100%%;
-            height: 200px;
-        }
         #logout {
             float: right;
         }
