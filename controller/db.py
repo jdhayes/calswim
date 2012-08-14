@@ -194,6 +194,8 @@ class WebDB:
                 html_errors = "<br>".join(errors_warnings)
                 json_data = {'message':html_errors}
                 self.return_message = json.dumps(json_data);
+                
+                # If there are errors, warnings are OK, then return without inserting
                 if len(errors) > 0:                    
                     return
             elif lat and lng:
@@ -313,7 +315,9 @@ class WebDB:
             self.cursor.execute(update_query)
             # Close DB connections        
             self.cursor.close()
-            return "Success "+update_query
+            json_data = {'message':"Success"}
+            return_message = json.dumps(json_data);
+            return return_message
         except:
             e = sys.exc_info()[1]
             print >> self.errors, "ERROR:: "+ str(e)

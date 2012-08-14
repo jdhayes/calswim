@@ -9,25 +9,14 @@
     <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js"></script> 
     <script type="text/javascript" src="js/upload.js"></script>
     <style type="text/css" title="CalSWIMStyle">          
         @import "css/index.css";
         @import "css/jquery.colorbox.css";
-        @import "css/sunny/jquery-ui-1.8.19.custom.css";        
-        table{
-            border: solid 1px #000000;
-            width: 100%%;
-        }
-        tr{
-            border: solid 1px #000000;
-        }
-        td{
-            border: solid 1px #000000;
-        }
-        th{
-            border: solid 1px #000000;
-        }
+        @import "css/sunny/jquery-ui-1.8.19.custom.css";
+        @import "http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css";        
         textarea{
             width: 100%%;
             height: 200px;
@@ -35,14 +24,22 @@
         #logout {
             float: right;
         }
-    </style>       
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	// Initialize buttons
+        	$(".button").button();
+        	// Initialize table
+        	$(".data_table").dataTable();
+        });
+    </script>
 </head>
 <body>    
     <h1>Admin Area</h1>    
     <div id="content">        
         <div id="items">
             <form action='' method='post'><a id='upload' href='#form_wrapper'>Add</a> | <input type='submit' name='delete' value='Delete'/> <a id="logout" href="?login=false">Logout</a>
-                <table>
+                <table class="data_table">
                     %(Items)s
                 </table>
             </form>
