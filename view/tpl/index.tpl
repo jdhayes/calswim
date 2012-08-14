@@ -10,14 +10,11 @@
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>       
     <script type="text/javascript" src="js/jquery/jquery.layout.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="js/calswim.js"></script>
-    <script type="text/javascript" src="js/upload.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>    
+    <script type="text/javascript" src="js/calswim.js"></script>    
     <script type="text/javascript">
         google.load('visualization', '1', {'packages': ['table', 'map', 'corechart']});
         google.setOnLoadCallback(initialize);
@@ -39,7 +36,7 @@
     </div>
     
     <div id="content">                
-        <div id="search" class="ui-layout-north ui-widget ui-widget-content ui-corner-all">            
+        <div id="search" class="ui-widget ui-widget-content ui-corner-all ui-layout-north">            
             <label>Location</label>
             <input id="address"/>
             
