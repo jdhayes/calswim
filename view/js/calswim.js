@@ -9,7 +9,7 @@ var layout_options = {
 	applyDefaultStyles:    true
 	//, north__paneSelector:  "#search"
 	//, north__initClosed: true
-	, north__size:         150
+	, north__size:         55
 	//, west__paneSelector:   "#data_details_wrapper"
 	, west__initClosed:    true
 	, west__size:          300
@@ -257,7 +257,7 @@ function get_data_details(data_id) {
     });
     
     // Open the data details pane
-    center_layout = $("#content").layout(layout_options);
+    center_layout = $("#content").layout();
     center_layout.open('west');
 }
 
