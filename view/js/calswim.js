@@ -17,7 +17,7 @@ var layout_options = {
     , south__initClosed:      true
     , south__closable:        true
     , south__resizeable:      true
-    , south__size:            "30%"
+    , south__size:            500
 	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
 	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
 	//, center__paneSelector: "#map_canvas_wrapper"    	
@@ -257,7 +257,7 @@ function get_data_details(data_id) {
     });
     
     // Open the data details pane
-    center_layout = $("#content").layout();
+    center_layout = $("#content").layout(layout_options);
     center_layout.open('west');
 }
 
