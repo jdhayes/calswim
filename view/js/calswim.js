@@ -9,15 +9,15 @@ var layout_options = {
 	applyDefaultStyles:    true
 	//, north__paneSelector:  "#search"
 	//, north__initClosed: true
-	, north__size:         50
+	, north__size:         150
 	//, west__paneSelector:   "#data_details_wrapper"
 	, west__initClosed:    true
 	, west__size:          300
 	//,south__paneSelector:    "#table_canvas"
     , south__initClosed:      true
-    , south__size:            "100%"
     , south__closable:        true
     , south__resizeable:      true
+    , south__size:            "30%"
 	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
 	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
 	//, center__paneSelector: "#map_canvas_wrapper"    	
