@@ -15,7 +15,7 @@ var layout_options = {
 	, west__size:          300
 	//,south__paneSelector:    "#table_canvas"
     , south__initClosed:      true
-    , south__size:            "30%"
+    , south__size:            "100%"
     , south__closable:        true
     , south__resizeable:      true
 	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
