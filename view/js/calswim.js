@@ -9,6 +9,7 @@ var layout_options = {
 	applyDefaultStyles:    true
 	//, north__paneSelector:  "#search"
 	//, north__initClosed: true
+	, north__size:         50
 	//, west__paneSelector:   "#data_details_wrapper"
 	, west__initClosed:    true
 	, west__size:          300
@@ -60,11 +61,11 @@ function initTableMap(json_data) {
     tableGeoView.setColumns([1,3,4,5]);
     // Draw Table    
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
-    table.draw(tableGeoView, tableOptions);    
+    table.draw(tableGeoView, tableOptions);
     // Open the Table canvas pane
     center_layout = $("#content").layout(layout_options);
     center_layout.open('south');
-    // Close the Data Details pane   
+    // Close the Data Details pane
     center_layout.close('west');
     
 	// No search results found
@@ -297,7 +298,8 @@ function initialize() {
     data.addColumn('string','Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));    
     table.draw(data, {width:'100%', height: '100%', showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});    
-        
+    
+    // Initialize Center layout
     center_layout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
     	center_layout.toggle('north');
