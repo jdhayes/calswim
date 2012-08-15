@@ -251,11 +251,11 @@ function initialize() {
         ,north__resizeable:      false
         ,north__size:            75                         
         ,north__maxSize:         75
-        ,south__paneSelector:    "#table_canvas"
-        ,south__initClosed:      true
-        ,south__size:            "30%"  
-        ,south__closable:        true
-        ,south__resizeable:      true        
+        //,south__paneSelector:    "#table_canvas"
+        //,south__initClosed:      true
+        //,south__size:            "30%"  
+        //,south__closable:        true
+        //,south__resizeable:      true        
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
@@ -279,6 +279,11 @@ function initialize() {
 		//, west__paneSelector:   "#data_details_wrapper"
     	, west__initClosed:    true
     	, west__size:          300
+    	//,south__paneSelector:    "#table_canvas"
+        ,south__initClosed:      true
+        ,south__size:            "30%"  
+        ,south__closable:        true
+        ,south__resizeable:      true
     	//, south__paneSelector:   "#table_canvas"
     	//, south__initClosed:    true
     	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
