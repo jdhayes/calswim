@@ -36,10 +36,9 @@ function initTableMap(json_data) {
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);    
     // Open the Table canvas pane
-    layout = $("body").layout();
+    layout = $("#content").layout();
     layout.open('south');
     // Close the Data Details pane   
-    center_layout = $("#content").layout();
     layout.close('west');
     
 	// No search results found
@@ -245,7 +244,8 @@ function initialize() {
         toggleButtons = '<div class="btnToggler"></div>' + '<div class="btnReset"></div>' + '<div class="btnExpand"></div>'
     */
     
-    $('body').layout({
+    /*
+	$('body').layout({
     	 applyDefaultStyles:    true
         ,center__paneSelector:   "#content" 
         ,north__paneSelector:    "#header"
@@ -263,6 +263,7 @@ function initialize() {
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
+    */
     
     // Init Table
     var data = new google.visualization.DataTable();
@@ -281,6 +282,11 @@ function initialize() {
 		//, west__paneSelector:   "#data_details_wrapper"
     	, west__initClosed:    true
     	, west__size:          300
+    	//,south__paneSelector:    "#table_canvas"
+        , south__initClosed:      true
+        , south__size:            "30%"
+        , south__closable:        true
+        , south__resizeable:      true
     	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
     	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
