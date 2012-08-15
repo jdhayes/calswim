@@ -5,7 +5,33 @@ var map;
 var table;
 var map_items=[];
 var infowindow = new google.maps.InfoWindow();
-        
+var layout_options = {
+	applyDefaultStyles:    true
+	//, north__paneSelector:  "#search"
+	//, north__initClosed: true
+	//, west__paneSelector:   "#data_details_wrapper"
+	, west__initClosed:    true
+	, west__size:          300
+	//,south__paneSelector:    "#table_canvas"
+    , south__initClosed:      true
+    , south__size:            "30%"
+    , south__closable:        true
+    , south__resizeable:      true
+	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
+	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
+	//, center__paneSelector: "#map_canvas_wrapper"    	
+	//, center__onresize:     function () {
+		// ReSize GTable Fixed Header to the duplicated header underneath
+	//	$('#table_canvas div div:first').height($('#table_canvas').height());
+	//, triggerEventsOnLoad:  true
+		
+	//	var new_width = $('table.google-visualization-table-table').width();
+	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
+	//	$('#table_canvas div div:last').width(new_width);
+	//	$('#table_canvas div div:last').height(new_height);    		    		
+	//}
+};
+
 // Extend Google Maps API v3
 google.maps.Polygon.prototype.getBounds = function() {
     var bounds = new google.maps.LatLngBounds();
@@ -36,10 +62,10 @@ function initTableMap(json_data) {
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);    
     // Open the Table canvas pane
-    layout = $("#content").layout();
-    layout.open('south');
+    center_layout = $("#content").layout(layout_options);
+    center_layout.open('south');
     // Close the Data Details pane   
-    layout.close('west');
+    center_layout.close('west');
     
 	// No search results found
     if (geoObjects.length <= 0){
@@ -230,8 +256,8 @@ function get_data_details(data_id) {
     });
     
     // Open the data details pane
-    west_layout = $("#content").layout();
-    west_layout.open('west');
+    center_layout = $("#content").layout(layout_options);
+    center_layout.open('west');
 }
 
 function initialize() {    
@@ -244,26 +270,24 @@ function initialize() {
         toggleButtons = '<div class="btnToggler"></div>' + '<div class="btnReset"></div>' + '<div class="btnExpand"></div>'
     */
     
-    /*
 	$('body').layout({
-    	 applyDefaultStyles:    true
+    	 applyDefaultStyles:    false
         ,center__paneSelector:   "#content" 
         ,north__paneSelector:    "#header"
         ,north__closable:        false
         ,north__resizeable:      false
-        ,north__size:            75                         
+        ,north__size:            75                      
         ,north__maxSize:         75
-        ,south__paneSelector:    "#table_canvas"
-        ,south__initClosed:      true
-        ,south__size:            "30%"
-        ,south__closable:        true
-        ,south__resizeable:      true        
+//        ,south__paneSelector:    "#table_canvas"
+//        ,south__initClosed:      true
+//        ,south__size:            "30%"
+//        ,south__closable:        true
+//        ,south__resizeable:      true        
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
         //,south__togglerContent_open:   toggleButtons
     });
-    */
     
     // Init Table
     var data = new google.visualization.DataTable();
@@ -273,37 +297,10 @@ function initialize() {
     data.addColumn('string','Target');
     table = new google.visualization.Table(document.getElementById('table_canvas'));    
     table.draw(data, {width:'100%', height: '100%', showRowNumber: false, cssClassNames:{headerRow: 'ui-widget-header'}});    
-    
-    // Initialize center layout
-    var layout_options = {
-    	applyDefaultStyles:    true
-    	//, north__paneSelector:  "#search"
-    	//, north__initClosed: true
-		//, west__paneSelector:   "#data_details_wrapper"
-    	, west__initClosed:    true
-    	, west__size:          300
-    	//,south__paneSelector:    "#table_canvas"
-        , south__initClosed:      true
-        , south__size:            "30%"
-        , south__closable:        true
-        , south__resizeable:      true
-    	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
-    	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
-    	//, center__paneSelector: "#map_canvas_wrapper"    	
-    	//, center__onresize:     function () {
-    		// ReSize GTable Fixed Header to the duplicated header underneath
-    	//	$('#table_canvas div div:first').height($('#table_canvas').height());
-    	//, triggerEventsOnLoad:  true
-    		
-    	//	var new_width = $('table.google-visualization-table-table').width();
-    	//	var new_height = $('td.google-visualization-table-th').outerHeight(true);    		
-    	//	$('#table_canvas div div:last').width(new_width);
-    	//	$('#table_canvas div div:last').height(new_height);    		    		
-    	//}
-    };
-    myLayout = $('#content').layout(layout_options);
+        
+    center_layout = $('#content').layout(layout_options);
     $('#search_link').click(function(){
-    	myLayout.toggle('north');
+    	center_layout.toggle('north');
     });       
     
     /* Init colorbox overlays */
