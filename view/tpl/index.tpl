@@ -70,7 +70,7 @@
             <div id="data_details" class=""></div>                       
         </div>
         
-        <div id="table_canvas" class="ui-layout-south ui-widget ui-widget-content ui-corner-all"></div>                
+        <div id="table_canvas" class="ui-widget ui-widget-content ui-corner-all"></div>                
     </div>
     
     <!-- <div id="footer">                

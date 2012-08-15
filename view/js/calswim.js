@@ -36,10 +36,11 @@ function initTableMap(json_data) {
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);    
     // Open the Table canvas pane
-    center_layout = $("#content").layout();
-    center_layout.open('south');
+    layout = $("body").layout();
+    layout.open('south');
     // Close the Data Details pane   
-    center_layout.close('west');
+    center_layout = $("#content").layout();
+    layout.close('west');
     
 	// No search results found
     if (geoObjects.length <= 0){
@@ -244,18 +245,19 @@ function initialize() {
         toggleButtons = '<div class="btnToggler"></div>' + '<div class="btnReset"></div>' + '<div class="btnExpand"></div>'
     */
     
-    $('body').layout({ 
-         center__paneSelector:   "#content" 
+    $('body').layout({
+    	 applyDefaultStyles:    true
+        ,center__paneSelector:   "#content" 
         ,north__paneSelector:    "#header"
         ,north__closable:        false
         ,north__resizeable:      false
         ,north__size:            75                         
         ,north__maxSize:         75
-        //,south__paneSelector:    "#table_canvas"
-        //,south__initClosed:      true
-        //,south__size:            "30%"  
-        //,south__closable:        true
-        //,south__resizeable:      true        
+        ,south__paneSelector:    "#table_canvas"
+        ,south__initClosed:      true
+        ,south__size:            "30%"
+        ,south__closable:        true
+        ,south__resizeable:      true        
         //,south__togglerLength_closed: 105
         //,south__togglerLength_open:   105
         //,south__togglerContent_closed: toggleButtons
@@ -279,13 +281,6 @@ function initialize() {
 		//, west__paneSelector:   "#data_details_wrapper"
     	, west__initClosed:    true
     	, west__size:          300
-    	//,south__paneSelector:    "#table_canvas"
-        ,south__initClosed:      true
-        ,south__size:            "30%"  
-        ,south__closable:        true
-        ,south__resizeable:      true
-    	//, south__paneSelector:   "#table_canvas"
-    	//, south__initClosed:    true
     	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
     	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
