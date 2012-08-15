@@ -36,10 +36,10 @@ function initTableMap(json_data) {
     var tableOptions = {width:'100%',height: '100%',page:'disable', showRowNumber:false, cssClassNames:{headerRow:'ui-widget-header'}};    
     table.draw(tableGeoView, tableOptions);    
     // Open the Table canvas pane
-    west_layout = $("#content").layout();
-    west_layout.open('south');
+    center_layout = $("#content").layout();
+    center_layout.open('south');
     // Close the Data Details pane   
-    west_layout.close('west');
+    center_layout.close('west');
     
 	// No search results found
     if (geoObjects.length <= 0){
@@ -280,7 +280,7 @@ function initialize() {
     	, west__initClosed:    true
     	, west__size:          300
     	//, south__paneSelector:   "#table_canvas"
-    	, south__initClosed:    true
+    	//, south__initClosed:    true
     	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
     	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
     	//, center__paneSelector: "#map_canvas_wrapper"    	
