@@ -17,7 +17,7 @@ var layout_options = {
     , south__initClosed:      true
     , south__closable:        true
     , south__resizeable:      true
-    , south__size:            350
+    , south__size:            250
 	//, south__togglerContent_open:  "<span style='font-size:5pt'>Close<span>"
 	//, south__togglerContent_close: "<span style='font-size:5pt'>Open<span>"
 	//, center__paneSelector: "#map_canvas_wrapper"    	
