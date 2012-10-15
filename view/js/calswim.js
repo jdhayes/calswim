@@ -350,7 +350,13 @@ function initialize() {
         });
     }    
     
-    $("input").keypress(function(event) {
+    $("#address").keypress(function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            $('#search_button').click();
+        }
+    });
+    $("#keywords").keypress(function(event) {
         if (event.which == 13) {
             event.preventDefault();
             $('#search_button').click();
