@@ -350,7 +350,13 @@ function initialize() {
         });
     }    
     
-    
+    $("input").keypress(function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            $('#search_button').click();
+        }
+    });
+
     // Set click event on search button
     $('#search_button').click(function() {
         var latlng;
