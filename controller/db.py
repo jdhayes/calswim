@@ -11,55 +11,84 @@ import shapefile
 # File handling
 import fnmatch
 from StringIO import StringIO
-from tempfile import mkdtemp
+from tempfile import mkdtemp, mkstemp
 from zipfile import ZipFile
 
 class WebDB:
-    def __init__(self, base_dir, errors):
+    def __init__(self, base_dir, errors, hostname):
         # Setup base dir for reference later
         self.base_dir = base_dir
+        self.hostname = hostname
+        self.user = {}
         
         # Connect to an existing database
         connParams = {}
         connParams["UID"] = "calswim"
         connParams["PWD"] = "calswim2012"
         connParams["HOST"] = "localhost"
-        connParams["PORT"] = 3306
-        connParams["DSN"] = "calswim"        
+        connParams["PORT"] = 3307
+        connParams["DSN"] = "calswim"
+        connParams["UNIX_SOCKET"] = '/tmp/mysql.sock'
     
         # Open database connection
-        self.db = MySQLdb.connect(connParams["HOST"],connParams["UID"],connParams["PWD"],connParams["DSN"],connParams["PORT"])        
+        self.db = MySQLdb.connect(connParams["HOST"],connParams["UID"],connParams["PWD"],connParams["DSN"],connParams["PORT"],unix_socket=connParams["UNIX_SOCKET"])        
         # prepare a cursor object using cursor() method
         self.cursor = self.db.cursor()  
         # Set return message to blank
         self.return_message = ""
         # Initialize error var
         self.errors = errors
-        
-    def delete_items(self, delete_ids):
-        delete_query="DELETE FROM GeoData WHERE gd_id IN ("
+    
+    def validate_user(self,username,password):
+        select_query="SELECT u_id FROM `User` WHERE name='%(NAME)s' AND password='%(PASS)s' LIMIT 1" % {'NAME':username,'PASS':password}       
+        self.cursor.execute(select_query)
+        row = self.cursor.fetchone()
+        if row != None and len(row) > 0:
+            select_query="SELECT g_id FROM GroupMap WHERE u_id=%(UID)s" % {'UID':row[0]}
+            self.cursor.execute(select_query)
+            group_rows = self.cursor.fetchall()
+            groups = []
+            for group_row in group_rows:
+                groups.append(group_row[0])
+            self.user['g_id'] = groups
+            self.user['u_id'] = row[0]
+            return True
+        else:
+            return False
+    
+    def delete_items(self, delete_ids, g_id='0'):
+        delete_query="DELETE FROM GeoData WHERE g_id IN (%s) AND gd_id IN (" % g_id
         for id in delete_ids:
             delete_query += id+","
         delete_query = delete_query.rstrip(',') + ")"
         self.cursor.execute(delete_query)
                 
-    def get_items(self):
+    def get_items(self, type="json",g_id='0'):
         # Get all records from DB
-        select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData ORDER BY gd_id DESC"        
+        select_query="SELECT gd_id, organization, project_name, project_name_short, project_description, data_type, data_target FROM GeoData WHERE g_id IN (%s) ORDER BY gd_id DESC" % g_id
         self.cursor.execute(select_query)
-
-        # Compile all records into an HTML string        
-        html_rows = "" 
-        while(1):
-            row=self.cursor.fetchone()
-            if row == None:
-                break            
-            html_row = '<td><a href="/?login=admin&edit='+str(row[0])+'" target="_blank">Edit</a></td>'
-            for html_item in row:
-                html_row += "<td>"+str(html_item)+"</td>"
-            html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='deletes' value='"+str(row[0])+"'/></td></tr>"
-        columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target","Delete</th>"]
-        return "<thead><tr><th></th>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody>"
+        
+        if type=="html":
+            # Compile all records into an HTML string        
+            html_rows = "" 
+            while(1):
+                row=self.cursor.fetchone()
+                if row == None:
+                    break            
+                html_row = '<td><button class="button edit" name="'+str(row[0])+'">Edit</button></td>'
+                for html_item in row:
+                    html_row += "<td>"+str(html_item)+"</td>"
+                html_rows += "<tr>"+html_row+"<td><input type='checkbox' name='deletes' value='"+str(row[0])+"'/></td></tr>"
+            columns = ["<th>ID", "Organization", "Project Name", "Short Name", "Project Description","Data Type","Data Target","Delete</th>"]
+            return "<thead><tr><th></th>"+ "</th><th>".join(columns) +"</tr></thead><tbody>"+ html_rows +"</tbody>"
+        if type=="json":
+            rows=self.cursor.fetchall()
+            #for label,value in enumerate(rows):
+            #     data_details[label] = value
+            json_data = {"aaData":rows}
+            return json.dumps(json_data)
+        else:
+            return json.dumps({'message':'ERROR:: Incorrect format specified.'})
     
     def html_filter(self, string):
         """
@@ -110,21 +139,23 @@ class WebDB:
                 matches.append(os.path.join(root, filename))
         return matches
 
-    def import_data(self, form):
+    def import_data(self, form, g_id='0'):
         """
-            Simple function to inhale form data and insert it into the Database
+            Inhale and preprocess form data and insert it into the Database
         """
         error_msg = ""
         
         try:
             # Set insert order
-            columns = "organization, contact, email, phone, data_url, \
-            project_name_short, project_name, project_description, timeline_start, timeline_finish, project_funder,\
+            columns = "g_id, organization, contact, email, phone, data_url, \
+            project_name_short, project_name, project_description, timeline_start, timeline_finish, project_funder, report_url,\
             data_target, location_description, site_count, data_collector, data_type, data_format, data_policies, \
             keyword, other, location, shp_file"
             
             # Gather submitted for values
             values = []
+            # Set Group ID for entry, use only first id pulled from DB
+            values.append( '%s' % g_id.split(',')[0] )
             # Source data
             values.append( '"%s"' % form.getvalue('organization') )
             values.append( '"%s"' % form.getvalue('contact') )
@@ -133,31 +164,33 @@ class WebDB:
                 values.append( form.getvalue('phone') )
             else:
                 values.append('NULL')
-            values.append( '"%s"' % form.getvalue('source') )
+            values.append( '"%s"' % form.getvalue('data_url') )
             # Project data
-            if len(form.getvalue('labelShort')) > 0:
-                values.append( '"%s"' % form.getvalue('labelShort') )
+            if len(form.getvalue('project_name_short')) > 0:
+                values.append( '"%s"' % form.getvalue('project_name_short') )
             else:
-                values.append( '"%s"' % form.getvalue('label') )
-            values.append( '"%s"' % form.getvalue('label') )
-            values.append( '"%s"' % form.getvalue('description') )        
-            values.append( "STR_TO_DATE('"+ form.getvalue('timelineStart') +"', '%m/%d/%Y')" )
-            values.append( "STR_TO_DATE('"+ form.getvalue('timelineFinish') +"', '%m/%d/%Y')" )
-            values.append( '"%s"' % form.getvalue('funder') )
+                values.append( '"%s"' % form.getvalue('project_name') )
+            values.append( '"%s"' % form.getvalue('project_name') )
+            values.append( '"%s"' % form.getvalue('project_description') )        
+            values.append( "STR_TO_DATE('"+ form.getvalue('timeline_start') +"', '%m/%d/%Y')" )
+            values.append( "STR_TO_DATE('"+ form.getvalue('timeline_finish') +"', '%m/%d/%Y')" )
+            values.append( '"%s"' % form.getvalue('project_funder') )
+            values.append( '"%s"' % form.getvalue('report_url') )
             # Meta data
-            values.append( '"%s"' % form.getvalue('target') )
-            values.append( '"%s"' % form.getvalue('locdescription') )
-            values.append( form.getvalue('numsites') )
-            values.append( '"%s"' % form.getvalue('collector') )
-            values.append( '"%s"' % form.getvalue('datatype') )
-            values.append( '"%s"' % form.getvalue('dataformat') )
-            values.append( '"%s"' % form.getvalue('policies') )
+            values.append( '"%s"' % form.getvalue('data_target') )
+            values.append( '"%s"' % form.getvalue('location_description') )
+            values.append( form.getvalue('site_count') )
+            values.append( '"%s"' % form.getvalue('data_collector') )
+            values.append( '"%s"' % form.getvalue('data_type') )
+            values.append( '"%s"' % form.getvalue('data_format') )
+            values.append( '"%s"' % form.getvalue('data_policies') )
             # Other Data
             values.append( '"%s"' % " ".join(pattern.sub(' ', form.getvalue('keyword')).split()) )
             values.append( '"%s"' % form.getvalue('other') )
             # Shape file data            
-            zip_shp_file = form['shp_file'].file
-            zip_shp_file_name = form.getvalue('shp_file')                    
+            shp_file_handle = form['shp_file'].file
+            shp_file_contents = form.getvalue('shp_file')
+            shp_file_name = form['shp_file'].filename
             # Latitude/Longitude data
             lat = form.getvalue('lat')
             lng = form.getvalue('lng')
@@ -165,20 +198,27 @@ class WebDB:
             # Build MySQL Geometry syntax
             locations = []
             json_data = ""
-            if zip_shp_file_name:
-                # Extract all files from compressed shapefile
-                zip_shp_file_contents = zip_shp_file.read()
-                with ZipFile(StringIO(zip_shp_file_contents), 'r') as zip_sf:
-                    temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
+            temp_dir = mkdtemp(dir=self.base_dir+"/tmp/")
+            if shp_file_name:
+                if shp_file_name.split('.')[-1] == "zip":
+                    # Extract all files from compressed shapefile
+                    zip_sf = ZipFile(shp_file_handle, 'r')
                     zip_sf.extractall(path=temp_dir)
-                    path_to_shapefile = self.find_shapefile(temp_dir)
-                    
+                    zip_sf.close()
+                    # Pass only the first shp file found
+                    path_to_shapefile = self.find_shapefile(temp_dir)[0]
+                        
                     #json_data = {'message':'DEBUG::Temp Dir:'+temp_dir}
                     #self.return_message = json.dumps(json_data);
                     #return
+                else:
+                    path_to_shapefile = temp_dir+'/'+shp_file_name
+                    temp_file = open( path_to_shapefile, 'wb')
+                    temp_file.write(shp_file_contents)
+                    temp_file.close()
                 
                 # Set POLYGON GEOMETRY from shp file
-                polygons,errors,warnings = self.set_poly_geo(path_to_shapefile[0])                                    
+                polygons,errors,warnings = self.set_poly_geo(path_to_shapefile)                                    
                 
                 # Regardless of errors process polygons
                 for polygon in polygons:
@@ -200,7 +240,7 @@ class WebDB:
                     return
             elif lat and lng:
                 # Set MySQL NULL value for shp contents
-                zip_shp_file_contents = "NULL"
+                shp_file_contents = "NULL"
                 # Set POINT GEOMETRY from latitude and longitude
                 locations.append("GeomFromText('POINT("+lat+" "+lng+")')")            
             else:
@@ -227,14 +267,14 @@ class WebDB:
                 
                 # Build MySQL insert query
                 locs_shps.append(location)
-                locs_shps.append( '"%s"' % self.db.escape_string(zip_shp_file_contents) )
+                locs_shps.append( '"%s"' % self.db.escape_string(shp_file_contents) )
                 
-                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+                insert_query = "INSERT INTO calswim.GeoData ("+columns+") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
                 insert_values = tuple(values+locs_shps)
                 insert_query_with_values = insert_query % insert_values                
                 self.cursor.execute(insert_query_with_values)
                 if json_data == "":
-                    json_data = {'message':'Data import successful'}                    
+                    json_data = {'message':'Data successfully saved'}                    
             
             # Commit queries
             self.db.commit()
@@ -243,20 +283,18 @@ class WebDB:
             self.cursor.execute(select_query)
             row = self.cursor.fetchone()
             
-            data_file = form['data_file']
-            if data_file.filename:
-                data_file_name = os.path.basename(data_file.filename)                
-                
-                download_dir = self.base_dir +"/downloads/"+ str(row[0]) +"/"                
-                if not os.path.exists(download_dir):
-                    os.makedirs(download_dir)
-                                
-                data_save_file = open(download_dir+data_file_name, "w")
-                data_save_file.write(data_file.file.read())
-                data_save_file.close
-                
-                update_query = """UPDATE calswim.GeoData SET data_url="%(PATH)s" WHERE gd_id=%(ID)s""" % {'PATH':"/downloads/"+ str(row[0]) +"/"+ data_file_name, 'ID':row[0]}
-                self.cursor.execute(update_query)                
+            # Process uploaded files
+            update_query = None
+            data_url = self.import_file(form['data_file'],row[0])
+            report_url = self.import_file(form['report_file'],row[0])
+            if data_url and report_url:
+                update_query = """UPDATE calswim.GeoData SET data_url="%(DATA_URL)s", report_url="%(REPORT_URL)s" WHERE gd_id=%(ID)s""" % {'DATA_URL': data_url, 'REPORT_URL':report_url, 'ID':row[0]}
+            elif data_url and report_url==None:
+                update_query = """UPDATE calswim.GeoData SET data_url="%(DATA_URL)s" WHERE gd_id=%(ID)s""" % {'DATA_URL': data_url, 'ID':row[0]}
+            elif report_url and data_url==None:
+                update_query = """UPDATE calswim.GeoData SET report_url="%(REPORT_URL)s" WHERE gd_id=%(ID)s""" % {'REPORT_URL':report_url, 'ID':row[0]}
+            if update_query:
+                self.cursor.execute(update_query)
             
             # Return JavaScript boolean to view         
             self.return_message = json.dumps(json_data)
@@ -269,12 +307,31 @@ class WebDB:
         
         # Delete temp files
         try:
-            shutil.rmtree(temp_dir) # delete directory
+            if os.path.isdir(temp_dir):
+                shutil.rmtree(temp_dir) # delete directory
         except:
             e = sys.exc_info()[1]
             print >> self.errors,"ERROR:: "+error_msg+" "+str(e)
         # Close DB connections        
         self.cursor.close()
+    
+    def import_file(self, filehandler, gd_id):
+        if filehandler.filename:
+            # Get filename
+            data_file_name = os.path.basename(filehandler.filename)                
+            # Build save path
+            download_dir = self.base_dir +"/downloads/"+ str(gd_id) +"/"                
+            # Make sure directory exists
+            if not os.path.exists(download_dir):
+                os.makedirs(download_dir)
+            # Save contents to new file
+            data_save_file = open(download_dir+data_file_name, "w")
+            data_save_file.write(filehandler.file.read())
+            data_save_file.close
+            # Return local URL
+            return "http://"+self.hostname+"/downloads/"+ str(gd_id) +"/"+data_file_name
+        else:
+            return None
     
     def process(self, file_name):
         csv_reader = csv.reader(open(file_name, 'rb'), delimiter=' ', quotechar='|')
@@ -293,29 +350,35 @@ class WebDB:
         deg, min, sec  = deg_min_sec.split()
         return str(float(deg) + (float(min)/60) + (float(sec)/3600));            
     
-    def set_data_details(self, gd_id, form):            
+    def set_data_details(self, gd_id, form, g_id='0'):        
         try:
-            # Gather submitted for values
-            values = []
+            # Iterate over columns and create SQL query with form values
             update_query = "UPDATE GeoData SET "
-            columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
+            columns = ["organization","contact","email","phone","data_url","project_name_short","project_name","project_description","timeline_start","timeline_finish","project_funder","report_url","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
             for column in columns:
-                if form.getvalue(column) == None or form.getvalue(column) == "":
+                if column == "location":
+                    try:
+                        lat_float = float(form.getvalue('lat'))
+                        lng_float = float(form.getvalue('lng'))
+                        latlng = "POINT("+ str(lat_float) +" "+ str(lng_float) +")"
+                        update_query += column+"=GeomFromText('"+latlng+"'),"
+                    except:
+                        e = sys.exc_info()[1]
+                        print >> self.errors, "ERROR:: "+ str(e)
+                elif form.getvalue(column) == None or form.getvalue(column) == "":
                     update_query += column+"=NULL,"
-                elif column == "location":
-                    update_query += column+"=GeomFromText('"+form.getvalue(column)+"'),"
                 elif column == "phone" or column == "site_count":
                     update_query += column+"="+form.getvalue(column)+","
                 elif column == "timeline_start" or column == "timeline_finish":
-                    update_query += column+"=STR_TO_DATE('"+ form.getvalue(column) +"', '%Y-%m-%d'),"
+                    update_query += column+"=STR_TO_DATE('"+ form.getvalue(column) +"', '%m/%d/%Y'),"
                 else:
                     update_query += column+'="'+form.getvalue(column)+'",'
             
-            update_query = update_query.rstrip(',') + " WHERE gd_id="+gd_id
+            update_query = update_query.rstrip(',') + " WHERE gd_id="+gd_id+" AND g_id="+g_id.split(',')[0]
             self.cursor.execute(update_query)
             # Close DB connections        
             self.cursor.close()
-            json_data = {'message':"Success"}
+            json_data = {'message':"Data successfully saved"}
             return_message = json.dumps(json_data);
             return return_message
         except:
@@ -334,36 +397,51 @@ class WebDB:
             data_url,        
             project_name, project_description,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
-            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
-            project_funder, data_target, location_description, site_count, data_collector,
+            DATE_FORMAT( timeline_finish, '%M %e, %Y') as timeline_finish,
+            project_funder, report_url, data_target, location_description, site_count, data_collector,
             data_type, data_format, data_policies, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
             # Create a list of column names                
-            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
+            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Report URL","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
         elif format == "html":
             # This is the HTML format, used for editing details        
             select_query = """
             SELECT organization, contact,email,phone, data_url, project_name, project_name_short, project_description,
-            timeline_start,timeline_finish,project_funder, data_target, location_description,
-            site_count, data_collector,data_type, data_format, data_policies, AsText(location) as location, keyword, other
+            timeline_start, timeline_finish, project_funder, report_url, data_target, location_description,
+            site_count, data_collector, data_type, data_format, data_policies, AsText(location) as location, keyword, other
             FROM GeoData WHERE gd_id=""" + gd_id
             # Create a list of column names                
-            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
+            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","report_url","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
+        elif format == "plain_json":
+            select_query = """
+            SELECT organization, contact,
+            email,phone,data_url,
+            project_name, project_name_short, project_description,
+            DATE_FORMAT( timeline_start, '%m/%d/%Y') as timeline_start,
+            DATE_FORMAT( timeline_finish, '%m/%d/%Y') as timeline_finish,
+            project_funder, report_url, data_target, location_description, site_count, data_collector,
+            data_type, data_format, data_policies,
+            AsText(location) as location,
+            keyword, other
+            FROM GeoData WHERE gd_id=""" + gd_id            
+            # Create a list of column names
+            labels = ["organization","contact","email","phone","data_url","project_name","project_name_short","project_description","timeline_start","timeline_finish","project_funder","report_url","data_target","location_description","site_count","data_collector","data_type","data_format","data_policies","location","keyword","other"]
         else:
-            #This is the JSON format used for front end web queries
             select_query = """
             SELECT organization, contact,
             concat('<a href="mailto:',email,'">',email,'</a>') as email,
             concat(left(phone,3),'-',mid(phone,4,3),'-',right(phone,4)) as phone, 
-            concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,        
-            project_name, project_description,
+            concat('<a href="',data_url,'" target="_blank">',data_url,'</a>') as data_url,
+            project_name, project_name_short, project_description,
             DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_start,
-            DATE_FORMAT( timeline_start, '%M %e, %Y') as timeline_finish,
-            project_funder, data_target, location_description, site_count, data_collector,
+            DATE_FORMAT( timeline_finish, '%M %e, %Y') as timeline_finish,
+            project_funder,
+            concat('<a href="',report_url,'" target="_blank">',report_url,'</a>') as report_url,
+            data_target, location_description, site_count, data_collector,
             data_type, data_format, data_policies, keyword, other
-            FROM GeoData WHERE gd_id=""" + gd_id            
-            # Create a list of column names                
-            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Description","Start Date","Finish Date","Project Funder","Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]            
+            FROM GeoData WHERE gd_id=""" + gd_id
+            # Create a list of column names
+            labels = ["Organization","Contact","E-Mail","Phone","Data URL","Project Name","Project Name Short","Project Description","Start Date","Finish Date","Project Funder", "Report URL", "Data Target","Location Description","Site Count","Data Collector","Data Type","Data Format","Data Policies","Keywords","Other"]
             
         self.cursor.execute(select_query)
         row = self.cursor.fetchone()            
@@ -385,14 +463,17 @@ class WebDB:
                 else:
                     html_item = ""
                 html_row += "<tr><td class='label' width='150px'>"+(labels[index].capitalize()).replace("_"," ")+"</td><td><textarea name='"+labels[index]+"'>"+html_item+"</textarea></td></tr>"            
-            return "<h2>("+gd_id+") "+project_name_short+"</h2><form action='' method='post'><input class='button float-right margin-bottom' type='submit' name='submit' value='Update'/><thead><tr><th>Label</th><th>Data</th></tr></thead><tbody>"+ html_row +"</tbody></form>"
+            return "<h2>("+gd_id+") "+project_name_short+"</h2><input class='button float-right margin-bottom' type='submit' name='submit' value='update'/><thead><tr><th>Label</th><th>Data</th></tr></thead><tbody>"+ html_row +"</tbody>"
         else:        
             html_row = []
             for item in row:
                 if item == None:
                     item = ""
-                if isinstance(item, str):                
-                    html_row.append("<br />".join(item.split("\n")))
+                if isinstance(item, str):
+                    if format == "json":
+                        html_row.append("<br />".join(item.split("\n")))
+                    else:
+                        html_row.append(item)
                 else:
                     html_row.append(str(item))
                             

@@ -7,6 +7,7 @@
         @import "css/index.css";
         @import "css/sunny/jquery-ui-1.8.22.custom.css";
         @import "css/jquery.colorbox.css";
+        @import "css/jquery.tooltip.css";
     </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>   
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="js/jquery/jquery.colorbox.min.js"></script>    
     <script type="text/javascript" src="js/jquery/jquery.watermark.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.tooltip.min.js"></script>
     <script type="text/javascript" src="js/calswim.js"></script>
     <script type="text/javascript" src="js/upload.js"></script>    
     <script type="text/javascript">
@@ -28,7 +30,7 @@
     <div id="header">
         <div id="header_image_wrapper"></div>
         <div id="title">
-            <h1>ECOL<span style="color:#FF4500">O</span>GI<span style="color:#FF4500">C</span>AL DATA PORTAL</h1>
+            <h1>ECOLOGICAL DATA PORTAL</h1>
         </div>
         <div id="menu">            
             <a id="about_link" class="tab" href="#about">About</a>
@@ -42,11 +44,11 @@
     <div id="content">                
         <div id="search" class="ui-widget ui-widget-content ui-corner-all ui-layout-north">            
             <label>Location</label>
-            <input id="address"/>
+            <input id="address" class="tooltip" title="Enter a location to search within or leave blank to search everywhere." />
             
             <div style="display: inline; padding:0px 50px 0px 50px">
                 <label>Radius (Miles)</label>
-                <select id="radius">
+                <select id="radius" class="tooltip" title="Select location radius to limit search.">
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="25">25</option>
@@ -56,7 +58,7 @@
             </div>
             
             <label>Keywords</label>
-            <input id="keywords" />
+            <input id="keywords" class="tooltip" title="Enter keywords to display related records or leave blank to display all records." />
             
             <button id="search_button" class="button">Find</button>            
         </div>

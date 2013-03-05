@@ -324,6 +324,26 @@ function initialize() {
 			secondary: "ui-icon-search"
 		}
 	});
+    /* Init tooltips */
+    $(".tooltip").tooltip(
+        {
+                 track: true, 
+                 delay: 0, 
+                 showURL: false, 
+                 opacity: 0.90,                  
+        //         showBody: " - ",
+        //         /*fixPNG: true, 
+        //         top: -15, 
+        //         left: 5,*/
+                 extraClass: "ui-widget ui-widget-content ui-corner-all shadow",
+        //         bodyHandler: function() {
+        //             var tooltipHtml = '<div class="ui-widget-header">Read</div><div class="clear">'+read+'</div>';
+        //             tooltipHtml += '<div class="ui-widget-header clear">Target</div><div
+        //             class="clear">'+target+'</div>';
+        //             return  tooltipHtml;
+        //         }
+        }
+    );
     
     // Init Google Map    
     var geocoder = new google.maps.Geocoder();

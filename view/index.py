@@ -11,6 +11,7 @@ from db import WebDB;
 from pesto.session import session_middleware
 from pesto.session.filesessionmanager import FileSessionManager
 from pesto.response import Response
+from hashlib import md5
 base_dir = os.path.dirname(__file__)
 
 def wsgi_app(environ, start_response):    
@@ -26,7 +27,7 @@ def wsgi_app(environ, start_response):
 
     # Initialize web classes    
     CalSwimView = WebView(base_dir, environ['wsgi.errors'])    
-    CalSwimDB = WebDB(base_dir, environ['wsgi.errors']);
+    CalSwimDB = WebDB(base_dir, environ['wsgi.errors'], environ.get('HTTP_HOST'));
     #print >> CalSwimView.errors, "Print Error Message In Apache Logs"
     
     """
@@ -63,53 +64,59 @@ def wsgi_app(environ, start_response):
         # Logout from admin area
         if 'false' == form.getvalue('login'):
             session['user'] = ""
+            session['g_id'] = ""
+            session['u_id'] = ""
               
         # Set user name in session to mark successful login
         if 'username' in form:
-            passwd = form.getvalue('password')
-            if passwd=='EcoAdminPass2012':                
-                session['user'] = 'admin'
+            username = form.getvalue('username')
+            passwd = md5(form.getvalue('password')).hexdigest()
+            valid_user = CalSwimDB.validate_user(username,passwd)
+            
+            if valid_user:
+                session['user'] = username
+                session['u_id'] = CalSwimDB.user['u_id']
+                session['g_id'] = ', '.join(map(str, CalSwimDB.user['g_id']))
             else:
-                session['user'] = "guest"
+                session['user'] = ""
         
         user = session.get('user')
-        # Get user if it exists, and verify if it is admin        
-        if 'admin' == user:
-            if 'edit' in form:
+        u_id = session.get('u_id')
+        g_id = session.get('g_id')
+        
+        # If user has account allow access to upload area
+        if user and u_id:
+            if 'get_items' in form:
+                # Get all records and return json list
+                #items = CalSwimDB.get_items()
+                CalSwimView.content = CalSwimDB.get_items('json',g_id)
+            elif form.getvalue('import_data') == "update_data":
                 """
                     Handler for a single item edit
                 """
                 gd_id = form.getvalue('edit')                
-                if 'organization' in form:                    
-                    CalSwimView.content = CalSwimDB.set_data_details(gd_id, form)
-                else:
-                    CalSwimView.set_content('admin')
-                    items = CalSwimDB.get_data_details(gd_id, 'html')
-                    CalSwimView.content = CalSwimView.content % {'Items' : items}
-            elif 'import_data' in form:
+                CalSwimView.content = CalSwimDB.set_data_details(gd_id, form, g_id)
+            elif form.getvalue('import_data') == "import_data":
                 """
                     Handle AJAX call for data import into DB
                 """        
-                CalSwimDB.import_data(form)
+                CalSwimDB.import_data(form,g_id)
                 CalSwimView.content = CalSwimDB.return_message
             elif 'delete' in form:
                 """
                     Handler for deleting items
                 """                
                 # Delete items from a list of ids
-                CalSwimDB.delete_items(form.getlist('deletes'))                
-                # Get all records
-                items = CalSwimDB.get_items()
-                # Place all records in html frontend
+                CalSwimDB.delete_items(form.getlist('deletes'),g_id)
+                # Set template type
                 CalSwimView.set_content('admin')
-                CalSwimView.content = CalSwimView.content % {'Items' : items}
-#                CalSwimView.content = str(form.getlist('deletes'))
+                # Set content
+                CalSwimView.content = CalSwimView.content
             else:
-                # Get all records
-                items = CalSwimDB.get_items()
-                # Place all records in html frontend
+                # Set template type
                 CalSwimView.set_content('admin')
-                CalSwimView.content = CalSwimView.content % {'Items' : items}
+                # Set content
+                CalSwimView.content = CalSwimView.content
         else:            
             CalSwimView.set_content('index')
             CalSwimView.content = CalSwimView.content % {'uploadResult' : "Incorrect name or password."}            

@@ -39,27 +39,86 @@
     <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-        	// Initialize buttons
-        	$(".button").button();
-        	// Initialize table
-        	$(".data_table").dataTable({
-        		"bJQueryUI": true
-        	});        	
+        // Initialize buttons
+        $(".button").button();
+        // Initialize table
+        var all_data_table = $("#all_data_table").dataTable({
+        "bJQueryUI": true,
+        "sAjaxSource": "/?login=admin&get_items=all",
+        "fnServerData": function ( sSource, aoData, fnCallback ) {
+            /* Define JSON retrieval function and add extra data to table */
+            $.ajax( {
+            "dataType": 'json',
+            "type": "GET",
+            "url": sSource,
+            "success": function(data){
+                if(typeof data.aaData === 'object'){
+                /* Pre Process data, we need to add a column for the details button */
+                $.each(data.aaData, function(key, val) {
+                    var gd_id = val[0];
+                    var editButton = '<button class="edit" name="'+ gd_id +'">Edit</button>';
+                    val.unshift(editButton);
+                    var deleteBox = '<input type="checkbox" name="deletes" value="'+gd_id+'" />';
+                    val.push(deleteBox);
+                });
+    
+                /* Pass data back to table for display */
+                fnCallback(data);
+                // Initialize buttons
+                $(".edit").button();
+                // When edit button is clicked populate fields in edit form using json result of AJAX call
+                $(".edit").click(function(){
+                    var id = $(this).attr('name');
+                    $.post("?format=plain_json&get_data_details="+id, function(json_data){
+                    $.each(json_data, function(jindex, tuple){
+                        index = tuple[0].toLowerCase().replace(/ /g,'_').replace(/-/g,'');
+                        value = tuple[1];
+                        if (index == "location"){
+                        value = value.replace(/\)/g,'');
+                        var val_parts = value.split("(");
+                        if (val_parts[0] == "POINT"){
+                            val_parts = val_parts[1].split(" ");
+                            $("#lat").val(val_parts[0]);
+                            $("#lng").val(val_parts[1]);
+                        }else{ $("#location").hide(); }
+                        }else{
+                        $('#'+index).val(value);
+                        }
+                    });
+                    $("#import_data").val("update_data");
+                    $("#edit").val(id);
+                    $.colorbox({inline:true,maxHeight:"100%%",width:"500px",href:"#form_wrapper"});
+                    }, "json");
+                    return false;
+                });
+                }else{
+                alert("ERROR: Server response is invalid.");
+                }
+            }
+            } );
+        }
+        });
         });
     </script>
 </head>
 <body>    
     <h1>Admin Area</h1>
+    <div id="loading"></div>
     <div id="content">        
         <div id="items">
             <form action='' method='post'>
                 <div id="topnav">
-                    <a id='upload' class="button" href='#form_wrapper'>Add</a> | <input class="button" type='submit' name='delete' value='Delete'/> <a class="button" id="logout" href="?login=false">Logout</a>
+                    <button id='upload' class="button">Add</button> | <input class="button" type='submit' name='delete' value='Delete'/> <a class="button" id="logout" href="?login=false">Logout</a>
                 </div>
                 <div class="demo_jui">
                     <div role="grid" class="dataTables_wrapper" id="example_wrapper">
-                        <table class="data_table display">
-                            %(Items)s
+                        <table id="all_data_table" class="data_table display">
+                            <thead>
+                <tr>
+                    <th></th> <th>ID</th> <th>Organization</th> <th>Project Name</th> <th>Short Project Name</th> <th>Project Description</th> <th>Data Type</th> <th>Data Target</th> <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -71,28 +130,28 @@
     <div id="form_hidden_wrapper">
         <div id="form_wrapper" class="colorbox_content">
             <form id="upload_form" method="post" action="" enctype="multipart/form-data">              
-                <h3>Please fill out and submit the following form to register your data location[s]</h3>                
+                <h3>Please complete and save the following form</h3>
                 <h2>Source Information</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper"> 
-                        <label><span class="red">*</span> Organization Name</label>
-                        <input id="organization" name="organization" class="required full" />                        
+                        <label><span class="red">*</span> Organization name</label>
+                        <input id="organization" name="organization" class="required full" type="text"/>                        
                     </div>                    
                     <div class="input_wrapper">     
-                        <label><span class="red">*</span> Contact Name</label>
-                        <input id="contact" name="contact" class="required full" />
+                        <label><span class="red">*</span> Contact name</label>
+                        <input id="contact" name="contact" class="required full" type="text"/>
                     </div>
                     <div class="input_wrapper"> 
-                        <label><span class="red">*</span> Contact Email</label>
-                        <input id="email" name="email" class="required email full" />
+                        <label><span class="red">*</span> Contact email</label>
+                        <input id="email" name="email" class="required email full" type="text"/>
                     </div>
                     <div class="input_wrapper"> 
-                        <label>Contact Phone</label>
-                        <input id="phone" name="phone" class="digits full" />
+                        <label>Contact phone</label>
+                        <input id="phone" name="phone" class="digits full" type="text"/>
                     </div>
                     <div class="input_wrapper">
-                        <label><span class="red">*</span> Data Link</label> <span>(local <input id="data_check" name="data_check" type="checkbox" /> )</span>
-                        <input id="source" name="source" class="required url full" />
+                        <label><span class="red">*</span> Data link</label> <span>(local <input id="data_check" name="data_check" type="checkbox" /> )</span>
+                        <input id="data_url" name="data_url" class="required url full" type="text"/>
                         <input id="data_file" name="data_file" type="file" class="full"/>
                     </div>
                 </div>
@@ -101,59 +160,64 @@
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Project name</label>
-                        <textarea id="label" name="label" class="required full"></textarea>
+                        <textarea id="project_name" name="project_name" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label>Short Project name (optional)</label>
-                        <textarea id="shortLabel" name="labelShort" class="full"></textarea>
+                        <textarea id="project_name_short" name="project_name_short" class="full"></textarea>
                     </div>            
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Project description</label>
-                        <textarea id="description" name="description" class="required full"></textarea>
+                        <textarea id="project_description" name="project_description" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label>Project timeline</label>
                         <div>
-                            <label><span class="red">*</span> Start:</label><input id="timelineStart" name="timelineStart" class="required half" />
+                            <label><span class="red">*</span> Start:</label><input id="timeline_start" name="timeline_start" class="required half" type="text"/>
                             <br />
-                            <label>Finish:</label><input id="timelineFinish" name="timelineFinish" class="half" />
+                            <label>Finish:</label><input id="timeline_finish" name="timeline_finish" class="half" type="text"/>
                         </div>
                     </div>
                     <div class="input_wrapper">
                         <label>Project funder</label>
-                        <textarea id="funder" name="funder" class="full"></textarea>
+                        <textarea id="project_funder" name="project_funder" class="full"></textarea>
                     </div>
+            <div class="input_wrapper">
+            <label>Project report/publication Link</label> <span>(local <input id="report_check" name="report_check" type="checkbox" /> )</span>
+                        <input id="report_url" name="report_url" class="url full" type="text"/>
+            <input id="report_file" name="report_file" type="file" class="full"/>
+            </div>
                 </div>
                 
                 <h2>Meta Data</h2>
                 <div class="indent ui-widget ui-widget-content ui-corner-all">
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Habitat or target species</label>
-                        <textarea id="target" name="target" class="required full"></textarea>
+                        <textarea id="data_target" name="data_target" class="required full"></textarea>
                     </div>                    
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Site location description</label>
-                        <textarea id="locdescription" name="locdescription" class="required full"></textarea>
+                        <textarea id="location_description" name="location_description" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
-                        <label><span class="red">*</span> Number of Sites</label>
-                        <input id="numsites" name="numsites" class="required digits full" />
+                        <label><span class="red">*</span> Number of sites</label>
+                        <input id="site_count" name="site_count" class="required digits full" type="text"/>
                     </div>
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Data collector</label>
-                        <textarea id="collector" name="collector" class="required full"></textarea>
+                        <textarea id="data_collector" name="data_collector" class="required full"></textarea>
                     </div>                    
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Data type</label>
-                        <textarea id="datatype" name="datatype" class="required full"></textarea>
+                        <textarea id="data_type" name="data_type" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Data format</label>
-                        <textarea id="dataformat" name="dataformat" class="required full"></textarea>
+                        <textarea id="data_format" name="data_format" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
                         <label><span class="red">*</span> Data sharing policies</label>
-                        <textarea id="policies" name="policies" class="required full"></textarea>
+                        <textarea id="data_policies" name="data_policies" class="required full"></textarea>
                     </div>                    
                 </div>
                 
@@ -161,10 +225,10 @@
                 <div id="location" class="indent ui-widget ui-widget-content ui-corner-all">                    
                     <div class="input_wrapper">                
                         <label>Latitude</label>
-                        <input id="lat" name="lat" class="number" />
+                        <input id="lat" name="lat" class="number" type="text"/>
                         <br />
                         <label>Longitude</label>
-                        <input id="lng" name="lng" class="number" />
+                        <input id="lng" name="lng" class="number" type="text"/>
                     </div>
                     <h3>OR</h3>
                     <div class="input_wrapper">
@@ -180,13 +244,14 @@
                         <textarea id="keyword" name="keyword" class="required full"></textarea>
                     </div>
                     <div class="input_wrapper">
-                        <label>Additional Information (optional)</label><br />
+                        <label>Additional information (optional)</label><br />
                         <textarea id="other" name="other" class="full"></textarea>
                     </div>
                 </div>
                 
                 <input type="hidden" name="import_data" id="import_data" value="import_data"/>
-                <button type="submit" id="upload_button" class="button">Submit</button>                
+        <input type="hidden" name="edit" id="edit" value=""/>
+                <button type="submit" id="upload_button" class="button">Save</button>                
             </form>
         </div>
     </div>
