@@ -1,0 +1,12 @@
+/* CSS styling for Tooltip */
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	/*border: 1px solid #111;*/
+	/*background-color: #eee;*/
+	padding: 15px;
+    font-size: 0.8em;
+    color: #333333;
+    opacity: 0.85;	
+}
+#tooltip h3, #tooltip div { margin: 0; }
